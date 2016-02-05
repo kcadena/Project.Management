@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9f39f929f5e94a54a3ff84ee6daa5757" Name="Diagram1">
+        <EntityTypeShape EntityType="MProjectDeskSQLITEModel.actividade" Width="1.5" PointX="10.5" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MProjectDeskSQLITEModel.archivo" Width="1.5" PointX="15" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MProjectDeskSQLITEModel.caracteristica" Width="1.5" PointX="12.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MProjectDeskSQLITEModel.folder" Width="1.5" PointX="8.25" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MProjectDeskSQLITEModel.meta_datos" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MProjectDeskSQLITEModel.plantilla" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MProjectDeskSQLITEModel.plantillas_meta_datos" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MProjectDeskSQLITEModel.proyecto" Width="1.5" PointX="6" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MProjectDeskSQLITEModel.proyectos_meta_datos" Width="1.5" PointX="8.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MProjectDeskSQLITEModel.repositorio" Width="1.5" PointX="3.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MProjectDeskSQLITEModel.tipos_archivos" Width="1.5" PointX="12.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MProjectDeskSQLITEModel.tipos_datos" Width="1.5" PointX="1.5" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MProjectDeskSQLITEModel.usuario" Width="1.5" PointX="8.25" PointY="14.125" IsExpanded="true" />
+        <AssociationConnector Association="MProjectDeskSQLITEModel.FK_actividades_0_0" ManuallyRouted="false" />
+        <AssociationConnector Association="MProjectDeskSQLITEModel.FK_caracteristicas_2_0" ManuallyRouted="false" />
+        <AssociationConnector Association="MProjectDeskSQLITEModel.FK_archivos_0_0" ManuallyRouted="false" />
+        <AssociationConnector Association="MProjectDeskSQLITEModel.FK_archivos_1_0" ManuallyRouted="false" />
+        <AssociationConnector Association="MProjectDeskSQLITEModel.FK_archivos_2_0" ManuallyRouted="false" />
+        <AssociationConnector Association="MProjectDeskSQLITEModel.FK_caracteristicas_0_0" ManuallyRouted="false" />
+        <AssociationConnector Association="MProjectDeskSQLITEModel.FK_caracteristicas_1_0" ManuallyRouted="false" />
+        <AssociationConnector Association="MProjectDeskSQLITEModel.FK_caracteristicas_3_0" ManuallyRouted="false" />
+        <AssociationConnector Association="MProjectDeskSQLITEModel.FK_folders_0_0" ManuallyRouted="false" />
+        <AssociationConnector Association="MProjectDeskSQLITEModel.FK_folders_1_0" ManuallyRouted="false" />
+        <AssociationConnector Association="MProjectDeskSQLITEModel.FK_meta_datos_0_0" ManuallyRouted="false" />
+        <AssociationConnector Association="MProjectDeskSQLITEModel.FK_plantillas_meta_datos_0_0" ManuallyRouted="false" />
+        <AssociationConnector Association="MProjectDeskSQLITEModel.FK_plantillas_meta_datos_1_0" ManuallyRouted="false" />
+        <AssociationConnector Association="MProjectDeskSQLITEModel.FK_proyectos_0_0" ManuallyRouted="false" />
+        <AssociationConnector Association="MProjectDeskSQLITEModel.FK_proyectos_meta_datos_0_0" ManuallyRouted="false" />
+        <AssociationConnector Association="MProjectDeskSQLITEModel.FK_proyectos_1_0" ManuallyRouted="false" />
+        <AssociationConnector Association="MProjectDeskSQLITEModel.FK_proyectos_meta_datos_1_0" ManuallyRouted="false" />
+        <AssociationConnector Association="MProjectDeskSQLITEModel.usuarios_proyectos" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
