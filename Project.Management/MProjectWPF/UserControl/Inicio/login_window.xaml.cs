@@ -24,11 +24,15 @@ namespace MProjectWPF.UserControl.Inicio
             InitializeComponent();
         }
 
+        private void label1_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+           
+        }
+
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
-            
             Application.Current.MainWindow.Visibility = Visibility.Visible;
+            this.Close();
         }
     }
 }
