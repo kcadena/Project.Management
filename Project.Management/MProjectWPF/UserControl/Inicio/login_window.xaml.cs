@@ -23,5 +23,13 @@ namespace MProjectWPF.UserControl.Inicio
         {
             InitializeComponent();
         }
+
+      
+      
+
+        private void button_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Application.Current.MainWindow.Visibility = Visibility.Visible;
+        }
     }
 }

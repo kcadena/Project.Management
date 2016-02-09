@@ -15,7 +15,6 @@ namespace MProjectWPF
             this.Visibility = Visibility.Hidden;
             log.Visibility = Visibility.Visible;
             
-            
         }
     }
 }
