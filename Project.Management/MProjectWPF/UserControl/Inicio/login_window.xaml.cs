@@ -23,5 +23,10 @@ namespace MProjectWPF.UserControl.Inicio
         {
             InitializeComponent();
         }
+
+        private void btn_register_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            btn_register.Content = "asd";
+        }
     }
 }

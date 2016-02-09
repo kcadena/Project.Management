@@ -11,7 +11,7 @@
         <TextBox x:Name="textBox" Height="23" Margin="10,53.96,138,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBox x:Name="textBox_Copy" Margin="10,127.46,138,0" TextWrapping="Wrap" Height="23" VerticalAlignment="Top"/>
         <Label x:Name="label_Copy" Content="Contraseña" Margin="10,96.5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120"/>
-        <Label x:Name="label1" Content="Registrarse" HorizontalAlignment="Left" Margin="10,0,0,141.03" VerticalAlignment="Bottom" Foreground="#FF2D90C9"/>
+        <Label x:Name="btn_register" Content="Registrarse" HorizontalAlignment="Left" Margin="10,0,0,141.03" VerticalAlignment="Bottom" Foreground="#FF2D90C9" MouseLeftButtonUp="btn_register_MouseLeftButtonUp"/>
         <Button x:Name="button" Content="Iniciar Sesion" HorizontalAlignment="Right" Margin="0,0,45.5,149.04" VerticalAlignment="Bottom" Width="75"/>
 
     </Grid>
