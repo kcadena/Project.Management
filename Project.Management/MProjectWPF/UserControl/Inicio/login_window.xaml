@@ -12,7 +12,7 @@
         <TextBox x:Name="textBox_Copy" Margin="75,0,73,164.54" TextWrapping="Wrap" Height="23" VerticalAlignment="Bottom"/>
         <Label x:Name="label_Copy" Content="Contraseña" Margin="75,166.5,97,0" VerticalAlignment="Top"/>
         <Label x:Name="label1" Content="Registrarse" HorizontalAlignment="Left" Margin="76.59,0,0,130" VerticalAlignment="Bottom" Foreground="#FF2D90C9"/>
-        <Button x:Name="button" Content="Iniciar Sesion" Margin="80,0,137,100" VerticalAlignment="Bottom" MouseLeftButtonUp="button_MouseLeftButtonUp"/>
+        <Button x:Name="button" Content="Iniciar Sesion" Margin="80,0,137,100" VerticalAlignment="Bottom" Click="button_Click"/>
 
     </Grid>
 </Window>
