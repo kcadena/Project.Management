@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using MProjectWPF.UserControl.Inicio;
 
 namespace MProjectWPF
 {
@@ -9,9 +10,12 @@ namespace MProjectWPF
     {
         public MainWindow()
         {
-            InitializeComponent();
-            Height = System.Windows.SystemParameters.PrimaryScreenHeight;
-            Width = System.Windows.SystemParameters.PrimaryScreenWidth;
+            InitializeComponent();            
+            Window1 log= new Window1();
+            this.Visibility = Visibility.Hidden;
+            log.Visibility = Visibility.Visible;
+            
+            
         }
     }
 }
