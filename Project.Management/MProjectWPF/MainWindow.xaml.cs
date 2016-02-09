@@ -11,7 +11,7 @@ namespace MProjectWPF
         public MainWindow()
         {
             InitializeComponent();            
-            Window1 log= new Window1();
+            LoginWindow log= new LoginWindow();
             this.Visibility = Visibility.Hidden;
             log.Visibility = Visibility.Visible;
             

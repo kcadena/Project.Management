@@ -12,16 +12,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace MProjectWPF.UserControl.Registro
+namespace MProjectWPF.UserControl.Inicio
 {
     /// <summary>
-    /// Lógica de interacción para Window1.xaml
+    /// Interaction logic for LoginWindow.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class LoginWindow : Window
     {
-        public Window1()
+        public LoginWindow()
         {
             InitializeComponent();
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.MainWindow.Visibility = Visibility.Visible;
+            this.Close();
         }
     }
 }
