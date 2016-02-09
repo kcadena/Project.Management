@@ -13,7 +13,7 @@ namespace MProjectWPF
             InitializeComponent();            
             Window1 log= new Window1();
             this.Visibility = Visibility.Hidden;
-            log.Visibility = Visibility.Visible;            
+            log.Visibility = Visibility.Visible;
             
         }
     }

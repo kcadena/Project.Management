@@ -24,9 +24,15 @@ namespace MProjectWPF.UserControl.Inicio
             InitializeComponent();
         }
 
-        private void btn_register_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void label1_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            btn_register.Content = "asd";
+           
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.MainWindow.Visibility = Visibility.Visible;
+            this.Close();
         }
     }
 }
