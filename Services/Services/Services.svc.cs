@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.Text;
+﻿using System.Net.Mail;
+using System.Net;
+using System;
 
 namespace Services
 {
@@ -11,7 +8,7 @@ namespace Services
     // NOTA: para iniciar el Cliente de prueba WCF para probar este servicio, seleccione Services.svc o Services.svc.cs en el Explorador de soluciones e inicie la depuración.
     public class Services : IServices
     {
-        public string enviarCorreo(string emaildes, string mensaje)
+        public string sendEmail(string emaildes,string mensaje)
         {
             string strDestinatario = emaildes;
             System.Net.Mail.SmtpClient clienteSMTP = new System.Net.Mail.SmtpClient();
@@ -37,6 +34,6 @@ namespace Services
             clienteSMTP.EnableSsl = true;
             clienteSMTP.Send(correo);
             return "ok";
-        }
+        }      
     }
 }

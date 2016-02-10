@@ -12,6 +12,6 @@ namespace Services
     public interface IServices
     {
         [OperationContract]
-        void enviarCorreo(string emaildes, string mensaje);
+        string sendEmail(string emaildes, string mensaje);
     }
 }
