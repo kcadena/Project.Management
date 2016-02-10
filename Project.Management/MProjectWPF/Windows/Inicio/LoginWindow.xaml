@@ -34,7 +34,7 @@
         <TextBox x:Name="textBox_Copy" Margin="75,0,73,164.54" TextWrapping="Wrap" Height="23" VerticalAlignment="Bottom"/>
         <Label x:Name="label_Copy" Content="Contraseña" Margin="75,166.5,97,0" VerticalAlignment="Top"/>
         <Label x:Name="btn_register" Content="Registrarse" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Foreground="#FF2D90C9" FontSize="10" Cursor="Hand" MouseLeftButtonUp="btn_register_MouseLeftButtonUp"/>
-        <Button x:Name="button_login" Content="Iniciar Sesion" Margin="75,0,78,129" VerticalAlignment="Bottom" Click="button_Click" Height="23"/>
+        <Button x:Name="button_login" Content="Iniciar Sesion" Margin="75,0,73,129" VerticalAlignment="Bottom" Click="button_Click" Height="23"/>
         <Label x:Name="btn_forgotpassword" Content="Olvide mi Contraseña" HorizontalAlignment="Left" Margin="177,0,0,10" VerticalAlignment="Bottom" Foreground="#FF2D90C9" FontSize="10" Cursor="Hand"/>
 
     </Grid>
