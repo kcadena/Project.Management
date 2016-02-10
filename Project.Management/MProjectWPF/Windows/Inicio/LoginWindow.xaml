@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MProjectWPF.UserControl.Inicio"
         mc:Ignorable="d"
-        Title="Inicio Sesion" Width="300" Height="416" Cursor="Arrow" >
+        Title="Inicio Sesion" Width="300" Height="416" Cursor="Arrow" Background="White" >
     <Window.Resources>
         <Storyboard x:Key="sb_register">
             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.FontWeight)" Storyboard.TargetName="btn_register">
@@ -17,6 +17,12 @@
             </ObjectAnimationUsingKeyFrames>
         </Storyboard>
     </Window.Resources>
+    <Window.BorderBrush>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="Black" Offset="0"/>
+            <GradientStop Color="White" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.BorderBrush>
     <Window.Triggers>
         <EventTrigger RoutedEvent="UIElement.MouseLeftButtonUp" SourceName="btn_register">
             <BeginStoryboard Storyboard="{StaticResource sb_register}"/>

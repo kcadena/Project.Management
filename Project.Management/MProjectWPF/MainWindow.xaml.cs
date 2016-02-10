@@ -8,11 +8,13 @@ namespace MProjectWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        
         public MainWindow()
         {
-            InitializeComponent();            
-            LoginWindow log= new LoginWindow();
+            InitializeComponent();
             this.Visibility = Visibility.Hidden;
+
+            LoginWindow log = new LoginWindow();            
             log.Visibility = Visibility.Visible;
             
         }

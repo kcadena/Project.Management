@@ -5,8 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MProjectWPF.UserControl.Registro"
         mc:Ignorable="d"
-        Title="RegisterWindow" Height="300" Width="300">
+        Title="Registro" Height="417" Width="404">
     <Grid>
-        
+        <Label x:Name="label" Content="REGISTRO DE USUARIOS" HorizontalAlignment="Left" Margin="25,25,0,0" VerticalAlignment="Top" FontWeight="Bold" IsEnabled="False"/>
+        <Rectangle Fill="#FFF4F4F5" Margin="25,55.96,10,119" Stroke="Black"/>
+        <Label x:Name="label1" Content="Identificacion:" HorizontalAlignment="Left" Margin="34.116,65,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox" Height="23" Margin="200,67.96,26,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Label x:Name="label1_Copy" Content="Correo Electronico:" HorizontalAlignment="Left" Margin="34.116,107.04,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox_Copy" Height="23" Margin="200,110,26,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Label x:Name="label1_Copy1" Content="Nombre:" HorizontalAlignment="Left" Margin="34.116,141.09,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox_Copy1" Height="23" Margin="200,144.05,26,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Label x:Name="label1_Copy2" Content="Apellidos:" HorizontalAlignment="Left" Margin="34.116,172.05,0,170.99" Height="25.26"/>
+        <TextBox x:Name="textBox_Copy2" Margin="200,175.01,26,170.99" TextWrapping="Wrap" Height="23"/>
+        <Label x:Name="label1_Copy3" Content="Password:" HorizontalAlignment="Left" Margin="34.116,0,0,140.03" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="textBox_Copy3" Height="23" Margin="200,0,26,140.03" TextWrapping="Wrap" VerticalAlignment="Bottom"/>
+        <Button x:Name="btn_reg" Content="Registrar" HorizontalAlignment="Left" Margin="25,0,0,59" VerticalAlignment="Bottom" Width="119.453" Height="24.96" Click="btn_reg_Click"/>
+        <Button x:Name="btn_cancel_register" Content="Cancelar" HorizontalAlignment="Right" Margin="0,0,10,59" VerticalAlignment="Bottom" Width="119.453" Height="24.96" Click="btn_cancel_register_Click"/>
+
     </Grid>
 </Window>
