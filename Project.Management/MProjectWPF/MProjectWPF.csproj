@@ -81,6 +81,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controller\Folders.cs" />
+    <Compile Include="Controller\FolderTree.cs" />
+    <Compile Include="UsersControls\ExplorerProject.xaml.cs">
+      <DependentUpon>ExplorerProject.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Inicio\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -99,6 +103,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UsersControls\ExplorerProject.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\Inicio\LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -211,6 +219,8 @@
       <DependentUpon>SQLiteMProjectModel.edmx</DependentUpon>
       <LastGenOutput>SQLiteMProjectModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\activity.ico" />
+    <Resource Include="Resources\Folder-icon.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -1,6 +1,8 @@
 ﻿using System.Windows;
 using MProjectWPF.UserControl.Inicio;
 
+using MProjectWPF.UsersControls;
+
 namespace MProjectWPF
 {
     /// <summary>
@@ -12,10 +14,13 @@ namespace MProjectWPF
         public MainWindow()
         {
             InitializeComponent();
-            this.Visibility = Visibility.Hidden;
+            //this.Visibility = Visibility.Hidden;
 
-            LoginWindow log = new LoginWindow();            
-            log.Visibility = Visibility.Visible;
+            //LoginWindow log = new LoginWindow();            
+            //log.Visibility = Visibility.Visible;
+
+            ExplorerProject exPro = new ExplorerProject();
+            this.grid_main_window.Children.Add(exPro);
             
         }
     }
