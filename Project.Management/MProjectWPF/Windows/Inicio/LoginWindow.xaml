@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MProjectWPF.UserControl.Inicio"
         mc:Ignorable="d"
-        Title="Inicio Sesion" Width="300" Height="416" Cursor="Arrow" >
+        Title="Inicio Sesion" Width="300" Height="416" Cursor="Arrow" Background="White" >
     <Window.Resources>
         <Storyboard x:Key="sb_register">
             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.FontWeight)" Storyboard.TargetName="btn_register">
@@ -17,6 +17,12 @@
             </ObjectAnimationUsingKeyFrames>
         </Storyboard>
     </Window.Resources>
+    <Window.BorderBrush>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="Black" Offset="0"/>
+            <GradientStop Color="White" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.BorderBrush>
     <Window.Triggers>
         <EventTrigger RoutedEvent="UIElement.MouseLeftButtonUp" SourceName="btn_register">
             <BeginStoryboard Storyboard="{StaticResource sb_register}"/>
@@ -28,7 +34,7 @@
         <TextBox x:Name="textBox_Copy" Margin="75,0,73,164.54" TextWrapping="Wrap" Height="23" VerticalAlignment="Bottom"/>
         <Label x:Name="label_Copy" Content="Contraseña" Margin="75,166.5,97,0" VerticalAlignment="Top"/>
         <Label x:Name="btn_register" Content="Registrarse" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Foreground="#FF2D90C9" FontSize="10" Cursor="Hand" MouseLeftButtonUp="btn_register_MouseLeftButtonUp"/>
-        <Button x:Name="button_login" Content="Iniciar Sesion" Margin="75,0,78,129" VerticalAlignment="Bottom" Click="button_Click" Height="23"/>
+        <Button x:Name="button_login" Content="Iniciar Sesion" Margin="75,0,73,129" VerticalAlignment="Bottom" Click="button_Click" Height="23"/>
         <Label x:Name="btn_forgotpassword" Content="Olvide mi Contraseña" HorizontalAlignment="Left" Margin="177,0,0,10" VerticalAlignment="Bottom" Foreground="#FF2D90C9" FontSize="10" Cursor="Hand"/>
 
     </Grid>
