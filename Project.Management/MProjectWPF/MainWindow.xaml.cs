@@ -16,6 +16,7 @@ namespace MProjectWPF
 
             LoginWindow log = new LoginWindow();            
             log.Visibility = Visibility.Visible;
+
             
         }
     }

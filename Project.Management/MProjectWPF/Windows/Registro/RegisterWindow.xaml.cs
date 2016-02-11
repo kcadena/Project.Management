@@ -13,12 +13,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MProjectWPF.UserControl.Inicio;
 using MProjectWPF.Model;
+using MProjectWPF.Services;
+
 
 namespace MProjectWPF.UserControl.Registro
 {
-    /// <summary>
-    /// Interaction logic for RegisterWindow.xaml
-    /// </summary>
+    
     public partial class RegisterWindow : Window
     {
         public RegisterWindow()
@@ -36,22 +36,26 @@ namespace MProjectWPF.UserControl.Registro
 
         private void btn_reg_Click(object sender, RoutedEventArgs e)
         {
-            MProjectDeskSQLITEEntities dbMP = new MProjectDeskSQLITEEntities();
-           
-            usuario usu = new usuario();
-            usu.id_usuario = Convert.ToInt32(txt_ide.Text);
-            usu.e_mail = txt_email.Text;
-            usu.nombre = txt_name.Text;
-            usu.apellido = txt_lastName.Text;
-            usu.pass = txt_Password.Text;
+            MProjectDeskSQLITEEntities dbMP = new MProjectDeskSQLITEEntities();            
             try
             {
+                usuario usu = new usuario();
+                usu.e_mail = txt_email.Text;
+                usu.nombre = txt_name.Text;
+                usu.apellido = txt_lastName.Text;
+                usu.pass = txt_Password.Text;
+                ServicesClient semail = new ServicesClient();
+                semail.sendEmail(txt_email.Text, "Registro a la Plataforma MProject", "Usted se ha registrado exitosamente en la plataforma MProject ");
                 dbMP.usuarios.Add(usu);
                 dbMP.SaveChanges();
+
+                Application.Current.MainWindow.Visibility = Visibility.Visible;
+                this.Close();
             }
             catch(Exception err) {
                 MessageBox.Show(err.InnerException.ToString());
             }
+            
 
             
         }
