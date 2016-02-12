@@ -81,6 +81,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Service References\Services\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="UsersControls\Clases\DbLitecontroller.cs" />
     <Compile Include="Windows\Inicio\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -224,6 +230,13 @@
       <DependentUpon>SQLiteMProjectModel.edmx</DependentUpon>
       <LastGenOutput>SQLiteMProjectModel.cs</LastGenOutput>
     </Content>
+    <None Include="Service References\Services\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\Services\configuration.svcinfo" />
+    <None Include="Service References\Services\configuration91.svcinfo" />
+    <None Include="Service References\Services\Services.disco" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
