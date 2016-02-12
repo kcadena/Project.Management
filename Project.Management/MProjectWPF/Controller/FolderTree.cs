@@ -56,12 +56,12 @@ namespace MProjectWPF.Controller
                 {
                     TreeViewItem par = new TreeViewItem();
                     if (x.First().Parent_id_folder == 0)
-                        par.Header = itemsTree(x.First().nombre,
+                        par.Header = itemsTree(getNameParent((int)x.First().Parent_id_folder,fol),
                             "P",
                             "0",
                             1);
                     else
-                        par.Header = itemsTree(x.First().nombre,
+                        par.Header = itemsTree(getNameParent((int)x.First().Parent_id_folder, fol),
                             x.First().Parent_id_folder.ToString(),
                             getIdFolder((int)x.First().Parent_id_folder, x.First().nombre, fol),
                             1);
@@ -76,49 +76,34 @@ namespace MProjectWPF.Controller
                     }
                     lstTree.Add(par);
                 }
-
+                
 
                 //Organizar arbol de TreeNodes
                 foreach (var x in lstTree)
                 {
-                    //System.Windows.MessageBox.Show(x.Items.GetItemAt(0).ToString());
-                    //StackPanel p = (StackPanel)x.Items.GetItemAt(i);
-                    //Label nom = p.Children.OfType<Label>().ElementAt(1);
-                    StackPanel p = (StackPanel)x.Header;
-                    Label par = p.Children.OfType<Label>().ElementAt(2);
-                    
-                    foreach (var y in lstTree)
+                    for (int i = 0; i < x.Items.Count; i++) 
                     {
-                        //System.Windows.MessageBox.Show("# "+y.Items.Count.ToString());
-                        for (int i = 0; i < y.Items.Count; i++)
+                        TreeViewItem par = (TreeViewItem)x.Items.GetItemAt(i);
+                        StackPanel pan = (StackPanel)par.Header;
+                        string id = pan.Children.OfType<Label>().ElementAt(1).Content.ToString();
+                        foreach (var t in parent)
                         {
-                           // System.Windows.MessageBox.Show(""+i);
-                            TreeViewItem tv = (TreeViewItem)y.Items.GetItemAt(i);
-                            p = (StackPanel)tv.Header;
-                            Label nom = p.Children.OfType<Label>().ElementAt(2);
-                            //System.Windows.MessageBox.Show("padre  " + par.Content.ToString() + "  hijo  " + nom.Content.ToString());
-                            try
+                            if (id.Equals(t.ToString()))
                             {
-                                if (par.Content.ToString().Equals(nom.Content.ToString()))
-                                {
-                                    
-                                    y.Items.RemoveAt(i);
-                                    y.Items.Add(x);
-                                }
-                            }
-                            catch (Exception err)
-                            {
-                                System.Windows.MessageBox.Show(err.ToString());
+                                //System.Windows.MessageBox.Show(id+"  i  "+i);
+                                try { par.Items.RemoveAt(i); } catch { }
+                                par.Items.Add(searchTVI(lstTree, id));
                             }
                         }
                     }
                 }
 
-
+                //System.Windows.MessageBox.Show(lstTree.Count.ToString());
                 //MessageBox.Show("" + sl.Count);
+                //return lstTree.ElementAt(lstTree.Count - 1);
                 return lstTree.ElementAt(0);
             }
-            catch { }
+            catch (Exception err) { System.Windows.MessageBox.Show(err.ToString()); }
             return null;
         }
 
@@ -165,22 +150,24 @@ namespace MProjectWPF.Controller
             // Add into stack
             stack.Children.Add(image);
             stack.Children.Add(nom);
-            stack.Children.Add(par);
             stack.Children.Add(id);
+            stack.Children.Add(par);
             return stack;
         }
 
-        private TreeViewItem searchTVI(List<TreeViewItem> sl, string tn)
+        private TreeViewItem searchTVI(List<TreeViewItem> sl, string id)
         {
+            List<TreeViewItem> list = new List<TreeViewItem>();
             foreach (var x in sl)
             {
                 TreeViewItem tv = (TreeViewItem)x;
                 StackPanel p = (StackPanel)tv.Header;
-                Label nom = p.Children.OfType<Label>().ElementAt(1);
-                if (tn.Equals(nom.Content.ToString())) return x;
-
+                string id_fin = p.Children.OfType<Label>().ElementAt(2).Content.ToString();
+                if (id.Equals(id_fin))
+                    list.Add(x);
             }
-            return null;
+
+            return list.First();
         }
 
         private string getNameParent(int p, List<Model.folder> fol)

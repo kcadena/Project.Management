@@ -8,7 +8,8 @@ namespace Services
     // NOTA: para iniciar el Cliente de prueba WCF para probar este servicio, seleccione Services.svc o Services.svc.cs en el Explorador de soluciones e inicie la depuración.
     public class Services : IServices
     {
-        public string sendEmail(string emaildes,string mensaje)
+        //Metodo Protocolo permite comunicacion a traves de correso electronico
+        public string sendEmail(string emaildes,string subject,string mensaje)
         {
             string strDestinatario = emaildes;
             System.Net.Mail.SmtpClient clienteSMTP = new System.Net.Mail.SmtpClient();
@@ -25,7 +26,7 @@ namespace Services
 
             correo.To.Add(strDestinatario);
             correo.From = new MailAddress("123@123.123");
-            correo.Subject = "PRUEBA";
+            correo.Subject = subject;
             string pag = mensaje;
             correo.Body += pag;
             correo.BodyEncoding = System.Text.Encoding.Unicode;
@@ -34,6 +35,9 @@ namespace Services
             clienteSMTP.EnableSsl = true;
             clienteSMTP.Send(correo);
             return "ok";
-        }      
+        }  
+        
+        
+            
     }
 }

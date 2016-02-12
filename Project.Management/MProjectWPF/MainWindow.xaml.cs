@@ -22,6 +22,7 @@ namespace MProjectWPF
             ExplorerProject exPro = new ExplorerProject();
             this.grid_main_window.Children.Add(exPro);
             
+            
         }
     }
 }
