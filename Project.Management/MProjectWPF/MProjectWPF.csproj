@@ -91,7 +91,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="UsersControlls\Clases\DbLitecontroller.cs" />
+    <Compile Include="Controller\DbLitecontroller.cs" />
     <Compile Include="Windows\Inicio\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
