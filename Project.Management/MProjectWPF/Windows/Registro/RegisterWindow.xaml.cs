@@ -14,7 +14,7 @@ using System.Windows.Shapes;
 using MProjectWPF.UserControl.Inicio;
 using MProjectWPF.Model;
 using MProjectWPF.Services;
-
+using MProjectWPF.UsersControls.Clases;
 
 namespace MProjectWPF.UserControl.Registro
 {
@@ -36,28 +36,17 @@ namespace MProjectWPF.UserControl.Registro
 
         private void btn_reg_Click(object sender, RoutedEventArgs e)
         {
-            MProjectDeskSQLITEEntities dbMP = new MProjectDeskSQLITEEntities();            
-            try
+            DbLitecontroller db = new DbLitecontroller();             
+            string res=db.agregarUsuario(txt_email.Text, txt_name.Text, txt_lastName.Text, txt_Password.Text);
+            if (res.Equals("ok"))
             {
-                usuario usu = new usuario();
-                usu.e_mail = txt_email.Text;
-                usu.nombre = txt_name.Text;
-                usu.apellido = txt_lastName.Text;
-                usu.pass = txt_Password.Text;
-                ServicesClient semail = new ServicesClient();
-                semail.sendEmail(txt_email.Text, "Registro a la Plataforma MProject", "Usted se ha registrado exitosamente en la plataforma MProject ");
-                dbMP.usuarios.Add(usu);
-                dbMP.SaveChanges();
-
                 Application.Current.MainWindow.Visibility = Visibility.Visible;
                 this.Close();
             }
-            catch(Exception err) {
-                MessageBox.Show(err.InnerException.ToString());
+            else
+            {
+                MessageBox.Show(res);
             }
-            
-
-            
         }
     }
 }
