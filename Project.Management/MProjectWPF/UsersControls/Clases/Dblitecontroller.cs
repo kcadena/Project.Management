@@ -33,7 +33,6 @@ namespace MProjectWPF.UsersControls.Clases
 
         public  string buscarUsuario(string email)
         {
-            var usuc =
             return "";
         }
 
