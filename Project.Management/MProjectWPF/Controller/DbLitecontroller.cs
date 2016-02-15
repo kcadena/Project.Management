@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MProjectWPF.Model;
 
-namespace MProjectWPF.UsersControlls.Clases
+namespace MProjectWPF.Controller
 {
     class DbLitecontroller
     {

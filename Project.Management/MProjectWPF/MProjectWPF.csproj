@@ -92,6 +92,12 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Controller\DbLitecontroller.cs" />
+    <Compile Include="Windows\Inicio\LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Registro\RegisterWindow.xaml.cs">
+      <DependentUpon>RegisterWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -107,6 +113,14 @@
     <Page Include="UsersControlls\ExplorerProject.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Inicio\LoginWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\Registro\RegisterWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -185,6 +199,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SQLiteMProjectModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="Model\MProjectDesk" />
     <None Include="Model\SQLiteMProjectModel.edmx.diagram">
       <DependentUpon>SQLiteMProjectModel.edmx</DependentUpon>
     </None>

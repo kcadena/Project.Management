@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-using MProjectWPF.UserControl.Inicio;
+using MProjectWPF.Windows.Inicio;
 
 using MProjectWPF.UsersControls;
 
@@ -20,8 +20,7 @@ namespace MProjectWPF
             log.Visibility = Visibility.Visible;
 
             ExplorerProject exPro = new ExplorerProject();
-            this.grid_main_window.Children.Add(exPro);
-            
+            this.grid_main_window.Children.Add(exPro);           
             
         }
     }

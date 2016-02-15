@@ -1,8 +1,8 @@
-﻿using MProjectWPF.UserControl.Registro;
+﻿using MProjectWPF.Windows.Registro;
 using System.Windows;
 using System.Windows.Input;
 
-namespace MProjectWPF.UserControl.Inicio
+namespace MProjectWPF.Windows.Inicio
 {
 
     public partial class LoginWindow : Window

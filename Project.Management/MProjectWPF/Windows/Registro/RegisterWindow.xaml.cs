@@ -11,13 +11,13 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using MProjectWPF.UserControl.Inicio;
+using MProjectWPF.Windows.Inicio;
 using MProjectWPF.Model;
 using MProjectWPF.Services;
 using MProjectWPF.Controller;
-using MProjectWPF.UsersControlls.Clases;
 
-namespace MProjectWPF.UserControl.Registro
+
+namespace MProjectWPF.Windows.Registro
 {
     
     public partial class RegisterWindow : Window
