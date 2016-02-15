@@ -33,7 +33,18 @@ namespace MProjectWPF.Controller
 
         public  string buscarUsuario(string email)
         {
-            return "";
+            var datos = from x in dbMP.usuarios
+                        where x.e_mail == email
+                        select x;
+            if (datos != null)
+            {
+                return email;
+            }
+            else
+            {
+                return "Usuario no existe";
+            }
+            
         }
 
     }

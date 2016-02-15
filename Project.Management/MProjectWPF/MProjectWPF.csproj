@@ -92,6 +92,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Controller\DbLitecontroller.cs" />
+    <Compile Include="UsersControlls\ExplorerProject.xaml.cs">
+      <DependentUpon>ExplorerProject.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Inicio\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
