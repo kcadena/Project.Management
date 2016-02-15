@@ -14,7 +14,8 @@ using System.Windows.Shapes;
 using MProjectWPF.UserControl.Inicio;
 using MProjectWPF.Model;
 using MProjectWPF.Services;
-using MProjectWPF.UsersControls.Clases;
+using MProjectWPF.Controller;
+using MProjectWPF.UsersControlls.Clases;
 
 namespace MProjectWPF.UserControl.Registro
 {
