@@ -17,13 +17,16 @@ namespace MProjectWPF.Windows.Inicio
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            string res=dbMP.buscarUsuario(txt_usulog.Text);
+            string res=dbMP.buscarUsuario(txt_usulog.Text, txt_passlog.Text);
+            if (res.Equals("")){
 
-            if (res.Equals(txt_usulog.Text)){
+            }else
+            {
+                MessageBox.Show("Bienvenido :" + res);
                 Application.Current.MainWindow.Visibility = Visibility.Visible;
                 this.Close();
             }
-            
+
         }
 
         private void btn_register_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)

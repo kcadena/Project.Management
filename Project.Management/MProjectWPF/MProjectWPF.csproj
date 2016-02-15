@@ -239,6 +239,8 @@
       <DependentUpon>SQLiteMProjectModel.edmx</DependentUpon>
       <LastGenOutput>SQLiteMProjectModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\activity.ico" />
+    <Resource Include="Resources\Folder-icon.png" />
     <Resource Include="Sharingan-types-of-sharingan-28287008-198-198.ico" />
     <None Include="Service References\Services\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>

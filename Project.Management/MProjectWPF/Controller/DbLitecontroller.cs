@@ -31,14 +31,21 @@ namespace MProjectWPF.Controller
             }            
         }
 
-        public  string buscarUsuario(string email)
+        public  string buscarUsuario(string email,string pass)
         {
             var datos = from x in dbMP.usuarios
-                        where x.e_mail == email
+                        where x.e_mail == email && x.pass==pass
                         select x;
+
+            
             if (datos != null)
             {
-                return email;
+                string nom="";
+                foreach(var y in datos)
+                {
+                    nom = y.nombre;
+                }                
+                return nom;
             }
             else
             {
