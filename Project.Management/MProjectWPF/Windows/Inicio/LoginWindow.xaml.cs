@@ -17,11 +17,13 @@ namespace MProjectWPF.Windows.Inicio
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            string res=dbMP.buscarUsuario(txt_usulog.Text, txt_passlog.Text);
+            string res=dbMP.buscarUsuario(txt_usulog.Text, txt_passlog.Password);
             if (res.Equals("")){
-
+                lbl_errlog.Content = "Usuario o Contraseña incorrecta";
+                lbl_errlog.Visibility = Visibility.Visible;
             }else
             {
+                lbl_errlog.Visibility = Visibility.Hidden;
                 MessageBox.Show("Bienvenido :" + res);
                 Application.Current.MainWindow.Visibility = Visibility.Visible;
                 this.Close();

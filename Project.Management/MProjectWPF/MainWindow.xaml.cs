@@ -19,8 +19,8 @@ namespace MProjectWPF
             LoginWindow log = new LoginWindow();            
             log.Visibility = Visibility.Visible;
 
-            ExplorerProject exPro = new ExplorerProject();
-            this.grid_main_window.Children.Add(exPro);           
+            //ExplorerProject exPro = new ExplorerProject();
+            //this.grid_main_window.Children.Add(exPro);           
             
         }
     }

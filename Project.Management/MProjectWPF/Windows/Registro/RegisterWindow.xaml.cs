@@ -38,7 +38,7 @@ namespace MProjectWPF.Windows.Registro
         private void btn_reg_Click(object sender, RoutedEventArgs e)
         {
             DbLitecontroller db = new DbLitecontroller();             
-            string res=db.agregarUsuario(txt_email.Text, txt_name.Text, txt_lastName.Text, txt_Password.Text);
+            string res=db.agregarUsuario(txt_email.Text, txt_name.Text, txt_lastName.Text, txt_Password.Password);
             if (res.Equals("ok"))
             {
                 Application.Current.MainWindow.Visibility = Visibility.Visible;
