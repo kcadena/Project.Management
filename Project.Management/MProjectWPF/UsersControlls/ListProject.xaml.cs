@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MProjectWPF.Controller;
+using System.Windows.Media.Animation;
 
 namespace MProjectWPF.UsersControlls
 {
@@ -20,11 +22,33 @@ namespace MProjectWPF.UsersControlls
     /// </summary>
     public partial class ListProject : UserControl
     {
+        MainWindow mainW;
+        DbLitecontroller dbMP;
+        Storyboard myStoryboard;
+
         public ListProject(MainWindow mw,string header)
         {
             InitializeComponent();
-            groupBox.Header = header;            
-            for(int i = 1;i<11;i++)  lst_prj.Items.Add(new LabelProject(i+"",mw));
+            groupBox.Header = header;
+            mainW = mw;
+            dbMP = new DbLitecontroller();
+            if (header.Equals("LISTA PROYECTOS")) {                
+                dbMP.buscarProyecto(lst_prj, mw);
+                btn_newPry.Content = "Nuevo Proyecto";
+            }
+            else
+            {
+                dbMP.buscarPlantilla(lst_prj, mw);
+                btn_newPry.Content = "Nueva Plantilla";
+            }
+            
+        }
+
+        private void btn_newPry_Click(object sender, RoutedEventArgs e)
+        {
+            myStoryboard = (Storyboard)mainW.Resources["showTemplatePanel"];
+            myStoryboard.Begin(mainW);
+            mainW.viewPlan.Children.Add(new ListProject(mainW, "LISTA DE PLANTILLAS"));
         }
     }
 }

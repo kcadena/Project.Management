@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MProjectWPF.UsersControlls"
-             mc:Ignorable="d" Height="500" Width="480">
+             mc:Ignorable="d" Height="500" Width="450">
     <Grid>
         <Rectangle Fill="#FFF4F4F5" Margin="10" Stroke="Black"/>
         <TextBox x:Name="textBox" Height="23" Margin="30,27,75,0" TextWrapping="Wrap" Text="Buscar" VerticalAlignment="Top"/>
@@ -12,6 +12,6 @@
         <GroupBox x:Name="groupBox" Header="Lista de Projectos" Margin="30,55,0,30" Cursor="Arrow" BorderBrush="#FF03304B" HorizontalAlignment="Left" Width="300">
             <ListBox x:Name="lst_prj" Margin="10,10,13,7.04"/>
         </GroupBox>
-        <Button x:Name="btn_newPry" Content="Nuevo Proyecto" HorizontalAlignment="Right" Margin="0,85.04,50,0" VerticalAlignment="Top" Width="95" Height="24.96"/>
+        <Button x:Name="btn_newPry" Content="Nuevo Proyecto" HorizontalAlignment="Right" Margin="0,85,20,0" VerticalAlignment="Top" Width="95" Height="24.96" Click="btn_newPry_Click"/>
     </Grid>
 </UserControl>

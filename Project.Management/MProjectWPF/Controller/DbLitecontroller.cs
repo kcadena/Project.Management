@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MProjectWPF.Model;
+using System.Windows.Controls;
+using MProjectWPF.UsersControlls;
 
 namespace MProjectWPF.Controller
 {
@@ -55,11 +57,25 @@ namespace MProjectWPF.Controller
             
         }
 
-        public void buscarProyecto()
+        public void buscarProyecto(ListBox lb,MainWindow mw)
         {
-            var datos = from x in dbMP.usuarios_ join y in dbMP.proyectos_meta_datos on x.id_usuario equals y.id_proyecto
-                        where x.e_mail == email && x.pass == pass
+            var datos = from x in dbMP.proyectos_meta_datos                        
                         select x;
+
+            foreach(var y in datos)
+            {
+                lb.Items.Add(new LabelProject(y.valor, mw));
+            }
+        }
+        public void buscarPlantilla(ListBox lb, MainWindow mw)
+        {
+            var datos = from x in dbMP.plantillas
+                        select x;
+
+            foreach (var y in datos)
+            {
+                lb.Items.Add(new LabelProject(y.nombre, mw));
+            }
         }
     }
 }

@@ -22,7 +22,7 @@ namespace MProjectWPF.UsersControlls
     public partial class LabelProject : UserControl
     {
         MainWindow mainW;
-        Storyboard myStoryboard;
+        
         
 
         public LabelProject(string content, MainWindow mw)
@@ -30,13 +30,11 @@ namespace MProjectWPF.UsersControlls
             InitializeComponent();
             lbl.Content = content;
             mainW = mw;
-            myStoryboard = (Storyboard)mainW.Resources["showTemplatePanel"];
-        }
-        
+            
+        }        
         private void lbl_MouseLeftButtonUp_1(object sender, MouseButtonEventArgs e)
         {
-            myStoryboard.Begin(mainW);
-            mainW.viewPlan.Children.Add(new ListProject(mainW, "LISTA DE PLANTILLAS"));
+            
         }
     }
 }

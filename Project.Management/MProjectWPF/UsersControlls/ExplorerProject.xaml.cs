@@ -26,7 +26,7 @@ namespace MProjectWPF.UsersControlls
         {
             InitializeComponent();
             Folders fol = new Folders();
-            FolderTree treFol = new FolderTree();
+            foldersTree treFol = new foldersTree();
             TreeViewItem tv = treFol.arrange(fol.getStructureFolders());
             tvPro.Items.Add(tv);
             
