@@ -22,9 +22,8 @@
         <Label x:Name="lbl_errlog" Content="Usuario o Contraseña Incorrecta." Margin="42,0,42,84" VerticalAlignment="Bottom" Foreground="#FFB82E2E" Height="40" TextOptions.TextFormattingMode="Display" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Visibility="Hidden"/>
 
         <Label x:Name="btn_register" Content="Registrarse" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Foreground="#FF2D90C9" FontSize="10" Cursor="Hand" MouseLeftButtonUp="btn_register_MouseLeftButtonUp"/>
-        <Button x:Name="button_login" Content="Iniciar Sesion" Margin="75,261,73,0" VerticalAlignment="Top" Click="button_Click" Height="23"/>
+        <Button x:Name="button_login" Content="Iniciar Sesion" Margin="75,233,73,0" VerticalAlignment="Top" Click="button_Click" Height="23"/>
         <Label x:Name="btn_forgotpassword" Content="Olvide mi Contraseña" HorizontalAlignment="Left" Margin="177,0,0,10" VerticalAlignment="Bottom" Foreground="#FF2D90C9" FontSize="10" Cursor="Hand"/>
-
 
     </Grid>
 </Window>

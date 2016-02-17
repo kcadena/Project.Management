@@ -13,23 +13,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-using MProjectWPF.Controller;
-
 namespace MProjectWPF.UsersControlls
 {
     /// <summary>
-    /// Interaction logic for ExplorerProject.xaml
+    /// Lógica de interacción para ListProject.xaml
     /// </summary>
-    public partial class ExplorerProject : System.Windows.Controls.UserControl
+    public partial class ListProject : UserControl
     {
-        public ExplorerProject()
+        public ListProject(MainWindow mw,string header)
         {
             InitializeComponent();
-            Folders fol = new Folders();
-            FolderTree treFol = new FolderTree();
-            TreeViewItem tv = treFol.arrange(fol.getStructureFolders());
-            tvPro.Items.Add(tv);
-            
+            groupBox.Header = header;            
+            for(int i = 1;i<11;i++)  lst_prj.Items.Add(new LabelProject(i+"",mw));
         }
     }
 }

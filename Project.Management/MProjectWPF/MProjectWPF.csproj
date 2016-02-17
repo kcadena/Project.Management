@@ -86,6 +86,60 @@
     </ApplicationDefinition>
     <Compile Include="Controller\Folders.cs" />
     <Compile Include="Controller\FolderTree.cs" />
+    <Compile Include="Model\actividades.cs">
+      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\archivos.cs">
+      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\caracteristicas.cs">
+      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\folders.cs">
+      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\meta_datos.cs">
+      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MProjectDeskSQLITE.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MProjectDeskSQLITE.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MProjectDeskSQLITE.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MProjectDeskSQLITE.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MProjectDeskSQLITE.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\plantillas.cs">
+      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\plantillas_meta_datos.cs">
+      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\proyectos.cs">
+      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\proyectos_meta_datos.cs">
+      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\repositorio.cs">
+      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\tipos_archivos.cs">
+      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\tipos_datos.cs">
+      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\usuarios.cs">
+      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
+    </Compile>
     <Compile Include="Service References\Services\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -94,6 +148,12 @@
     <Compile Include="Controller\DbLitecontroller.cs" />
     <Compile Include="UsersControlls\ExplorerProject.xaml.cs">
       <DependentUpon>ExplorerProject.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsersControlls\LabelProject.xaml.cs">
+      <DependentUpon>LabelProject.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsersControlls\ListProject.xaml.cs">
+      <DependentUpon>ListProject.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\Inicio\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
@@ -117,6 +177,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UsersControlls\LabelProject.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsersControlls\ListProject.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\Inicio\LoginWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -127,60 +195,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\actividade.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\archivo.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\caracteristica.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\folder.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\meta_datos.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\plantilla.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\plantillas_meta_datos.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\proyecto.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\proyectos_meta_datos.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\repositorio.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\SQLiteMProjectModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SQLiteMProjectModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\SQLiteMProjectModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\SQLiteMProjectModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SQLiteMProjectModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Model\tipos_archivos.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\tipos_datos.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\usuario.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -198,13 +212,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model\SQLiteMProjectModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SQLiteMProjectModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <None Include="Model\MProjectDesk" />
-    <None Include="Model\SQLiteMProjectModel.edmx.diagram">
-      <DependentUpon>SQLiteMProjectModel.edmx</DependentUpon>
+    <EntityDeploy Include="Model\MProjectDeskSQLITE.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MProjectDeskSQLITE.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\MProjectDeskSQLITE.edmx.diagram">
+      <DependentUpon>MProjectDeskSQLITE.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -229,16 +243,6 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\SQLiteMProjectModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SQLiteMProjectModel.edmx</DependentUpon>
-      <LastGenOutput>SQLiteMProjectModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Model\SQLiteMProjectModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SQLiteMProjectModel.edmx</DependentUpon>
-      <LastGenOutput>SQLiteMProjectModel.cs</LastGenOutput>
-    </Content>
     <Resource Include="Resources\activity.ico" />
     <Resource Include="Resources\Folder-icon.png" />
     <Resource Include="Sharingan-types-of-sharingan-28287008-198-198.ico" />
@@ -255,6 +259,18 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model\MProjectDeskSQLITE.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MProjectDeskSQLITE.edmx</DependentUpon>
+      <LastGenOutput>MProjectDeskSQLITE.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\MProjectDeskSQLITE.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MProjectDeskSQLITE.edmx</DependentUpon>
+      <LastGenOutput>MProjectDeskSQLITE.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.99.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.99.0\build\net46\System.Data.SQLite.Core.targets')" />

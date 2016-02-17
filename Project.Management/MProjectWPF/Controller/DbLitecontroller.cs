@@ -9,8 +9,9 @@ namespace MProjectWPF.Controller
 {
     class DbLitecontroller
     {
-        MProjectDeskSQLITEEntities dbMP = new MProjectDeskSQLITEEntities();
-        usuario usu = new usuario();
+        MProjectDeskEntities dbMP = new MProjectDeskEntities();
+        usuarios usu = new usuarios();
+
         public DbLitecontroller() { }
         
         public string agregarUsuario(string email,string name, string lastname, string pass)
@@ -54,5 +55,11 @@ namespace MProjectWPF.Controller
             
         }
 
+        public void buscarProyecto()
+        {
+            var datos = from x in dbMP.usuarios_ join y in dbMP.proyectos_meta_datos on x.id_usuario equals y.id_proyecto
+                        where x.e_mail == email && x.pass == pass
+                        select x;
+        }
     }
 }

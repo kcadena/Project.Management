@@ -49,5 +49,6 @@ namespace MProjectWPF.Windows.Registro
                 MessageBox.Show(res);
             }
         }
+
     }
 }
