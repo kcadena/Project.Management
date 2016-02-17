@@ -23,8 +23,7 @@ namespace MProjectWPF
             
 
             viewPro.Children.Add(new ListProject(this,"LISTA PROYECTOS"));
-            //ExplorerProject exPro = new ExplorerProject();
-            //this.grid_main_window.Children.Add(exPro);           
+                      
             
         }
     }

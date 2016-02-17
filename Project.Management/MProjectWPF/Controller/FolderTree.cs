@@ -135,7 +135,7 @@ namespace MProjectWPF.Controller
             if (op == 1)
             {
                 image.Source = new BitmapImage
-                (new Uri("pack://application:,,/Resources/folders-icon.png"));
+                (new Uri("pack://application:,,/Resources/folder-icon.png"));
                 image.Width = 20;
                 image.Height = 20;
             }
