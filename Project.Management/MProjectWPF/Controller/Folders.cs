@@ -12,15 +12,15 @@ namespace MProjectWPF.Controller
 {
     class Folders
     {
-        private MProjectDeskEntities mp = new MProjectDeskEntities();
+        private MProjectDeskSQLITEEntities mp = new MProjectDeskSQLITEEntities();
 
         //crear carpetas
         public string createFolder(String name, int project)
         {
-            folders fol = new folders();
+            folder fol = new folder();
             fol.id_proyecto = project;
             fol.nombre = name;
-            fol.id_proyecto = mp.folders.Last<folders>().id_proyecto + 1;
+            fol.id_proyecto = mp.folders.Last<folder>().id_proyecto + 1;
             mp.folders.Add(fol);
             try
             {
@@ -34,10 +34,10 @@ namespace MProjectWPF.Controller
         }
         public string createFolder(String name, int project, int father)
         {
-            folders fol = new folders();
+            folder fol = new folder();
             fol.id_proyecto = project;
             fol.nombre = name;
-            fol.id_proyecto = mp.folders.Last<folders>().id_proyecto + 1;
+            fol.id_proyecto = mp.folders.Last<folder>().id_proyecto + 1;
             mp.folders.Add(fol);
             try
             {
@@ -52,7 +52,7 @@ namespace MProjectWPF.Controller
         //borrar carpetas
         public string deleteFolder(int id_fol)
         {
-            folders fol = new folders();
+            folder fol = new folder();
             fol.id_folder = id_fol;
             fol = mp.folders.Find(fol);
             mp.folders.Remove(fol);
@@ -74,7 +74,7 @@ namespace MProjectWPF.Controller
                            where x.id_folder == id_fol
                            select x).First();
 
-                folders fol = (folders)dat;
+                folder fol = (folder)dat;
                 fol.nombre = name;
                 mp.folders.Attach(fol);
                 var entry = mp.Entry(fol);
@@ -89,14 +89,14 @@ namespace MProjectWPF.Controller
                 return false;
             }
         }
-        public List<folders> getStructureFolders()
+        public List<folder> getStructureFolders()
         {
             var fol = from x in mp.folders
                       where x.id_proyecto == 1
                       orderby x.Parent_id_folder ascending, x.id_folder ascending
                       select x;
 
-            return fol.ToList<folders>();
+            return fol.ToList<folder>();
 
 
         }

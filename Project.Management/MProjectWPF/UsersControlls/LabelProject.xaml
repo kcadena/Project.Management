@@ -1,9 +1,0 @@
-﻿<UserControl x:Class="MProjectWPF.UsersControlls.LabelProject"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MProjectWPF.UsersControlls"
-             mc:Ignorable="d" Height="25" Width="235" Cursor="Hand">
-    <Label x:Name="lbl" Content="Label" d:LayoutOverrides="Height" Foreground="#FF08438B" HorizontalContentAlignment="Center" MouseLeftButtonUp="lbl_MouseLeftButtonUp_1"/>
-</UserControl>

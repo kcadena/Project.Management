@@ -10,9 +10,9 @@ using System.Windows.Media.Imaging;
 
 namespace MProjectWPF.Controller
 {
-    class foldersTree
+    class FolderTree
     {
-        public TreeViewItem arrange(List<Model.folders> fol)
+        public TreeViewItem arrange(List<Model.folder> fol)
         {
             //parent lista de todos los padres sin repetirse
             List<int> parent = new List<int>();
@@ -36,11 +36,11 @@ namespace MProjectWPF.Controller
 
 
 
-                //organizar lista de folderss segun padres
-                List<List<Model.folders>> org = new List<List<Model.folders>>();
+                //organizar lista de folders segun padres
+                List<List<Model.folder>> org = new List<List<Model.folder>>();
                 foreach (var x in parent)
                 {
-                    List<Model.folders> it_fol = new List<Model.folders>();
+                    List<Model.folder> it_fol = new List<Model.folder>();
 
                     foreach (var y in fol)
                         if (x == y.Parent_id_folder) it_fol.Add(y);
@@ -63,7 +63,7 @@ namespace MProjectWPF.Controller
                     else
                         par.Header = itemsTree(getNameParent((int)x.First().Parent_id_folder, fol),
                             x.First().Parent_id_folder.ToString(),
-                            getIdfolders((int)x.First().Parent_id_folder, x.First().nombre, fol),
+                            getIdFolder((int)x.First().Parent_id_folder, x.First().nombre, fol),
                             1);
                     foreach (var y in x)
                     {
@@ -135,7 +135,7 @@ namespace MProjectWPF.Controller
             if (op == 1)
             {
                 image.Source = new BitmapImage
-                (new Uri("pack://application:,,/Resources/folders-icon.png"));
+                (new Uri("pack://application:,,/Resources/Folder-icon.png"));
                 image.Width = 20;
                 image.Height = 20;
             }
@@ -170,15 +170,15 @@ namespace MProjectWPF.Controller
             return list.First();
         }
 
-        private string getNameParent(int p, List<Model.folders> fol)
+        private string getNameParent(int p, List<Model.folder> fol)
         {
             foreach (var x in fol)
             {
-                if (x.id_folder== p) return x.nombre;
+                if (x.id_folder == p) return x.nombre;
             }
             return "0";
         }
-        private string getIdfolders(int par, string nom, List<Model.folders> fol)
+        private string getIdFolder(int par, string nom, List<Model.folder> fol)
         {
             foreach (var x in fol)
             {
