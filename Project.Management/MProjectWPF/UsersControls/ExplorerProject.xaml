@@ -4,9 +4,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MProjectWPF.UsersControls"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <TreeView Name="tvPro" Background="BlanchedAlmond"></TreeView>  
+             mc:Ignorable="d" Width="195" Height="435" VerticalAlignment="Bottom" HorizontalAlignment="Left" >
+    <Grid x:Name="Grid_Explorer" Margin="5,0,0,5">
+        <TreeView Name="tvPro" Background="BlanchedAlmond" MouseRightButtonUp="tvPro_MouseRightButtonUp">
+            <!--<TreeView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="New Activity" Click="MenuItem_Click"/>
+                    <MenuItem Header="Del Activity" Click="MenuItem_Click_1"/>
+                    <MenuItem Header="Mover">
+                        <MenuItem Header="Arriba"/>
+                        <MenuItem Header="Abajo"/>
+                    </MenuItem>
+
+                </ContextMenu>
+            </TreeView.ContextMenu>-->
+        </TreeView>
     </Grid>
 </UserControl>

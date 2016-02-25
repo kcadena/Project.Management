@@ -80,8 +80,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controller\Folders.cs" />
-    <Compile Include="Controller\FolderTree.cs" />
+    <Compile Include="Controller\Classes\OperationsProjects.cs" />
+    <Compile Include="Controller\FromModel\Activities.cs" />
+    <Compile Include="Controller\FromModel\Characteristics.cs" />
+    <Compile Include="Controller\FromModel\Folders.cs" />
+    <Compile Include="Controller\Classes\FolderTree.cs" />
+    <Compile Include="Controller\FromModel\Projects.cs" />
+    <Compile Include="UsersControls\AddAtivity.xaml.cs">
+      <DependentUpon>AddAtivity.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UsersControls\ExplorerProject.xaml.cs">
       <DependentUpon>ExplorerProject.xaml</DependentUpon>
     </Compile>
@@ -103,6 +110,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UsersControls\AddAtivity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UsersControls\ExplorerProject.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

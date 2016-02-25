@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\admi\Desktop\Trabajo de grado\PROGRAMMING\CODE\Project.Management\MProjectWPF\Model\SQLiteMProjectModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\admi\Desktop\Trabajo de grado\PROGRAMMING\Project.Management\Project.Management\Project.Management\MProjectWPF\Model\SQLiteMProjectModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

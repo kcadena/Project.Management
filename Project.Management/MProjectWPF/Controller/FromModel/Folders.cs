@@ -8,7 +8,7 @@ using MProjectWPF.Model;
 
 using System.Windows.Controls;
 
-namespace MProjectWPF.Controller
+namespace MProjectWPF.Controller.FromModel
 {
     class Folders
     {

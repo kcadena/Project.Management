@@ -4,12 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using MProjectWPF.Controller;
+using MProjectWPF.Controller.FromModel;
 using System.Windows.Controls;
+using System.Windows;
 using System.Windows.Media.Imaging;
 
-namespace MProjectWPF.Controller
+namespace MProjectWPF.Controller.Classes
 {
+
+
     class FolderTree
     {
         public TreeViewItem arrange(List<Model.folder> fol)
@@ -33,7 +36,7 @@ namespace MProjectWPF.Controller
                         parentName.Add(getFolderParent((int)x.Parent_id_folder, fol).nombre);
                     }
                 }
-                
+
                 //organizar lista de folders segun padres
                 List<List<Model.folder>> org = new List<List<Model.folder>>();
                 foreach (var x in parent)
@@ -43,8 +46,23 @@ namespace MProjectWPF.Controller
                         if (x == y.Parent_id_folder) it_fol.Add(y);
                     org.Add(it_fol);
                 }
-                
-                //Lista de Tree Nodes
+
+
+                /////////////////////////
+                //Lista de actividaes Actividades (folders)  ordenadas por pos
+                Activities actFol = new Activities();
+                List<List<Model.actividade>> act = actFol.getActivitiesFolders();
+                //MessageBox.Show("" + act.Count);
+                /////////////////////////
+                //int lo = 0;
+                //foreach (var x in act)
+                //{
+                //   // MessageBox.Show("pos     " + ++lo);
+                //    foreach (var y in x)
+                //    {
+                //        MessageBox.Show(y.id_actividad + "          " + y.nombre+"         "+y.id_folder);
+                //    }
+                //}
                 List<TreeViewItem> lstTree = new List<TreeViewItem>();
                 foreach (var x in org)
                 {
@@ -56,16 +74,12 @@ namespace MProjectWPF.Controller
                             "P",
                             1);
                     else {
-                        //try
-                        //{
-                            Model.folder aux = getFolderParent((int)x.First().Parent_id_folder, fol);
-                            par.Header = itemsTree(
-                                aux.nombre,
-                                aux.id_folder.ToString(),
-                                aux.Parent_id_folder.ToString(),
-                                1);
-                        //}
-                        //catch { }
+                        Model.folder aux = getFolderParent((int)x.First().Parent_id_folder, fol);
+                        par.Header = itemsTree(
+                            aux.nombre,
+                            aux.id_folder.ToString(),
+                            aux.Parent_id_folder.ToString(),
+                            1);
                     }
                     foreach (var y in x)
                     {
@@ -86,8 +100,69 @@ namespace MProjectWPF.Controller
                         }
                     }
                     lstTree.Add(par);
+
                 }
-                
+
+                ///agregar actividades
+                ///
+               
+                foreach (var x in lstTree)
+                {
+                    try
+                    {  
+                        TreeViewItem par = (TreeViewItem)x;
+                        StackPanel pan = (StackPanel)par.Header;
+                        string id_par = pan.Children.OfType<Label>().ElementAt(1).Content.ToString();
+
+
+                        foreach (var ac in act)
+                        {
+                            foreach (var a in ac)
+                            {
+                                if (id_par.Equals(a.id_folder.ToString()))
+                                {
+                                    TreeViewItem child = new TreeViewItem();
+                                    child.Header = itemsTree(
+                                    a.nombre,
+                                    a.id_folder.ToString(),
+                                    "-1",
+                                    2);
+                                    par.Items.Add(child);
+
+                                }
+                            }
+                        }
+                        foreach(var y in x.Items)
+                        {
+                            TreeViewItem pa = (TreeViewItem)y;
+                            StackPanel p = (StackPanel)pa.Header;
+                            string id = p.Children.OfType<Label>().ElementAt(1).Content.ToString();
+                            foreach (var ac in act)
+                            {
+                                foreach (var a in ac)
+                                {
+                                    if (id.Equals(a.id_folder.ToString()))
+                                    {
+                                        TreeViewItem child = new TreeViewItem();
+                                        child.Header = itemsTree(
+                                        a.nombre,
+                                        a.id_folder.ToString(),
+                                        "-1",
+                                        2);
+                                        pa.Items.Add(child);
+
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                    catch { }
+
+                }
+
+
+              
                 //Organizar arbol de TreeNodes
                 foreach (var x in lstTree)
                 {
@@ -105,6 +180,12 @@ namespace MProjectWPF.Controller
                         }
                     }
                 }
+
+
+
+
+
+
                 return lstTree.ElementAt(0);
             }
             catch (Exception err) { System.Windows.MessageBox.Show(err.ToString()); }
@@ -125,7 +206,7 @@ namespace MProjectWPF.Controller
             Label id = new Label();
             id.Content = id_fol.ToString();
             id.Visibility = System.Windows.Visibility.Hidden;
-            
+
 
             //ruta del archivo
             Label path = new Label();
@@ -164,6 +245,6 @@ namespace MProjectWPF.Controller
             }
             return null;
         }
-    }
 
+    }
 }
