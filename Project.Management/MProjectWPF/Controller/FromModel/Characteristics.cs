@@ -24,15 +24,72 @@ namespace MProjectWPF.Controller.FromModel
         */
         public bool CreateCharacteristicsActivity(Dictionary<string,string> data)
         {
+            Activities acty = new Activities();
             caracteristica car = new caracteristica();
+            actividade act = new actividade();
+
+            //Caracterteristicas
             car.estado = data["est"];
             car.porcentaje_asignado = Convert.ToInt32(data["per"]);
             car.duracion = Convert.ToInt32(data["dur"]);
             car.tipo_duracion = data["typDur"];
-            car.fecha_inicio = DateTime.Parse(data["fec"]);
+            car.fecha_inicio = DateTime.Now;
+            car.padre_caracteristica = Convert.ToInt64(data["fat_cha"]);
+
+            //Actividades
+            act.id_folder = Convert.ToInt64(data["fol"]);
+            //System.Windows.MessageBox.Show(data["fol"]);
+            act.nombre = data["nom"];
+            act.descripcion = data["des"];
+            int pos = acty.getPositionAct(Convert.ToInt32(data["fat_cha"]));
+            act.pos = pos + 1;
+            
+        
+            try
+            {
+                MPdb.actividades.Add(act);
+                MPdb.SaveChanges();
+
+                try
+                {
+                    int id = (int)MPdb.actividades.OrderByDescending(e => e.id_actividad).First().id_actividad;
+                    //System.Windows.MessageBox.Show("" + id);
+                    car.id_actividad = id;
+                    MPdb.caracteristicas.Add(car);
+                    MPdb.SaveChanges();
+                }
+                catch (Exception err) { System.Windows.MessageBox.Show("interno \n" + err.ToString()); }
+            }
+            catch (Exception err) { System.Windows.MessageBox.Show("Externo \n" + err.ToString()); }
+            return false;
+        }
+    }
+}
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 
             switch (Convert.ToInt32(data["opt"]))
             {
@@ -48,39 +105,7 @@ namespace MProjectWPF.Controller.FromModel
                     break;
                 //3 actividad
                 case 3:
-                    Activities acty = new Activities();
 
-                    actividade act = new actividade();
-                    act.id_folder = Convert.ToInt32(data["fol"]);
-                    System.Windows.MessageBox.Show(data["fol"]);
-                    act.nombre = data["nom"];
-                    act.descripcion = data["des"];
-                    int pos = acty.getPositionAct(Convert.ToInt32(data["fol"]));
-                    act.pos = pos + 1;
-
-
-                    try {
-                        MPdb.actividades.Add(act);
-                        MPdb.SaveChanges();
-
-                        try
-                        {
-
-                            int id = (int) MPdb.actividades.OrderByDescending(e => e.id_actividad).First().id_actividad;
-                            System.Windows.MessageBox.Show("" + id);
-                            car.id_actividad = id;
-                            MPdb.caracteristicas.Add(car);
-                            MPdb.SaveChanges();
-
-
-                        }
-                        catch (Exception err) { System.Windows.MessageBox.Show("interno \n"+err.ToString()); }
-                    }
-                    catch (Exception err) { System.Windows.MessageBox.Show("Externo \n" + err.ToString()); }
-                    
-
-
-                    
                     break;
                 //4 subactividad
                 case 4:
@@ -92,7 +117,4 @@ namespace MProjectWPF.Controller.FromModel
                     break;
             }
 
-            return false;
-        }
-    }
-}
+    */

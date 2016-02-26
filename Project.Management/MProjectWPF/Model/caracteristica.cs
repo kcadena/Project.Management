@@ -32,6 +32,8 @@ namespace MProjectWPF.Model
         public long id_proyecto { get; set; }
         public Nullable<long> padre_caracteristica { get; set; }
         public Nullable<long> proyecto_padre { get; set; }
+
+
     
         public virtual actividade actividade { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

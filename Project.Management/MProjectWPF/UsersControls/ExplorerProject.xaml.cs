@@ -67,7 +67,7 @@ namespace MProjectWPF.UsersControls
         {
             try
             {
-                AddAtivity addAct = new AddAtivity((TreeViewItem)tvPro.SelectedItem, tvPro, Grid_Explorer);
+                AddAtivity addAct = new AddAtivity((TreeViewItem)tvPro.SelectedItem, tvPro, main_grid,1);
                 main_grid.Children.Add(addAct);
                 
             }
