@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MProjectWPF.UsersControls"
-             mc:Ignorable="d" Width="195" Height="435" VerticalAlignment="Bottom" HorizontalAlignment="Left" >
+             mc:Ignorable="d" Width="300" Height="600" VerticalAlignment="Bottom" HorizontalAlignment="Left" >
     <Grid x:Name="Grid_Explorer" Margin="5,0,0,5">
         <TreeView Name="tvPro" Background="BlanchedAlmond" MouseRightButtonUp="tvPro_MouseRightButtonUp">
             <!--<TreeView.ContextMenu>

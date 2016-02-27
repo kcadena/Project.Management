@@ -11,28 +11,17 @@ namespace MProjectWPF.Controller.FromModel
 {
     class Activities
     {
+
+
         private MProjectDeskSQLITEEntities MPdb = new MProjectDeskSQLITEEntities();
-        public List<List<ActividadesList>> getActivitiesFolders()
+        public List<long> getActivitiesFolders()
         {
-            List<List<ActividadesList>> act = new List<List<ActividadesList>>();
             var fol = from x in MPdb.folders
+                      join y in MPdb.actividades on x.id_folder equals y.id_actividad
                       where x.id_proyecto == 1
-                      select x;
-            foreach (var x in fol)
-            {
-                var aux = from y in MPdb.actividades
-                          join a in MPdb.caracteristicas
-                          on y.id_actividad equals a.id_actividad
-                          where y.id_folder == x.id_folder
-                          orderby y.pos ascending
-                          select (new ActividadesList
-                          {
-                              nombre = y.nombre,
-                              fol = y.id_folder,
-                              pos = y.pos,
-                              par_car = a.padre_caracteristica,
-                              id_act = a.id_caracteristica 
-                          });
+                      select x.id_folder;
+
+            return fol.ToList<long>();
 
                 //var zx = (MPdb.actividades.Join(
                 //    MPdb.caracteristicas,
@@ -49,43 +38,54 @@ namespace MProjectWPF.Controller.FromModel
                 //          pos = (long) w.actividades.pos,
                 //          //par_car = (long)  w.caracteristicas.padre_caracteristica ?? 
                 //      }));
-                try
-                {
-                    act.Add(aux.ToList<ActividadesList>());
-                }
-                catch (Exception err){ System.Windows.MessageBox.Show("Error \n"+err.ToString()); }
-               
-            }
+                
             
-            return act;
         }
 
-        public List<List<ActividadesList>> getActivitiesProject(int proPar)
+        public List<long> getAtivitiesParents(long pro)
         {
-            List<List<ActividadesList>> act = new List<List<ActividadesList>>();
-
-            var dat = from x in MPdb.caracteristicas
-                      join y in MPdb.actividades
+            var dat = (from x in MPdb.actividades
+                      join y in MPdb.caracteristicas
                       on x.id_actividad equals y.id_actividad
-                      //where x.proyecto_padre == proPar
-                      orderby x.padre_caracteristica ascending, y.pos ascending
-                      select (new ActividadesList()
-                      {
-                          nombre = y.nombre,
-                          fol =y.id_folder,
-                          pos =y.pos,
-                          par_car = x.padre_caracteristica,
-                          id_act = x.id_caracteristica
-                      }
-                      );
-            try
+                      //where y.id_proyecto == pro
+                      select (y.padre_caracteristica)).Distinct();
+            List<long> list = new List<long>(); 
+            foreach(var x in dat)
             {
-                act.Add(dat.ToList<ActividadesList>());
+                //System.Windows.MessageBox.Show(""+x);
+                list.Add((long)x);
             }
-            catch (Exception err) { System.Windows.MessageBox.Show("Error \n" + err.ToString()); }
-            return act; 
+            return list;
         }
 
+        public List<ActividadesList> getActivitiesProject(int proPar)
+        {
+             try {
+                var dat = (from x in MPdb.caracteristicas
+                           join y in MPdb.actividades
+                           on x.id_actividad equals y.id_actividad
+                           //where x.proyecto_padre == proPar
+                           orderby x.padre_caracteristica ascending, y.pos ascending
+                           select (new ActividadesList()
+                           {
+                               nombre = y.nombre,
+                               fol = y.id_folder,
+                               pos = y.pos,
+                               par_car = x.padre_caracteristica,
+                               id_act = x.id_caracteristica
+                           }
+                           ));
+                
+                
+                return dat.ToList<ActividadesList>();
+            }
+            catch (Exception err){
+                System.Windows.MessageBox.Show(err.InnerException.ToString());
+                return null;
+            }
+           
+        }
+        
         public bool createActivity(string nom, string des, int pos, int id_fol)
         {
             actividade act = new actividade();
@@ -134,9 +134,10 @@ namespace MProjectWPF.Controller.FromModel
     {
         public string nombre { get; set; }
         public Nullable<long> fol { get; set; }
-        public long pos { get; set; }
+        public Nullable<long> pos { get; set; }
         public Nullable<long> par_car { get; set; }
         public Nullable<long> id_act { get; set; }
+        //public Nullable<long> par_car
     }
 }
 
