@@ -47,7 +47,7 @@ namespace MProjectWPF.Controller.FromModel
             var dat = (from x in MPdb.actividades
                       join y in MPdb.caracteristicas
                       on x.id_actividad equals y.id_actividad
-                      //where y.id_proyecto == pro
+                      where y.proyecto_padre == pro
                       select (y.padre_caracteristica)).Distinct();
             List<long> list = new List<long>(); 
             foreach(var x in dat)
@@ -58,13 +58,13 @@ namespace MProjectWPF.Controller.FromModel
             return list;
         }
 
-        public List<ActividadesList> getActivitiesProject(int proPar)
+        public List<ActividadesList> getActivitiesProject(long proPar)
         {
              try {
                 var dat = (from x in MPdb.caracteristicas
                            join y in MPdb.actividades
                            on x.id_actividad equals y.id_actividad
-                           //where x.proyecto_padre == proPar
+                           where x.proyecto_padre == proPar
                            orderby x.padre_caracteristica ascending, y.pos ascending
                            select (new ActividadesList()
                            {

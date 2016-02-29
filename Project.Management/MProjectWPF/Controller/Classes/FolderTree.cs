@@ -17,13 +17,18 @@ namespace MProjectWPF.Controller.Classes
     {
         List<int> parent;           //parent lista (id) de todos los padres sin repetirse
         List<string> parentName;    //parent lista (Nombres) de todos los padres sin repetirse
+        Dictionary<string, long> dat;
+        public FolderTree(Dictionary<string, long> dat)
+        {
+            this.dat = dat;
+        }
 
 
         private List<TreeViewItem> listActivities_Model()
         {
             Activities actFol = new Activities();
-            List<FromModel.ActividadesList> act = actFol.getActivitiesProject(0);
-            List<long> lstParCar = actFol.getAtivitiesParents(0);
+            List<FromModel.ActividadesList> act = actFol.getActivitiesProject(dat["id"]);
+            List<long> lstParCar = actFol.getAtivitiesParents(dat["id"]);
 
             List<TreeViewItem> lstTree = new List<TreeViewItem>();
             try
@@ -40,13 +45,15 @@ namespace MProjectWPF.Controller.Classes
                             ban = true;
                         }
                     }
+                    long f1 = 0; ;
+                    if (x.fol != null) f1 = (long)x.fol;
                     par.Header = itemsTree(
                            x.nombre,
                            x.fol.ToString(),
                            x.par_car.ToString(),
                            2,
                            (long)x.id_act,
-                           (long)x.fol);
+                           f1);
                     if (ban == true)
                     {
                         foreach (var y in act)
@@ -54,13 +61,23 @@ namespace MProjectWPF.Controller.Classes
                             if (x.id_act == y.par_car)
                             {
                                 TreeViewItem child = new TreeViewItem();
-                                child.Header = itemsTree(
+                                try
+                                {
+                                    long f = 0; ;
+                                    if (y.fol != null) f = (long)y.fol;
+
+                                    child.Header = itemsTree(
                                     y.nombre,
                                     y.fol.ToString(),
                                     y.par_car.ToString(),
                                     2,
                                     (long)y.id_act,
-                                    (long)y.fol);
+                                    f);
+                                }
+                                catch (Exception err)
+                                {
+                                    MessageBox.Show("e  \n" + err.ToString());
+                                }
                                 par.Items.Add(child);
                             }
 
@@ -141,7 +158,9 @@ namespace MProjectWPF.Controller.Classes
                 arrangeTreeNode(lstTree);
 
                 //Retorno de TVI que contiene todo
+                //if(lstTree.Count!=0)
                 return lstTree.ElementAt(0);
+
             }
             catch (Exception err)
             {
@@ -180,23 +199,27 @@ namespace MProjectWPF.Controller.Classes
             this.parentName = new List<string>();
             try
             {
-                parent.Add(Convert.ToInt16(fol.First().Parent_id_folder.ToString()));
-                //agregar los padres a parent
-                foreach (var x in fol)
+                if (fol.Count() != 0)
                 {
-
-                    //false => unico  true=ya existe padre
-                    bool ban = false;
-                    foreach (var y in parent)
-                        if (x.Parent_id_folder == y) ban = true;
-                    if (ban == false)
+                    parent.Add(Convert.ToInt16(fol.First().Parent_id_folder.ToString()));
+                    //agregar los padres a parent
+                    foreach (var x in fol)
                     {
-                        parent.Add(Convert.ToUInt16(x.Parent_id_folder.ToString()));
-                        parentName.Add(getFolderParent((int)x.Parent_id_folder, fol).nombre);
+
+                        //false => unico  true=ya existe padre
+                        bool ban = false;
+                        foreach (var y in parent)
+                            if (x.Parent_id_folder == y) ban = true;
+                        if (ban == false)
+                        {
+                            parent.Add(Convert.ToUInt16(x.Parent_id_folder.ToString()));
+                            parentName.Add(getFolderParent((int)x.Parent_id_folder, fol).nombre);
+                        }
                     }
                 }
+
             }
-            catch { }
+            catch (Exception err) { MessageBox.Show(err.ToString()); }
 
 
         }
@@ -204,76 +227,97 @@ namespace MProjectWPF.Controller.Classes
         private List<List<Model.folder>> arrangeParents_folders(List<Model.folder> fol)
         {
             List<List<Model.folder>> org = new List<List<Model.folder>>();
-            try
+            if (fol.Count() != 0)
             {
-
-                foreach (var x in parent)
+                try
                 {
-                    List<Model.folder> it_fol = new List<Model.folder>();
-                    foreach (var y in fol)
-                        if (x == y.Parent_id_folder) it_fol.Add(y);
-                    org.Add(it_fol);
+
+                    foreach (var x in parent)
+                    {
+                        List<Model.folder> it_fol = new List<Model.folder>();
+                        foreach (var y in fol)
+                            if (x == y.Parent_id_folder) it_fol.Add(y);
+                        org.Add(it_fol);
+                    }
                 }
+                catch { }
             }
-            catch { }
+
             return org;
         }
 
         private List<TreeViewItem> listTVI_parents(List<Model.folder> fol, List<List<Model.folder>> org)
         {
             List<TreeViewItem> lstTree = new List<TreeViewItem>();
-            try
+            if (fol.Count() == 0)
             {
-                foreach (var x in org)
-                {
-                    TreeViewItem par = new TreeViewItem();
-                    if (x.First().Parent_id_folder == 0)
-                        par.Header = itemsTree(
-                            "My project",
-                            "0",
-                            "P",
-                            1,
-                            -1,
-                            -1);
-                    else {
-                        Model.folder aux = getFolderParent((int)x.First().Parent_id_folder, fol);
-                        par.Header = itemsTree(
-                            aux.nombre,
-                            aux.id_folder.ToString(),
-                            aux.Parent_id_folder.ToString(),
-                            1,
-                            -1,
-                            -1);
-                    }
-                    foreach (var y in x)
-                    {
-                        bool ban = false;
-                        foreach (var l in parent)
-                        {
-                            if (l == y.id_folder) ban = true;
-                        }
-                        if (ban == false)
-                        {
-                            TreeViewItem child = new TreeViewItem();
-                            child.Header = itemsTree(
-                                y.nombre,
-                                y.id_folder.ToString(),
-                                 y.Parent_id_folder.ToString(),
-                                1,
-                            -1,
-                            -1);
-                            par.Items.Add(child);
-                        }
-                    }
-                    lstTree.Add(par);
+                TreeViewItem par = new TreeViewItem();
 
-                }
+                par.Header = itemsTree(
+                    "My project",
+                    "0",
+                    "P",
+                    1,
+                    -1,
+                    -1);
+                lstTree.Add(par);
             }
-            catch { }
+            else {
+
+                try
+                {
+                    foreach (var x in org)
+                    {
+                        TreeViewItem par = new TreeViewItem();
+                        if (x.First().Parent_id_folder == 0)
+                            par.Header = itemsTree(
+                                "My project",
+                                "0",
+                                "P",
+                                1,
+                                -1,
+                                -1);
+                        else {
+                            Model.folder aux = getFolderParent((int)x.First().Parent_id_folder, fol);
+                            par.Header = itemsTree(
+                                aux.nombre,
+                                aux.id_folder.ToString(),
+                                aux.Parent_id_folder.ToString(),
+                                1,
+                                -1,
+                                -1);
+                        }
+                        foreach (var y in x)
+                        {
+                            bool ban = false;
+                            foreach (var l in parent)
+                            {
+                                if (l == y.id_folder) ban = true;
+                            }
+                            if (ban == false)
+                            {
+                                TreeViewItem child = new TreeViewItem();
+                                child.Header = itemsTree(
+                                    y.nombre,
+                                    y.id_folder.ToString(),
+                                     y.Parent_id_folder.ToString(),
+                                    1,
+                                -1,
+                                -1);
+                                par.Items.Add(child);
+                            }
+                        }
+                        lstTree.Add(par);
+
+                    }
+                }
+                catch { }
+            }
+
             return lstTree;
         }
 
-        private string name(TreeViewItem x, int pos)
+        public string name(TreeViewItem x, int pos)
         {
             TreeViewItem par = (TreeViewItem)x;
             StackPanel pan = (StackPanel)par.Header;

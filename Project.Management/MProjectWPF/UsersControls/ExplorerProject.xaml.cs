@@ -13,7 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-using MProjectWPF.Controller.FromModel;
 using MProjectWPF.Controller.Classes;
 
 namespace MProjectWPF.UsersControls
@@ -24,12 +23,15 @@ namespace MProjectWPF.UsersControls
     public partial class ExplorerProject : System.Windows.Controls.UserControl
     {
         Grid main_grid;
-        public ExplorerProject(Grid grd)
+        Dictionary<string, long> dat;
+        public ExplorerProject(Grid grd, Dictionary<string, long> dat)
         {
             InitializeComponent();
-            Folders fol = new Folders();
-            FolderTree treFol = new FolderTree();
-            TreeViewItem tv = treFol.arrange(fol.getStructureFolders());
+            MProjectWPF.Controller.FromModel.Folders fol = new MProjectWPF.Controller.FromModel.Folders();
+
+            this.dat = dat;
+            FolderTree treFol = new FolderTree(dat);
+            TreeViewItem tv = treFol.arrange(fol.getStructureFolders(dat["id"]));
             tvPro.Items.Add(tv);
             main_grid = grd;
 
@@ -67,7 +69,10 @@ namespace MProjectWPF.UsersControls
         {
             try
             {
-                AddAtivity addAct = new AddAtivity((TreeViewItem)tvPro.SelectedItem, tvPro, main_grid,1);
+                //MProjectWPF.Controller.Classes.FolderTree f = new FolderTree();
+                //MessageBox.Show(f.name((TreeViewItem)tvPro.SelectedItem,3));
+                
+                AddAtivity addAct = new AddAtivity((TreeViewItem)tvPro.SelectedItem, tvPro, main_grid, dat);
                 main_grid.Children.Add(addAct);
                 
             }

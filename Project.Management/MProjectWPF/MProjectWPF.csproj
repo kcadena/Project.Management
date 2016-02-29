@@ -86,48 +86,6 @@
     <Compile Include="Controller\FromModel\Folders.cs" />
     <Compile Include="Controller\Classes\FolderTree.cs" />
     <Compile Include="Controller\FromModel\Projects.cs" />
-    <Compile Include="UsersControls\AddAtivity.xaml.cs">
-      <DependentUpon>AddAtivity.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UsersControls\ExplorerProject.xaml.cs">
-      <DependentUpon>ExplorerProject.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\Inicio\LoginWindow.xaml.cs">
-      <DependentUpon>LoginWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\Registro\RegisterWindow.xaml.cs">
-      <DependentUpon>RegisterWindow.xaml</DependentUpon>
-    </Compile>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Page Include="UsersControls\AddAtivity.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UsersControls\ExplorerProject.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\Inicio\LoginWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\Registro\RegisterWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Model\actividade.cs">
       <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
     </Compile>
@@ -182,6 +140,48 @@
     <Compile Include="Model\usuario.cs">
       <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="UsersControls\AddAtivity.xaml.cs">
+      <DependentUpon>AddAtivity.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsersControls\ExplorerProject.xaml.cs">
+      <DependentUpon>ExplorerProject.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Inicio\LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Registro\RegisterWindow.xaml.cs">
+      <DependentUpon>RegisterWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="UsersControls\AddAtivity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsersControls\ExplorerProject.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Inicio\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Registro\RegisterWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -218,7 +218,6 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="Model\SQLiteMProjectModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -230,6 +229,8 @@
       <DependentUpon>SQLiteMProjectModel.edmx</DependentUpon>
       <LastGenOutput>SQLiteMProjectModel.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="Resources\activity.ico" />
     <Resource Include="Resources\Folder-icon.png" />
   </ItemGroup>

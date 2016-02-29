@@ -27,22 +27,24 @@ namespace MProjectWPF.UsersControls
         TreeViewItem tvi;
         TreeView tvPro;
         Grid mainGrid;
-        int pro_cha;
+        Dictionary<string, long> dat;
 
-        public AddAtivity(TreeViewItem tvi, TreeView tvPro,Grid main,int pro_cha)
+        public AddAtivity(TreeViewItem tvi, TreeView tvPro,Grid main,Dictionary<string,long> id)
         {
             InitializeComponent();
             this.tvi = tvi;
             this.tvPro = tvPro;
             mainGrid = main;
-            this.pro_cha = pro_cha;
+            this.dat = id;
         }
 
         private void bntAddAct_Click(object sender, RoutedEventArgs e)
         {
-            StackPanel stp = (StackPanel) tvi.Header;
-            string idFol = stp.Children.OfType<Label>().ElementAt(1).Content.ToString();
-            string id_cha = stp.Children.OfType<Label>().ElementAt(3).Content.ToString();
+            Folders fol = new Folders();
+            FolderTree treFol = new FolderTree(dat);
+            
+            string idFol = treFol.name(tvi, 1);
+            string id_cha = treFol.name(tvi, 3);
 
             Dictionary<String, string> data = new Dictionary<string, string>();
             data["nom"] = txtNom.Text;
@@ -53,20 +55,27 @@ namespace MProjectWPF.UsersControls
             data["fol"] = idFol;
             
             data["typDur"] = "Horas";            
-            data["id_pro"] ="";           
-            data["pro_fat"] = "1";
+            data["id_pro"] ="";
+            data["fat_prj"] = dat["id"].ToString();
             data["act"] = "";
-
-            if(id_cha.Equals("-1")) data["fat_cha"] = pro_cha.ToString();
-            else data["fat_cha"] = id_cha.ToString();
+            
+            if (id_cha.Equals("-1"))
+            {
+               
+                data["fat_cha"] = dat["car"].ToString();
+                data["pos"] = "OK";
+            }
+            else {
+                data["fat_cha"] = id_cha.ToString();
+                data["pos"] = "NO";
+            }
 
             Characteristics cha = new Characteristics();
             cha.CreateCharacteristicsActivity(data);
             
 
-            Folders fol = new Folders();
-            FolderTree treFol = new FolderTree();
-            TreeViewItem tv = treFol.arrange(fol.getStructureFolders());
+           
+            TreeViewItem tv = treFol.arrange(fol.getStructureFolders(dat["id"]));
             tvPro.Items.Clear();
             tvPro.Items.Add(tv);
 

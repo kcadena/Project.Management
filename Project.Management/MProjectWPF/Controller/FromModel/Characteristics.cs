@@ -35,14 +35,26 @@ namespace MProjectWPF.Controller.FromModel
             car.tipo_duracion = data["typDur"];
             car.fecha_inicio = DateTime.Now;
             car.padre_caracteristica = Convert.ToInt64(data["fat_cha"]);
+            car.proyecto_padre = Convert.ToInt64(data["fat_prj"]);
+
 
             //Actividades
-            act.id_folder = Convert.ToInt64(data["fol"]);
+           
             //System.Windows.MessageBox.Show(data["fol"]);
             act.nombre = data["nom"];
             act.descripcion = data["des"];
-            int pos = acty.getPositionAct(Convert.ToInt32(data["fat_cha"]));
-            act.pos = pos + 1;
+            if (data["pos"].Equals("OK"))
+            {
+                int pos = acty.getPositionAct(Convert.ToInt32(data["fat_cha"]));
+                act.pos = pos + 1;
+                act.id_folder = Convert.ToInt64(data["fol"]);
+            }
+            else {
+                act.pos = null;
+                act.id_folder = null;
+            }
+            
+
             
         
             try

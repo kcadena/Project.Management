@@ -89,10 +89,10 @@ namespace MProjectWPF.Controller.FromModel
                 return false;
             }
         }
-        public List<folder> getStructureFolders()
+        public List<folder> getStructureFolders(long pro)
         {
             var fol = from x in mp.folders
-                      where x.id_proyecto == 1
+                      where x.id_proyecto == pro
                       orderby x.Parent_id_folder ascending, x.id_folder ascending
                       select x;
 
