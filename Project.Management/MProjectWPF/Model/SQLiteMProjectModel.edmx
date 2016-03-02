@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MProjectDeskSQLITEModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=&quot;C:\Users\admi\Desktop\Trabajo de grado\PROGRAMMING\CODE\MProjectDeskSQLITE&quot;" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MProjectDeskSQLITEModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=&quot;C:\Users\admi\Desktop\Trabajo de grado\PROGRAMMING\CODE\MProjectDeskSQLITE&quot;" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="actividades">
           <Key>
             <PropertyRef Name="id_actividad" />
@@ -47,7 +47,7 @@
           <Key>
             <PropertyRef Name="id_folder" />
           </Key>
-          <Property Name="id_folder" Type="integer" Nullable="false" />
+          <Property Name="id_folder" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="2147483647" Nullable="false" />
           <Property Name="id_proyecto" Type="integer" Nullable="false" />
           <Property Name="Parent_id_folder" Type="integer" Nullable="false" />
@@ -456,44 +456,130 @@
             <End Role="usuarios_proyectos" EntitySet="usuarios_proyectos" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MProjectDeskSQLITEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MProjectDeskSQLITEEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="actividades" EntityType="MProjectDeskSQLITEModel.actividade" />
+          <EntitySet Name="archivos" EntityType="MProjectDeskSQLITEModel.archivo" />
+          <EntitySet Name="caracteristicas" EntityType="MProjectDeskSQLITEModel.caracteristica" />
+          <EntitySet Name="folders" EntityType="MProjectDeskSQLITEModel.folder" />
+          <EntitySet Name="meta_datos" EntityType="MProjectDeskSQLITEModel.meta_datos" />
+          <EntitySet Name="plantillas" EntityType="MProjectDeskSQLITEModel.plantilla" />
+          <EntitySet Name="plantillas_meta_datos" EntityType="MProjectDeskSQLITEModel.plantillas_meta_datos" />
+          <EntitySet Name="proyectos" EntityType="MProjectDeskSQLITEModel.proyecto" />
+          <EntitySet Name="proyectos_meta_datos" EntityType="MProjectDeskSQLITEModel.proyectos_meta_datos" />
+          <EntitySet Name="repositorios" EntityType="MProjectDeskSQLITEModel.repositorio" />
+          <EntitySet Name="tipos_archivos" EntityType="MProjectDeskSQLITEModel.tipos_archivos" />
+          <EntitySet Name="tipos_datos" EntityType="MProjectDeskSQLITEModel.tipos_datos" />
+          <EntitySet Name="usuarios" EntityType="MProjectDeskSQLITEModel.usuario" />
+          <AssociationSet Name="FK_actividades_0_0" Association="MProjectDeskSQLITEModel.FK_actividades_0_0">
+            <End Role="folder" EntitySet="folders" />
+            <End Role="actividade" EntitySet="actividades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_caracteristicas_3_0" Association="MProjectDeskSQLITEModel.FK_caracteristicas_3_0">
+            <End Role="actividade" EntitySet="actividades" />
+            <End Role="caracteristica" EntitySet="caracteristicas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_archivos_0_0" Association="MProjectDeskSQLITEModel.FK_archivos_0_0">
+            <End Role="caracteristica" EntitySet="caracteristicas" />
+            <End Role="archivo" EntitySet="archivos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_archivos_1_0" Association="MProjectDeskSQLITEModel.FK_archivos_1_0">
+            <End Role="folder" EntitySet="folders" />
+            <End Role="archivo" EntitySet="archivos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_archivos_2_0" Association="MProjectDeskSQLITEModel.FK_archivos_2_0">
+            <End Role="tipos_archivos" EntitySet="tipos_archivos" />
+            <End Role="archivo" EntitySet="archivos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_caracteristicas_0_0" Association="MProjectDeskSQLITEModel.FK_caracteristicas_0_0">
+            <End Role="proyecto" EntitySet="proyectos" />
+            <End Role="caracteristica" EntitySet="caracteristicas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_caracteristicas_1_0" Association="MProjectDeskSQLITEModel.FK_caracteristicas_1_0">
+            <End Role="caracteristica" EntitySet="caracteristicas" />
+            <End Role="caracteristica1" EntitySet="caracteristicas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_caracteristicas_2_0" Association="MProjectDeskSQLITEModel.FK_caracteristicas_2_0">
+            <End Role="proyecto" EntitySet="proyectos" />
+            <End Role="caracteristica" EntitySet="caracteristicas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_folders_0_0" Association="MProjectDeskSQLITEModel.FK_folders_0_0">
+            <End Role="folder" EntitySet="folders" />
+            <End Role="folder1" EntitySet="folders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_folders_1_0" Association="MProjectDeskSQLITEModel.FK_folders_1_0">
+            <End Role="proyecto" EntitySet="proyectos" />
+            <End Role="folder" EntitySet="folders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_meta_datos_0_0" Association="MProjectDeskSQLITEModel.FK_meta_datos_0_0">
+            <End Role="tipos_datos" EntitySet="tipos_datos" />
+            <End Role="meta_datos" EntitySet="meta_datos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_plantillas_meta_datos_0_0" Association="MProjectDeskSQLITEModel.FK_plantillas_meta_datos_0_0">
+            <End Role="meta_datos" EntitySet="meta_datos" />
+            <End Role="plantillas_meta_datos" EntitySet="plantillas_meta_datos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_plantillas_meta_datos_1_0" Association="MProjectDeskSQLITEModel.FK_plantillas_meta_datos_1_0">
+            <End Role="plantilla" EntitySet="plantillas" />
+            <End Role="plantillas_meta_datos" EntitySet="plantillas_meta_datos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_proyectos_0_0" Association="MProjectDeskSQLITEModel.FK_proyectos_0_0">
+            <End Role="plantilla" EntitySet="plantillas" />
+            <End Role="proyecto" EntitySet="proyectos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_proyectos_meta_datos_0_0" Association="MProjectDeskSQLITEModel.FK_proyectos_meta_datos_0_0">
+            <End Role="plantillas_meta_datos" EntitySet="plantillas_meta_datos" />
+            <End Role="proyectos_meta_datos" EntitySet="proyectos_meta_datos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_proyectos_1_0" Association="MProjectDeskSQLITEModel.FK_proyectos_1_0">
+            <End Role="repositorio" EntitySet="repositorios" />
+            <End Role="proyecto" EntitySet="proyectos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_proyectos_meta_datos_1_0" Association="MProjectDeskSQLITEModel.FK_proyectos_meta_datos_1_0">
+            <End Role="proyecto" EntitySet="proyectos" />
+            <End Role="proyectos_meta_datos" EntitySet="proyectos_meta_datos" />
+          </AssociationSet>
+          <AssociationSet Name="usuarios_proyectos" Association="MProjectDeskSQLITEModel.usuarios_proyectos">
+            <End Role="proyecto" EntitySet="proyectos" />
+            <End Role="usuario" EntitySet="usuarios" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="actividade">
           <Key>
             <PropertyRef Name="id_actividad" />
           </Key>
           <Property Name="id_actividad" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="false" />
           <Property Name="descripcion" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
           <Property Name="pos" Type="Int64" />
           <Property Name="id_folder" Type="Int64" />
-          <NavigationProperty Name="folder" Relationship="Self.FK_actividades_0_0" FromRole="actividades" ToRole="folders" />
-          <NavigationProperty Name="caracteristicas" Relationship="Self.FK_caracteristicas_3_0" FromRole="actividades" ToRole="caracteristicas" />
+          <NavigationProperty Name="folder" Relationship="MProjectDeskSQLITEModel.FK_actividades_0_0" FromRole="actividade" ToRole="folder" />
+          <NavigationProperty Name="caracteristicas" Relationship="MProjectDeskSQLITEModel.FK_caracteristicas_3_0" FromRole="actividade" ToRole="caracteristica" />
         </EntityType>
         <EntityType Name="archivo">
           <Key>
             <PropertyRef Name="id_archivo" />
           </Key>
           <Property Name="id_archivo" Type="Int64" Nullable="false" />
-          <Property Name="nombre" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="false" />
           <Property Name="contenido" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
           <Property Name="fecha_carga" Type="DateTime" Nullable="false" />
           <Property Name="id_folder" Type="Int64" Nullable="false" />
           <Property Name="id_tipo_archivo" Type="Int64" Nullable="false" />
           <Property Name="id_caracteristica" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="caracteristica" Relationship="Self.FK_archivos_0_0" FromRole="archivos" ToRole="caracteristicas" />
-          <NavigationProperty Name="folder" Relationship="Self.FK_archivos_1_0" FromRole="archivos" ToRole="folders" />
-          <NavigationProperty Name="tipos_archivos" Relationship="Self.FK_archivos_2_0" FromRole="archivos" ToRole="tipos_archivos" />
+          <NavigationProperty Name="caracteristica" Relationship="MProjectDeskSQLITEModel.FK_archivos_0_0" FromRole="archivo" ToRole="caracteristica" />
+          <NavigationProperty Name="folder" Relationship="MProjectDeskSQLITEModel.FK_archivos_1_0" FromRole="archivo" ToRole="folder" />
+          <NavigationProperty Name="tipos_archivos" Relationship="MProjectDeskSQLITEModel.FK_archivos_2_0" FromRole="archivo" ToRole="tipos_archivos" />
         </EntityType>
         <EntityType Name="caracteristica">
           <Key>
             <PropertyRef Name="id_caracteristica" />
           </Key>
           <Property Name="id_caracteristica" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="estado" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estado" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="false" />
           <Property Name="porcentaje_asignado" Type="Int64" />
           <Property Name="porcentaje_cumplimido" Type="Int64" />
           <Property Name="duracion" Type="Int64" />
@@ -503,47 +589,47 @@
           <Property Name="id_proyecto" Type="Int64" Nullable="false" />
           <Property Name="padre_caracteristica" Type="Int64" />
           <Property Name="proyecto_padre" Type="Int64" />
-          <NavigationProperty Name="actividade" Relationship="Self.FK_caracteristicas_3_0" FromRole="caracteristicas" ToRole="actividades" />
-          <NavigationProperty Name="archivos" Relationship="Self.FK_archivos_0_0" FromRole="caracteristicas" ToRole="archivos" />
-          <NavigationProperty Name="proyecto" Relationship="Self.FK_caracteristicas_0_0" FromRole="caracteristicas" ToRole="proyectos" />
-          <NavigationProperty Name="caracteristicas1" Relationship="Self.FK_caracteristicas_1_0" FromRole="caracteristicas" ToRole="caracteristicas1" />
-          <NavigationProperty Name="caracteristica1" Relationship="Self.FK_caracteristicas_1_0" FromRole="caracteristicas1" ToRole="caracteristicas" />
-          <NavigationProperty Name="proyecto1" Relationship="Self.FK_caracteristicas_2_0" FromRole="caracteristicas" ToRole="proyectos" />
+          <NavigationProperty Name="actividade" Relationship="MProjectDeskSQLITEModel.FK_caracteristicas_3_0" FromRole="caracteristica" ToRole="actividade" />
+          <NavigationProperty Name="archivos" Relationship="MProjectDeskSQLITEModel.FK_archivos_0_0" FromRole="caracteristica" ToRole="archivo" />
+          <NavigationProperty Name="proyecto" Relationship="MProjectDeskSQLITEModel.FK_caracteristicas_0_0" FromRole="caracteristica" ToRole="proyecto" />
+          <NavigationProperty Name="caracteristicas1" Relationship="MProjectDeskSQLITEModel.FK_caracteristicas_1_0" FromRole="caracteristica" ToRole="caracteristica1" />
+          <NavigationProperty Name="caracteristica1" Relationship="MProjectDeskSQLITEModel.FK_caracteristicas_1_0" FromRole="caracteristica1" ToRole="caracteristica" />
+          <NavigationProperty Name="proyecto1" Relationship="MProjectDeskSQLITEModel.FK_caracteristicas_2_0" FromRole="caracteristica" ToRole="proyecto" />
         </EntityType>
         <EntityType Name="folder">
           <Key>
             <PropertyRef Name="id_folder" />
           </Key>
-          <Property Name="id_folder" Type="Int64" Nullable="false" />
-          <Property Name="nombre" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_folder" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="false" />
           <Property Name="id_proyecto" Type="Int64" Nullable="false" />
           <Property Name="Parent_id_folder" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="actividades" Relationship="Self.FK_actividades_0_0" FromRole="folders" ToRole="actividades" />
-          <NavigationProperty Name="archivos" Relationship="Self.FK_archivos_1_0" FromRole="folders" ToRole="archivos" />
-          <NavigationProperty Name="folders1" Relationship="Self.FK_folders_0_0" FromRole="folders" ToRole="folders1" />
-          <NavigationProperty Name="folder1" Relationship="Self.FK_folders_0_0" FromRole="folders1" ToRole="folders" />
-          <NavigationProperty Name="proyecto" Relationship="Self.FK_folders_1_0" FromRole="folders" ToRole="proyectos" />
+          <NavigationProperty Name="actividades" Relationship="MProjectDeskSQLITEModel.FK_actividades_0_0" FromRole="folder" ToRole="actividade" />
+          <NavigationProperty Name="archivos" Relationship="MProjectDeskSQLITEModel.FK_archivos_1_0" FromRole="folder" ToRole="archivo" />
+          <NavigationProperty Name="folders1" Relationship="MProjectDeskSQLITEModel.FK_folders_0_0" FromRole="folder" ToRole="folder1" />
+          <NavigationProperty Name="folder1" Relationship="MProjectDeskSQLITEModel.FK_folders_0_0" FromRole="folder1" ToRole="folder" />
+          <NavigationProperty Name="proyecto" Relationship="MProjectDeskSQLITEModel.FK_folders_1_0" FromRole="folder" ToRole="proyecto" />
         </EntityType>
         <EntityType Name="meta_datos">
           <Key>
             <PropertyRef Name="id_meta_datos" />
           </Key>
           <Property Name="id_meta_datos" Type="Int64" Nullable="false" />
-          <Property Name="descripcion" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="false" />
           <Property Name="meta_dato_ir" Type="Boolean" Nullable="false" />
           <Property Name="id_tipo_dato" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="tipos_datos" Relationship="Self.FK_meta_datos_0_0" FromRole="meta_datos" ToRole="tipos_datos" />
-          <NavigationProperty Name="plantillas_meta_datos" Relationship="Self.FK_plantillas_meta_datos_0_0" FromRole="meta_datos" ToRole="plantillas_meta_datos" />
+          <NavigationProperty Name="tipos_datos" Relationship="MProjectDeskSQLITEModel.FK_meta_datos_0_0" FromRole="meta_datos" ToRole="tipos_datos" />
+          <NavigationProperty Name="plantillas_meta_datos" Relationship="MProjectDeskSQLITEModel.FK_plantillas_meta_datos_0_0" FromRole="meta_datos" ToRole="plantillas_meta_datos" />
         </EntityType>
         <EntityType Name="plantilla">
           <Key>
             <PropertyRef Name="id_plantilla" />
           </Key>
           <Property Name="id_plantilla" Type="Int64" Nullable="false" />
-          <Property Name="nombre" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="descripcion" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="plantillas_meta_datos" Relationship="Self.FK_plantillas_meta_datos_1_0" FromRole="plantillas" ToRole="plantillas_meta_datos" />
-          <NavigationProperty Name="proyectos" Relationship="Self.FK_proyectos_0_0" FromRole="plantillas" ToRole="proyectos" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="plantillas_meta_datos" Relationship="MProjectDeskSQLITEModel.FK_plantillas_meta_datos_1_0" FromRole="plantilla" ToRole="plantillas_meta_datos" />
+          <NavigationProperty Name="proyectos" Relationship="MProjectDeskSQLITEModel.FK_proyectos_0_0" FromRole="plantilla" ToRole="proyecto" />
         </EntityType>
         <EntityType Name="plantillas_meta_datos">
           <Key>
@@ -553,9 +639,9 @@
           <Property Name="id_plantilla" Type="Int64" Nullable="false" />
           <Property Name="id_meta_datos" Type="Int64" Nullable="false" />
           <Property Name="requerido" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="meta_datos" Relationship="Self.FK_plantillas_meta_datos_0_0" FromRole="plantillas_meta_datos" ToRole="meta_datos" />
-          <NavigationProperty Name="plantilla" Relationship="Self.FK_plantillas_meta_datos_1_0" FromRole="plantillas_meta_datos" ToRole="plantillas" />
-          <NavigationProperty Name="proyectos_meta_datos" Relationship="Self.FK_proyectos_meta_datos_0_0" FromRole="plantillas_meta_datos" ToRole="proyectos_meta_datos" />
+          <NavigationProperty Name="meta_datos" Relationship="MProjectDeskSQLITEModel.FK_plantillas_meta_datos_0_0" FromRole="plantillas_meta_datos" ToRole="meta_datos" />
+          <NavigationProperty Name="plantilla" Relationship="MProjectDeskSQLITEModel.FK_plantillas_meta_datos_1_0" FromRole="plantillas_meta_datos" ToRole="plantilla" />
+          <NavigationProperty Name="proyectos_meta_datos" Relationship="MProjectDeskSQLITEModel.FK_proyectos_meta_datos_0_0" FromRole="plantillas_meta_datos" ToRole="proyectos_meta_datos" />
         </EntityType>
         <EntityType Name="proyecto">
           <Key>
@@ -565,184 +651,184 @@
           <Property Name="id_plantilla" Type="Int64" Nullable="false" />
           <Property Name="id_repositorio" Type="Int64" Nullable="false" />
           <Property Name="IR_proyecto" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="caracteristicas" Relationship="Self.FK_caracteristicas_0_0" FromRole="proyectos" ToRole="caracteristicas" />
-          <NavigationProperty Name="caracteristicas1" Relationship="Self.FK_caracteristicas_2_0" FromRole="proyectos" ToRole="caracteristicas" />
-          <NavigationProperty Name="folders" Relationship="Self.FK_folders_1_0" FromRole="proyectos" ToRole="folders" />
-          <NavigationProperty Name="plantilla" Relationship="Self.FK_proyectos_0_0" FromRole="proyectos" ToRole="plantillas" />
-          <NavigationProperty Name="repositorio" Relationship="Self.FK_proyectos_1_0" FromRole="proyectos" ToRole="repositorio" />
-          <NavigationProperty Name="proyectos_meta_datos" Relationship="Self.FK_proyectos_meta_datos_1_0" FromRole="proyectos" ToRole="proyectos_meta_datos" />
-          <NavigationProperty Name="usuarios" Relationship="Self.usuarios_proyectos" FromRole="proyectos" ToRole="usuarios" />
+          <NavigationProperty Name="caracteristicas" Relationship="MProjectDeskSQLITEModel.FK_caracteristicas_0_0" FromRole="proyecto" ToRole="caracteristica" />
+          <NavigationProperty Name="caracteristicas1" Relationship="MProjectDeskSQLITEModel.FK_caracteristicas_2_0" FromRole="proyecto" ToRole="caracteristica" />
+          <NavigationProperty Name="folders" Relationship="MProjectDeskSQLITEModel.FK_folders_1_0" FromRole="proyecto" ToRole="folder" />
+          <NavigationProperty Name="plantilla" Relationship="MProjectDeskSQLITEModel.FK_proyectos_0_0" FromRole="proyecto" ToRole="plantilla" />
+          <NavigationProperty Name="repositorio" Relationship="MProjectDeskSQLITEModel.FK_proyectos_1_0" FromRole="proyecto" ToRole="repositorio" />
+          <NavigationProperty Name="proyectos_meta_datos" Relationship="MProjectDeskSQLITEModel.FK_proyectos_meta_datos_1_0" FromRole="proyecto" ToRole="proyectos_meta_datos" />
+          <NavigationProperty Name="usuarios" Relationship="MProjectDeskSQLITEModel.usuarios_proyectos" FromRole="proyecto" ToRole="usuario" />
         </EntityType>
         <EntityType Name="proyectos_meta_datos">
           <Key>
             <PropertyRef Name="id_proyecto_meta_dato" />
           </Key>
           <Property Name="id_proyecto_meta_dato" Type="Int64" Nullable="false" />
-          <Property Name="valor" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="valor" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="false" />
           <Property Name="id_proyecto" Type="Int64" Nullable="false" />
           <Property Name="id_plantilla_meta_dato" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="plantillas_meta_datos" Relationship="Self.FK_proyectos_meta_datos_0_0" FromRole="proyectos_meta_datos" ToRole="plantillas_meta_datos" />
-          <NavigationProperty Name="proyecto" Relationship="Self.FK_proyectos_meta_datos_1_0" FromRole="proyectos_meta_datos" ToRole="proyectos" />
+          <NavigationProperty Name="plantillas_meta_datos" Relationship="MProjectDeskSQLITEModel.FK_proyectos_meta_datos_0_0" FromRole="proyectos_meta_datos" ToRole="plantillas_meta_datos" />
+          <NavigationProperty Name="proyecto" Relationship="MProjectDeskSQLITEModel.FK_proyectos_meta_datos_1_0" FromRole="proyectos_meta_datos" ToRole="proyecto" />
         </EntityType>
         <EntityType Name="repositorio">
           <Key>
             <PropertyRef Name="id_repositorio" />
           </Key>
           <Property Name="id_repositorio" Type="Int64" Nullable="false" />
-          <Property Name="descripcion" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ruta_proyecto" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="proyectos" Relationship="Self.FK_proyectos_1_0" FromRole="repositorio" ToRole="proyectos" />
+          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="ruta_proyecto" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="proyectos" Relationship="MProjectDeskSQLITEModel.FK_proyectos_1_0" FromRole="repositorio" ToRole="proyecto" />
         </EntityType>
         <EntityType Name="tipos_archivos">
           <Key>
             <PropertyRef Name="id_tipo_archivo" />
           </Key>
           <Property Name="id_tipo_archivo" Type="Int64" Nullable="false" />
-          <Property Name="nombre" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="archivos" Relationship="Self.FK_archivos_2_0" FromRole="tipos_archivos" ToRole="archivos" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="archivos" Relationship="MProjectDeskSQLITEModel.FK_archivos_2_0" FromRole="tipos_archivos" ToRole="archivo" />
         </EntityType>
         <EntityType Name="tipos_datos">
           <Key>
             <PropertyRef Name="id_tipo_dato" />
           </Key>
           <Property Name="id_tipo_dato" Type="Int64" Nullable="false" />
-          <Property Name="decripcion" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="meta_datos" Relationship="Self.FK_meta_datos_0_0" FromRole="tipos_datos" ToRole="meta_datos" />
+          <Property Name="decripcion" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="meta_datos" Relationship="MProjectDeskSQLITEModel.FK_meta_datos_0_0" FromRole="tipos_datos" ToRole="meta_datos" />
         </EntityType>
         <EntityType Name="usuario">
           <Key>
             <PropertyRef Name="id_usuario" />
           </Key>
           <Property Name="id_usuario" Type="Int64" Nullable="false" />
-          <Property Name="e_mail" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="nombre" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="apellido" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="pass" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="proyectos" Relationship="Self.usuarios_proyectos" FromRole="usuarios" ToRole="proyectos" />
+          <Property Name="e_mail" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="apellido" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="pass" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="proyectos" Relationship="MProjectDeskSQLITEModel.usuarios_proyectos" FromRole="usuario" ToRole="proyecto" />
         </EntityType>
         <Association Name="FK_actividades_0_0">
-          <End Role="folders" Type="Self.folder" Multiplicity="0..1" />
-          <End Role="actividades" Type="Self.actividade" Multiplicity="*" />
+          <End Type="MProjectDeskSQLITEModel.folder" Role="folder" Multiplicity="0..1" />
+          <End Type="MProjectDeskSQLITEModel.actividade" Role="actividade" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="folders">
+            <Principal Role="folder">
               <PropertyRef Name="id_folder" />
             </Principal>
-            <Dependent Role="actividades">
+            <Dependent Role="actividade">
               <PropertyRef Name="id_folder" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_caracteristicas_3_0">
-          <End Role="actividades" Type="Self.actividade" Multiplicity="1" />
-          <End Role="caracteristicas" Type="Self.caracteristica" Multiplicity="*" />
+          <End Type="MProjectDeskSQLITEModel.actividade" Role="actividade" Multiplicity="1" />
+          <End Type="MProjectDeskSQLITEModel.caracteristica" Role="caracteristica" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="actividades">
+            <Principal Role="actividade">
               <PropertyRef Name="id_actividad" />
             </Principal>
-            <Dependent Role="caracteristicas">
+            <Dependent Role="caracteristica">
               <PropertyRef Name="id_actividad" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_archivos_0_0">
-          <End Role="caracteristicas" Type="Self.caracteristica" Multiplicity="1" />
-          <End Role="archivos" Type="Self.archivo" Multiplicity="*" />
+          <End Type="MProjectDeskSQLITEModel.caracteristica" Role="caracteristica" Multiplicity="1" />
+          <End Type="MProjectDeskSQLITEModel.archivo" Role="archivo" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="caracteristicas">
+            <Principal Role="caracteristica">
               <PropertyRef Name="id_caracteristica" />
             </Principal>
-            <Dependent Role="archivos">
+            <Dependent Role="archivo">
               <PropertyRef Name="id_caracteristica" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_archivos_1_0">
-          <End Role="folders" Type="Self.folder" Multiplicity="1" />
-          <End Role="archivos" Type="Self.archivo" Multiplicity="*" />
+          <End Type="MProjectDeskSQLITEModel.folder" Role="folder" Multiplicity="1" />
+          <End Type="MProjectDeskSQLITEModel.archivo" Role="archivo" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="folders">
+            <Principal Role="folder">
               <PropertyRef Name="id_folder" />
             </Principal>
-            <Dependent Role="archivos">
+            <Dependent Role="archivo">
               <PropertyRef Name="id_folder" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_archivos_2_0">
-          <End Role="tipos_archivos" Type="Self.tipos_archivos" Multiplicity="1" />
-          <End Role="archivos" Type="Self.archivo" Multiplicity="*" />
+          <End Type="MProjectDeskSQLITEModel.tipos_archivos" Role="tipos_archivos" Multiplicity="1" />
+          <End Type="MProjectDeskSQLITEModel.archivo" Role="archivo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tipos_archivos">
               <PropertyRef Name="id_tipo_archivo" />
             </Principal>
-            <Dependent Role="archivos">
+            <Dependent Role="archivo">
               <PropertyRef Name="id_tipo_archivo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_caracteristicas_0_0">
-          <End Role="proyectos" Type="Self.proyecto" Multiplicity="0..1" />
-          <End Role="caracteristicas" Type="Self.caracteristica" Multiplicity="*" />
+          <End Type="MProjectDeskSQLITEModel.proyecto" Role="proyecto" Multiplicity="0..1" />
+          <End Type="MProjectDeskSQLITEModel.caracteristica" Role="caracteristica" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="proyectos">
+            <Principal Role="proyecto">
               <PropertyRef Name="id_proyecto" />
             </Principal>
-            <Dependent Role="caracteristicas">
+            <Dependent Role="caracteristica">
               <PropertyRef Name="proyecto_padre" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_caracteristicas_1_0">
-          <End Role="caracteristicas" Type="Self.caracteristica" Multiplicity="0..1" />
-          <End Role="caracteristicas1" Type="Self.caracteristica" Multiplicity="*" />
+          <End Type="MProjectDeskSQLITEModel.caracteristica" Role="caracteristica" Multiplicity="0..1" />
+          <End Type="MProjectDeskSQLITEModel.caracteristica" Role="caracteristica1" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="caracteristicas">
+            <Principal Role="caracteristica">
               <PropertyRef Name="id_caracteristica" />
             </Principal>
-            <Dependent Role="caracteristicas1">
+            <Dependent Role="caracteristica1">
               <PropertyRef Name="padre_caracteristica" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_caracteristicas_2_0">
-          <End Role="proyectos" Type="Self.proyecto" Multiplicity="1" />
-          <End Role="caracteristicas" Type="Self.caracteristica" Multiplicity="*" />
+          <End Type="MProjectDeskSQLITEModel.proyecto" Role="proyecto" Multiplicity="1" />
+          <End Type="MProjectDeskSQLITEModel.caracteristica" Role="caracteristica" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="proyectos">
+            <Principal Role="proyecto">
               <PropertyRef Name="id_proyecto" />
             </Principal>
-            <Dependent Role="caracteristicas">
+            <Dependent Role="caracteristica">
               <PropertyRef Name="id_proyecto" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_folders_0_0">
-          <End Role="folders" Type="Self.folder" Multiplicity="1" />
-          <End Role="folders1" Type="Self.folder" Multiplicity="*" />
+          <End Type="MProjectDeskSQLITEModel.folder" Role="folder" Multiplicity="1" />
+          <End Type="MProjectDeskSQLITEModel.folder" Role="folder1" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="folders">
+            <Principal Role="folder">
               <PropertyRef Name="id_folder" />
             </Principal>
-            <Dependent Role="folders1">
+            <Dependent Role="folder1">
               <PropertyRef Name="Parent_id_folder" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_folders_1_0">
-          <End Role="proyectos" Type="Self.proyecto" Multiplicity="1" />
-          <End Role="folders" Type="Self.folder" Multiplicity="*" />
+          <End Type="MProjectDeskSQLITEModel.proyecto" Role="proyecto" Multiplicity="1" />
+          <End Type="MProjectDeskSQLITEModel.folder" Role="folder" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="proyectos">
+            <Principal Role="proyecto">
               <PropertyRef Name="id_proyecto" />
             </Principal>
-            <Dependent Role="folders">
+            <Dependent Role="folder">
               <PropertyRef Name="id_proyecto" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_meta_datos_0_0">
-          <End Role="tipos_datos" Type="Self.tipos_datos" Multiplicity="1" />
-          <End Role="meta_datos" Type="Self.meta_datos" Multiplicity="*" />
+          <End Type="MProjectDeskSQLITEModel.tipos_datos" Role="tipos_datos" Multiplicity="1" />
+          <End Type="MProjectDeskSQLITEModel.meta_datos" Role="meta_datos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tipos_datos">
               <PropertyRef Name="id_tipo_dato" />
@@ -753,8 +839,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_plantillas_meta_datos_0_0">
-          <End Role="meta_datos" Type="Self.meta_datos" Multiplicity="1" />
-          <End Role="plantillas_meta_datos" Type="Self.plantillas_meta_datos" Multiplicity="*" />
+          <End Type="MProjectDeskSQLITEModel.meta_datos" Role="meta_datos" Multiplicity="1" />
+          <End Type="MProjectDeskSQLITEModel.plantillas_meta_datos" Role="plantillas_meta_datos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="meta_datos">
               <PropertyRef Name="id_meta_datos" />
@@ -765,10 +851,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_plantillas_meta_datos_1_0">
-          <End Role="plantillas" Type="Self.plantilla" Multiplicity="1" />
-          <End Role="plantillas_meta_datos" Type="Self.plantillas_meta_datos" Multiplicity="*" />
+          <End Type="MProjectDeskSQLITEModel.plantilla" Role="plantilla" Multiplicity="1" />
+          <End Type="MProjectDeskSQLITEModel.plantillas_meta_datos" Role="plantillas_meta_datos" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="plantillas">
+            <Principal Role="plantilla">
               <PropertyRef Name="id_plantilla" />
             </Principal>
             <Dependent Role="plantillas_meta_datos">
@@ -777,20 +863,20 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_proyectos_0_0">
-          <End Role="plantillas" Type="Self.plantilla" Multiplicity="1" />
-          <End Role="proyectos" Type="Self.proyecto" Multiplicity="*" />
+          <End Type="MProjectDeskSQLITEModel.plantilla" Role="plantilla" Multiplicity="1" />
+          <End Type="MProjectDeskSQLITEModel.proyecto" Role="proyecto" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="plantillas">
+            <Principal Role="plantilla">
               <PropertyRef Name="id_plantilla" />
             </Principal>
-            <Dependent Role="proyectos">
+            <Dependent Role="proyecto">
               <PropertyRef Name="id_plantilla" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_proyectos_meta_datos_0_0">
-          <End Role="plantillas_meta_datos" Type="Self.plantillas_meta_datos" Multiplicity="1" />
-          <End Role="proyectos_meta_datos" Type="Self.proyectos_meta_datos" Multiplicity="*" />
+          <End Type="MProjectDeskSQLITEModel.plantillas_meta_datos" Role="plantillas_meta_datos" Multiplicity="1" />
+          <End Type="MProjectDeskSQLITEModel.proyectos_meta_datos" Role="proyectos_meta_datos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="plantillas_meta_datos">
               <PropertyRef Name="id_plantilla_meta_dato" />
@@ -801,22 +887,22 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_proyectos_1_0">
-          <End Role="repositorio" Type="Self.repositorio" Multiplicity="1" />
-          <End Role="proyectos" Type="Self.proyecto" Multiplicity="*" />
+          <End Type="MProjectDeskSQLITEModel.repositorio" Role="repositorio" Multiplicity="1" />
+          <End Type="MProjectDeskSQLITEModel.proyecto" Role="proyecto" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="repositorio">
               <PropertyRef Name="id_repositorio" />
             </Principal>
-            <Dependent Role="proyectos">
+            <Dependent Role="proyecto">
               <PropertyRef Name="id_repositorio" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_proyectos_meta_datos_1_0">
-          <End Role="proyectos" Type="Self.proyecto" Multiplicity="1" />
-          <End Role="proyectos_meta_datos" Type="Self.proyectos_meta_datos" Multiplicity="*" />
+          <End Type="MProjectDeskSQLITEModel.proyecto" Role="proyecto" Multiplicity="1" />
+          <End Type="MProjectDeskSQLITEModel.proyectos_meta_datos" Role="proyectos_meta_datos" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="proyectos">
+            <Principal Role="proyecto">
               <PropertyRef Name="id_proyecto" />
             </Principal>
             <Dependent Role="proyectos_meta_datos">
@@ -825,97 +911,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="usuarios_proyectos">
-          <End Role="proyectos" Type="Self.proyecto" Multiplicity="*" />
-          <End Role="usuarios" Type="Self.usuario" Multiplicity="*" />
+          <End Type="MProjectDeskSQLITEModel.proyecto" Role="proyecto" Multiplicity="*" />
+          <End Type="MProjectDeskSQLITEModel.usuario" Role="usuario" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="MProjectDeskSQLITEEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="actividades" EntityType="Self.actividade" />
-          <EntitySet Name="archivos" EntityType="Self.archivo" />
-          <EntitySet Name="caracteristicas" EntityType="Self.caracteristica" />
-          <EntitySet Name="folders" EntityType="Self.folder" />
-          <EntitySet Name="meta_datos" EntityType="Self.meta_datos" />
-          <EntitySet Name="plantillas" EntityType="Self.plantilla" />
-          <EntitySet Name="plantillas_meta_datos" EntityType="Self.plantillas_meta_datos" />
-          <EntitySet Name="proyectos" EntityType="Self.proyecto" />
-          <EntitySet Name="proyectos_meta_datos" EntityType="Self.proyectos_meta_datos" />
-          <EntitySet Name="repositorios" EntityType="Self.repositorio" />
-          <EntitySet Name="tipos_archivos" EntityType="Self.tipos_archivos" />
-          <EntitySet Name="tipos_datos" EntityType="Self.tipos_datos" />
-          <EntitySet Name="usuarios" EntityType="Self.usuario" />
-          <AssociationSet Name="FK_actividades_0_0" Association="Self.FK_actividades_0_0">
-            <End Role="folders" EntitySet="folders" />
-            <End Role="actividades" EntitySet="actividades" />
-          </AssociationSet>
-          <AssociationSet Name="FK_caracteristicas_3_0" Association="Self.FK_caracteristicas_3_0">
-            <End Role="actividades" EntitySet="actividades" />
-            <End Role="caracteristicas" EntitySet="caracteristicas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_archivos_0_0" Association="Self.FK_archivos_0_0">
-            <End Role="caracteristicas" EntitySet="caracteristicas" />
-            <End Role="archivos" EntitySet="archivos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_archivos_1_0" Association="Self.FK_archivos_1_0">
-            <End Role="folders" EntitySet="folders" />
-            <End Role="archivos" EntitySet="archivos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_archivos_2_0" Association="Self.FK_archivos_2_0">
-            <End Role="tipos_archivos" EntitySet="tipos_archivos" />
-            <End Role="archivos" EntitySet="archivos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_caracteristicas_0_0" Association="Self.FK_caracteristicas_0_0">
-            <End Role="proyectos" EntitySet="proyectos" />
-            <End Role="caracteristicas" EntitySet="caracteristicas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_caracteristicas_1_0" Association="Self.FK_caracteristicas_1_0">
-            <End Role="caracteristicas" EntitySet="caracteristicas" />
-            <End Role="caracteristicas1" EntitySet="caracteristicas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_caracteristicas_2_0" Association="Self.FK_caracteristicas_2_0">
-            <End Role="proyectos" EntitySet="proyectos" />
-            <End Role="caracteristicas" EntitySet="caracteristicas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_folders_0_0" Association="Self.FK_folders_0_0">
-            <End Role="folders" EntitySet="folders" />
-            <End Role="folders1" EntitySet="folders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_folders_1_0" Association="Self.FK_folders_1_0">
-            <End Role="proyectos" EntitySet="proyectos" />
-            <End Role="folders" EntitySet="folders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_meta_datos_0_0" Association="Self.FK_meta_datos_0_0">
-            <End Role="tipos_datos" EntitySet="tipos_datos" />
-            <End Role="meta_datos" EntitySet="meta_datos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_plantillas_meta_datos_0_0" Association="Self.FK_plantillas_meta_datos_0_0">
-            <End Role="meta_datos" EntitySet="meta_datos" />
-            <End Role="plantillas_meta_datos" EntitySet="plantillas_meta_datos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_plantillas_meta_datos_1_0" Association="Self.FK_plantillas_meta_datos_1_0">
-            <End Role="plantillas" EntitySet="plantillas" />
-            <End Role="plantillas_meta_datos" EntitySet="plantillas_meta_datos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_proyectos_0_0" Association="Self.FK_proyectos_0_0">
-            <End Role="plantillas" EntitySet="plantillas" />
-            <End Role="proyectos" EntitySet="proyectos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_proyectos_meta_datos_0_0" Association="Self.FK_proyectos_meta_datos_0_0">
-            <End Role="plantillas_meta_datos" EntitySet="plantillas_meta_datos" />
-            <End Role="proyectos_meta_datos" EntitySet="proyectos_meta_datos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_proyectos_1_0" Association="Self.FK_proyectos_1_0">
-            <End Role="repositorio" EntitySet="repositorios" />
-            <End Role="proyectos" EntitySet="proyectos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_proyectos_meta_datos_1_0" Association="Self.FK_proyectos_meta_datos_1_0">
-            <End Role="proyectos" EntitySet="proyectos" />
-            <End Role="proyectos_meta_datos" EntitySet="proyectos_meta_datos" />
-          </AssociationSet>
-          <AssociationSet Name="usuarios_proyectos" Association="Self.usuarios_proyectos">
-            <End Role="proyectos" EntitySet="proyectos" />
-            <End Role="usuarios" EntitySet="usuarios" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -924,145 +923,145 @@
           <EntitySetMapping Name="actividades">
             <EntityTypeMapping TypeName="MProjectDeskSQLITEModel.actividade">
               <MappingFragment StoreEntitySet="actividades">
-                <ScalarProperty Name="id_actividad" ColumnName="id_actividad" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="pos" ColumnName="pos" />
                 <ScalarProperty Name="id_folder" ColumnName="id_folder" />
+                <ScalarProperty Name="pos" ColumnName="pos" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id_actividad" ColumnName="id_actividad" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="archivos">
             <EntityTypeMapping TypeName="MProjectDeskSQLITEModel.archivo">
               <MappingFragment StoreEntitySet="archivos">
-                <ScalarProperty Name="id_archivo" ColumnName="id_archivo" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="contenido" ColumnName="contenido" />
-                <ScalarProperty Name="fecha_carga" ColumnName="fecha_carga" />
-                <ScalarProperty Name="id_folder" ColumnName="id_folder" />
-                <ScalarProperty Name="id_tipo_archivo" ColumnName="id_tipo_archivo" />
                 <ScalarProperty Name="id_caracteristica" ColumnName="id_caracteristica" />
+                <ScalarProperty Name="id_tipo_archivo" ColumnName="id_tipo_archivo" />
+                <ScalarProperty Name="id_folder" ColumnName="id_folder" />
+                <ScalarProperty Name="fecha_carga" ColumnName="fecha_carga" />
+                <ScalarProperty Name="contenido" ColumnName="contenido" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id_archivo" ColumnName="id_archivo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="caracteristicas">
             <EntityTypeMapping TypeName="MProjectDeskSQLITEModel.caracteristica">
               <MappingFragment StoreEntitySet="caracteristicas">
-                <ScalarProperty Name="id_caracteristica" ColumnName="id_caracteristica" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
-                <ScalarProperty Name="porcentaje_asignado" ColumnName="porcentaje_asignado" />
-                <ScalarProperty Name="porcentaje_cumplimido" ColumnName="porcentaje_cumplimido" />
-                <ScalarProperty Name="duracion" ColumnName="duracion" />
-                <ScalarProperty Name="tipo_duracion" ColumnName="tipo_duracion" />
-                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
-                <ScalarProperty Name="id_actividad" ColumnName="id_actividad" />
-                <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
-                <ScalarProperty Name="padre_caracteristica" ColumnName="padre_caracteristica" />
                 <ScalarProperty Name="proyecto_padre" ColumnName="proyecto_padre" />
+                <ScalarProperty Name="padre_caracteristica" ColumnName="padre_caracteristica" />
+                <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
+                <ScalarProperty Name="id_actividad" ColumnName="id_actividad" />
+                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="tipo_duracion" ColumnName="tipo_duracion" />
+                <ScalarProperty Name="duracion" ColumnName="duracion" />
+                <ScalarProperty Name="porcentaje_cumplimido" ColumnName="porcentaje_cumplimido" />
+                <ScalarProperty Name="porcentaje_asignado" ColumnName="porcentaje_asignado" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="id_caracteristica" ColumnName="id_caracteristica" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="folders">
             <EntityTypeMapping TypeName="MProjectDeskSQLITEModel.folder">
               <MappingFragment StoreEntitySet="folders">
-                <ScalarProperty Name="id_folder" ColumnName="id_folder" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
                 <ScalarProperty Name="Parent_id_folder" ColumnName="Parent_id_folder" />
+                <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id_folder" ColumnName="id_folder" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="meta_datos">
             <EntityTypeMapping TypeName="MProjectDeskSQLITEModel.meta_datos">
               <MappingFragment StoreEntitySet="meta_datos">
-                <ScalarProperty Name="id_meta_datos" ColumnName="id_meta_datos" />
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="meta_dato_ir" ColumnName="meta_dato_ir" />
                 <ScalarProperty Name="id_tipo_dato" ColumnName="id_tipo_dato" />
+                <ScalarProperty Name="meta_dato_ir" ColumnName="meta_dato_ir" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="id_meta_datos" ColumnName="id_meta_datos" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="plantillas">
             <EntityTypeMapping TypeName="MProjectDeskSQLITEModel.plantilla">
               <MappingFragment StoreEntitySet="plantillas">
-                <ScalarProperty Name="id_plantilla" ColumnName="id_plantilla" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id_plantilla" ColumnName="id_plantilla" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="plantillas_meta_datos">
             <EntityTypeMapping TypeName="MProjectDeskSQLITEModel.plantillas_meta_datos">
               <MappingFragment StoreEntitySet="plantillas_meta_datos">
-                <ScalarProperty Name="id_plantilla_meta_dato" ColumnName="id_plantilla_meta_dato" />
-                <ScalarProperty Name="id_plantilla" ColumnName="id_plantilla" />
-                <ScalarProperty Name="id_meta_datos" ColumnName="id_meta_datos" />
                 <ScalarProperty Name="requerido" ColumnName="requerido" />
+                <ScalarProperty Name="id_meta_datos" ColumnName="id_meta_datos" />
+                <ScalarProperty Name="id_plantilla" ColumnName="id_plantilla" />
+                <ScalarProperty Name="id_plantilla_meta_dato" ColumnName="id_plantilla_meta_dato" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="proyectos">
             <EntityTypeMapping TypeName="MProjectDeskSQLITEModel.proyecto">
               <MappingFragment StoreEntitySet="proyectos">
-                <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
-                <ScalarProperty Name="id_plantilla" ColumnName="id_plantilla" />
-                <ScalarProperty Name="id_repositorio" ColumnName="id_repositorio" />
                 <ScalarProperty Name="IR_proyecto" ColumnName="IR_proyecto" />
+                <ScalarProperty Name="id_repositorio" ColumnName="id_repositorio" />
+                <ScalarProperty Name="id_plantilla" ColumnName="id_plantilla" />
+                <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="proyectos_meta_datos">
             <EntityTypeMapping TypeName="MProjectDeskSQLITEModel.proyectos_meta_datos">
               <MappingFragment StoreEntitySet="proyectos_meta_datos">
-                <ScalarProperty Name="id_proyecto_meta_dato" ColumnName="id_proyecto_meta_dato" />
-                <ScalarProperty Name="valor" ColumnName="valor" />
-                <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
                 <ScalarProperty Name="id_plantilla_meta_dato" ColumnName="id_plantilla_meta_dato" />
+                <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
+                <ScalarProperty Name="id_proyecto_meta_dato" ColumnName="id_proyecto_meta_dato" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="repositorios">
             <EntityTypeMapping TypeName="MProjectDeskSQLITEModel.repositorio">
               <MappingFragment StoreEntitySet="repositorio">
-                <ScalarProperty Name="id_repositorio" ColumnName="id_repositorio" />
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="ruta_proyecto" ColumnName="ruta_proyecto" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="id_repositorio" ColumnName="id_repositorio" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tipos_archivos">
             <EntityTypeMapping TypeName="MProjectDeskSQLITEModel.tipos_archivos">
               <MappingFragment StoreEntitySet="tipos_archivos">
-                <ScalarProperty Name="id_tipo_archivo" ColumnName="id_tipo_archivo" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id_tipo_archivo" ColumnName="id_tipo_archivo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tipos_datos">
             <EntityTypeMapping TypeName="MProjectDeskSQLITEModel.tipos_datos">
               <MappingFragment StoreEntitySet="tipos_datos">
-                <ScalarProperty Name="id_tipo_dato" ColumnName="id_tipo_dato" />
                 <ScalarProperty Name="decripcion" ColumnName="decripcion" />
+                <ScalarProperty Name="id_tipo_dato" ColumnName="id_tipo_dato" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="usuarios">
             <EntityTypeMapping TypeName="MProjectDeskSQLITEModel.usuario">
               <MappingFragment StoreEntitySet="usuarios">
-                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
-                <ScalarProperty Name="e_mail" ColumnName="e_mail" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="apellido" ColumnName="apellido" />
                 <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="e_mail" ColumnName="e_mail" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <AssociationSetMapping Name="usuarios_proyectos" TypeName="MProjectDeskSQLITEModel.usuarios_proyectos" StoreEntitySet="usuarios_proyectos">
-            <EndProperty Name="proyectos">
-              <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
-            </EndProperty>
-            <EndProperty Name="usuarios">
+            <EndProperty Name="usuario">
               <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+            </EndProperty>
+            <EndProperty Name="proyecto">
+              <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

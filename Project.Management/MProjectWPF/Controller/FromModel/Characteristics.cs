@@ -22,7 +22,7 @@ namespace MProjectWPF.Controller.FromModel
             4   subactividad
             5   proyecto generado por actividad-> necesita de 4 subactividad
         */
-        public bool CreateCharacteristicsActivity(Dictionary<string,string> data)
+        public actividade CreateCharacteristicsActivity(Dictionary<string,string> data)
         {
             Activities acty = new Activities();
             caracteristica car = new caracteristica();
@@ -43,20 +43,19 @@ namespace MProjectWPF.Controller.FromModel
             //System.Windows.MessageBox.Show(data["fol"]);
             act.nombre = data["nom"];
             act.descripcion = data["des"];
+
             if (data["pos"].Equals("OK"))
             {
-                int pos = acty.getPositionAct(Convert.ToInt32(data["fat_cha"]));
-                act.pos = pos + 1;
                 act.id_folder = Convert.ToInt64(data["fol"]);
             }
             else {
-                act.pos = null;
                 act.id_folder = null;
             }
-            
+            int pos = acty.getPositionAct(Convert.ToInt32(data["fat_cha"]));
+            act.pos = pos + 1;
 
-            
-        
+
+
             try
             {
                 MPdb.actividades.Add(act);
@@ -71,10 +70,17 @@ namespace MProjectWPF.Controller.FromModel
                     MPdb.SaveChanges();
                 }
                 catch (Exception err) { System.Windows.MessageBox.Show("interno \n" + err.ToString()); }
+                return act;
             }
-            catch (Exception err) { System.Windows.MessageBox.Show("Externo \n" + err.ToString()); }
-            return false;
+            catch (Exception err) {
+                System.Windows.MessageBox.Show("Externo \n" + err.ToString());
+                return null;
+            }
+            
         }
+
+      
+
     }
 }
 

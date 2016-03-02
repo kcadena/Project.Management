@@ -15,39 +15,33 @@ namespace MProjectWPF.Controller.FromModel
         private MProjectDeskSQLITEEntities mp = new MProjectDeskSQLITEEntities();
 
         //crear carpetas
-        public string createFolder(String name, int project)
+    
+        public long createFolder(String name, long project, long father)
         {
             folder fol = new folder();
             fol.id_proyecto = project;
             fol.nombre = name;
-            fol.id_proyecto = mp.folders.Last<folder>().id_proyecto + 1;
+            fol.Parent_id_folder = father;
             mp.folders.Add(fol);
+            long d = (from x in mp.folders
+                      orderby x.id_folder
+                      select x.id_folder).Max();
+            fol.id_folder = d++;
             try
             {
                 mp.SaveChanges();
+                var id = (from x in mp.folders
+                          orderby x.id_folder
+                          where x.nombre.Equals(name)
+                          select x.id_folder).Max();
+                return (long) id;
             }
             catch (System.Data.ConstraintException err)
             {
-                return err.InnerException.ToString();
+                //System.Windows.MessageBox.Show(err.InnerException.ToString());
+                return -1;
             }
-            return "ok";
-        }
-        public string createFolder(String name, int project, int father)
-        {
-            folder fol = new folder();
-            fol.id_proyecto = project;
-            fol.nombre = name;
-            fol.id_proyecto = mp.folders.Last<folder>().id_proyecto + 1;
-            mp.folders.Add(fol);
-            try
-            {
-                mp.SaveChanges();
-            }
-            catch (System.Data.ConstraintException err)
-            {
-                return err.InnerException.ToString();
-            }
-            return "ok";
+            
         }
         //borrar carpetas
         public string deleteFolder(int id_fol)
@@ -66,7 +60,7 @@ namespace MProjectWPF.Controller.FromModel
             }
             return "ok";
         }
-        private bool renameFolder(int id_fol, string name)
+        public bool renameFolder(long id_fol, string name)
         {
             try
             {
@@ -93,7 +87,7 @@ namespace MProjectWPF.Controller.FromModel
         {
             var fol = from x in mp.folders
                       where x.id_proyecto == pro
-                      orderby x.Parent_id_folder ascending, x.id_folder ascending
+                      orderby x.Parent_id_folder ascending, x.id_folder ascending,x.nombre ascending
                       select x;
 
             return fol.ToList<folder>();

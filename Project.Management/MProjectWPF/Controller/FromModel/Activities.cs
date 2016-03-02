@@ -12,8 +12,8 @@ namespace MProjectWPF.Controller.FromModel
     class Activities
     {
 
-
-        private MProjectDeskSQLITEEntities MPdb = new MProjectDeskSQLITEEntities();
+        
+        private static MProjectDeskSQLITEEntities MPdb = new MProjectDeskSQLITEEntities();
         public List<long> getActivitiesFolders()
         {
             var fol = from x in MPdb.folders
@@ -128,6 +128,26 @@ namespace MProjectWPF.Controller.FromModel
 
         }
 
+
+        public static ActividadesList activity_charac(long id)
+        {
+           var dat = (from x in MPdb.caracteristicas
+                       join y in MPdb.actividades
+                       on x.id_actividad equals y.id_actividad
+                       where y.id_actividad == id
+                       orderby x.padre_caracteristica ascending, y.pos ascending
+                       select (new ActividadesList()
+                       {
+                           nombre = y.nombre,
+                           fol = y.id_folder,
+                           pos = y.pos,
+                           par_car = x.padre_caracteristica,
+                           id_act = x.id_caracteristica
+                       }
+                       )).First();
+           
+            return (ActividadesList)dat;
+        }
     }
 
     public class ActividadesList

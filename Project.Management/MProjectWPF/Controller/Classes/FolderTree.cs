@@ -1,13 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 using MProjectWPF.Controller.FromModel;
 using System.Windows.Controls;
 using System.Windows;
 using System.Windows.Media.Imaging;
+
+
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
 
 namespace MProjectWPF.Controller.Classes
 {
@@ -317,12 +325,7 @@ namespace MProjectWPF.Controller.Classes
             return lstTree;
         }
 
-        public string name(TreeViewItem x, int pos)
-        {
-            TreeViewItem par = (TreeViewItem)x;
-            StackPanel pan = (StackPanel)par.Header;
-            return pan.Children.OfType<Label>().ElementAt(pos).Content.ToString();
-        }
+        
         private void addActivites_TVI(List<TreeViewItem> lstTree, List<TreeViewItem> act)
         {
             ///agregar actividades al arbol
@@ -376,12 +379,15 @@ namespace MProjectWPF.Controller.Classes
             catch { }
         }
 
-        private StackPanel itemsTree(string cad, string id_fol, string parent, int op, long id_car, long fold)
+        public StackPanel itemsTree(string cad, string id_fol, string parent, int op, long id_car, long fold)
         {
             // create stack panel
             StackPanel stack = new StackPanel();
             stack.Orientation = Orientation.Horizontal;
             // Label
+            TextBox nl = new TextBox();
+            nl.Text = "";
+            nl.Visibility = System.Windows.Visibility.Hidden;
             Label nom = new Label();
             nom.Content = cad;
             Label par = new Label();
@@ -421,11 +427,13 @@ namespace MProjectWPF.Controller.Classes
 
             // Add into stack
             stack.Children.Add(image);
+            stack.Children.Add(nl);
             stack.Children.Add(nom);
             stack.Children.Add(id);
             stack.Children.Add(par);
             stack.Children.Add(id_act);
             stack.Children.Add(fol);
+            
             return stack;
         }
 
@@ -439,6 +447,46 @@ namespace MProjectWPF.Controller.Classes
             return null;
         }
 
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////    Operaciones basicas con Carpetas    /////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////
+
+
+        public void changeIdFolder_TVI(long id,TreeViewItem par)
+        {            
+            StackPanel pan = (StackPanel)par.Header;
+            pan.Children.OfType<Label>().ElementAt(1).Content = id.ToString();
+        }
+        public string name(TreeViewItem x, int pos)
+        {
+            TreeViewItem par = (TreeViewItem)x;
+            StackPanel pan = (StackPanel)par.Header;
+            return pan.Children.OfType<Label>().ElementAt(pos).Content.ToString();
+        }
+
+        public TextBox name(TreeViewItem x)
+        {
+            TreeViewItem par = (TreeViewItem)x;
+            StackPanel pan = (StackPanel)par.Header;
+            return pan.Children.OfType<TextBox>().ElementAt(0);
+        }
+        public void renameFolder(long id,string nom)
+        {
+            Folders fol = new Folders();
+            fol.renameFolder(id,nom);
+        }
+        public long createFolder(long id_pro,long par,string nom)
+        {
+            Folders fol = new Folders();
+            return fol.createFolder(nom, id_pro, par);
+        }
     }
 }
 /*

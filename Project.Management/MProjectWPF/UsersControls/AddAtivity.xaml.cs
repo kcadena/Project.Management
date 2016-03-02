@@ -31,6 +31,7 @@ namespace MProjectWPF.UsersControls
 
         public AddAtivity(TreeViewItem tvi, TreeView tvPro,Grid main,Dictionary<string,long> id)
         {
+            
             InitializeComponent();
             this.tvi = tvi;
             this.tvPro = tvPro;
@@ -53,7 +54,6 @@ namespace MProjectWPF.UsersControls
             data["per"] = txtPer.Text;
             data["dur"] = txtDur.Text;
             data["fol"] = idFol;
-            
             data["typDur"] = "Horas";            
             data["id_pro"] ="";
             data["fat_prj"] = dat["id"].ToString();
@@ -71,16 +71,16 @@ namespace MProjectWPF.UsersControls
             }
 
             Characteristics cha = new Characteristics();
-            cha.CreateCharacteristicsActivity(data);
-            
-
-           
-            TreeViewItem tv = treFol.arrange(fol.getStructureFolders(dat["id"]));
-            tvPro.Items.Clear();
-            tvPro.Items.Add(tv);
-
+            Model.actividade act = cha.CreateCharacteristicsActivity(data);
+            TreeViewItem tv = new TreeViewItem();
+            ActividadesList xt = Controller.FromModel.Activities.activity_charac(act.id_actividad);
+            long ns = 0;
+            if (act.id_folder != null)  ns = (long) act.id_folder;
+            tv.Header= treFol.itemsTree(xt.nombre, ns.ToString() , xt.par_car.ToString(), 2, (long)xt.id_act, ns);
+            tvi.Items.Add(tv);
+            tv.IsExpanded = true;
+            tv.Focus();
             mainGrid.Children.Remove(this);
-
         }
     }
 }
