@@ -44,21 +44,21 @@ namespace MProjectWPF.Controller.FromModel
             
         }
         //borrar carpetas
-        public string deleteFolder(int id_fol)
+        public bool deleteFolder(long id_fol)
         {
             folder fol = new folder();
-            fol.id_folder = id_fol;
-            fol = mp.folders.Find(fol);
-            mp.folders.Remove(fol);
             try
             {
+                fol = mp.folders.Find(id_fol);
+                mp.folders.Remove(fol);
                 mp.SaveChanges();
+                return true;
             }
             catch (System.Data.ConstraintException err)
             {
-                return err.InnerException.ToString();
+                return false;
             }
-            return "ok";
+            
         }
         public bool renameFolder(long id_fol, string name)
         {

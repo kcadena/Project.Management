@@ -25,7 +25,7 @@ namespace MProjectWPF.UsersControls
     {
         Grid main_grid;
         Dictionary<string, long> dat;
-        FolderTree treeFol;
+        MProjectWPF.Controller.Classes.FolderTree treeFol;
         TextBox tx;
         Label lb;
         TreeViewItem t;
@@ -53,7 +53,7 @@ namespace MProjectWPF.UsersControls
             tvPro.Items.Add(tv);
             main_grid = grd;
 
-            tvPro.SelectedItemChanged += TvPro_SelectedItemChanged;
+            tvPro.SelectedItemChanged += TvPro_SelectedItemChanged_CreateFolder;
         }
 
 
@@ -67,6 +67,9 @@ namespace MProjectWPF.UsersControls
             MenuItem mitDF = new MenuItem();
             MenuItem mitRF = new MenuItem();
 
+            MenuItem mitUpAct = new MenuItem();
+            MenuItem mitDownAct = new MenuItem();
+
             mitNA.Header = "Nueva actividad";
             mitNA.Click += MitNewAct_Click;
             mitDA.Header = "Eliminar actividad";
@@ -78,6 +81,12 @@ namespace MProjectWPF.UsersControls
             mitRF.Header = "Renombrar Carpeta";
             mitRF.Click += MitRenFol_Click;
 
+            mitUpAct.Header = "Actividad Arriba";
+            mitUpAct.Click += MitUpAct_Click;
+            mitDownAct.Header = "Actividad Abajo";
+            mitDownAct.Click += MitDownAct_Click;
+
+
             Separator sp = new Separator();
             
             if (this.tvPro.SelectedItem != null)
@@ -87,30 +96,84 @@ namespace MProjectWPF.UsersControls
                 {
                     if (treeFol.name((TreeViewItem)this.tvPro.SelectedItem, 3).Equals("-1"))
                     {
+                        //TreeViewItem tv = (TreeViewItem)tvPro.SelectedItem;
+                        //MessageBox.Show(treeFol.name(tv, 0) + "  - " + treeFol.name(tv, 1) + "  -  " + treeFol.name(tv, 2) + "  -  " +
+                        //    treeFol.name(tv, 3) + "   -   " + treeFol.name(tv, 4));
                         conMen.Items.Add(mitNF);
                         conMen.Items.Add(mitDF);
                         conMen.Items.Add(mitRF);
                         conMen.Items.Add(sp);
                     }
+                    else
+                    {
+                        TreeViewItem tv = (TreeViewItem)tvPro.SelectedItem;
+                       
+                       
+                        string a = treeFol.name(tv, 1);
+                        //MessageBox.Show(treeFol.name(tv, 0) + "  - " + treeFol.name(tv, 1) + "  -  " + treeFol.name(tv, 2) + "  -  " +
+                        //   treeFol.name(tv, 3) + "   -   " + treeFol.name(tv, 4));
+                        if (a.Equals(""))
+                        {
+                            long id = Convert.ToInt64(treeFol.name(tv, 2));
+                            TreeViewItem t = treeFol.findParent((TreeViewItem)tvPro.Items.GetItemAt(0), id, 2);
+                            //MessageBox.Show(treeFol.name(t, 0));
+                            int pos = (t.Items.Count);
+                            pos = pos - 1;
+                            TreeViewItem tx = (TreeViewItem)t.Items.GetItemAt(pos);
+                            if (tv != tx)
+                                conMen.Items.Add(mitDownAct);
+                            if (tv != (TreeViewItem)t.Items.GetItemAt(0))
+                                conMen.Items.Add(mitUpAct);
+                        }
+                        else
+                        {
+                            long id = Convert.ToInt64(treeFol.name(tv, 4));
+                            TreeViewItem t = treeFol.findParent((TreeViewItem)tvPro.Items.GetItemAt(0), id, 1);
+                            //MessageBox.Show(treeFol.name(t, 0));
+                            int pos = (t.Items.Count);
+                            pos = pos - 1;
+                            TreeViewItem tx = (TreeViewItem)t.Items.GetItemAt(pos);
+                            if (tv != tx)
+                                conMen.Items.Add(mitDownAct);
+                            if (tv != (TreeViewItem)t.Items.GetItemAt(0))
+                                conMen.Items.Add(mitUpAct);
+                        }
 
+                    }
                     conMen.Items.Add(mitNA);
                     conMen.Items.Add(mitDA);
                     tvPro.ContextMenu = conMen;
-                   
+
                 }
                 else
                 {
                     conMen.Items.Add(mitNF);
                     conMen.Items.Add(mitDF);
                     tvPro.ContextMenu = conMen;
-                    
                 }
             }
 
 
-        }     
+        }
 
-        private void TvPro_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        private void MitDownAct_Click(object sender, RoutedEventArgs e)
+        {
+            TreeViewItem tv = (TreeViewItem)tvPro.SelectedItem;
+            changePositionFunction_Activity(tv);
+        }
+
+        private void MitUpAct_Click(object sender, RoutedEventArgs e)
+        {
+            TreeViewItem tv = (TreeViewItem)tvPro.SelectedItem;
+            changePositionFunction_Activity(tv);
+        }
+
+        private void changePositionFunction_Activity(TreeViewItem tv)
+        {
+            
+        }
+
+        private void TvPro_SelectedItemChanged_CreateFolder(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
             if (xb)
             {
@@ -177,7 +240,7 @@ namespace MProjectWPF.UsersControls
 
         private void MitDelFol_Click(object sender, RoutedEventArgs e)
         {
-
+            delFunction_act_fol(1);
         }
 
         private void MitNewFol_Click(object sender, RoutedEventArgs e)
@@ -189,7 +252,7 @@ namespace MProjectWPF.UsersControls
 
             TreeViewItem st = new TreeViewItem();
             st.Header = treeFol.itemsTree("","-1",treeFol.name(t,1),1,-1,-1);
-            t.Items.Add(st);            
+            t.Items.Insert(0,st);            
             t = st;
             //t.Focus();
             t.IsSelected = true;          
@@ -222,7 +285,7 @@ namespace MProjectWPF.UsersControls
 
         private void MitDelAact_Click(object sender, RoutedEventArgs e)
         {
-
+            delFunction_act_fol(2);
         }
 
         private void MitNewAct_Click(object sender, RoutedEventArgs e)
@@ -244,5 +307,51 @@ namespace MProjectWPF.UsersControls
 
 
         }
+
+        private void delFunction_act_fol(int op)
+        {
+
+            TreeViewItem tv = (TreeViewItem)tvPro.SelectedItem;
+           
+             
+            if (tv.Items.Count > 0)
+            {
+                MessageBox.Show("No se puede eliminar esta carpeta\n" +
+                    "porque existen otros elementos que dependen de esta"
+                    );
+            }
+            else
+            {
+                try
+                {
+                    
+                    if (op == 1)
+                    {
+                        long id = Convert.ToInt64(treeFol.name(tv, 2));
+                        TreeViewItem t = treeFol.findParent((TreeViewItem)tvPro.Items.GetItemAt(0), id, op);
+                        id = Convert.ToInt64(treeFol.name(tv, 1));
+                        treeFol.deleteFolder(id);
+                        t.Items.Remove(tv);
+                    }
+                    else if(op == 2)
+                    {
+                        long id = Convert.ToInt64(treeFol.name(tv, 2));
+                        TreeViewItem t = treeFol.findParent((TreeViewItem)tvPro.Items.GetItemAt(0), id, op);
+                        //MessageBox.Show("" +id+"     "+ treeFol.name(t,0));
+                        id = Convert.ToInt64(treeFol.name(tv, 3));
+                        bool ban = treeFol.deleteActivity(id);
+                        
+                        if (ban) t.Items.Remove(tv);
+                        else MessageBox.Show("No se puede eliminar la actividad");
+                    }
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show(err.ToString());
+                }
+
+            }
+        }
+
     }
 }

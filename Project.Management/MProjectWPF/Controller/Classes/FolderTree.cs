@@ -30,8 +30,6 @@ namespace MProjectWPF.Controller.Classes
         {
             this.dat = dat;
         }
-
-
         private List<TreeViewItem> listActivities_Model()
         {
             Activities actFol = new Activities();
@@ -139,7 +137,6 @@ namespace MProjectWPF.Controller.Classes
             return lstTree;
 
         }
-
         public TreeViewItem arrange(List<Model.folder> fol)
         {
             try
@@ -176,7 +173,6 @@ namespace MProjectWPF.Controller.Classes
                 return new TreeViewItem();
             }
         }
-
         private void arrangeTreeNode(List<TreeViewItem> lstTree)
         {
             try
@@ -200,7 +196,6 @@ namespace MProjectWPF.Controller.Classes
             }
             catch { }
         }
-
         private void listsParents(List<Model.folder> fol)
         {
             this.parent = new List<int>();
@@ -231,7 +226,6 @@ namespace MProjectWPF.Controller.Classes
 
 
         }
-
         private List<List<Model.folder>> arrangeParents_folders(List<Model.folder> fol)
         {
             List<List<Model.folder>> org = new List<List<Model.folder>>();
@@ -253,7 +247,6 @@ namespace MProjectWPF.Controller.Classes
 
             return org;
         }
-
         private List<TreeViewItem> listTVI_parents(List<Model.folder> fol, List<List<Model.folder>> org)
         {
             List<TreeViewItem> lstTree = new List<TreeViewItem>();
@@ -304,11 +297,12 @@ namespace MProjectWPF.Controller.Classes
                             }
                             if (ban == false)
                             {
+                               // MessageBox.Show("OK\n"+y.id_folder+"    "+y.nombre+"    "+y.Parent_id_folder);
                                 TreeViewItem child = new TreeViewItem();
                                 child.Header = itemsTree(
                                     y.nombre,
                                     y.id_folder.ToString(),
-                                     y.Parent_id_folder.ToString(),
+                                    y.Parent_id_folder.ToString(),
                                     1,
                                 -1,
                                 -1);
@@ -324,8 +318,6 @@ namespace MProjectWPF.Controller.Classes
 
             return lstTree;
         }
-
-        
         private void addActivites_TVI(List<TreeViewItem> lstTree, List<TreeViewItem> act)
         {
             ///agregar actividades al arbol
@@ -378,7 +370,6 @@ namespace MProjectWPF.Controller.Classes
             }
             catch { }
         }
-
         public StackPanel itemsTree(string cad, string id_fol, string parent, int op, long id_car, long fold)
         {
             // create stack panel
@@ -436,7 +427,6 @@ namespace MProjectWPF.Controller.Classes
             
             return stack;
         }
-
         private Model.folder getFolderParent(int p, List<Model.folder> fol)
         {
             foreach (var x in fol)
@@ -446,8 +436,6 @@ namespace MProjectWPF.Controller.Classes
             }
             return null;
         }
-
-
 
 
         ////////////////////////////////////////////////////////////////////////////////////
@@ -466,11 +454,14 @@ namespace MProjectWPF.Controller.Classes
         }
         public string name(TreeViewItem x, int pos)
         {
-            TreeViewItem par = (TreeViewItem)x;
-            StackPanel pan = (StackPanel)par.Header;
-            return pan.Children.OfType<Label>().ElementAt(pos).Content.ToString();
+            try
+            {
+                TreeViewItem par = (TreeViewItem)x;
+                StackPanel pan = (StackPanel)par.Header;
+                return pan.Children.OfType<Label>().ElementAt(pos).Content.ToString();
+            }
+            catch { return "Not found anything"; }
         }
-
         public TextBox name(TreeViewItem x)
         {
             TreeViewItem par = (TreeViewItem)x;
@@ -487,6 +478,99 @@ namespace MProjectWPF.Controller.Classes
             Folders fol = new Folders();
             return fol.createFolder(nom, id_pro, par);
         }
+        public TreeViewItem findParent(TreeViewItem tvPro, long id,int op)
+        {
+            int ope = 0;
+            if (op == 1) ope = 1;
+            else ope = 3;
+
+            List<TreeViewItem> list = new List<TreeViewItem>();
+            list.Add((TreeViewItem)tvPro);
+
+            if (id == dat["car"])
+                id = 0;
+            int n = 0;
+            while (n<list.Count)
+            {
+                TreeViewItem x = (TreeViewItem)list.ElementAt(n);
+                // MessageBox.Show(name(x, 0));
+                //MessageBox.Show("" + id + "    " + (name((TreeViewItem)x, 0)) + "  par  +>  " + (name((TreeViewItem)x, 2)));
+                string a = name((TreeViewItem)x, ope);
+                long b = id;
+                long id_fol;
+                if (id==0)
+                    id_fol = Convert.ToInt64(name((TreeViewItem)x, 1));
+                else
+                    id_fol = Convert.ToInt64(name((TreeViewItem)x, ope));
+                //MessageBox.Show("" + id + "   " + id_fol + "    " + (name((TreeViewItem)y, 0)) + "  par  +>  " + (name((TreeViewItem)y, 2)));
+                if (id_fol.ToString().Equals(id.ToString()))
+                    return x;
+                else
+                {
+                   // MessageBox.Show("OK  ?");
+
+                    foreach (var s in x.Items)
+                    {
+                        try
+                        {
+                            TreeViewItem t = (TreeViewItem)s;
+                           // if (name(t, 3) != "-1")
+                                list.Add(t);
+                        }
+                        catch { }
+                    }
+                }
+                n++;
+            }
+
+
+            return null;
+        }
+        public bool deleteFolder(long id)
+        {
+            Folders fol = new Folders();
+           
+            try
+            {
+                return fol.deleteFolder(id);
+                
+            }
+            catch
+            {
+                return false;
+            }
+
+        }
+
+
+        ////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////   Operaciones  con Actividades    /////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////
+        public bool deleteActivity(long id)
+        {
+            Activities fol = new Activities();
+            try
+            {
+                Characteristics cha = new Characteristics();
+                long id_act = cha.deleteCharacteristic(id);
+            
+                return fol.deleteActivity(id_act); 
+            }
+            catch
+            {
+                return false;
+            }
+
+        }
+        public bool changePosActivity()
+        {
+            return false;
+        }
+
     }
 }
 /*

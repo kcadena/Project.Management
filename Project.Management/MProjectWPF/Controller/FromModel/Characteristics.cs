@@ -78,7 +78,23 @@ namespace MProjectWPF.Controller.FromModel
             }
             
         }
-
+        public long deleteCharacteristic(long id)
+        {
+            caracteristica car = new caracteristica();
+            try
+            {
+                car = MPdb.caracteristicas.Find(id);
+                MPdb.caracteristicas.Remove(car);
+                MPdb.SaveChanges();
+               
+                return car.id_actividad;
+            }
+            catch (Exception err)
+            {
+                string a = err.ToString();
+                return -1;
+            }
+        }
       
 
     }
