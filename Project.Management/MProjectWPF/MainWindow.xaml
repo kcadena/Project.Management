@@ -1,55 +1,72 @@
-﻿<Window x:Class="MProjectWPF.MainWindow"
+﻿<Window x:Class="MProjectWPF.MainWindow"        
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MProjectWPF"
         mc:Ignorable="d"
-        Title="MProject" Height="700" Width="1020" Background="#FFEFF2FB">
-    <Window.Resources>
-        <Storyboard x:Key="showTemplatePanel">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="viewPro">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="-230"/>
-            </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="viewPro">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="-5"/>
-            </DoubleAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="viewPlan">
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.7" Value="{x:Static Visibility.Visible}"/>
-            </ObjectAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="viewPlan">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="470"/>
-            </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="viewPlan">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="10"/>
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>
-    </Window.Resources>
+        Title="MProject" Height="700" Width="1020" Background="#FFEFF2FB" WindowStartupLocation="CenterScreen" WindowState="Maximized" Icon="LogoMProject.ico" >
     <Grid x:Name="grid_main_window">
-        <Menu x:Name="menu" Height="20" VerticalAlignment="Top" Margin="0,0,10,0">
-            <MenuItem Header="Archivo"/>
+        <Grid.Background>
+            <SolidColorBrush Color="#FFB1BEEA" Opacity="0.54"/>
+        </Grid.Background>
+        <Menu x:Name="menu" Height="20" VerticalAlignment="Top">
+            <MenuItem Header="Archivo" Height="20" Width="65"/>
             <MenuItem Header="Herramientas"/>
             <MenuItem Header="Ayuda"/>
         </Menu>
-        <Grid x:Name="viewPro" Margin="270,45,287,59" RenderTransformOrigin="0.5,0.5">
-            <Grid.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Grid.RenderTransform>
-        </Grid>
-        <Grid x:Name="viewPlan" Margin="25,25,0,79" HorizontalAlignment="Left" Width="455" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
-            <Grid.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Grid.RenderTransform>
+        <Separator VerticalAlignment="Top" Margin="0,20,10,0" />
+        <Menu x:Name="herramientas" Height="45" VerticalAlignment="Top" Margin="0,20,0,0" Background="#FFF3F7F9" Opacity="0.585">
+            <MenuItem Name="mnArchivo" Header="BARRA HERRAMIENTAS">
+                <MenuItem Name="mnAbrir" Header="A_brir" />
+                <MenuItem Name="mnGuardar" Header="_Guardar">
+                    <MenuItem Name="mnGuardarMN" Header="_Mismo nombre" />
+                    <MenuItem Name="mnGuardarON" Header="_Otro nombre" />
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <Grid x:Name="stackViews" Margin="0,65,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="400" />
+            </Grid.ColumnDefinitions>
+
+            <Grid  Grid.Column="0" x:Name="viewPlan" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" d:LayoutOverrides="LeftMargin, RightMargin">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0" Background="#D1B1BEEA">
+                    <Image x:Name="Imagen_png" Height="95" Margin="70,40,75,0" Source="Imagen.png" Stretch="Fill" VerticalAlignment="Top"/>
+                    <Label x:Name="label" Content="INICIO" Margin="35,165,10,0" VerticalAlignment="Top" Height="30" FontWeight="Bold" FontFamily="7" Foreground="#FF014067"/>
+                    <Label x:Name="label1" Content="PROYECTOS RECIENTES" Margin="35,315,10,0" VerticalAlignment="Top" FontWeight="Bold"  FontFamily="7" Foreground="#FF003F66" Height="30" Background="{x:Null}" />
+                    <Label x:Name="label2" Content="Nuevo Proyecto" Margin="35,195,10,0" VerticalAlignment="Top" Height="30" FontFamily="7" Foreground="#FF046799" Cursor="Hand"/>
+                    <Label x:Name="label3" Content="Abrir Proyecto" Margin="35,225,10,0" VerticalAlignment="Top" Height="30" FontFamily="7" Foreground="#FF046799" Cursor="Hand"/>
+                    <Label x:Name="label4" Content="Importar Proyecto" Margin="35,255,10,0" VerticalAlignment="Top" Height="30" FontFamily="7" Foreground="#FF046799" Cursor="Hand"/>
+                    <Label x:Name="label5" Content="Proyectos de Ingenieria" Margin="35,345,10,0" VerticalAlignment="Top" Height="30" FontFamily="7" Foreground="#FF046799" Cursor="Hand" Background="#3BFFFFFF"/>
+                    <Label x:Name="label6" Content="Desarrollo Investic" Margin="35,375,10,0" VerticalAlignment="Top" Height="30" FontFamily="7" Foreground="#FF046799" Cursor="Hand"/>
+                    <Label x:Name="label7" Content="Acreditacion Sistemas" Margin="35,405,10,0" VerticalAlignment="Top" Height="30" FontFamily="7" Foreground="#FF046799" Cursor="Hand"/>
+                    <Label x:Name="label8" Content="Desarrollo MProject" Margin="35,435,10,0" VerticalAlignment="Top" Height="30" FontFamily="7" Foreground="#FF046799" Cursor="Hand"/>
+                    <Label x:Name="label9" Content="Aplicacion Inventario" Margin="35,465,10,0" VerticalAlignment="Top" Height="30" FontFamily="7" Foreground="#FF046799" Cursor="Hand"/>
+                </Grid>
+                <Grid Grid.Column="1" x:Name="lal">
+
+                </Grid>
+            </Grid>
+
+            <GridSplitter Width="5" Grid.Column="1" HorizontalAlignment="Stretch" />
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid OpacityMask="#FF8D0303"/>
+                <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" />
+                <Grid Grid.Row="2"></Grid>
+            </Grid>
         </Grid>
     </Grid>
 </Window>
