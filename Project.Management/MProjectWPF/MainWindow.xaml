@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MProjectWPF"
         mc:Ignorable="d"
-        Title="MProject" Height="700" Width="1020" Background="#FFEFF2FB" WindowStartupLocation="CenterScreen" WindowState="Maximized" Icon="LogoMProject.ico" >
-    <Grid x:Name="grid_main_window">
+        Title="MPROJECT" Background="#FFEFF2FB" WindowStartupLocation="CenterScreen" WindowState="Maximized" Icon="LogoMProject.ico" MinWidth="800" MinHeight="600" Height="600" Width="1024" >
+    <Grid x:Name="grid_main_window" >
         <Grid.Background>
             <SolidColorBrush Color="#FFB1BEEA" Opacity="0.54"/>
         </Grid.Background>
@@ -16,7 +16,7 @@
             <MenuItem Header="Ayuda"/>
         </Menu>
         <Separator VerticalAlignment="Top" Margin="0,20,10,0" />
-        <Menu x:Name="herramientas" Height="45" VerticalAlignment="Top" Margin="0,20,0,0" Background="#FFF3F7F9" Opacity="0.585">
+        <Menu x:Name="herramientas" Height="40" VerticalAlignment="Top" Margin="0,20,0,0" Background="#FFF3F7F9" Opacity="0.585">
             <MenuItem Name="mnArchivo" Header="BARRA HERRAMIENTAS">
                 <MenuItem Name="mnAbrir" Header="A_brir" />
                 <MenuItem Name="mnGuardar" Header="_Guardar">
@@ -26,38 +26,31 @@
             </MenuItem>
         </Menu>
 
-        <Grid x:Name="stackViews" Margin="0,65,0,0">
+        <Grid x:Name="stackViews" Margin="0,60,0,0" d:LayoutOverrides="TopMargin, BottomMargin">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="5" />
-                <ColumnDefinition Width="400" />
+                <ColumnDefinition Width="300" />
             </Grid.ColumnDefinitions>
 
-            <Grid  Grid.Column="0" x:Name="viewPlan" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" d:LayoutOverrides="LeftMargin, RightMargin">
+            <Grid  Grid.Column="0" x:Name="viewPlan" RenderTransformOrigin="0.5,0.5" d:LayoutOverrides="Width, LeftMargin, RightMargin">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="300" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0" Background="#D1B1BEEA">
-                    <Image x:Name="Imagen_png" Height="95" Margin="70,40,75,0" Source="Imagen.png" Stretch="Fill" VerticalAlignment="Top"/>
-                    <Label x:Name="label" Content="INICIO" Margin="35,165,10,0" VerticalAlignment="Top" Height="30" FontWeight="Bold" FontFamily="7" Foreground="#FF014067"/>
+                    <Image x:Name="Imagen_png" Height="95" Margin="70,40,75,0" Source="Imagen.png" Stretch="Fill" VerticalAlignment="Top" OpacityMask="#FFE6E6E6"/>
+                    <Label x:Name="label" Content="INICIO" Margin="35,165,10,0" VerticalAlignment="Top" Height="30" FontFamily="7" Foreground="#FF014067" FontWeight="Bold"/>
                     <Label x:Name="label1" Content="PROYECTOS RECIENTES" Margin="35,315,10,0" VerticalAlignment="Top" FontWeight="Bold"  FontFamily="7" Foreground="#FF003F66" Height="30" Background="{x:Null}" />
-                    <Label x:Name="label2" Content="Nuevo Proyecto" Margin="35,195,10,0" VerticalAlignment="Top" Height="30" FontFamily="7" Foreground="#FF046799" Cursor="Hand"/>
-                    <Label x:Name="label3" Content="Abrir Proyecto" Margin="35,225,10,0" VerticalAlignment="Top" Height="30" FontFamily="7" Foreground="#FF046799" Cursor="Hand"/>
-                    <Label x:Name="label4" Content="Importar Proyecto" Margin="35,255,10,0" VerticalAlignment="Top" Height="30" FontFamily="7" Foreground="#FF046799" Cursor="Hand"/>
-                    <Label x:Name="label5" Content="Proyectos de Ingenieria" Margin="35,345,10,0" VerticalAlignment="Top" Height="30" FontFamily="7" Foreground="#FF046799" Cursor="Hand" Background="#3BFFFFFF"/>
-                    <Label x:Name="label6" Content="Desarrollo Investic" Margin="35,375,10,0" VerticalAlignment="Top" Height="30" FontFamily="7" Foreground="#FF046799" Cursor="Hand"/>
-                    <Label x:Name="label7" Content="Acreditacion Sistemas" Margin="35,405,10,0" VerticalAlignment="Top" Height="30" FontFamily="7" Foreground="#FF046799" Cursor="Hand"/>
-                    <Label x:Name="label8" Content="Desarrollo MProject" Margin="35,435,10,0" VerticalAlignment="Top" Height="30" FontFamily="7" Foreground="#FF046799" Cursor="Hand"/>
-                    <Label x:Name="label9" Content="Aplicacion Inventario" Margin="35,465,10,0" VerticalAlignment="Top" Height="30" FontFamily="7" Foreground="#FF046799" Cursor="Hand"/>
-                </Grid>
-                <Grid Grid.Column="1" x:Name="lal">
 
+                    <ListBox x:Name="lstmen" Height="95" Margin="35,195,10,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" IsHitTestVisible="True"/>
+                    <ListBox x:Name="lstrec" Margin="35,345,10,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Height="150"/>
                 </Grid>
+                <Grid Grid.Column="1" x:Name="lal"/>
             </Grid>
 
             <GridSplitter Width="5" Grid.Column="1" HorizontalAlignment="Stretch" />
-            <Grid Grid.Column="2">
+            <Grid Grid.Column="2" d:IsHidden="True">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="5"/>
