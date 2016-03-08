@@ -120,10 +120,11 @@ namespace MProjectWPF.UsersControls
                             int pos = (t.Items.Count);
                             pos = pos - 1;
                             TreeViewItem tx = (TreeViewItem)t.Items.GetItemAt(pos);
-                            if (tv != tx)
-                                conMen.Items.Add(mitDownAct);
                             if (tv != (TreeViewItem)t.Items.GetItemAt(0))
                                 conMen.Items.Add(mitUpAct);
+                            if (tv != tx)
+                                conMen.Items.Add(mitDownAct);
+                            
                         }
                         else
                         {
@@ -133,10 +134,11 @@ namespace MProjectWPF.UsersControls
                             int pos = (t.Items.Count);
                             pos = pos - 1;
                             TreeViewItem tx = (TreeViewItem)t.Items.GetItemAt(pos);
-                            if (tv != tx)
-                                conMen.Items.Add(mitDownAct);
                             if (tv != (TreeViewItem)t.Items.GetItemAt(0))
                                 conMen.Items.Add(mitUpAct);
+                            if (tv != tx)
+                                conMen.Items.Add(mitDownAct);
+                           
                         }
 
                     }
@@ -159,18 +161,60 @@ namespace MProjectWPF.UsersControls
         private void MitDownAct_Click(object sender, RoutedEventArgs e)
         {
             TreeViewItem tv = (TreeViewItem)tvPro.SelectedItem;
-            changePositionFunction_Activity(tv);
+            changePositionFunction_Activity(tv,2);
         }
 
         private void MitUpAct_Click(object sender, RoutedEventArgs e)
         {
             TreeViewItem tv = (TreeViewItem)tvPro.SelectedItem;
-            changePositionFunction_Activity(tv);
+            changePositionFunction_Activity(tv,1);
         }
 
-        private void changePositionFunction_Activity(TreeViewItem tv)
+        private void changePositionFunction_Activity(TreeViewItem tv,int op)
         {
+            long id = Convert.ToInt64(treeFol.name(tv, 2));
+            // MessageBox.Show(id.ToString());
+            // MessageBox.Show("  "+ treeFol.name(tv, 0) + "  -  " + treeFol.name(tv, 1) + "  -  " + treeFol.name(tv, 2) + "  -  " + treeFol.name(tv, 3) + "  -  " + treeFol.name(tv, 4));
+
+            TreeViewItem t;
+            if (id!=dat["car"])
+            {
+                t = treeFol.findParent((TreeViewItem)tvPro.Items.GetItemAt(0), id, 2);
+            }
+                
+            else
+            {
+                id = Convert.ToInt64(treeFol.name(tv, 4));
+                t = treeFol.findParent((TreeViewItem)tvPro.Items.GetItemAt(0), id, 1);
+            }
             
+            //MessageBox.Show("  " + treeFol.name(t, 0) + "  -  " + treeFol.name(t, 1) + "  -  " + treeFol.name(t, 2) + "  -  " + treeFol.name(t, 3) + "  -  " + treeFol.name(t, 4));
+            int pos = 1;
+            foreach (var x in t.Items)
+            {
+                if (treeFol.name((TreeViewItem)x, 3).Equals(treeFol.name(tv, 3))){
+                    treeFol.changePosActivity(Convert.ToInt64(treeFol.name(tv,2)), pos, op);
+                    break;
+                }
+                pos = pos + 1;
+            }
+            
+            pos = pos - 1;
+            StackPanel p = (StackPanel)t.Header;
+            t.Items.RemoveAt(pos);
+            
+            if (op == 1)
+            {
+                pos = pos - 1;
+                t.Items.Insert(pos--, tv);
+            }
+                
+            else
+            {
+                pos = pos + 1;
+                t.Items.Insert(pos++, tv);
+            }
+                
         }
 
         private void TvPro_SelectedItemChanged_CreateFolder(object sender, RoutedPropertyChangedEventArgs<object> e)

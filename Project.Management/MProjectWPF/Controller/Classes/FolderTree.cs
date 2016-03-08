@@ -497,25 +497,35 @@ namespace MProjectWPF.Controller.Classes
                 //MessageBox.Show("" + id + "    " + (name((TreeViewItem)x, 0)) + "  par  +>  " + (name((TreeViewItem)x, 2)));
                 string a = name((TreeViewItem)x, ope);
                 long b = id;
-                long id_fol;
-                if (id==0)
+                long id_fol=-1;
+               // MessageBox.Show("Pruebas\n" + id + "  -  " + (name((TreeViewItem)x, 0)) + "   -  " + (name((TreeViewItem)x, 1)) + "  -  " + (name((TreeViewItem)x, 2)) + "  -  " + (name((TreeViewItem)x, 3)) + "  -  " + (name((TreeViewItem)x, 4)));
+                if (id==0 || (name((TreeViewItem)x, 0)).Equals("My project"))
                     id_fol = Convert.ToInt64(name((TreeViewItem)x, 1));
                 else
-                    id_fol = Convert.ToInt64(name((TreeViewItem)x, ope));
+                {
+                    //MessageBox.Show(name((TreeViewItem)x, ope));
+                    try { id_fol = Convert.ToInt64(name((TreeViewItem)x, ope)); } catch { }
+                }
+
+
                 //MessageBox.Show("" + id + "   " + id_fol + "    " + (name((TreeViewItem)y, 0)) + "  par  +>  " + (name((TreeViewItem)y, 2)));
                 if (id_fol.ToString().Equals(id.ToString()))
+                {
+                   // MessageBox.Show("" + id_fol);
                     return x;
+                    
+                }
                 else
                 {
-                   // MessageBox.Show("OK  ?");
+                    // MessageBox.Show("OK  ?");
 
                     foreach (var s in x.Items)
                     {
                         try
                         {
                             TreeViewItem t = (TreeViewItem)s;
-                           // if (name(t, 3) != "-1")
-                                list.Add(t);
+                            // if (name(t, 3) != "-1")
+                            list.Add(t);
                         }
                         catch { }
                     }
@@ -566,9 +576,11 @@ namespace MProjectWPF.Controller.Classes
             }
 
         }
-        public bool changePosActivity()
+        public bool changePosActivity(long par_car,int pos,int op)
         {
-            return false;
+            Activities act = new Activities();
+            return act.changePoitionActivity(par_car, pos,op);
+            
         }
 
     }

@@ -167,65 +167,57 @@ namespace MProjectWPF.Controller.FromModel
 
 
 
-        private bool changePoitionActivity(long id, int pos, int op)
+        public bool changePoitionActivity(long parcar, int pos, int op)
         {
             //id => padre
             //pos=> posicion a modificar
             //op => tipo de modificacion (1-> arriba        2-> abajo)
             //pos_mod  posision de la actividad que se ve afectada por act_mod
 
-            int pos_mod = pos ;
-            actividade act_mod = new actividade();
-            //act_afe -> actividad afectada por la modificacion de act_mod
-            actividade act_afe = new actividade();
+            long pos_mod = pos ;
+            actividade act1 = new actividade();
+            actividade act2 = new actividade();
             
             if (op == 1)
-                pos_mod++;
-            
+                pos_mod = pos_mod - 1;
             else
-                pos_mod--;
+                pos_mod = pos_mod + 1 ;
 
             try
             {
-                var act = (from x in MPdb.actividades
-                           join y in MPdb.caracteristicas
-                           on x.id_actividad equals y.id_actividad
-                           where y.padre_caracteristica == id && (x.pos == pos || x.pos == pos_mod)
+                List<actividade> act = (from x in MPdb.actividades
+                                        join y in MPdb.caracteristicas
+                                        on x.id_actividad equals y.id_actividad
+                           where y.padre_caracteristica== parcar && (x.pos == pos || x.pos == pos_mod)
                            orderby x.pos ascending
-                           select x);
+                           select x).ToList<actividade>();
+                long pax = (long)act.ElementAt(0).pos;
+                act1 = act.ElementAt(0);
+                act2 = act.ElementAt(1);
+                act1.pos = act2.pos;
 
-
-
-                if (act.ElementAt(0).pos == pos)
-                {
-                    act_mod = act.ElementAt(0);
-                    act_afe = act.ElementAt(1);
-                }
-
+                if(op == 1)
+                    act2.pos = pos_mod;
                 else
-                {
-                    act_afe = act.ElementAt(0);
-                    act_mod = act.ElementAt(1);
-                }
+                    act2.pos = pos;
 
-
-                act_mod.pos = act_afe.pos;
-                act_afe.pos = pos;
-
-                MPdb.actividades.Attach(act_mod);
-                var entry1 = MPdb.Entry(act_mod);
+                MPdb.actividades.Attach(act1);
+                var entry1 = MPdb.Entry(act1);
                 entry1.Property(e => e.pos).IsModified = true;
 
-                MPdb.actividades.Attach(act_afe);
-                var entry2 = MPdb.Entry(act_afe);
+                MPdb.SaveChanges();
+
+                MPdb.actividades.Attach(act2);
+                var entry2 = MPdb.Entry(act2);
                 entry2.Property(e => e.pos).IsModified = true;
 
                 MPdb.SaveChanges();
                 return true;
 
             }
-            catch
+            catch(Exception err)
             {
+                System.Windows.MessageBox.Show(err.ToString());
                 return false;
             }
 
