@@ -37,7 +37,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Logo-Copia.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -159,6 +160,9 @@
     <Compile Include="Controller\DbLitecontroller.cs" />
     <Compile Include="Themes\LeftMarginMultiplierConverter.cs" />
     <Compile Include="Themes\TreeViewItemExtensions.cs" />
+    <Compile Include="UsersControlls\CardProject.xaml.cs">
+      <DependentUpon>CardProject.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UsersControlls\ExplorerProject.xaml.cs">
       <DependentUpon>ExplorerProject.xaml</DependentUpon>
     </Compile>
@@ -223,6 +227,10 @@
     <Page Include="Themes\WhistlerBlue.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UsersControlls\CardProject.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UsersControlls\ExplorerProject.xaml">
       <SubType>Designer</SubType>
@@ -323,8 +331,7 @@
     <Resource Include="Resources\Lupa1.png" />
     <Resource Include="Resources\Lupa.png" />
     <Resource Include="Imagen.png" />
-    <Resource Include="Logo-Copia.ico" />
-    <Resource Include="LogoMProject.ico" />
+    <Resource Include="Resources\LogoMProject.ico" />
     <Content Include="Model\MProjectDeskSQLITE.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>MProjectDeskSQLITE.edmx</DependentUpon>

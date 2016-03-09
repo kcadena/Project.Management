@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MProjectWPF"
         mc:Ignorable="d"
-        Title="MPROJECT" Background="#FFEFF2FB" WindowStartupLocation="CenterScreen" WindowState="Maximized" Icon="LogoMProject.ico" MinWidth="800" MinHeight="600" Height="600" Width="1024" >
+        Title="MPROJECT" Background="#FFEFF2FB" WindowStartupLocation="CenterScreen" WindowState="Maximized" Icon="pack://application:,,/Resources/LogoMProject.ico" MinWidth="800" MinHeight="600" Height="600" Width="1024" >
     <Grid x:Name="grid_main_window" >
         <Grid.Background>
             <SolidColorBrush Color="#FFB1BEEA" Opacity="0.54"/>

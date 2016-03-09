@@ -4,6 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MProjectWPF.UsersControlls"
-             mc:Ignorable="d" Cursor="Hand" BorderBrush="#FF003F66" Foreground="{x:Null}" Height="30" VerticalContentAlignment="Center" FontFamily="Franklin Gothic Book" FontSize="29.333">
-    <TextBlock x:Name="lbl" Foreground="#FF046799" Text="TITULO DEL PROYECTO" TextAlignment="Justify" MouseEnter="lbl_MouseEnter" MouseLeave="lbl_MouseLeave" FontFamily="7" d:LayoutOverrides="TopMargin, BottomMargin" FontSize="16"/>
+             mc:Ignorable="d" Cursor="Hand" BorderBrush="#FF003F66" Foreground="{x:Null}" Height="30" VerticalContentAlignment="Center" FontFamily="7" FontSize="0.01" Margin="0,0,0,-4" FontWeight="Bold">
+    <TextBlock x:Name="lbl" Foreground="#FF046799" Text="TITULO DEL PROYECTO" TextAlignment="Center" MouseEnter="lbl_MouseEnter" MouseLeave="lbl_MouseLeave" FontFamily="7" d:LayoutOverrides="TopMargin, BottomMargin" FontSize="18.667" TextDecorations="{x:Null}" Height="30" FontWeight="Normal" FontStyle="Italic" FontStretch="Expanded"/>
 </UserControl>
