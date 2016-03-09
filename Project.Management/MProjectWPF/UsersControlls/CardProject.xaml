@@ -4,14 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MProjectWPF.UsersControlls"
-             mc:Ignorable="d" d:DesignWidth="200" Width="Auto" Height="177">
-    <Grid Cursor="Hand" OpacityMask="#FF176D9E" RenderTransformOrigin="0.5,0.5" Height="177" >
+             mc:Ignorable="d" d:DesignWidth="200" Width="Auto">
+    <Grid Cursor="Hand" OpacityMask="#FF176D9E" RenderTransformOrigin="0.5,0.5" Height="180">
         <Grid.Resources>
             <Style TargetType="{x:Type Border}">
                 <Setter Property="CornerRadius" Value="20"/>
             </Style>
         </Grid.Resources>
-        <Border BorderBrush="#FF14ABD8" Padding="5" RenderTransformOrigin="0.5,0.5" Background="#FFB6C3EC"/>
+        <Border BorderBrush="#FF14ABD8" Padding="0" RenderTransformOrigin="0.5,0.5" Background="#FFB6C3EC"/>
 
         <Image  Source="pack://application:,,/Resources/LogoMProject.ico" Margin="9.543,13,0,41" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="80">
             <Image.RenderTransform>
@@ -27,9 +27,9 @@
         <Separator VerticalAlignment="Top" Margin="100,25,13,0" Background="#FF0B7291" />
         <Label x:Name="label" Content="Sigla:" HorizontalAlignment="Left" Margin="90,27,0,0" VerticalAlignment="Top" FontFamily="7" RenderTransformOrigin="0.5,0.5" Foreground="#FF004166" FontSize="13.333"/>
         <Label x:Name="label1" Content="Descripción:" HorizontalAlignment="Left" Margin="90,49,0,0" VerticalAlignment="Top" FontFamily="7" RenderTransformOrigin="0.5,0.5" Foreground="#FF004166" FontSize="13.333"/>
-        <TextBox x:Name="textBox" TextWrapping="Wrap" Text="DPM" Margin="132,29,10,0" Height="21" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Background="#7FFFFFFF" IsEnabled="False" FontFamily="7" FontSize="13.333"/>
+        <TextBox x:Name="textBox" TextWrapping="Wrap" Text="DPM" Margin="132,29,10,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Background="#7FFFFFFF" IsEnabled="False" FontFamily="7" FontSize="13.333"/>
         <TextBox x:Name="textBox_Copy" TextWrapping="Wrap" Text="projecto de desarrollo Plataforma MPROJECT para la Universidad de Nariño" Margin="96,70,10.236,42" RenderTransformOrigin="0.5,0.5" Background="#7FFFFFFF" IsEnabled="False" FontFamily="7" FontSize="13.333"/>
-        <Label x:Name="label1_Copy" Content="Porcentaje Desarrollado:" HorizontalAlignment="Left" Margin="4.916,139,0,1" VerticalAlignment="Top" FontFamily="7" RenderTransformOrigin="0.5,0.5" Foreground="#FF004166" FontSize="13.333"/>
+        <Label x:Name="label1_Copy" Content="Porcentaje Desarrollado:" Margin="4.916,139,0,1" FontFamily="7" RenderTransformOrigin="0.5,0.5" Foreground="#FF004166" FontSize="13.333"/>
         <TextBox x:Name="textBox_Copy1" TextWrapping="Wrap" Text="30%" Margin="158,140,10,14" RenderTransformOrigin="0.5,0.5" Background="#7FFFFFFF" IsEnabled="False" FontFamily="7" FontSize="13.333" HorizontalContentAlignment="Right"/>
 
     </Grid>

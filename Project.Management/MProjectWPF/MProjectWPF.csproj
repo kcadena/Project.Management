@@ -158,8 +158,6 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Controller\DbLitecontroller.cs" />
-    <Compile Include="Themes\LeftMarginMultiplierConverter.cs" />
-    <Compile Include="Themes\TreeViewItemExtensions.cs" />
     <Compile Include="UsersControlls\CardProject.xaml.cs">
       <DependentUpon>CardProject.xaml</DependentUpon>
     </Compile>
@@ -196,38 +194,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Themes\BureauBlack.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\BureauBlue.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\ExpressionDark.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\ExpressionLight.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\ShinyBlue.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\ShinyRed.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\Styles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\WhistlerBlue.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="UsersControlls\CardProject.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -328,6 +294,14 @@
     <WCFMetadataStorage Include="Service References\Services\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Icons\16px\user.png" />
+    <Resource Include="Resources\Icons\16px\chat.png" />
+    <Resource Include="Resources\Icons\16px\upload-cloud.png" />
+    <Resource Include="Resources\Icons\16px\cloud-download.png" />
+    <Resource Include="Resources\Icons\16px\Save.png" />
+    <Resource Include="Resources\Icons\16px\arrowsl.png" />
+    <Resource Include="Resources\Icons\16px\arrowr.png" />
+    <Resource Include="Resources\Icons\License Agreement.txt" />
     <Resource Include="Resources\Lupa1.png" />
     <Resource Include="Resources\Lupa.png" />
     <Resource Include="Imagen.png" />
