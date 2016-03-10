@@ -51,7 +51,7 @@ namespace MProjectWPF.Controller.FromModel
             else {
                 act.id_folder = null;
             }
-            int pos = acty.getPositionAct(Convert.ToInt32(data["fat_cha"]));
+            int pos = acty.getPositionAct(Convert.ToInt64(data["fat_cha"]), Convert.ToInt64(data["fol"]));
             act.pos = pos + 1;
 
 
@@ -78,21 +78,27 @@ namespace MProjectWPF.Controller.FromModel
             }
             
         }
-        public long deleteCharacteristic(long id)
+        public Dictionary<string,long> deleteCharacteristic(long id)
         {
+            Dictionary<string, long> dat = new Dictionary<string, long>();
             caracteristica car = new caracteristica();
             try
             {
-                car = MPdb.caracteristicas.Find(id);
-                MPdb.caracteristicas.Remove(car);
+                //car = MPdb.caracteristicas.Find(id);
+                car = (from x in MPdb.caracteristicas
+                          where x.id_caracteristica == id
+                          select x).First();
+                long parcar= (long)car.padre_caracteristica;
+                MPdb.caracteristicas.Remove((caracteristica)car);
                 MPdb.SaveChanges();
-               
-                return car.id_actividad;
+                dat["act"] = (long) car.id_actividad;
+                dat["par"] = parcar;
+                return dat;
             }
             catch (Exception err)
             {
                 string a = err.ToString();
-                return -1;
+                return dat;
             }
         }
       

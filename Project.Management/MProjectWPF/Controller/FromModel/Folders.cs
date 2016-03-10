@@ -24,17 +24,14 @@ namespace MProjectWPF.Controller.FromModel
             fol.Parent_id_folder = father;
             mp.folders.Add(fol);
             long d = (from x in mp.folders
-                      orderby x.id_folder
+                      orderby x.id_folder ascending
                       select x.id_folder).Max();
-            fol.id_folder = d++;
+            d = d + 1;
+            fol.id_folder = d;
             try
             {
                 mp.SaveChanges();
-                var id = (from x in mp.folders
-                          orderby x.id_folder
-                          where x.nombre.Equals(name)
-                          select x.id_folder).Max();
-                return (long) id;
+                return d;
             }
             catch (System.Data.ConstraintException err)
             {

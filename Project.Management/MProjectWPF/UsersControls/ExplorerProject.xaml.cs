@@ -193,7 +193,9 @@ namespace MProjectWPF.UsersControls
             foreach (var x in t.Items)
             {
                 if (treeFol.name((TreeViewItem)x, 3).Equals(treeFol.name(tv, 3))){
-                    treeFol.changePosActivity(Convert.ToInt64(treeFol.name(tv,2)), pos, op);
+                    long fol;
+                    fol = Convert.ToInt64(treeFol.name(tv, 4));
+                    treeFol.changePosActivity(Convert.ToInt64(treeFol.name(tv, 2)), pos,fol, op);
                     break;
                 }
                 pos = pos + 1;
@@ -379,8 +381,19 @@ namespace MProjectWPF.UsersControls
                     }
                     else if(op == 2)
                     {
+                        TreeViewItem t;
                         long id = Convert.ToInt64(treeFol.name(tv, 2));
-                        TreeViewItem t = treeFol.findParent((TreeViewItem)tvPro.Items.GetItemAt(0), id, op);
+                        if (id != dat["car"])
+                        {
+                            t = treeFol.findParent((TreeViewItem)tvPro.Items.GetItemAt(0), id, 2);
+                        }
+
+                        else
+                        {
+                            id = Convert.ToInt64(treeFol.name(tv, 4));
+                            t = treeFol.findParent((TreeViewItem)tvPro.Items.GetItemAt(0), id, 1);
+                        }
+
                         //MessageBox.Show("" +id+"     "+ treeFol.name(t,0));
                         id = Convert.ToInt64(treeFol.name(tv, 3));
                         bool ban = treeFol.deleteActivity(id);

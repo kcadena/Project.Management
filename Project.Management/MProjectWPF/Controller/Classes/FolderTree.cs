@@ -566,20 +566,24 @@ namespace MProjectWPF.Controller.Classes
             try
             {
                 Characteristics cha = new Characteristics();
-                long id_act = cha.deleteCharacteristic(id);
-            
-                return fol.deleteActivity(id_act); 
+                Dictionary<string,long> act = cha.deleteCharacteristic(id);
+                long id_act = (long)act["act"];
+                long par_car = (long)act["par"];
+                bool ban = fol.deleteActivity(id_act,par_car); 
+                return ban;
+                
             }
-            catch
+            catch (Exception err)
             {
+                System.Windows.MessageBox.Show(err.ToString());
                 return false;
             }
 
         }
-        public bool changePosActivity(long par_car,int pos,int op)
+        public bool changePosActivity(long par_car,int pos,long id_fol,int op)
         {
-            Activities act = new Activities();
-            return act.changePoitionActivity(par_car, pos,op);
+            Activities act = new Activities();            
+            return act.changePoitionActivity(par_car, pos, id_fol, op);
             
         }
 

@@ -106,7 +106,7 @@ namespace MProjectWPF.Controller.FromModel
                 return false;
             }
         }
-        public int getPositionAct(int id_fol)
+        public int getPositionAct(long par_car,Nullable<long> id_fol)
         {
             try
             {
@@ -114,14 +114,29 @@ namespace MProjectWPF.Controller.FromModel
                 //           where x.id_folder == id_fol
                 //           select x).Max(y => y.pos);
 
-                var pos = (from x in MPdb.actividades
-                           join y in MPdb.caracteristicas
-                           on x.id_actividad equals y.id_actividad
-                           where y.padre_caracteristica == id_fol
-                           select x.pos
-                         ).Max();
+                int p=0;
+                if (id_fol != null)
+                {
+                    var pos = (from x in MPdb.actividades
+                               join y in MPdb.caracteristicas
+                               on x.id_actividad equals y.id_actividad
+                               where y.padre_caracteristica == par_car && x.id_folder == id_fol
+                               select x.pos
+                        ).Max();
+                    p = (int)pos;
+                }
+                else
+                {
+                    var pos = (from x in MPdb.actividades
+                               join y in MPdb.caracteristicas
+                               on x.id_actividad equals y.id_actividad
+                               where y.padre_caracteristica == par_car 
+                               select x.pos
+                        ).Max();
+                    p = (int)pos;
+                }
 
-                return (int)pos;
+                return p;
             }
             catch
             {
@@ -130,17 +145,45 @@ namespace MProjectWPF.Controller.FromModel
 
 
         }
-        public bool deleteActivity(long id)
+        public bool deleteActivity(long id,long parcar)
         {
             actividade act = new actividade();
+            Nullable<long> fol=null;
+            Nullable<long> pos=null;
             try
             {
-                act = MPdb.actividades.Find(id);
+                //act = MPdb.actividades.Find(id);
+                act = (from x in MPdb.actividades
+                       where x.id_actividad == id
+                       select x).First();
+                try
+                {
+                    fol = act.id_folder;
+                    pos = act.pos;
+
+                }
+                catch (Exception err)
+                {
+                    string sa = err.ToString();
+                }
                 MPdb.actividades.Remove(act);
+
                 MPdb.SaveChanges();
+
+                try
+                {
+                    if (fol != null)
+                        MPdb.Database.ExecuteSqlCommand("update actividades set pos = pos-1 where (select actividades.pos from actividades natural join caracteristicas where padre_caracteristica = " + parcar + " ) and pos > " + pos + " and id_folder =" + fol + " ;");
+                    else
+                        MPdb.Database.ExecuteSqlCommand("update actividades set pos = pos-1 where (select actividades.pos from actividades natural join caracteristicas where padre_caracteristica = " + parcar + " ) and pos > " + pos + " ;");
+                }
+                catch (Exception err)
+                {
+
+                }
                 return true;
             }
-            catch (Exception err)
+            catch
             {
                 return false;
             }
@@ -167,8 +210,10 @@ namespace MProjectWPF.Controller.FromModel
 
 
 
-        public bool changePoitionActivity(long parcar, int pos, int op)
+        public bool changePoitionActivity(long parcar, int pos, long id_fol ,int op)
         {
+            
+
             //id => padre
             //pos=> posicion a modificar
             //op => tipo de modificacion (1-> arriba        2-> abajo)
@@ -185,18 +230,37 @@ namespace MProjectWPF.Controller.FromModel
 
             try
             {
-                List<actividade> act = (from x in MPdb.actividades
-                                        join y in MPdb.caracteristicas
-                                        on x.id_actividad equals y.id_actividad
-                           where y.padre_caracteristica== parcar && (x.pos == pos || x.pos == pos_mod)
-                           orderby x.pos ascending
-                           select x).ToList<actividade>();
-                long pax = (long)act.ElementAt(0).pos;
+                pos = pos;
+                pos_mod = pos_mod;
+                parcar = parcar;
+                id_fol = id_fol;
+                List<actividade> act;
+                if (id_fol != 0)
+                {
+                    act = (from x in MPdb.actividades
+                                            join y in MPdb.caracteristicas
+                                            on x.id_actividad equals y.id_actividad
+                                            where y.padre_caracteristica == parcar && x.id_folder==id_fol && (x.pos == pos || x.pos == pos_mod)
+                                            orderby x.pos ascending
+                                            select x).ToList<actividade>();
+                    long pax = (long)act.ElementAt(0).pos;
+                    
+                }
+                else
+                {
+                    act = (from x in MPdb.actividades
+                                            join y in MPdb.caracteristicas
+                                            on x.id_actividad equals y.id_actividad
+                                            where y.padre_caracteristica == parcar && (x.pos == pos || x.pos == pos_mod)
+                                            orderby x.pos ascending
+                                            select x).ToList<actividade>();
+                    long pax = (long)act.ElementAt(0).pos;
+                }
+               
                 act1 = act.ElementAt(0);
                 act2 = act.ElementAt(1);
                 act1.pos = act2.pos;
-
-                if(op == 1)
+                if (op == 1)
                     act2.pos = pos_mod;
                 else
                     act2.pos = pos;
@@ -212,6 +276,8 @@ namespace MProjectWPF.Controller.FromModel
                 entry2.Property(e => e.pos).IsModified = true;
 
                 MPdb.SaveChanges();
+
+                
                 return true;
 
             }
