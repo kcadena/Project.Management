@@ -47,15 +47,14 @@ namespace MProjectWPF.Controller.FromModel
             if (data["pos"].Equals("OK"))
             {
                 act.id_folder = Convert.ToInt64(data["fol"]);
+                int pos = acty.getPositionAct(Convert.ToInt64(data["fat_cha"]), Convert.ToInt64(data["fol"]));
+                act.pos = pos + 1;
             }
             else {
                 act.id_folder = null;
+                int pos = acty.getPositionAct(Convert.ToInt64(data["fat_cha"]), null);
+                act.pos = pos + 1;
             }
-            int pos = acty.getPositionAct(Convert.ToInt64(data["fat_cha"]), Convert.ToInt64(data["fol"]));
-            act.pos = pos + 1;
-
-
-
             try
             {
                 MPdb.actividades.Add(act);
@@ -101,8 +100,6 @@ namespace MProjectWPF.Controller.FromModel
                 return dat;
             }
         }
-      
-
     }
 }
 

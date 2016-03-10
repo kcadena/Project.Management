@@ -56,7 +56,6 @@ namespace MProjectWPF.UsersControls
             tvPro.SelectedItemChanged += TvPro_SelectedItemChanged_CreateFolder;
         }
 
-
         private void tvPro_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
             //MessageBox.Show(this.tvPro.SelectedItem.ToString());
@@ -88,35 +87,32 @@ namespace MProjectWPF.UsersControls
 
 
             Separator sp = new Separator();
-            
-            if (this.tvPro.SelectedItem != null)
+            TreeViewItem tv = (TreeViewItem)tvPro.SelectedItem;
+            if (tv != null)
             {
-
-                if (!treeFol.name((TreeViewItem)this.tvPro.SelectedItem, 2).Equals("P"))
+                if (!treeFol.name(tv, 2).Equals("P"))
                 {
-                    if (treeFol.name((TreeViewItem)this.tvPro.SelectedItem, 3).Equals("-1"))
+                    if (treeFol.name(tv, 3).Equals("-1"))
                     {
-                        //TreeViewItem tv = (TreeViewItem)tvPro.SelectedItem;
-                        //MessageBox.Show(treeFol.name(tv, 0) + "  - " + treeFol.name(tv, 1) + "  -  " + treeFol.name(tv, 2) + "  -  " +
-                        //    treeFol.name(tv, 3) + "   -   " + treeFol.name(tv, 4));
-                        conMen.Items.Add(mitNF);
+                        if (tv.Items.Count != 0)
+                        {
+                            TreeViewItem taux = (TreeViewItem)tv.Items.GetItemAt(0);
+                            if (treeFol.name(taux, 3).Equals("-1"))
+                                conMen.Items.Add(mitNF);
+                        }
+                        else conMen.Items.Add(mitNF);
+
                         conMen.Items.Add(mitDF);
                         conMen.Items.Add(mitRF);
                         conMen.Items.Add(sp);
                     }
                     else
                     {
-                        TreeViewItem tv = (TreeViewItem)tvPro.SelectedItem;
-                       
-                       
                         string a = treeFol.name(tv, 1);
-                        //MessageBox.Show(treeFol.name(tv, 0) + "  - " + treeFol.name(tv, 1) + "  -  " + treeFol.name(tv, 2) + "  -  " +
-                        //   treeFol.name(tv, 3) + "   -   " + treeFol.name(tv, 4));
                         if (a.Equals(""))
                         {
                             long id = Convert.ToInt64(treeFol.name(tv, 2));
                             TreeViewItem t = treeFol.findParent((TreeViewItem)tvPro.Items.GetItemAt(0), id, 2);
-                            //MessageBox.Show(treeFol.name(t, 0));
                             int pos = (t.Items.Count);
                             pos = pos - 1;
                             TreeViewItem tx = (TreeViewItem)t.Items.GetItemAt(pos);
@@ -124,13 +120,11 @@ namespace MProjectWPF.UsersControls
                                 conMen.Items.Add(mitUpAct);
                             if (tv != tx)
                                 conMen.Items.Add(mitDownAct);
-                            
                         }
                         else
                         {
                             long id = Convert.ToInt64(treeFol.name(tv, 4));
                             TreeViewItem t = treeFol.findParent((TreeViewItem)tvPro.Items.GetItemAt(0), id, 1);
-                            //MessageBox.Show(treeFol.name(t, 0));
                             int pos = (t.Items.Count);
                             pos = pos - 1;
                             TreeViewItem tx = (TreeViewItem)t.Items.GetItemAt(pos);
@@ -138,25 +132,33 @@ namespace MProjectWPF.UsersControls
                                 conMen.Items.Add(mitUpAct);
                             if (tv != tx)
                                 conMen.Items.Add(mitDownAct);
-                           
                         }
 
                     }
-                    conMen.Items.Add(mitNA);
-                    conMen.Items.Add(mitDA);
+                    
+                    if (tv.Items.Count != 0)
+                    {
+                        TreeViewItem taux = (TreeViewItem)tv.Items.GetItemAt(0);
+                        if (!treeFol.name(taux, 3).Equals("-1"))
+                            conMen.Items.Add(mitNA);
+                    }
+                    else conMen.Items.Add(mitNA);
+                    if (!treeFol.name(tv,3).Equals("-1"))
+                        conMen.Items.Add(mitDA);
                     tvPro.ContextMenu = conMen;
-
                 }
                 else
                 {
                     conMen.Items.Add(mitNF);
-                    conMen.Items.Add(mitDF);
                     tvPro.ContextMenu = conMen;
                 }
             }
-
-
         }
+
+
+        //////////////////////////////////
+        ///// Option Positions with activities /////
+        //////////////////////////////////
 
         private void MitDownAct_Click(object sender, RoutedEventArgs e)
         {

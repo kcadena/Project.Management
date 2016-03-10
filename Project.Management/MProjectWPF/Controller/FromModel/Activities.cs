@@ -172,10 +172,13 @@ namespace MProjectWPF.Controller.FromModel
 
                 try
                 {
+                    parcar = parcar;
+                    fol = fol;
+                    pos = pos;
                     if (fol != null)
-                        MPdb.Database.ExecuteSqlCommand("update actividades set pos = pos-1 where (select actividades.pos from actividades natural join caracteristicas where padre_caracteristica = " + parcar + " ) and pos > " + pos + " and id_folder =" + fol + " ;");
+                        MPdb.Database.ExecuteSqlCommand("update actividades set pos = pos-1 where id_actividad in (select id_actividad from actividades natural join caracteristicas where padre_caracteristica = " + parcar + " AND pos > " + pos + " AND id_folder =" + fol + " );");
                     else
-                        MPdb.Database.ExecuteSqlCommand("update actividades set pos = pos-1 where (select actividades.pos from actividades natural join caracteristicas where padre_caracteristica = " + parcar + " ) and pos > " + pos + " ;");
+                        MPdb.Database.ExecuteSqlCommand("update actividades set pos = pos-1 where id_actividad in (select id_actividad from actividades natural join caracteristicas where padre_caracteristica = " + parcar + " AND pos > " + pos + " )");
                 }
                 catch (Exception err)
                 {
