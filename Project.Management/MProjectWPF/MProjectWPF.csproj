@@ -173,9 +173,6 @@
     <Compile Include="UsersControlls\ListProject.xaml.cs">
       <DependentUpon>ListProject.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UsersControlls\templatePanel.xaml.cs">
-      <DependentUpon>templatePanel.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Windows\Inicio\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -211,10 +208,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UsersControlls\ListProject.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UsersControlls\templatePanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

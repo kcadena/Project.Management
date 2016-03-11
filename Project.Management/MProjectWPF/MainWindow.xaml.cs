@@ -13,7 +13,7 @@ namespace MProjectWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        bool admin = false;
+        bool admin = true;
         public MainWindow()
         {
             InitializeComponent();
@@ -27,11 +27,11 @@ namespace MProjectWPF
             lstmen.Items.Add(new LabelProject("Nuevo Proyecto", this, true));
             lstmen.Items.Add(new LabelProject("Abrir Proyecto", this, true));
             lstmen.Items.Add(new LabelProject("Importar Proyecto", this, true));
+
             if (admin)
             {
                 lstmen.Items.Add(new LabelProject("Nueva Plantilla", this, true));
-            }
-            
+            }           
 
             lstrec.Items.Add(new LabelProject("Proyectos de Ingenieria", this, true));
             lstrec.Items.Add(new LabelProject("Desarrollo Investic ", this, true));
