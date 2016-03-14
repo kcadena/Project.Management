@@ -62,6 +62,7 @@
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -140,8 +141,16 @@
     <Compile Include="Model\usuario.cs">
       <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Service References\GetUsers\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="UsersControls\AddAtivity.xaml.cs">
       <DependentUpon>AddAtivity.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsersControls\AssignResponsibility.xaml.cs">
+      <DependentUpon>AssignResponsibility.xaml</DependentUpon>
     </Compile>
     <Compile Include="UsersControls\ExplorerProject.xaml.cs">
       <DependentUpon>ExplorerProject.xaml</DependentUpon>
@@ -165,6 +174,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="UsersControls\AddAtivity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsersControls\AssignResponsibility.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -212,6 +225,22 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Service References\GetUsers\MProjectWPF.GetUsers.CompositeType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\GetUsers\Service1.wsdl" />
+    <None Include="Service References\GetUsers\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GetUsers\Service11.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GetUsers\Service12.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GetUsers\Service13.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -229,6 +258,13 @@
       <DependentUpon>SQLiteMProjectModel.edmx</DependentUpon>
       <LastGenOutput>SQLiteMProjectModel.cs</LastGenOutput>
     </Content>
+    <None Include="Service References\GetUsers\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\GetUsers\configuration.svcinfo" />
+    <None Include="Service References\GetUsers\configuration91.svcinfo" />
+    <None Include="Service References\GetUsers\Service1.disco" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\activity.ico" />
@@ -236,6 +272,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\GetUsers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.99.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.99.0\build\net46\System.Data.SQLite.Core.targets')" />

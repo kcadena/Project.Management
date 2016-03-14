@@ -65,7 +65,7 @@ namespace MProjectWPF.UsersControls
             MenuItem mitNF = new MenuItem();
             MenuItem mitDF = new MenuItem();
             MenuItem mitRF = new MenuItem();
-
+            MenuItem mitAR = new MenuItem();
             MenuItem mitUpAct = new MenuItem();
             MenuItem mitDownAct = new MenuItem();
 
@@ -79,11 +79,13 @@ namespace MProjectWPF.UsersControls
             mitDF.Click += MitDelFol_Click;
             mitRF.Header = "Renombrar Carpeta";
             mitRF.Click += MitRenFol_Click;
-
             mitUpAct.Header = "Actividad Arriba";
             mitUpAct.Click += MitUpAct_Click;
             mitDownAct.Header = "Actividad Abajo";
             mitDownAct.Click += MitDownAct_Click;
+
+            mitAR.Header = "Asignar Responsable";
+            mitAR.Click += MitAssignResponsable_Click;
 
 
             Separator sp = new Separator();
@@ -143,8 +145,12 @@ namespace MProjectWPF.UsersControls
                             conMen.Items.Add(mitNA);
                     }
                     else conMen.Items.Add(mitNA);
-                    if (!treeFol.name(tv,3).Equals("-1"))
+                    if (!treeFol.name(tv, 3).Equals("-1"))
+                    {
                         conMen.Items.Add(mitDA);
+                        conMen.Items.Add(mitAR);                        
+                    }
+                        
                     tvPro.ContextMenu = conMen;
                 }
                 else
@@ -153,6 +159,16 @@ namespace MProjectWPF.UsersControls
                     tvPro.ContextMenu = conMen;
                 }
             }
+        }
+
+        private void MitAssignResponsable_Click(object sender, RoutedEventArgs e)
+        {
+            TreeViewItem tv = (TreeViewItem)tvPro.SelectedItem;
+            Dictionary<string, string> dat = new Dictionary<string, string>();
+            dat["car"] = treeFol.name(tv, 3);
+
+            AssignResponsibility ar = new AssignResponsibility(dat,main_grid);
+            main_grid.Children.Add(ar);
         }
 
 
