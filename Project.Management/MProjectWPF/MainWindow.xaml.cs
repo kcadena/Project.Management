@@ -23,6 +23,7 @@ namespace MProjectWPF
             dat["car"] = 11;
             ExplorerProject exPro = new ExplorerProject(grid_main_window,dat);
             this.grid_main_window.Children.Add(exPro);
+            ////hokodakdiasjoidas
             
         }
     }
