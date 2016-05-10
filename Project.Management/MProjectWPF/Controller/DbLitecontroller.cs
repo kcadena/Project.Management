@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MProjectWPF.Model;
+//using MProjectWPF.Model;
 using System.Windows.Controls;
-using MProjectWPF.UsersControlls;
+using MProjectWPF.UsersControls;
 
 namespace MProjectWPF.Controller
 {
     class DbLitecontroller
     {
-        MProjectDeskEntities dbMP = new MProjectDeskEntities();
-        usuarios usu = new usuarios();
+        /*MProjectDeskEntities dbMP = new MProjectDeskEntities();
+        usuarios usu = new usuarios();*/
 
         public DbLitecontroller() { }
         
@@ -20,12 +20,12 @@ namespace MProjectWPF.Controller
         {            
             try
             {               
-                usu.e_mail = email;
+                /*usu.e_mail = email;
                 usu.nombre = name;
                 usu.apellido = lastname;
                 usu.pass = pass;                
                 dbMP.usuarios.Add(usu);
-                dbMP.SaveChanges();
+                dbMP.SaveChanges();*/
                 return "ok";            
             }
             catch (Exception err)
@@ -36,7 +36,7 @@ namespace MProjectWPF.Controller
 
         public  string buscarUsuario(string email,string pass)
         {
-            var datos = from x in dbMP.usuarios
+            /*var datos = from x in dbMP.usuarios
                         where x.e_mail == email && x.pass==pass
                         select x;
 
@@ -54,29 +54,31 @@ namespace MProjectWPF.Controller
             {
                 return "Usuario no existe";
             }
-            
+            */
+            return null;
+
         }
 
         public void buscarProyecto(ListBox lb,MainWindow mw)
         {
-            var datos = from x in dbMP.proyectos_meta_datos                        
+           /* var datos = from x in dbMP.proyectos_meta_datos                        
                         select x;
 
             foreach(var y in datos)
             {
                 lb.Items.Add(new LabelProjectAll(y.valor.ToUpper(), mw, true));
-            }
+            }*/
         }
 
         public void buscarPlantilla(ListBox lb, MainWindow mw)
         {
-            var datos = from x in dbMP.plantillas
+           /* var datos = from x in dbMP.plantillas
                         select x;
 
             foreach (var y in datos)
             {
                 lb.Items.Add(new LabelProjectAll(y.nombre, mw, false));
-            }
+            }*/
         }
     }
 }

@@ -1,11 +1,11 @@
 ﻿using System.Windows;
 using MProjectWPF.Windows.Inicio;
-using MProjectWPF.UsersControlls;
+using MProjectWPF.UsersControls;
 using System.Windows.Media.Animation;
 using System.Windows.Media;
 using System;
 using System.Windows.Interop;
-using MProjectWPF.Windows.ToolWindows;
+
 
 namespace MProjectWPF
 {

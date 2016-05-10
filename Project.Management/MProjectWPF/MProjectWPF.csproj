@@ -129,63 +129,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controller\Documents.cs" />
-    <Compile Include="Controller\Folders.cs" />
-    <Compile Include="Controller\FolderTree.cs" />
-    <Compile Include="Model\actividades.cs">
-      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\archivos.cs">
-      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\caracteristicas.cs">
-      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\folders.cs">
-      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\meta_datos.cs">
-      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\MProjectDeskSQLITE.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MProjectDeskSQLITE.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\MProjectDeskSQLITE.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\MProjectDeskSQLITE.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MProjectDeskSQLITE.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Model\plantillas.cs">
-      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\plantillas_meta_datos.cs">
-      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\proyectos.cs">
-      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\proyectos_meta_datos.cs">
-      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\repositorio.cs">
-      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\tipos_archivos.cs">
-      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\tipos_datos.cs">
-      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\usuarios.cs">
-      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
-    </Compile>
     <Compile Include="Service References\Services\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -194,9 +137,6 @@
     <Compile Include="Controller\DbLitecontroller.cs" />
     <Compile Include="UsersControls\CardProject.xaml.cs">
       <DependentUpon>CardProject.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UsersControls\ExplorerProject.xaml.cs">
-      <DependentUpon>ExplorerProject.xaml</DependentUpon>
     </Compile>
     <Compile Include="UsersControls\LabelProjectAll.xaml.cs">
       <DependentUpon>LabelProjectAll.xaml</DependentUpon>
@@ -222,9 +162,6 @@
     <Compile Include="Windows\Registro\RegisterWindow.xaml.cs">
       <DependentUpon>RegisterWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ToolWindows\ToolUsers.xaml.cs">
-      <DependentUpon>ToolUsers.xaml</DependentUpon>
-    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -238,10 +175,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="UsersControls\CardProject.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UsersControls\ExplorerProject.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -277,10 +210,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\ToolWindows\ToolUsers.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -300,14 +229,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Model\MProjectDesk" />
-    <EntityDeploy Include="Model\MProjectDeskSQLITE.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MProjectDeskSQLITE.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Model\MProjectDeskSQLITE.edmx.diagram">
-      <DependentUpon>MProjectDeskSQLITE.edmx</DependentUpon>
-    </None>
     <None Include="MProjectWPF_ClaveTemporal.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -363,16 +284,6 @@
     <Resource Include="Resources\Lupa.png" />
     <Resource Include="Imagen.png" />
     <Resource Include="Resources\LogoMProject.ico" />
-    <Content Include="Model\MProjectDeskSQLITE.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MProjectDeskSQLITE.edmx</DependentUpon>
-      <LastGenOutput>MProjectDeskSQLITE.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Model\MProjectDeskSQLITE.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MProjectDeskSQLITE.edmx</DependentUpon>
-      <LastGenOutput>MProjectDeskSQLITE.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
@@ -423,6 +334,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.99.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.99.0\build\net46\System.Data.SQLite.Core.targets')" />

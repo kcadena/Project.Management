@@ -43,7 +43,7 @@ namespace MProjectWPF.UsersControls
         private void enterBtnCard_Click(object sender, RoutedEventArgs e)
         {
             mainW.vp1.Visibility = Visibility.Hidden;
-            mainW.vp1.Children.Add(new ExplorerProject());
+            //mainW.vp1.Children.Add(new ExplorerProject());
         }
     }
         

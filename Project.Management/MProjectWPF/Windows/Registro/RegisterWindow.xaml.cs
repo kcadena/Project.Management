@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MProjectWPF.Windows.Inicio;
-using MProjectWPF.Model;
+//using MProjectWPF.Model;
 using MProjectWPF.Services;
 using MProjectWPF.Controller;
 
