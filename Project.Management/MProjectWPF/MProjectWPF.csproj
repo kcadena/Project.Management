@@ -137,18 +137,24 @@
     <Compile Include="Controller\DbLitecontroller.cs" />
     <Compile Include="UsersControls\CardProject.xaml.cs">
       <DependentUpon>CardProject.xaml</DependentUpon>
+    <Compile Include="UsersControls\AddAtivity.xaml.cs">
+      <DependentUpon>AddAtivity.xaml</DependentUpon>
     </Compile>
     <Compile Include="UsersControls\LabelProjectAll.xaml.cs">
       <DependentUpon>LabelProjectAll.xaml</DependentUpon>
     </Compile>
     <Compile Include="UsersControls\LabelProject.xaml.cs">
       <DependentUpon>LabelProject.xaml</DependentUpon>
+    <Compile Include="UsersControls\AssignResponsibility.xaml.cs">
+      <DependentUpon>AssignResponsibility.xaml</DependentUpon>
     </Compile>
     <Compile Include="UsersControls\LabelUser.xaml.cs">
       <DependentUpon>LabelUser.xaml</DependentUpon>
     </Compile>
     <Compile Include="UsersControls\ListProject.xaml.cs">
       <DependentUpon>ListProject.xaml</DependentUpon>
+    <Compile Include="UsersControls\ExplorerProject.xaml.cs">
+      <DependentUpon>ExplorerProject.xaml</DependentUpon>
     </Compile>
     <Compile Include="UsersControls\newProjectPanel.xaml.cs">
       <DependentUpon>newProjectPanel.xaml</DependentUpon>
@@ -195,20 +201,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UsersControls\newProjectPanel.xaml">
+    <Page Include="UsersControls\AssignResponsibility.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UsersControls\NewTemplatePanel.xaml">
+    <Page Include="UsersControls\ExplorerProject.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\Inicio\LoginWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\Registro\RegisterWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -230,17 +238,33 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="MProjectWPF_ClaveTemporal.pfx" />
+    <EntityDeploy Include="Model\SQLiteMProjectModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SQLiteMProjectModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\SQLiteMProjectModel.edmx.diagram">
+      <DependentUpon>SQLiteMProjectModel.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Service References\Services\Services.wsdl" />
-    <None Include="Service References\Services\Services.xsd">
+    <None Include="Service References\GetUsers\MProjectWPF.GetUsers.CompositeType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\GetUsers\Service1.wsdl" />
+    <None Include="Service References\GetUsers\Service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\Services\Services1.xsd">
+    <None Include="Service References\GetUsers\Service11.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GetUsers\Service12.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GetUsers\Service13.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -250,7 +274,23 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
+    <Content Include="Model\SQLiteMProjectModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SQLiteMProjectModel.edmx</DependentUpon>
+      <LastGenOutput>SQLiteMProjectModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\SQLiteMProjectModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SQLiteMProjectModel.edmx</DependentUpon>
+      <LastGenOutput>SQLiteMProjectModel.cs</LastGenOutput>
+    </Content>
+    <None Include="Service References\GetUsers\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\GetUsers\configuration.svcinfo" />
+    <None Include="Service References\GetUsers\configuration91.svcinfo" />
+    <None Include="Service References\GetUsers\Service1.disco" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\activity.ico" />
@@ -267,7 +307,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\Services\" />
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\manprofile.png" />
