@@ -16,6 +16,22 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Users\David E\Desktop\Solucion\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -36,6 +52,28 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>03744FB9B1A6590733BB9DE52190FBAA3452F783</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>MProjectWPF_ClaveTemporal.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>MProjectWPF_ClaveTemporal.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -45,6 +83,8 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PresentationFramework" />
+    <Reference Include="ReachFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -74,86 +114,47 @@
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
+    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Xceed.Wpf.Themes, Version=2.9.15603.14400, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xceed.Wpf.Themes.2.9.15603.14400\lib\net40\Xceed.Wpf.Themes.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Themes.Metro, Version=2.9.15603.14400, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xceed.Wpf.Themes.Metro.2.9.15603.14400\lib\net40\Xceed.Wpf.Themes.Metro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controller\Classes\OperationsProjects.cs" />
-    <Compile Include="Controller\FromModel\Activities.cs" />
-    <Compile Include="Controller\FromModel\Characteristics.cs" />
-    <Compile Include="Controller\FromModel\Folders.cs" />
-    <Compile Include="Controller\Classes\FolderTree.cs" />
-    <Compile Include="Controller\FromModel\Projects.cs" />
-    <Compile Include="Model\actividade.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\archivo.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\caracteristica.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\folder.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\meta_datos.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\plantilla.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\plantillas_meta_datos.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\proyecto.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\proyectos_meta_datos.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\repositorio.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\SQLiteMProjectModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SQLiteMProjectModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\SQLiteMProjectModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\SQLiteMProjectModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SQLiteMProjectModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Model\tipos_archivos.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\tipos_datos.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\usuario.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\GetUsers\Reference.cs">
+    <Compile Include="Service References\Services\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="UsersControls\AddAtivity.xaml.cs">
-      <DependentUpon>AddAtivity.xaml</DependentUpon>
+    <Compile Include="Controller\DbLitecontroller.cs" />
+    <Compile Include="UsersControls\CardProject.xaml.cs">
+      <DependentUpon>CardProject.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UsersControls\AssignResponsibility.xaml.cs">
-      <DependentUpon>AssignResponsibility.xaml</DependentUpon>
+    <Compile Include="UsersControls\LabelProjectAll.xaml.cs">
+      <DependentUpon>LabelProjectAll.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UsersControls\ExplorerProject.xaml.cs">
-      <DependentUpon>ExplorerProject.xaml</DependentUpon>
+    <Compile Include="UsersControls\LabelProject.xaml.cs">
+      <DependentUpon>LabelProject.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsersControls\LabelUser.xaml.cs">
+      <DependentUpon>LabelUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsersControls\ListProject.xaml.cs">
+      <DependentUpon>ListProject.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsersControls\newProjectPanel.xaml.cs">
+      <DependentUpon>newProjectPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsersControls\NewTemplatePanel.xaml.cs">
+      <DependentUpon>NewTemplatePanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\Inicio\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
@@ -173,25 +174,41 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="UsersControls\AddAtivity.xaml">
+    <Page Include="UsersControls\CardProject.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UsersControls\AssignResponsibility.xaml">
+    <Page Include="UsersControls\LabelProjectAll.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UsersControls\LabelProject.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UsersControls\ExplorerProject.xaml">
+    <Page Include="UsersControls\LabelUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsersControls\ListProject.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsersControls\newProjectPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsersControls\NewTemplatePanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\Inicio\LoginWindow.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\Registro\RegisterWindow.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -212,33 +229,18 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model\SQLiteMProjectModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SQLiteMProjectModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Model\SQLiteMProjectModel.edmx.diagram">
-      <DependentUpon>SQLiteMProjectModel.edmx</DependentUpon>
-    </None>
+    <None Include="MProjectWPF_ClaveTemporal.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Service References\GetUsers\MProjectWPF.GetUsers.CompositeType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\GetUsers\Service1.wsdl" />
-    <None Include="Service References\GetUsers\Service1.xsd">
+    <None Include="Service References\Services\Services.wsdl" />
+    <None Include="Service References\Services\Services.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GetUsers\Service11.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\GetUsers\Service12.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\GetUsers\Service13.xsd">
+    <None Include="Service References\Services\Services1.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -248,36 +250,93 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\SQLiteMProjectModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SQLiteMProjectModel.edmx</DependentUpon>
-      <LastGenOutput>SQLiteMProjectModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Model\SQLiteMProjectModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SQLiteMProjectModel.edmx</DependentUpon>
-      <LastGenOutput>SQLiteMProjectModel.cs</LastGenOutput>
-    </Content>
-    <None Include="Service References\GetUsers\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Service References\GetUsers\configuration.svcinfo" />
-    <None Include="Service References\GetUsers\configuration91.svcinfo" />
-    <None Include="Service References\GetUsers\Service1.disco" />
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\activity.ico" />
     <Resource Include="Resources\Folder-icon.png" />
+    <None Include="Service References\Services\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\Services\configuration.svcinfo" />
+    <None Include="Service References\Services\configuration91.svcinfo" />
+    <None Include="Service References\Services\Services.disco" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
+    <WCFMetadataStorage Include="Service References\Services\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\GetUsers\" />
+    <Resource Include="Resources\manprofile.png" />
+    <Resource Include="Resources\womenprofile.png" />
+    <Resource Include="Resources\Icons\16px\user.png" />
+    <Resource Include="Resources\Icons\16px\chat.png" />
+    <Resource Include="Resources\Icons\16px\upload-cloud.png" />
+    <Resource Include="Resources\Icons\16px\cloud-download.png" />
+    <Resource Include="Resources\Icons\16px\Save.png" />
+    <Resource Include="Resources\Icons\16px\arrowsl.png" />
+    <Resource Include="Resources\Icons\16px\arrowr.png" />
+    <Resource Include="Resources\Icons\License Agreement.txt" />
+    <Resource Include="Resources\Lupa1.png" />
+    <Resource Include="Resources\Lupa.png" />
+    <Resource Include="Imagen.png" />
+    <Resource Include="Resources\LogoMProject.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.MSProject">
+      <Guid>{A7107640-94DF-1068-855E-00DD01075445}</Guid>
+      <VersionMajor>4</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="MSHTML">
+      <Guid>{3050F1C5-98B5-11CF-BB82-00AA00BDCE0B}</Guid>
+      <VersionMajor>4</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.99.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.99.0\build\net46\System.Data.SQLite.Core.targets')" />
