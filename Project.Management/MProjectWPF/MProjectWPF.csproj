@@ -130,8 +130,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controller\Documents.cs" />
-    <Compile Include="Controller\Folders.cs" />
-    <Compile Include="Controller\FolderTree.cs" />
     <Compile Include="Model\actividades.cs">
       <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
     </Compile>
@@ -195,9 +193,6 @@
     <Compile Include="UsersControlls\CardProject.xaml.cs">
       <DependentUpon>CardProject.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UsersControlls\ExplorerProject.xaml.cs">
-      <DependentUpon>ExplorerProject.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UsersControlls\LabelProjectAll.xaml.cs">
       <DependentUpon>LabelProjectAll.xaml</DependentUpon>
     </Compile>
@@ -241,10 +236,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UsersControlls\ExplorerProject.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="UsersControlls\LabelProjectAll.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -283,6 +274,101 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\Classes\OperationsProjects.cs" />
+    <Compile Include="Controller\FromModel\Activities.cs" />
+    <Compile Include="Controller\FromModel\Characteristics.cs" />
+    <Compile Include="Controller\FromModel\Folders.cs" />
+    <Compile Include="Controller\Classes\FolderTree.cs" />
+    <Compile Include="Controller\FromModel\Projects.cs" />
+    <Compile Include="Model\actividade.cs">
+      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\archivo.cs">
+      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\caracteristica.cs">
+      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\folder.cs">
+      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\meta_datos.cs">
+      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\plantillas_meta_datos.cs">
+      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\proyectos_meta_datos.cs">
+      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\repositorio.cs">
+      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\SQLiteMProjectModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SQLiteMProjectModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\tipos_archivos.cs">
+      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\tipos_datos.cs">
+      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\GetUsers\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="UsersControlls\AddAtivity.xaml.cs">
+      <DependentUpon>AddAtivity.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsersControlls\AssignResponsibility.xaml.cs">
+      <DependentUpon>AssignResponsibility.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsersControlls\ExplorerProject.xaml.cs">
+      <DependentUpon>ExplorerProject.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Inicio\LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Registro\RegisterWindow.xaml.cs">
+      <DependentUpon>RegisterWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="UsersControlls\AddAtivity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsersControlls\AssignResponsibility.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsersControlls\ExplorerProject.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Inicio\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Registro\RegisterWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -308,6 +394,8 @@
     <None Include="Model\MProjectDeskSQLITE.edmx.diagram">
       <DependentUpon>MProjectDeskSQLITE.edmx</DependentUpon>
     </None>
+    <None Include="Model\SQLiteMProjectModel.edmx" />
+    <None Include="Model\SQLiteMProjectModel.edmx.diagram" />
     <None Include="MProjectWPF_ClaveTemporal.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -315,11 +403,20 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Service References\Services\Services.wsdl" />
-    <None Include="Service References\Services\Services.xsd">
+    <None Include="Service References\GetUsers\MProjectWPF.GetUsers.CompositeType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\GetUsers\Service1.wsdl" />
+    <None Include="Service References\GetUsers\Service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\Services\Services1.xsd">
+    <None Include="Service References\GetUsers\Service11.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GetUsers\Service12.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GetUsers\Service13.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -423,6 +520,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\GetUsers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.99.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.99.0\build\net46\System.Data.SQLite.Core.targets')" />
