@@ -46,6 +46,7 @@ namespace MProjectWPF
             lstUser.Items.Add(new LabelUser());
             lstUser.Items.Add(new LabelUser());
 
+
         }        
     }
 }
