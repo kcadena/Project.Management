@@ -23,7 +23,6 @@
 
         <Label x:Name="btn_register" Content="Registrarse" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Foreground="#FF2D90C9" FontSize="10" Cursor="Hand" MouseLeftButtonUp="btn_register_MouseLeftButtonUp"/>
         <Button x:Name="button_login" Content="Iniciar Sesion" Margin="75,233,73,0" VerticalAlignment="Top" Click="button_Click" Height="23"/>
-        <Label x:Name="btn_forgotpassword" Content="Olvide mi Contraseña" HorizontalAlignment="Left" Margin="177,0,0,10" VerticalAlignment="Bottom" Foreground="#FF2D90C9" FontSize="10" Cursor="Hand"/>
-
+        <TextBlock x:Name="btn_forgotpassword" Text="Olvide mi Contraseña" HorizontalAlignment="Left" Margin="177,0,0,10" VerticalAlignment="Bottom" Foreground="#FF2D90C9" FontSize="10" Cursor="Hand" MouseEnter="btn_forgotpassword_MouseEnter" MouseLeave="btn_forgotpassword_MouseLeave"/>
     </Grid>
 </Window>

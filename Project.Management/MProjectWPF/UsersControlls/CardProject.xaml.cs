@@ -20,9 +20,12 @@ namespace MProjectWPF.UsersControlls
     /// </summary>
     public partial class CardProject : UserControl
     {
-        public CardProject()
+        MainWindow mainW;
+
+        public CardProject(MainWindow mw)
         {
             InitializeComponent();
+            mainW = mw;
         }
         private void Grid_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -34,7 +37,14 @@ namespace MProjectWPF.UsersControlls
         }
         private void Grid_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            
+
+        }
+
+        private void enterBtnCard_Click(object sender, RoutedEventArgs e)
+        {
+            mainW.vp1.Visibility = Visibility.Hidden;
+            mainW.vp1.Children.Add(new ExplorerProject());
         }
     }
+        
 }

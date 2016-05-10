@@ -2,6 +2,7 @@
 using MProjectWPF.Controller;
 using System.Windows;
 using System.Windows.Input;
+using System;
 
 namespace MProjectWPF.Windows.Inicio
 {
@@ -9,11 +10,13 @@ namespace MProjectWPF.Windows.Inicio
     public partial class LoginWindow : Window
     {
         DbLitecontroller dbMP;
+        
         public LoginWindow()
         {
             InitializeComponent();
-            dbMP = new DbLitecontroller();
+            dbMP = new DbLitecontroller();            
         }
+
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
@@ -36,6 +39,25 @@ namespace MProjectWPF.Windows.Inicio
             RegisterWindow  reg = new RegisterWindow();
             this.Close();
             reg.Visibility = Visibility.Visible;
+        }
+
+        private void btn_forgotpassword_MouseEnter(object sender, MouseEventArgs e)
+        {
+            btn_forgotpassword.TextDecorations = TextDecorations.Baseline;
+        }
+
+        private void btn_forgotpassword_MouseLeave(object sender, MouseEventArgs e)
+        {
+            try
+            {
+               //           
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
+                    
+            
         }
     }
 }

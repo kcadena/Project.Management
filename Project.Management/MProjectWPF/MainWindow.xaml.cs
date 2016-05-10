@@ -5,6 +5,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media;
 using System;
 using System.Windows.Interop;
+using MProjectWPF.Windows.ToolWindows;
 
 namespace MProjectWPF
 {
@@ -19,27 +20,32 @@ namespace MProjectWPF
             InitializeComponent();
             /*this.Visibility = Visibility.Hidden;
 
-            LoginWindow log = new LoginWindow();            
-            log.Visibility = Visibility.Visible;*/
-            WindowInteropHelper interopHelper = new WindowInteropHelper(this);
-            IntPtr manejadorVentana = interopHelper.Handle;
-
-            lstmen.Items.Add(new LabelProject("Nuevo Proyecto", this, true));
-            lstmen.Items.Add(new LabelProject("Abrir Proyecto", this, true));
-            lstmen.Items.Add(new LabelProject("Importar Proyecto", this, true));
+            LoginWindow log = new LoginWindow();
+            log.Show(); */
+            
+            lstmen.Items.Add(new LabelProject("Nuevo Proyecto", this, 1));
+            lstmen.Items.Add(new LabelProject("Abrir Proyecto", this, 2));
+            lstmen.Items.Add(new LabelProject("Importar Proyecto", this, 3));
 
             if (admin)
             {
-                lstmen.Items.Add(new LabelProject("Nueva Plantilla", this, true));
+                lstmen.Items.Add(new LabelProject("Nueva Plantilla", this, 4));
             }           
 
-            lstrec.Items.Add(new LabelProject("Proyectos de Ingenieria", this, true));
-            lstrec.Items.Add(new LabelProject("Desarrollo Investic ", this, true));
-            lstrec.Items.Add(new LabelProject("Acreditacion Sistemas", this, true));
-            lstrec.Items.Add(new LabelProject("Desarrollo MProject", this, true));
-            lstrec.Items.Add(new LabelProject("Aplicacion Inventario", this, true));
+            lstrec.Items.Add(new LabelProject("Proyectos de Ingenieria", this, 0));
+            lstrec.Items.Add(new LabelProject("Desarrollo Investic ", this, 0));
+            lstrec.Items.Add(new LabelProject("Acreditacion Sistemas", this, 0));
+            lstrec.Items.Add(new LabelProject("Desarrollo MProject", this, 0));
+            lstrec.Items.Add(new LabelProject("Aplicacion Inventario", this, 0));
 
-            lal.Children.Add(new ListProject(this, "LISTA PROYECTOS"));                        
+            lal.Children.Add(new ListProject(this, "LISTA PROYECTOS"));
+
+            lstUser.Items.Add(new LabelUser());
+            lstUser.Items.Add(new LabelUser());
+            lstUser.Items.Add(new LabelUser());
+            lstUser.Items.Add(new LabelUser());
+            lstUser.Items.Add(new LabelUser());
+
         }        
     }
 }

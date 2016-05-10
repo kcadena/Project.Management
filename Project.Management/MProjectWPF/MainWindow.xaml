@@ -85,22 +85,24 @@
             </Grid.ColumnDefinitions>
 
             <Grid  Grid.Column="0" x:Name="viewPlan" RenderTransformOrigin="0.5,0.5" d:LayoutOverrides="Width, LeftMargin, RightMargin">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="300" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0" Background="#D1B1BEEA">
-                    <Image x:Name="Imagen_png" Height="95" Margin="70,30,75,0" Source="Imagen.png" Stretch="Fill" VerticalAlignment="Top" OpacityMask="#FFE6E6E6"/>
-                    <Label x:Name="label" Content="INICIO" Margin="35,155,10,0" VerticalAlignment="Top" Height="30" FontFamily="7" Foreground="#FF014067" FontWeight="Bold"/>
-                    <Label x:Name="label1" Content="PROYECTOS RECIENTES" Margin="35,315,10,0" VerticalAlignment="Top" FontWeight="Bold"  FontFamily="7" Foreground="#FF003F66" Height="30" Background="{x:Null}" />
+                <Grid x:Name="vp1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="300" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid x:Name="menuPanel" Grid.Column="0" Background="#D1B1BEEA">
+                        <Image x:Name="Imagen_png" Height="95" Margin="70,30,75,0" Source="Imagen.png" Stretch="Fill" VerticalAlignment="Top" OpacityMask="#FFE6E6E6"/>
+                        <Label x:Name="label" Content="INICIO" Margin="35,155,10,0" VerticalAlignment="Top" Height="30" FontFamily="7" Foreground="#FF014067" FontWeight="Bold"/>
+                        <Label x:Name="label1" Content="PROYECTOS RECIENTES" Margin="35,315,10,0" VerticalAlignment="Top" FontWeight="Bold"  FontFamily="7" Foreground="#FF003F66" Height="30" Background="{x:Null}" />
 
-                    <ListBox x:Name="lstmen" Height="120" Margin="35,185,10,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" IsHitTestVisible="True"/>
-                    <ListBox x:Name="lstrec" Margin="35,345,10,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Height="150"/>
+                        <ListBox x:Name="lstmen" Height="120" Margin="35,185,10,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" IsHitTestVisible="True"/>
+                        <ListBox x:Name="lstrec" Margin="35,345,10,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Height="150"/>
+                    </Grid>
+                    <Grid Grid.Column="1" x:Name="lal" Margin="10,0,10,5"/>
                 </Grid>
-                <Grid Grid.Column="1" x:Name="lal" Margin="10,-10,-10,10"/>
             </Grid>
 
-            <GridSplitter Width="5" Grid.Column="1" HorizontalAlignment="Stretch" />
+            <GridSplitter x:Name="spView" Width="5" Grid.Column="1" HorizontalAlignment="Stretch" />
 
             <Grid Grid.Column="2">
                 <Grid.RowDefinitions>
@@ -116,6 +118,13 @@
                     <TextBox x:Name="textBox" Height="25" Margin="84.403,30,10,0" TextWrapping="Wrap" Text="David Estrada" VerticalAlignment="Top" IsEnabled="False" FontSize="13.333" FontFamily="7"/>
                     <Label x:Name="lblDetail_Copy1" Content="Correo:" Margin="0,60,0,0" VerticalAlignment="Top"  FontFamily="7" Foreground="#FF003F66" Height="25" Background="{x:Null}" HorizontalAlignment="Left" d:LayoutOverrides="VerticalAlignment" Width="79.403" />
                     <TextBox x:Name="textBox_Copy" Height="25" Margin="84.403,60,10,0" TextWrapping="Wrap" Text="davest962@hotmail.com" VerticalAlignment="Top" IsEnabled="False" FontSize="13.333" FontFamily="7"/>
+                    <Label x:Name="lblDetail_Copy2" Content="Cargo:" Margin="0,90,0,0" VerticalAlignment="Top"  FontFamily="7" Foreground="#FF003F66" Height="25" Background="{x:Null}" HorizontalAlignment="Left" Width="79.403" d:LayoutOverrides="VerticalAlignment" />
+                    <TextBox x:Name="textBox_Copy1" Height="25" Margin="84.403,90,10,0" TextWrapping="Wrap" Text="Estudiante" VerticalAlignment="Top" IsEnabled="False" FontSize="13.333" FontFamily="7"/>
+                    <Label x:Name="lblDetail_Copy3" Content="Entidad:" Margin="0,120,0,0" VerticalAlignment="Top"  FontFamily="7" Foreground="#FF003F66" Height="25" Background="{x:Null}" HorizontalAlignment="Left" Width="79.403" />
+                    <TextBox x:Name="textBox_Copy2" Margin="84.403,120,10,0" TextWrapping="Wrap" Text="Universidad de Nariño" IsEnabled="False" FontSize="13.333" FontFamily="7" VerticalAlignment="Top" Height="25"/>
+                    <Label x:Name="lblDetail_Copy4" Content="Fecha:" Margin="0,150,0,0" VerticalAlignment="Top"  FontFamily="7" Foreground="#FF003F66" Height="25" Background="{x:Null}" HorizontalAlignment="Left" Width="79.403" />
+                    <TextBox x:Name="textBox_Copy3" Margin="84.403,150,10,0" TextWrapping="Wrap" Text="28 de marzo 2016" IsEnabled="False" FontSize="13.333" FontFamily="7" VerticalAlignment="Top" Height="25"/>
+                    
                 </Grid>
 
                 <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" />
@@ -123,6 +132,7 @@
                 <Grid x:Name="usersPanel" Grid.Row="2">
                     <Label x:Name="lblusers" Content="PERSONAL ASIGNADO" Margin="0,5,0,0" FontWeight="Bold"  FontFamily="7" Foreground="#FF003F66" Height="25" Background="{x:Null}" VerticalAlignment="Top" />
                     <Separator Background="#FF003F66" VerticalAlignment="Top" Margin="0,29,0,0" />
+                    <ListBox x:Name="lstUser" Margin="5,35,5,5" Background="{x:Null}" HorizontalContentAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" BorderBrush="{x:Null}"/>
                 </Grid>
 
             </Grid>
