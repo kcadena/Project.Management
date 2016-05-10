@@ -8,7 +8,7 @@ namespace MProjectWPF.UserControl.Inicio
 
     public partial class LoginWindow : Window
     {
-        DbLitecontroller dbMP;
+        //DbLitecontroller dbMP;
         
         public LoginWindow()
         {
@@ -31,7 +31,7 @@ namespace MProjectWPF.UserControl.Inicio
 
         private void btn_forgotpassword_MouseEnter(object sender, MouseEventArgs e)
         {
-            btn_forgotpassword.TextDecorations = TextDecorations.Baseline;
+            //btn_forgotpassword.TextDecorations = TextDecorations.Baseline;
         }
 
         private void btn_forgotpassword_MouseLeave(object sender, MouseEventArgs e)

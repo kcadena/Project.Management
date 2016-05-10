@@ -13,9 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MProjectWPF.UserControl.Inicio;
 using MProjectWPF.Model;
-using MProjectWPF.Windows.Inicio;
+//using MProjectWPF.Windows.Inicio;
 //using MProjectWPF.Model;
-using MProjectWPF.Services;
+//using MProjectWPF.Services;
 using MProjectWPF.Controller;
 
 namespace MProjectWPF.UserControl.Registro
@@ -42,7 +42,7 @@ namespace MProjectWPF.UserControl.Registro
         {
             MProjectDeskSQLITEEntities dbMP = new MProjectDeskSQLITEEntities();
            
-            usuario usu = new usuario();
+            usuarios usu = new usuarios();
             usu.id_usuario = Convert.ToInt32(txt_ide.Text);
             usu.e_mail = txt_email.Text;
             usu.nombre = txt_name.Text;

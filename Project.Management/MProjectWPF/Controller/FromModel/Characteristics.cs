@@ -22,11 +22,11 @@ namespace MProjectWPF.Controller.FromModel
             4   subactividad
             5   proyecto generado por actividad-> necesita de 4 subactividad
         */
-        public actividade CreateCharacteristicsActivity(Dictionary<string,string> data)
+        public actividadess CreateCharacteristicsActivity(Dictionary<string,string> data)
         {
             Activities acty = new Activities();
-            caracteristica car = new caracteristica();
-            actividade act = new actividade();
+            caracteristicas car = new caracteristicas();
+            actividadess act = new actividadess();
 
             //Caracterteristicas
             car.estado = data["est"];
@@ -38,7 +38,7 @@ namespace MProjectWPF.Controller.FromModel
             car.proyecto_padre = Convert.ToInt64(data["fat_prj"]);
 
 
-            //Actividades
+            //actividadess
            
             //System.Windows.MessageBox.Show(data["fol"]);
             act.nombre = data["nom"];
@@ -57,12 +57,12 @@ namespace MProjectWPF.Controller.FromModel
             }
             try
             {
-                MPdb.actividades.Add(act);
+                MPdb.actividadess.Add(act);
                 MPdb.SaveChanges();
 
                 try
                 {
-                    int id = (int)MPdb.actividades.OrderByDescending(e => e.id_actividad).First().id_actividad;
+                    int id = (int)MPdb.actividadess.OrderByDescending(e => e.id_actividad).First().id_actividad;
                     //System.Windows.MessageBox.Show("" + id);
                     car.id_actividad = id;
                     MPdb.caracteristicas.Add(car);
@@ -80,7 +80,7 @@ namespace MProjectWPF.Controller.FromModel
         public Dictionary<string,long> deleteCharacteristic(long id)
         {
             Dictionary<string, long> dat = new Dictionary<string, long>();
-            caracteristica car = new caracteristica();
+            caracteristicas car = new caracteristicas();
             try
             {
                 //car = MPdb.caracteristicas.Find(id);
@@ -88,7 +88,7 @@ namespace MProjectWPF.Controller.FromModel
                           where x.id_caracteristica == id
                           select x).First();
                 long parcar= (long)car.padre_caracteristica;
-                MPdb.caracteristicas.Remove((caracteristica)car);
+                MPdb.caracteristicas.Remove((caracteristicas)car);
                 MPdb.SaveChanges();
                 dat["act"] = (long) car.id_actividad;
                 dat["par"] = parcar;

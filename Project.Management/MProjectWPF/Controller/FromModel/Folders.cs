@@ -18,7 +18,7 @@ namespace MProjectWPF.Controller.FromModel
     
         public long createFolder(String name, long project, long father)
         {
-            folder fol = new folder();
+            folders fol = new folders();
             fol.id_proyecto = project;
             fol.nombre = name;
             fol.Parent_id_folder = father;
@@ -43,7 +43,7 @@ namespace MProjectWPF.Controller.FromModel
         //borrar carpetas
         public bool deleteFolder(long id_fol)
         {
-            folder fol = new folder();
+            folders fol = new folders();
             try
             {
                 fol = mp.folders.Find(id_fol);
@@ -65,7 +65,7 @@ namespace MProjectWPF.Controller.FromModel
                            where x.id_folder == id_fol
                            select x).First();
 
-                folder fol = (folder)dat;
+                folders fol = (folders)dat;
                 fol.nombre = name;
                 mp.folders.Attach(fol);
                 var entry = mp.Entry(fol);
@@ -80,14 +80,23 @@ namespace MProjectWPF.Controller.FromModel
                 return false;
             }
         }
-        public List<folder> getStructureFolders(long pro)
+        public List<folders> getStructureFolders(long pro)
         {
-            var fol = from x in mp.folders
-                      where x.id_proyecto == pro
-                      orderby x.Parent_id_folder ascending, x.id_folder ascending,x.nombre ascending
-                      select x;
+           
+            try
+            {
+                var fol = from x in mp.folders 
+                          where x.id_proyecto == pro
+                          orderby x.Parent_id_folder ascending, x.id_folder ascending, x.nombre ascending
+                          select x;
+                return fol.ToList<folders>();
+            }
+            catch (Exception err)
+            {
+                System.Windows.MessageBox.Show(err.Message);
+            }
 
-            return fol.ToList<folder>();
+            return null;
             
         }
 

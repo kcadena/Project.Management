@@ -23,17 +23,17 @@ namespace MProjectWPF.UsersControls
     public partial class AssignResponsibility : System.Windows.Controls.UserControl
     {
         Dictionary<string, string> inf;
-        Grid main_grid;
-        public AssignResponsibility(Dictionary<string, string> inf,Grid main_grid)
+        MainWindow mainW;
+        public AssignResponsibility(Dictionary<string, string> inf,MainWindow mw)
         {
             InitializeComponent();
             this.inf = inf;
-            this.main_grid = main_grid;
+            mainW = mw;
         }
 
         private void btn_search_Click(object sender, RoutedEventArgs e)
         {
-            GetUsers.Service1Client user = new GetUsers.Service1Client();
+            /*GetUsers.Service1Client user = new GetUsers.Service1Client();
             String cad = txt_findUser.Text.ToLower();
             cad=cad.Replace(" ", "%");
 
@@ -62,7 +62,7 @@ namespace MProjectWPF.UsersControls
                     //listView_usersFound.Items.
                 }
             }
-            else MessageBox.Show("No se encontro al usuario.");
+            else MessageBox.Show("No se encontro al usuario.");*/
         }
 
         private void btn_accept_Click(object sender, RoutedEventArgs e)
@@ -86,7 +86,7 @@ namespace MProjectWPF.UsersControls
 
         private void btn_cancel_Click(object sender, RoutedEventArgs e)
         {
-            this.main_grid.Children.Remove(this);
+            this.mainW.viewPlan.Children.Remove(this);
         }
     }
 }

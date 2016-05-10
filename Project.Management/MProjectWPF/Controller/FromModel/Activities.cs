@@ -17,7 +17,7 @@ namespace MProjectWPF.Controller.FromModel
         public List<long> getActivitiesFolders()
         {
             var fol = from x in MPdb.folders
-                      join y in MPdb.actividades on x.id_folder equals y.id_actividad
+                      join y in MPdb.actividadess on x.id_folder equals y.id_actividad
                       where x.id_proyecto == 1
                       select x.id_folder;
 
@@ -44,7 +44,7 @@ namespace MProjectWPF.Controller.FromModel
 
         public List<long> getAtivitiesParents(long pro)
         {
-            var dat = (from x in MPdb.actividades
+            var dat = (from x in MPdb.actividadess
                        join y in MPdb.caracteristicas
                        on x.id_actividad equals y.id_actividad
                        where y.proyecto_padre == pro
@@ -63,7 +63,7 @@ namespace MProjectWPF.Controller.FromModel
             try
             {
                 var dat = (from x in MPdb.caracteristicas
-                           join y in MPdb.actividades
+                           join y in MPdb.actividadess
                            on x.id_actividad equals y.id_actividad
                            where x.proyecto_padre == proPar
                            orderby x.padre_caracteristica ascending, y.pos ascending
@@ -90,14 +90,14 @@ namespace MProjectWPF.Controller.FromModel
 
         public bool createActivity(string nom, string des, int pos, int id_fol)
         {
-            actividade act = new actividade();
+            actividadess act = new actividadess();
             act.nombre = nom;
             act.descripcion = des;
             act.pos = pos;
             act.id_folder = id_fol;
             try
             {
-                MPdb.actividades.Add(act);
+                MPdb.actividadess.Add(act);
                 MPdb.SaveChanges();
                 return true;
             }
@@ -117,7 +117,7 @@ namespace MProjectWPF.Controller.FromModel
                 int p=0;
                 if (id_fol != null)
                 {
-                    var pos = (from x in MPdb.actividades
+                    var pos = (from x in MPdb.actividadess
                                join y in MPdb.caracteristicas
                                on x.id_actividad equals y.id_actividad
                                where y.padre_caracteristica == par_car && x.id_folder == id_fol
@@ -127,7 +127,7 @@ namespace MProjectWPF.Controller.FromModel
                 }
                 else
                 {
-                    var pos = (from x in MPdb.actividades
+                    var pos = (from x in MPdb.actividadess
                                join y in MPdb.caracteristicas
                                on x.id_actividad equals y.id_actividad
                                where y.padre_caracteristica == par_car 
@@ -147,13 +147,13 @@ namespace MProjectWPF.Controller.FromModel
         }
         public bool deleteActivity(long id,long parcar)
         {
-            actividade act = new actividade();
+            actividadess act = new actividadess();
             Nullable<long> fol=null;
             Nullable<long> pos=null;
             try
             {
                 //act = MPdb.actividades.Find(id);
-                act = (from x in MPdb.actividades
+                act = (from x in MPdb.actividadess
                        where x.id_actividad == id
                        select x).First();
                 try
@@ -166,7 +166,7 @@ namespace MProjectWPF.Controller.FromModel
                 {
                     string sa = err.ToString();
                 }
-                MPdb.actividades.Remove(act);
+                MPdb.actividadess.Remove(act);
 
                 MPdb.SaveChanges();
 
@@ -194,7 +194,7 @@ namespace MProjectWPF.Controller.FromModel
         public static ActividadesList activity_charac(long id)
         {
             var dat = (from x in MPdb.caracteristicas
-                       join y in MPdb.actividades
+                       join y in MPdb.actividadess
                        on x.id_actividad equals y.id_actividad
                        where y.id_actividad == id
                        orderby x.padre_caracteristica ascending, y.pos ascending
@@ -223,8 +223,8 @@ namespace MProjectWPF.Controller.FromModel
             //pos_mod  posision de la actividad que se ve afectada por act_mod
 
             long pos_mod = pos ;
-            actividade act1 = new actividade();
-            actividade act2 = new actividade();
+            actividadess act1 = new actividadess();
+            actividadess act2 = new actividadess();
             
             if (op == 1)
                 pos_mod = pos_mod - 1;
@@ -237,26 +237,26 @@ namespace MProjectWPF.Controller.FromModel
                 pos_mod = pos_mod;
                 parcar = parcar;
                 id_fol = id_fol;
-                List<actividade> act;
+                List<actividadess> act;
                 if (id_fol != 0)
                 {
-                    act = (from x in MPdb.actividades
+                    act = (from x in MPdb.actividadess
                                             join y in MPdb.caracteristicas
                                             on x.id_actividad equals y.id_actividad
                                             where y.padre_caracteristica == parcar && x.id_folder==id_fol && (x.pos == pos || x.pos == pos_mod)
                                             orderby x.pos ascending
-                                            select x).ToList<actividade>();
+                                            select x).ToList<actividadess>();
                     long pax = (long)act.ElementAt(0).pos;
                     
                 }
                 else
                 {
-                    act = (from x in MPdb.actividades
+                    act = (from x in MPdb.actividadess
                                             join y in MPdb.caracteristicas
                                             on x.id_actividad equals y.id_actividad
                                             where y.padre_caracteristica == parcar && (x.pos == pos || x.pos == pos_mod)
                                             orderby x.pos ascending
-                                            select x).ToList<actividade>();
+                                            select x).ToList<actividadess>();
                     long pax = (long)act.ElementAt(0).pos;
                 }
                
@@ -268,13 +268,13 @@ namespace MProjectWPF.Controller.FromModel
                 else
                     act2.pos = pos;
 
-                MPdb.actividades.Attach(act1);
+                MPdb.actividadess.Attach(act1);
                 var entry1 = MPdb.Entry(act1);
                 entry1.Property(e => e.pos).IsModified = true;
 
                 MPdb.SaveChanges();
 
-                MPdb.actividades.Attach(act2);
+                MPdb.actividadess.Attach(act2);
                 var entry2 = MPdb.Entry(act2);
                 entry2.Property(e => e.pos).IsModified = true;
 
@@ -290,9 +290,7 @@ namespace MProjectWPF.Controller.FromModel
                 return false;
             }
 
-        }
-
-       
+        }      
 
     }
 

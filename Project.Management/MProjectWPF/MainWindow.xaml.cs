@@ -49,11 +49,11 @@ namespace MProjectWPF
 
             //LoginWindow log = new LoginWindow();            
             //log.Visibility = Visibility.Visible;
-            Dictionary<string, long> dat= new Dictionary<string, long>();
+           /* Dictionary<string, long> dat= new Dictionary<string, long>();
             dat["id"] = 1;
             dat["car"] = 11;
-            ExplorerProject exPro = new ExplorerProject(grid_main_window,dat);
-            this.grid_main_window.Children.Add(exPro);
+            ExplorerProject exPro = new ExplorerProject(this,dat);
+            this.grid_main_window.Children.Add(exPro);*/
             
         }
     }

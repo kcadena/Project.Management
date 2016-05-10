@@ -12,18 +12,21 @@ namespace MProjectWPF.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class repositorio
+    public partial class plantillas
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public repositorio()
+        public plantillas()
         {
+            this.plantillas_meta_datos = new HashSet<plantillas_meta_datos>();
             this.proyectos = new HashSet<proyectos>();
         }
     
-        public long id_repositorio { get; set; }
+        public long id_plantilla { get; set; }
+        public string nombre { get; set; }
         public string descripcion { get; set; }
-        public string ruta_proyecto { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<plantillas_meta_datos> plantillas_meta_datos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<proyectos> proyectos { get; set; }
     }

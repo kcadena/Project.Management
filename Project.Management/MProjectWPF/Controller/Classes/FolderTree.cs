@@ -137,14 +137,14 @@ namespace MProjectWPF.Controller.Classes
             return lstTree;
 
         }
-        public TreeViewItem arrange(List<Model.folder> fol)
+        public TreeViewItem arrange(List<Model.folders> fol)
         {
             try
             {
                 //metodo de listas de ID y Nombres de los padres (folders) sin repetirse
                 listsParents(fol);
                 //organizar lista de folders segun padres
-                List<List<Model.folder>> org = arrangeParents_folders(fol);
+                List<List<Model.folders>> org = arrangeParents_folders(fol);
 
                 ///////////////////////////////////////////////////////////////////////////
                 //Lista de actividaes Actividades (folders)  ordenadas por pos
@@ -196,7 +196,7 @@ namespace MProjectWPF.Controller.Classes
             }
             catch { }
         }
-        private void listsParents(List<Model.folder> fol)
+        private void listsParents(List<Model.folders> fol)
         {
             this.parent = new List<int>();
             this.parentName = new List<string>();
@@ -226,9 +226,9 @@ namespace MProjectWPF.Controller.Classes
 
 
         }
-        private List<List<Model.folder>> arrangeParents_folders(List<Model.folder> fol)
+        private List<List<Model.folders>> arrangeParents_folders(List<Model.folders> fol)
         {
-            List<List<Model.folder>> org = new List<List<Model.folder>>();
+            List<List<Model.folders>> org = new List<List<Model.folders>>();
             if (fol.Count() != 0)
             {
                 try
@@ -236,7 +236,7 @@ namespace MProjectWPF.Controller.Classes
 
                     foreach (var x in parent)
                     {
-                        List<Model.folder> it_fol = new List<Model.folder>();
+                        List<Model.folders> it_fol = new List<Model.folders>();
                         foreach (var y in fol)
                             if (x == y.Parent_id_folder) it_fol.Add(y);
                         org.Add(it_fol);
@@ -247,7 +247,7 @@ namespace MProjectWPF.Controller.Classes
 
             return org;
         }
-        private List<TreeViewItem> listTVI_parents(List<Model.folder> fol, List<List<Model.folder>> org)
+        private List<TreeViewItem> listTVI_parents(List<Model.folders> fol, List<List<Model.folders>> org)
         {
             List<TreeViewItem> lstTree = new List<TreeViewItem>();
             if (fol.Count() == 0)
@@ -279,7 +279,7 @@ namespace MProjectWPF.Controller.Classes
                                 -1,
                                 -1);
                         else {
-                            Model.folder aux = getFolderParent((int)x.First().Parent_id_folder, fol);
+                            Model.folders aux = getFolderParent((int)x.First().Parent_id_folder, fol);
                             par.Header = itemsTree(
                                 aux.nombre,
                                 aux.id_folder.ToString(),
@@ -427,7 +427,7 @@ namespace MProjectWPF.Controller.Classes
             
             return stack;
         }
-        private Model.folder getFolderParent(int p, List<Model.folder> fol)
+        private Model.folders getFolderParent(int p, List<Model.folders> fol)
         {
             foreach (var x in fol)
             {

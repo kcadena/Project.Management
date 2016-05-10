@@ -18,7 +18,7 @@ namespace MProjectWPF.UsersControls
     /// <summary>
     /// Lógica de interacción para newProjectPanel.xaml
     /// </summary>
-    public partial class newProjectPanel : UserControl
+    public partial class newProjectPanel : System.Windows.Controls.UserControl
     {
         MainWindow mW;
         public newProjectPanel(MainWindow mw)

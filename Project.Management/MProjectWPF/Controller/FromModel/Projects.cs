@@ -14,7 +14,7 @@ namespace MProjectWPF.Controller.FromModel
 
         public bool createProject()
         {
-            proyecto prj = new proyecto();
+            proyectos prj = new proyectos();
 
             return false;
         }

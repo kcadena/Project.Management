@@ -12,18 +12,28 @@ namespace MProjectWPF.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class tipos_archivos
+    public partial class folders
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tipos_archivos()
+        public folders()
         {
+            this.actividadess = new HashSet<actividadess>();
             this.archivos = new HashSet<archivos>();
+            this.folders1 = new HashSet<folders>();
         }
     
-        public long id_tipo_archivo { get; set; }
+        public long id_folder { get; set; }
         public string nombre { get; set; }
+        public long id_proyecto { get; set; }
+        public long Parent_id_folder { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<actividadess> actividadess { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<archivos> archivos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<folders> folders1 { get; set; }
+        public virtual folders folders2 { get; set; }
+        public virtual proyectos proyectos { get; set; }
     }
 }

@@ -18,7 +18,7 @@ namespace MProjectWPF.UsersControls
     /// <summary>
     /// Lógica de interacción para LabelUser.xaml
     /// </summary>
-    public partial class LabelUser : UserControl
+    public partial class LabelUser : System.Windows.Controls.UserControl
     {
         public LabelUser()
         {

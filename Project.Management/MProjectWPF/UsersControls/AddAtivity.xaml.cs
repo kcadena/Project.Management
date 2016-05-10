@@ -26,16 +26,16 @@ namespace MProjectWPF.UsersControls
     {
         TreeViewItem tvi;
         TreeView tvPro;
-        Grid mainGrid;
+        MainWindow mainW;
         Dictionary<string, long> dat;
 
-        public AddAtivity(TreeViewItem tvi, TreeView tvPro,Grid main,Dictionary<string,long> id)
+        public AddAtivity(TreeViewItem tvi, TreeView tvPro,MainWindow mw,Dictionary<string,long> id)
         {
             
             InitializeComponent();
             this.tvi = tvi;
             this.tvPro = tvPro;
-            mainGrid = main;
+            mainW = mw;
             this.dat = id;
         }
 
@@ -43,7 +43,7 @@ namespace MProjectWPF.UsersControls
         {
             Folders fol = new Folders();
             FolderTree treFol = new FolderTree(dat);
-            
+
             string idFol = treFol.name(tvi, 1);
             string id_cha = treFol.name(tvi, 3);
 
@@ -54,14 +54,14 @@ namespace MProjectWPF.UsersControls
             data["per"] = txtPer.Text;
             data["dur"] = txtDur.Text;
             data["fol"] = idFol;
-            data["typDur"] = "Horas";            
-            data["id_pro"] ="";
+            data["typDur"] = "Horas";
+            data["id_pro"] = "";
             data["fat_prj"] = dat["id"].ToString();
             data["act"] = "";
-            
+
             if (id_cha.Equals("-1"))
             {
-               
+
                 data["fat_cha"] = dat["car"].ToString();
                 data["pos"] = "OK";
             }
@@ -71,7 +71,7 @@ namespace MProjectWPF.UsersControls
             }
 
             Characteristics cha = new Characteristics();
-            Model.actividade act = cha.CreateCharacteristicsActivity(data);
+            Model.actividadess act = cha.CreateCharacteristicsActivity(data);
             TreeViewItem tv = new TreeViewItem();
             ActividadesList xt = Controller.FromModel.Activities.activity_charac(act.id_actividad);
             long ns = 0;
@@ -80,7 +80,7 @@ namespace MProjectWPF.UsersControls
             tvi.Items.Add(tv);
             tv.IsExpanded = true;
             tv.Focus();
-            mainGrid.Children.Remove(this);
+            mainW.viewPlan.Children.Remove(this);
         }
     }
 }

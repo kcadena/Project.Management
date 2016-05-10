@@ -19,7 +19,7 @@ namespace MProjectWPF.UsersControls
     /// <summary>
     /// Lógica de interacción para lbl.xaml
     /// </summary>
-    public partial class LabelProjectAll : UserControl
+    public partial class LabelProjectAll : System.Windows.Controls.UserControl
     {
         MainWindow mainW;
         string text;

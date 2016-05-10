@@ -18,7 +18,7 @@ namespace MProjectWPF.UsersControls
     /// <summary>
     /// Lógica de interacción para CardProject.xaml
     /// </summary>
-    public partial class CardProject : UserControl
+    public partial class CardProject : System.Windows.Controls.UserControl
     {
         MainWindow mainW;
 
@@ -43,7 +43,13 @@ namespace MProjectWPF.UsersControls
         private void enterBtnCard_Click(object sender, RoutedEventArgs e)
         {
             mainW.vp1.Visibility = Visibility.Hidden;
-            //mainW.vp1.Children.Add(new ExplorerProject());
+            Dictionary<string, long> dat = new Dictionary<string, long>();
+            dat["id"] = 1;
+            dat["car"] = 11;
+
+            ExplorerProject exPro = new ExplorerProject(mainW, dat);
+            mainW.viewPlan.Children.Add(exPro);
+            
         }
     }
         

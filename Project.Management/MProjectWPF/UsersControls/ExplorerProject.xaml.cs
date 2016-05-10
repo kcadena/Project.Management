@@ -23,7 +23,7 @@ namespace MProjectWPF.UsersControls
     /// </summary>
     public partial class ExplorerProject : System.Windows.Controls.UserControl
     {
-        Grid main_grid;
+        MainWindow mainW;
         Dictionary<string, long> dat;
         MProjectWPF.Controller.Classes.FolderTree treeFol;
         TextBox tx;
@@ -37,7 +37,7 @@ namespace MProjectWPF.UsersControls
         3-> renombrar Actividades 
         */
 
-        public ExplorerProject(Grid grd, Dictionary<string, long> dat)
+        public ExplorerProject(MainWindow mw, Dictionary<string, long> dat)
         {
             InitializeComponent();
             MProjectWPF.Controller.FromModel.Folders fol = new MProjectWPF.Controller.FromModel.Folders();
@@ -51,7 +51,7 @@ namespace MProjectWPF.UsersControls
             treeFol = new FolderTree(dat);
             TreeViewItem tv = treeFol.arrange(fol.getStructureFolders(dat["id"]));
             tvPro.Items.Add(tv);
-            main_grid = grd;
+            mainW = mw;
 
             tvPro.SelectedItemChanged += TvPro_SelectedItemChanged_CreateFolder;
         }
@@ -167,8 +167,8 @@ namespace MProjectWPF.UsersControls
             Dictionary<string, string> dat = new Dictionary<string, string>();
             dat["car"] = treeFol.name(tv, 3);
 
-            AssignResponsibility ar = new AssignResponsibility(dat,main_grid);
-            main_grid.Children.Add(ar);
+            AssignResponsibility ar = new AssignResponsibility(dat,mainW);
+            mainW.vp1.Children.Add(ar);
         }
 
 
@@ -360,8 +360,8 @@ namespace MProjectWPF.UsersControls
                 //MProjectWPF.Controller.Classes.FolderTree f = new FolderTree();
                 //MessageBox.Show(f.name((TreeViewItem)tvPro.SelectedItem,3));
 
-                AddAtivity addAct = new AddAtivity((TreeViewItem)tvPro.SelectedItem, tvPro, main_grid, dat);
-                main_grid.Children.Add(addAct);
+                AddAtivity addAct = new AddAtivity((TreeViewItem)tvPro.SelectedItem, tvPro, mainW, dat);
+                mainW.viewPlan.Children.Add(addAct);
 
             }
             catch (Exception err)
@@ -428,5 +428,10 @@ namespace MProjectWPF.UsersControls
             }
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            mainW.vp1.Visibility = Visibility.Visible;
+            this.Visibility = Visibility.Hidden;
+        }
     }
 }

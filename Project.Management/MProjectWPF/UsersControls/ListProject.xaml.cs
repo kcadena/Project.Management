@@ -20,7 +20,7 @@ namespace MProjectWPF.UsersControls
     /// <summary>
     /// Lógica de interacción para ListProject.xaml
     /// </summary>
-    public partial class ListProject : UserControl
+    public partial class ListProject : System.Windows.Controls.UserControl
     {
         MainWindow mainW;
         DbLitecontroller dbMP;
