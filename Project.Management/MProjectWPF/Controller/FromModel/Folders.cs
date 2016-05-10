@@ -8,65 +8,56 @@ using MProjectWPF.Model;
 
 using System.Windows.Controls;
 
-namespace MProjectWPF.Controller
+namespace MProjectWPF.Controller.FromModel
 {
     class Folders
     {
         private MProjectDeskSQLITEEntities mp = new MProjectDeskSQLITEEntities();
 
         //crear carpetas
-        public string createFolder(String name, int project)
+    
+        public long createFolder(String name, long project, long father)
         {
             folder fol = new folder();
             fol.id_proyecto = project;
             fol.nombre = name;
-            fol.id_proyecto = mp.folders.Last<folder>().id_proyecto + 1;
+            fol.Parent_id_folder = father;
             mp.folders.Add(fol);
+            long d = (from x in mp.folders
+                      orderby x.id_folder ascending
+                      select x.id_folder).Max();
+            d = d + 1;
+            fol.id_folder = d;
             try
             {
                 mp.SaveChanges();
+                return d;
             }
             catch (System.Data.ConstraintException err)
             {
-                return err.InnerException.ToString();
+                System.Windows.MessageBox.Show(err.InnerException.ToString());
+                return -1;
             }
-            return "ok";
-        }
-        public string createFolder(String name, int project, int father)
-        {
-            folder fol = new folder();
-            fol.id_proyecto = project;
-            fol.nombre = name;
-            fol.id_proyecto = mp.folders.Last<folder>().id_proyecto + 1;
-            mp.folders.Add(fol);
-            try
-            {
-                mp.SaveChanges();
-            }
-            catch (System.Data.ConstraintException err)
-            {
-                return err.InnerException.ToString();
-            }
-            return "ok";
+            
         }
         //borrar carpetas
-        public string deleteFolder(int id_fol)
+        public bool deleteFolder(long id_fol)
         {
             folder fol = new folder();
-            fol.id_folder = id_fol;
-            fol = mp.folders.Find(fol);
-            mp.folders.Remove(fol);
             try
             {
+                fol = mp.folders.Find(id_fol);
+                mp.folders.Remove(fol);
                 mp.SaveChanges();
+                return true;
             }
             catch (System.Data.ConstraintException err)
             {
-                return err.InnerException.ToString();
+                return false;
             }
-            return "ok";
+            
         }
-        private bool renameFolder(int id_fol, string name)
+        public bool renameFolder(long id_fol, string name)
         {
             try
             {
@@ -89,16 +80,15 @@ namespace MProjectWPF.Controller
                 return false;
             }
         }
-        public List<folder> getStructureFolders()
+        public List<folder> getStructureFolders(long pro)
         {
             var fol = from x in mp.folders
-                      where x.id_proyecto == 1
-                      orderby x.Parent_id_folder ascending, x.id_folder ascending
+                      where x.id_proyecto == pro
+                      orderby x.Parent_id_folder ascending, x.id_folder ascending,x.nombre ascending
                       select x;
 
             return fol.ToList<folder>();
-
-
+            
         }
 
     }
