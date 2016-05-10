@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="MProjectWPF.UsersControls.ListProject"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MProjectWPF.UsersControls"
+             mc:Ignorable="d" Margin="0">
+    <UserControl.Resources>
+        <Storyboard x:Key="click_btnSearch">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="image">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="50"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="45"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="image">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="50"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="45"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="image">
+                <EasingThicknessKeyFrame KeyTime="0:0:0.3" Value="45,10,40,0"/>
+                <EasingThicknessKeyFrame KeyTime="0:0:0.6" Value="45,10,45,0"/>
+            </ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="UIElement.MouseLeftButtonUp" SourceName="image">
+            <BeginStoryboard Storyboard="{StaticResource click_btnSearch}"/>
+        </EventTrigger>
+    </UserControl.Triggers>
+    <Grid d:LayoutOverrides="LeftMargin, RightMargin">
+
+        <Label Margin="40,55,45,0" Content="LISTA DE PROYECTOS" FontFamily="7" FontWeight="Bold"  Height="30" Foreground="#FF014067" FontSize="16" VerticalAlignment="Top" />
+
+
+
+        <TextBox x:Name="textBox" Margin="45,15,90,0" TextWrapping="Wrap"  BorderBrush="#FF00ABDC" Background="#FFB6C3EC" SelectionBrush="#FF00ABDC" FontFamily="Franklin Gothic Book" FontSize="26.667" Foreground="#FF2B6085" Text="MProject" TextAlignment="Center" VerticalAlignment="Top" MinHeight="35" MaxHeight="35" >
+            <TextBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
+        <Image x:Name="image" Margin="45,10,45,0" Cursor="Hand" Source="pack://application:,,/Resources/Lupa.png" RenderTransformOrigin="0.083,0.455" OpacityMask="#FF00893E" MouseEnter="image_MouseEnter" MouseLeave="image_MouseLeave" HorizontalAlignment="Right" VerticalAlignment="Top" Height="45" Width="45" />
+        <ListBox x:Name="listPry" Margin="20,80,20,15" Visibility="Visible"  Background="{x:Null}" BorderBrush="#00014067" RenderTransformOrigin="0.5,0.5" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="listPry_SelectionChanged" >
+            <ListBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </ListBox.Resources>
+        </ListBox>
+    </Grid>
+</UserControl>

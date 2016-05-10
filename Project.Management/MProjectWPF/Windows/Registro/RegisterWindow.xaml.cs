@@ -11,14 +11,15 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using MProjectWPF.UserControl.Inicio;
-using MProjectWPF.Model;
+using MProjectWPF.Windows.Inicio;
+//using MProjectWPF.Model;
+using MProjectWPF.Services;
+using MProjectWPF.Controller;
 
-namespace MProjectWPF.UserControl.Registro
+
+namespace MProjectWPF.Windows.Registro
 {
-    /// <summary>
-    /// Interaction logic for RegisterWindow.xaml
-    /// </summary>
+    
     public partial class RegisterWindow : Window
     {
         public RegisterWindow()
@@ -36,24 +37,18 @@ namespace MProjectWPF.UserControl.Registro
 
         private void btn_reg_Click(object sender, RoutedEventArgs e)
         {
-            MProjectDeskSQLITEEntities dbMP = new MProjectDeskSQLITEEntities();
-           
-            usuario usu = new usuario();
-            usu.id_usuario = Convert.ToInt32(txt_ide.Text);
-            usu.e_mail = txt_email.Text;
-            usu.nombre = txt_name.Text;
-            usu.apellido = txt_lastName.Text;
-            usu.pass = txt_Password.Text;
-            try
+            DbLitecontroller db = new DbLitecontroller();             
+            string res=db.agregarUsuario(txt_email.Text, txt_name.Text, txt_lastName.Text, txt_Password.Password);
+            if (res.Equals("ok"))
             {
-                dbMP.usuarios.Add(usu);
-                dbMP.SaveChanges();
+                Application.Current.MainWindow.Visibility = Visibility.Visible;
+                this.Close();
             }
-            catch(Exception err) {
-                MessageBox.Show(err.InnerException.ToString());
+            else
+            {
+                MessageBox.Show(res);
             }
-
-            
         }
+
     }
 }
