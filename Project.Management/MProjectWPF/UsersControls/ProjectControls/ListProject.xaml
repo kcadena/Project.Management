@@ -26,12 +26,9 @@
             <BeginStoryboard Storyboard="{StaticResource click_btnSearch}"/>
         </EventTrigger>
     </UserControl.Triggers>
+    
     <Grid d:LayoutOverrides="LeftMargin, RightMargin">
-
         <Label Margin="40,55,45,0" Content="LISTA DE PROYECTOS" FontFamily="7" FontWeight="Bold"  Height="30" Foreground="#FF014067" FontSize="16" VerticalAlignment="Top" />
-
-
-
         <TextBox x:Name="textBox" Margin="45,15,90,0" TextWrapping="Wrap"  BorderBrush="#FF00ABDC" Background="#FFB6C3EC" SelectionBrush="#FF00ABDC" FontFamily="Franklin Gothic Book" FontSize="26.667" Foreground="#FF2B6085" Text="MProject" TextAlignment="Center" VerticalAlignment="Top" MinHeight="35" MaxHeight="35" >
             <TextBox.Resources>
                 <Style TargetType="{x:Type Border}">
@@ -39,7 +36,7 @@
                 </Style>
             </TextBox.Resources>
         </TextBox>
-        <Image x:Name="image" Margin="45,10,45,0" Cursor="Hand" Source="pack://application:,,/Resources/Lupa.png" RenderTransformOrigin="0.083,0.455" OpacityMask="#FF00893E" MouseEnter="image_MouseEnter" MouseLeave="image_MouseLeave" HorizontalAlignment="Right" VerticalAlignment="Top" Height="45" Width="45" />
+        <Image x:Name="image" Margin="45,10,45,0" Cursor="Hand" Source="pack://application:,,/Resources/Lupa.png" RenderTransformOrigin="0.083,0.455" MouseEnter="image_MouseEnter" MouseLeave="image_MouseLeave" HorizontalAlignment="Right" VerticalAlignment="Top" Height="45" Width="45" />
         <ListBox x:Name="listPry" Margin="20,80,20,15" Visibility="Visible"  Background="{x:Null}" BorderBrush="#00014067" RenderTransformOrigin="0.5,0.5" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="listPry_SelectionChanged" >
             <ListBox.Resources>
                 <Style TargetType="{x:Type Border}">

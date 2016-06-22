@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="MProjectWPF.UsersControls.CardProject"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MProjectWPF.UsersControls"
+             mc:Ignorable="d" d:DesignWidth="200" Width="Auto">
+    
+    <Grid Cursor="Hand" OpacityMask="#FF176D9E" RenderTransformOrigin="0.5,0.5" Height="180" >
+        <Grid.Resources>
+            <Style TargetType="{x:Type Border}">
+                <Setter Property="CornerRadius" Value="20"/>
+            </Style>
+        </Grid.Resources>
+
+        <Border BorderBrush="#FF14ABD8" Padding="0" RenderTransformOrigin="0.5,0.5" Background="#FF93ADFD"/>
+
+        <Image x:Name="logoPry"  Source="pack://application:,,/Resources/LogoMProject.ico" Margin="9.543,13,0,41" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="80">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="-1"/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+
+        <Label x:Name="titleCard" Content="DISEÑO PLATAFORMA MPROJECT" Margin="100,2,70,145" Foreground="#FF004166" FontFamily="Franklin Gothic Demi Cond" Background="{x:Null}" OpacityMask="#FF176D9E" RenderTransformOrigin="0.5,0.5" FontSize="13.333"/>
+
+        <Button x:Name="enterBtnCard" Margin="0,138,5,12" Content="ENTRAR" IsCancel="True" FontFamily="Franklin Gothic Book" BorderBrush="{x:Null}" Foreground="#FFE6E6E6" Background="#FF004166" Width="60" HorizontalAlignment="Right" BorderThickness="1" Style="{StaticResource ButtonStyle}" Visibility="Hidden" Click="enterBtnCard_Click">
+            <Button.Resources>                
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>                
+            </Button.Resources>
+        </Button>
+
+        <Separator VerticalAlignment="Top" Margin="100,25,70,0" Background="#FF0B7291" />
+
+        <Label x:Name="lblCard1" Content="Sigla:" HorizontalAlignment="Left" Margin="90,27,0,0" VerticalAlignment="Top" FontFamily="7" RenderTransformOrigin="0.5,0.5" Foreground="#FF004166" FontSize="13.333"/>
+
+        <Label x:Name="lblCard2" Content="Descripción:" HorizontalAlignment="Left" Margin="90,49,0,0" VerticalAlignment="Top" FontFamily="7" RenderTransformOrigin="0.5,0.5" Foreground="#FF004166" FontSize="13.333"/>
+
+        <TextBox x:Name="siglaCard" TextWrapping="Wrap" Text="DPM" Margin="137,29,70,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Background="#7FFFFFFF" IsEnabled="False" FontFamily="7" FontSize="13.333"/>
+
+        <TextBox x:Name="descriptionCard" TextWrapping="Wrap" Text="Estructura e información del proyecto Qhapaq Ñan " Margin="96,70,70,42" RenderTransformOrigin="0.5,0.5" Background="#7FFFFFFF" IsEnabled="False" FontFamily="7" FontSize="13.333"/>
+
+        <Label x:Name="lblCard3" Content="Desarrollo %:" Margin="4.916,139,0,17" FontFamily="7" RenderTransformOrigin="0.5,0.5" Foreground="#FF004166" FontSize="13.333" HorizontalAlignment="Left"/>
+
+        <TextBox x:Name="percentCard" TextWrapping="Wrap" Text="30%" Margin="96,144,70,18" RenderTransformOrigin="0.5,0.5" Background="#7FFFFFFF" IsEnabled="False" FontFamily="7" FontSize="13.333" HorizontalContentAlignment="Right"/>
+    </Grid>
+</UserControl>

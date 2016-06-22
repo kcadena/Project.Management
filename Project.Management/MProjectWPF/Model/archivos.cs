@@ -18,12 +18,13 @@ namespace MProjectWPF.Model
         public string nombre { get; set; }
         public string contenido { get; set; }
         public System.DateTime fecha_carga { get; set; }
-        public long id_folder { get; set; }
         public long id_tipo_archivo { get; set; }
         public long id_caracteristica { get; set; }
+        public Nullable<long> publicacion { get; set; }
+        public Nullable<long> id_usuario { get; set; }
     
+        public virtual usuarios usuarios { get; set; }
         public virtual caracteristicas caracteristicas { get; set; }
-        public virtual folders folders { get; set; }
         public virtual tipos_archivos tipos_archivos { get; set; }
     }
 }

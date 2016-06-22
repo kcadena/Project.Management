@@ -25,10 +25,9 @@ namespace MProjectWPF.Model
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<actividadess> actividadess { get; set; }
+        public virtual DbSet<actividades> actividades { get; set; }
         public virtual DbSet<archivos> archivos { get; set; }
         public virtual DbSet<caracteristicas> caracteristicas { get; set; }
-        public virtual DbSet<folders> folders { get; set; }
         public virtual DbSet<meta_datos> meta_datos { get; set; }
         public virtual DbSet<plantillas> plantillas { get; set; }
         public virtual DbSet<plantillas_meta_datos> plantillas_meta_datos { get; set; }
@@ -37,6 +36,7 @@ namespace MProjectWPF.Model
         public virtual DbSet<repositorio> repositorio { get; set; }
         public virtual DbSet<tipos_archivos> tipos_archivos { get; set; }
         public virtual DbSet<tipos_datos> tipos_datos { get; set; }
+        public virtual DbSet<tipos_usuarios> tipos_usuarios { get; set; }
         public virtual DbSet<usuarios> usuarios { get; set; }
     }
 }

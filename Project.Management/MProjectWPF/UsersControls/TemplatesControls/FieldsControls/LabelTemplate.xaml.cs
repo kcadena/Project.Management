@@ -12,25 +12,24 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MProjectWPF.Model;
 
-namespace MProjectWPF.UsersControls
+namespace MProjectWPF.UsersControls.TemplatesControls.FieldsControls
 {
     /// <summary>
-    /// Lógica de interacción para NewTemplatePanel.xaml
+    /// Lógica de interacción para LabelTemplate.xaml
     /// </summary>
-    public partial class NewTemplatePanel : System.Windows.Controls.UserControl
+    public partial class LabelTemplate : System.Windows.Controls.UserControl
     {
-        MainWindow mainW;
-        public NewTemplatePanel(MainWindow mw)
+        public string nTemplate;
+        public int idTemplate;
+        public LabelTemplate(plantillas pla)
         {
             InitializeComponent();
-            mainW = mw;
+            nameTemplate.Text = pla.nombre.ToUpper();
+            nTemplate = pla.nombre;
+            idTemplate = (int)pla.id_plantilla;
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-            this.Visibility = Visibility.Hidden;
-            mainW.vp1.Visibility = Visibility.Visible;
-        }
     }
 }

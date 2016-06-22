@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MProjectWPF</RootNamespace>
     <AssemblyName>MProjectWPF</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -17,7 +17,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\David E\Desktop\Solucion\</PublishUrl>
+    <PublishUrl>F:\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -27,7 +27,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>18</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -57,10 +57,10 @@
     </ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>03744FB9B1A6590733BB9DE52190FBAA3452F783</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>A1330CE44F9572E460461941C19C6B4A97592855</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>MProjectWPF_ClaveTemporal.pfx</ManifestKeyFile>
+    <ManifestKeyFile>MProjectWPF_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -69,10 +69,11 @@
     <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>MProjectWPF_ClaveTemporal.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -83,11 +84,17 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1003\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="PresentationFramework" />
     <Reference Include="ReachFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Data.SQLite, Version=1.0.99.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SQLite.Core.1.0.99.0\lib\net46\System.Data.SQLite.dll</HintPath>
       <Private>True</Private>
@@ -100,9 +107,11 @@
       <HintPath>..\packages\System.Data.SQLite.Linq.1.0.99.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -129,107 +138,130 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controller\Classes\FolderTree.cs" />
-    <Compile Include="Controller\Classes\OperationsProjects.cs" />
-    <Compile Include="Controller\FromModel\Activities.cs" />
-    <Compile Include="Controller\FromModel\Characteristics.cs" />
-    <Compile Include="Controller\FromModel\Folders.cs" />
-    <Compile Include="Controller\FromModel\Projects.cs" />
+    <Compile Include="Controller\Actividades.cs" />
+    <Compile Include="Controller\Caracteristicas.cs" />
+    <Compile Include="Controller\ConectionString.cs" />
+    <Compile Include="Controller\Plantillas.cs" />
+    <Compile Include="Controller\Proyectos.cs" />
     <Compile Include="Model\actividades.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
+      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\archivos.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
+      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\caracteristicas.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\folders.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
+      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\meta_datos.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
+      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MProjectDeskSQLITE.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MProjectDeskSQLITE.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MProjectDeskSQLITE.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MProjectDeskSQLITE.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MProjectDeskSQLITE.edmx</DependentUpon>
     </Compile>
     <Compile Include="Model\plantillas.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
+      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\plantillas_meta_datos.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
+      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\proyectos.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
+      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\proyectos_meta_datos.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
+      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\repositorio.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\SQLiteMProjectModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SQLiteMProjectModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\SQLiteMProjectModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\SQLiteMProjectModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SQLiteMProjectModel.edmx</DependentUpon>
+      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\tipos_archivos.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
+      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\tipos_datos.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
+      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\tipos_usuarios.cs">
+      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\usuarios.cs">
-      <DependentUpon>SQLiteMProjectModel.tt</DependentUpon>
+      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Service References\GetUsers\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Controller\DbLitecontroller.cs" />
-    <Compile Include="UsersControls\CardProject.xaml.cs">
+    <Compile Include="Controller\Usuarios.cs" />
+    <Compile Include="UsersControls\ActivityControls\ActivityPanel.xaml.cs">
+      <DependentUpon>ActivityPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsersControls\ProjectControls\CardProject.xaml.cs">
       <DependentUpon>CardProject.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UsersControls\AddAtivity.xaml.cs">
-      <DependentUpon>AddAtivity.xaml</DependentUpon>
+    <Compile Include="UsersControls\TemplatesControls\ControlXml.cs" />
+    <Compile Include="UsersControls\TemplatesControls\FieldsControls\BoxField.xaml.cs">
+      <DependentUpon>BoxField.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UsersControls\LabelProjectAll.xaml.cs">
-      <DependentUpon>LabelProjectAll.xaml</DependentUpon>
+    <Compile Include="UsersControls\TemplatesControls\FieldsControls\LabelItems.xaml.cs">
+      <DependentUpon>LabelItems.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UsersControls\LabelProject.xaml.cs">
+    <Compile Include="UsersControls\TemplatesControls\FieldsControls\LabelTemplate.xaml.cs">
+      <DependentUpon>LabelTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsersControls\TemplatesControls\ListTemplatePanel.xaml.cs">
+      <DependentUpon>ListTemplatePanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsersControls\UserControls\LabelsUsers\LabelProject.xaml.cs">
       <DependentUpon>LabelProject.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UsersControls\AssignResponsibility.xaml.cs">
-      <DependentUpon>AssignResponsibility.xaml</DependentUpon>
+    <Compile Include="UsersControls\ActivityControls\LabelTreeActivity.xaml.cs">
+      <DependentUpon>LabelTreeActivity.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UsersControls\LabelUser.xaml.cs">
+    <Compile Include="UsersControls\UserControls\LabelsUsers\LabelUser.xaml.cs">
       <DependentUpon>LabelUser.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UsersControls\ListProject.xaml.cs">
+    <Compile Include="UsersControls\ProjectControls\ListProject.xaml.cs">
       <DependentUpon>ListProject.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UsersControls\ExplorerProject.xaml.cs">
+    <Compile Include="UsersControls\ProjectControls\ExplorerProject.xaml.cs">
       <DependentUpon>ExplorerProject.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UsersControls\newProjectPanel.xaml.cs">
+    <Compile Include="UsersControls\ProjectControls\newProjectPanel.xaml.cs">
       <DependentUpon>newProjectPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UsersControls\NewTemplatePanel.xaml.cs">
+    <Compile Include="UsersControls\TemplatesControls\NewTemplatePanel.xaml.cs">
       <DependentUpon>NewTemplatePanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsersControls\UserControls\UserDetails.xaml.cs">
+      <DependentUpon>UserDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsersControls\UserControls\UserSessionPanel.xaml.cs">
+      <DependentUpon>UserSessionPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsersControls\TemplatesControls\viewTemplate.xaml.cs">
+      <DependentUpon>viewTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsersControls\UserControls\UsersPanel.xaml.cs">
+      <DependentUpon>UsersPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\Inicio\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\Registro\RegisterWindow.xaml.cs">
-      <DependentUpon>RegisterWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -243,47 +275,75 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="UsersControls\AddAtivity.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UsersControls\CardProject.xaml">
+    <Page Include="Styles\StylesResources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UsersControls\LabelProjectAll.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UsersControls\LabelProject.xaml">
+    <Page Include="UsersControls\ActivityControls\ActivityPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UsersControls\LabelUser.xaml">
+    <Page Include="UsersControls\ProjectControls\CardProject.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UsersControls\ListProject.xaml">
+    <Page Include="UsersControls\TemplatesControls\FieldsControls\BoxField.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UsersControls\newProjectPanel.xaml">
-    </Page>
-    <Page Include="UsersControls\AssignResponsibility.xaml">
+    <Page Include="UsersControls\TemplatesControls\FieldsControls\LabelItems.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UsersControls\NewTemplatePanel.xaml">
+    <Page Include="UsersControls\TemplatesControls\FieldsControls\LabelTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UsersControls\ExplorerProject.xaml">
+    <Page Include="UsersControls\TemplatesControls\ListTemplatePanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsersControls\UserControls\LabelsUsers\LabelProject.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsersControls\ActivityControls\LabelTreeActivity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsersControls\UserControls\LabelsUsers\LabelUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsersControls\ProjectControls\ListProject.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsersControls\ProjectControls\newProjectPanel.xaml">
+    </Page>
+    <Page Include="UsersControls\TemplatesControls\NewTemplatePanel.xaml">
+    </Page>
+    <Page Include="UsersControls\ProjectControls\ExplorerProject.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsersControls\UserControls\UserDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsersControls\UserControls\UserSessionPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsersControls\TemplatesControls\viewTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsersControls\UserControls\UsersPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\Inicio\LoginWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\Registro\RegisterWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -292,11 +352,6 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -304,18 +359,17 @@
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Model\MProjectDesk" />
-    <None Include="Model\MProjectDeskSQLITE" />
-    <EntityDeploy Include="Model\SQLiteMProjectModel.edmx">
+    <EntityDeploy Include="Model\MProjectDeskSQLITE.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SQLiteMProjectModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>MProjectDeskSQLITE.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\SQLiteMProjectModel.edmx.diagram">
-      <DependentUpon>SQLiteMProjectModel.edmx</DependentUpon>
+    <None Include="Model\MProjectDeskSQLITE.edmx.diagram">
+      <DependentUpon>MProjectDeskSQLITE.edmx</DependentUpon>
     </None>
-    <None Include="MProjectWPF_ClaveTemporal.pfx" />
+    <None Include="Model\MProjectDeskSQLITE.sqlite" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -358,6 +412,7 @@
     <Resource Include="Resources\Folder-icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
@@ -430,17 +485,38 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\SQLiteMProjectModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SQLiteMProjectModel.edmx</DependentUpon>
-      <LastGenOutput>SQLiteMProjectModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Model\SQLiteMProjectModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SQLiteMProjectModel.edmx</DependentUpon>
-      <LastGenOutput>SQLiteMProjectModel.cs</LastGenOutput>
-    </Content>
+    <Resource Include="Resources\Icons\16px\down-arrow.png" />
+    <Resource Include="Resources\Icons\16px\up-arrow.png" />
+    <Resource Include="Resources\Icons\16px\closed-folder.png" />
+    <Resource Include="Resources\Icons\16px\open-folder.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\16px\ind_Green.png" />
+    <Resource Include="Resources\Icons\16px\ind_Red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Logs\TemplateLog.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Model\MProjectDeskSQLITE.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MProjectDeskSQLITE.edmx</DependentUpon>
+      <LastGenOutput>MProjectDeskSQLITE.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\MProjectDeskSQLITE.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MProjectDeskSQLITE.edmx</DependentUpon>
+      <LastGenOutput>MProjectDeskSQLITE.cs</LastGenOutput>
+    </Content>
+    <Resource Include="Resources\LupaTransparent.png" />
+    <Resource Include="Resources\Icons\16px\template-icon.png" />
+    <Resource Include="Resources\Icons\16px\edit-icon.png" />
+    <Resource Include="Resources\Icons\16px\delete-icon.png" />
+    <Resource Include="Resources\Icons\16px\triangle-down.png" />
+    <Resource Include="Resources\Icons\16px\triangle-up.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.99.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.99.0\build\net46\System.Data.SQLite.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MProjectWPF.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,13 +17,15 @@ using System.Windows.Shapes;
 namespace MProjectWPF.UsersControls
 {
     /// <summary>
-    /// Lógica de interacción para LabelUser.xaml
+    /// Lógica de interacción para UserSessionPanel.xaml
     /// </summary>
-    public partial class LabelUser : System.Windows.Controls.UserControl
+    public partial class UserSessionPanel : System.Windows.Controls.UserControl
     {
-        public LabelUser()
+        public UserSessionPanel(usuarios usu)
         {
             InitializeComponent();
+            nameUser.Text = usu.nombre.ToUpper() + " " + usu.apellido.ToUpper();
+            emailUser.Text = usu.e_mail;
         }
     }
 }

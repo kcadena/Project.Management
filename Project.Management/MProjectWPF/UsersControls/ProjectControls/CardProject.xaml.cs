@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MProjectWPF.Controller;
+using MProjectWPF.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,35 +23,26 @@ namespace MProjectWPF.UsersControls
     public partial class CardProject : System.Windows.Controls.UserControl
     {
         MainWindow mainW;
+        caracteristicas car;
+        MProjectDeskSQLITEEntities dbMP;
 
-        public CardProject(MainWindow mw)
+        public CardProject(MainWindow mw,caracteristicas c,MProjectDeskSQLITEEntities db)
         {
             InitializeComponent();
+            dbMP = db;
+            Proyectos pro = new Proyectos();            
+            List<proyectos_meta_datos> lpro = pro.getProjectMeta((long)c.id_proyecto);           
+            titleCard.Content = lpro.First().valor;
+            percentCard.Text = ""+c.porcentaje_cumplimido; 
+            car = c;
             mainW = mw;
         }
-        private void Grid_MouseEnter(object sender, MouseEventArgs e)
-        {
-            //enterBtnCard.Visibility = Visibility.Visible;           
-        }
-        private void Grid_MouseLeave(object sender, MouseEventArgs e)
-        {
-            //enterBtnCard.Visibility = Visibility.Hidden;
-        }
-        private void Grid_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
+        
         private void enterBtnCard_Click(object sender, RoutedEventArgs e)
         {
             mainW.vp1.Visibility = Visibility.Hidden;
-            Dictionary<string, long> dat = new Dictionary<string, long>();
-            dat["id"] = 1;
-            dat["car"] = 11;
-
-            ExplorerProject exPro = new ExplorerProject(mainW, dat);
-            mainW.viewPlan.Children.Add(exPro);
-            
+            ExplorerProject exPro = new ExplorerProject(mainW,car,dbMP,""+titleCard.Content);
+            mainW.viewPlan.Children.Add(exPro);            
         }
     }
         

@@ -25,17 +25,19 @@ namespace MProjectWPF.Model
         public string estado { get; set; }
         public Nullable<long> porcentaje_asignado { get; set; }
         public Nullable<long> porcentaje_cumplimido { get; set; }
-        public Nullable<long> duracion { get; set; }
-        public string tipo_duracion { get; set; }
         public Nullable<System.DateTime> fecha_inicio { get; set; }
-        public long id_actividad { get; set; }
-        public long id_proyecto { get; set; }
+        public Nullable<long> id_actividad { get; set; }
+        public Nullable<long> id_proyecto { get; set; }
         public Nullable<long> padre_caracteristica { get; set; }
         public Nullable<long> proyecto_padre { get; set; }
+        public string objetivo { get; set; }
+        public Nullable<System.DateTime> fecha_fin { get; set; }
+        public Nullable<long> id_usuario { get; set; }
     
-        public virtual actividadess actividadess { get; set; }
+        public virtual actividades actividades { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<archivos> archivos { get; set; }
+        public virtual usuarios usuarios { get; set; }
         public virtual proyectos proyectos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<caracteristicas> caracteristicas1 { get; set; }

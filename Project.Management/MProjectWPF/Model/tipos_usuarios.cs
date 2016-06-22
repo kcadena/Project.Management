@@ -12,24 +12,18 @@ namespace MProjectWPF.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class actividades
+    public partial class tipos_usuarios
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public actividades()
+        public tipos_usuarios()
         {
-            this.caracteristicas = new HashSet<caracteristicas>();
+            this.usuarios = new HashSet<usuarios>();
         }
     
-        public long id_actividad { get; set; }
+        public long id_tipo_usu { get; set; }
         public string nombre { get; set; }
-        public string descripcion { get; set; }
-        public Nullable<long> pos { get; set; }
-        public Nullable<long> folder { get; set; }
-        public Nullable<long> id_usuario { get; set; }
-        public Nullable<long> compartido { get; set; }
     
-        public virtual usuarios usuarios { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<caracteristicas> caracteristicas { get; set; }
+        public virtual ICollection<usuarios> usuarios { get; set; }
     }
 }
