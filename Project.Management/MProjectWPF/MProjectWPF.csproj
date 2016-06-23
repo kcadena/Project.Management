@@ -211,6 +211,9 @@
     <Compile Include="UsersControls\ActivityControls\ActivityPanel.xaml.cs">
       <DependentUpon>ActivityPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UsersControls\TemplatesControls\FieldTemplatePanel.xaml.cs">
+      <DependentUpon>FieldTemplatePanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UsersControls\ProjectControls\CardProject.xaml.cs">
       <DependentUpon>CardProject.xaml</DependentUpon>
     </Compile>
@@ -280,6 +283,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UsersControls\ActivityControls\ActivityPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsersControls\TemplatesControls\FieldTemplatePanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -498,6 +505,9 @@
     <Content Include="Logs\TemplateLog.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Logs\TemplateTemp.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Model\MProjectDeskSQLITE.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

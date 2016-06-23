@@ -22,14 +22,25 @@ namespace MProjectWPF.UsersControls.TemplatesControls.FieldsControls
     public partial class LabelTemplate : System.Windows.Controls.UserControl
     {
         public string nTemplate;
-        public int idTemplate;
+        public plantillas plant;
+
         public LabelTemplate(plantillas pla)
         {
             InitializeComponent();
             nameTemplate.Text = pla.nombre.ToUpper();
             nTemplate = pla.nombre;
-            idTemplate = (int)pla.id_plantilla;
+            descriptionTemplate.Text = pla.descripcion;
+            plant = pla;
         }
 
+        private void btnEditTemplate_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnDeleteTemplate_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

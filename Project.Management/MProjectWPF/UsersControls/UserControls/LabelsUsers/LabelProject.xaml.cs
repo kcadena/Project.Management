@@ -65,7 +65,7 @@ namespace MProjectWPF.UsersControls
             else if (type == 4)
             {
                 bool isAccepted = false;
-                ControlXml cxml = new ControlXml();
+                ControlXml cxml = new ControlXml("Logs//TemplateLog.xml");
                 if (cxml.isSaved)
                 {
                     if (MessageBox.Show("Existe un diseño de Plantilla sin guardar. \n Desea recuperar el diseño?", "Eliminar", MessageBoxButton.OKCancel) == MessageBoxResult.OK)

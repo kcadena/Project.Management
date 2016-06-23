@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="MProjectDeskSQLITEModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=&quot;C:\Users\David E\Desktop\MProject\Project.Management\MProjectWPF\Model\MProjectDeskSQLITE.sqlite&quot;" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="MProjectDeskSQLITEModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=&quot;C:\Users\David E\Desktop\MProject\Project.Management\MProjectWPF\Model\MProjectDeskSQLITE.sqlite&quot;" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="actividades">
           <Key>
             <PropertyRef Name="id_actividad" />
@@ -481,7 +481,8 @@
             <End Role="usuarios_tipo_usuarios" EntitySet="usuarios_tipo_usuarios" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MProjectDeskSQLITEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -643,17 +644,17 @@
           <Property Name="e_mail" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="nombre" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="apellido" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="genero" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefono" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="cargo" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="entidad" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="imagen" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
           <Property Name="pass" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="actividades" Relationship="Self.FK_actividades_0_0" FromRole="usuarios" ToRole="actividades" />
           <NavigationProperty Name="archivos" Relationship="Self.FK_archivos_0_0" FromRole="usuarios" ToRole="archivos" />
           <NavigationProperty Name="caracteristicas" Relationship="Self.FK_caracteristicas_0_0" FromRole="usuarios" ToRole="caracteristicas" />
           <NavigationProperty Name="proyectos" Relationship="Self.FK_proyectos_0_0" FromRole="usuarios" ToRole="proyectos" />
           <NavigationProperty Name="tipos_usuarios" Relationship="Self.usuarios_tipo_usuarios" FromRole="usuarios" ToRole="tipos_usuarios" />
-          <Property Name="genero" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="false" />
-          <Property Name="telefono" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
-          <Property Name="cargo" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
-          <Property Name="entidad" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
-          <Property Name="imagen" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_actividades_0_0">
           <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
@@ -1104,15 +1105,15 @@
           <EntitySetMapping Name="usuarios">
             <EntityTypeMapping TypeName="MProjectDeskSQLITEModel.usuarios">
               <MappingFragment StoreEntitySet="usuarios">
-                <ScalarProperty Name="imagen" ColumnName="imagen" />
-                <ScalarProperty Name="entidad" ColumnName="entidad" />
-                <ScalarProperty Name="cargo" ColumnName="cargo" />
-                <ScalarProperty Name="telefono" ColumnName="telefono" />
-                <ScalarProperty Name="genero" ColumnName="genero" />
                 <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
                 <ScalarProperty Name="e_mail" ColumnName="e_mail" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="genero" ColumnName="genero" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="cargo" ColumnName="cargo" />
+                <ScalarProperty Name="entidad" ColumnName="entidad" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
                 <ScalarProperty Name="pass" ColumnName="pass" />
               </MappingFragment>
             </EntityTypeMapping>

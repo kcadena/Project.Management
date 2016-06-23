@@ -28,12 +28,12 @@ namespace MProjectWPF.Model
         public string e_mail { get; set; }
         public string nombre { get; set; }
         public string apellido { get; set; }
-        public string pass { get; set; }
         public string genero { get; set; }
         public string telefono { get; set; }
         public string cargo { get; set; }
         public string entidad { get; set; }
         public string imagen { get; set; }
+        public string pass { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<actividades> actividades { get; set; }
