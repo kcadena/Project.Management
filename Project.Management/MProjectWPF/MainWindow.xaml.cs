@@ -97,8 +97,6 @@ namespace MProjectWPF
             lstrec.Items.Add(new LabelProject("Acreditacion Sistemas", this, 0));
             lstrec.Items.Add(new LabelProject("Desarrollo MProject", this, 0));
             lstrec.Items.Add(new LabelProject("Aplicacion Inventario", this, 0));
-
-            
         }
 
         private void InternetAccess()

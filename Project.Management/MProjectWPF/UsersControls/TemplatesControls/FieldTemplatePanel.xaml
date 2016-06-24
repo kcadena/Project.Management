@@ -9,7 +9,11 @@
     <Grid>
         <Label x:Name="lblListFields" Content="PLANTILLA VISTA PREVIA" Margin="0,5,0,0" FontWeight="Bold"  FontFamily="7" Foreground="#FF003F66" Height="25" Background="{x:Null}" VerticalAlignment="Top" />
         <Separator Background="#FF003F66" VerticalAlignment="Top" Margin="0,29,0,0" />
-        
-        <StackPanel x:Name="listFields" Margin="5,45,5,5" Background="{x:Null}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+
+        <ScrollViewer CanContentScroll="True"  Margin="5,45,5,5" VerticalScrollBarVisibility="Hidden">
+            <ItemsControl >
+                <StackPanel x:Name="listFields" Background="{x:Null}"/>
+            </ItemsControl >
+        </ScrollViewer>
     </Grid>
 </UserControl>

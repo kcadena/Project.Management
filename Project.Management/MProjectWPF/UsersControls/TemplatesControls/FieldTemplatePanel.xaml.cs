@@ -27,14 +27,15 @@ namespace MProjectWPF.UsersControls
             InitializeComponent();
         }
 
-        public FieldTemplatePanel(ControlXml cx)
+        public FieldTemplatePanel(ControlXml cx, string nameTemplate)
         {
             InitializeComponent();
-            loadFields(cx);
+            loadFields(cx,nameTemplate);
         }
 
-        private void loadFields(ControlXml cx)
-        {  
+        private void loadFields(ControlXml cx, string nameTemplate)
+        {
+            lblListFields.Content = nameTemplate;            
             foreach (BoxField bf in cx.loadXmlToTemplate()) listFields.Children.Add(bf);
         }
         

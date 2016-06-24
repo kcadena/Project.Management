@@ -17,20 +17,15 @@ namespace MProjectWPF.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public meta_datos()
         {
-            this.meta_datos1 = new HashSet<meta_datos>();
             this.plantillas_meta_datos = new HashSet<plantillas_meta_datos>();
         }
     
         public long id_meta_datos { get; set; }
-        public Nullable<long> id_meta_datos2 { get; set; }
         public string descripcion { get; set; }
         public bool meta_dato_ir { get; set; }
         public long id_tipo_dato { get; set; }
     
         public virtual tipos_datos tipos_datos { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<meta_datos> meta_datos1 { get; set; }
-        public virtual meta_datos meta_datos2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<plantillas_meta_datos> plantillas_meta_datos { get; set; }
     }

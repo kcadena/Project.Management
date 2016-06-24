@@ -52,7 +52,6 @@
             <PropertyRef Name="id_meta_datos" />
           </Key>
           <Property Name="id_meta_datos" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="id_meta_datos2" Type="integer" />
           <Property Name="descripcion" Type="varchar" MaxLength="2147483647" Nullable="false" />
           <Property Name="meta_dato_ir" Type="bit" Nullable="false" />
           <Property Name="id_tipo_dato" Type="integer" Nullable="false" />
@@ -265,18 +264,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_meta_datos_1_0">
-          <End Role="meta_datos" Type="Self.meta_datos" Multiplicity="0..1" />
-          <End Role="meta_datos1" Type="Self.meta_datos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="meta_datos">
-              <PropertyRef Name="id_meta_datos" />
-            </Principal>
-            <Dependent Role="meta_datos1">
-              <PropertyRef Name="id_meta_datos2" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_plantillas_meta_datos_0_0">
           <End Role="meta_datos" Type="Self.meta_datos" Multiplicity="1" />
           <End Role="plantillas_meta_datos" Type="Self.plantillas_meta_datos" Multiplicity="*" />
@@ -440,10 +427,6 @@
             <End Role="tipos_datos" EntitySet="tipos_datos" />
             <End Role="meta_datos" EntitySet="meta_datos" />
           </AssociationSet>
-          <AssociationSet Name="FK_meta_datos_1_0" Association="Self.FK_meta_datos_1_0">
-            <End Role="meta_datos" EntitySet="meta_datos" />
-            <End Role="meta_datos1" EntitySet="meta_datos" />
-          </AssociationSet>
           <AssociationSet Name="FK_plantillas_meta_datos_0_0" Association="Self.FK_plantillas_meta_datos_0_0">
             <End Role="meta_datos" EntitySet="meta_datos" />
             <End Role="plantillas_meta_datos" EntitySet="plantillas_meta_datos" />
@@ -545,13 +528,10 @@
             <PropertyRef Name="id_meta_datos" />
           </Key>
           <Property Name="id_meta_datos" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_meta_datos2" Type="Int64" />
           <Property Name="descripcion" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="meta_dato_ir" Type="Boolean" Nullable="false" />
           <Property Name="id_tipo_dato" Type="Int64" Nullable="false" />
           <NavigationProperty Name="tipos_datos" Relationship="Self.FK_meta_datos_0_0" FromRole="meta_datos" ToRole="tipos_datos" />
-          <NavigationProperty Name="meta_datos1" Relationship="Self.FK_meta_datos_1_0" FromRole="meta_datos" ToRole="meta_datos1" />
-          <NavigationProperty Name="meta_datos2" Relationship="Self.FK_meta_datos_1_0" FromRole="meta_datos1" ToRole="meta_datos" />
           <NavigationProperty Name="plantillas_meta_datos" Relationship="Self.FK_plantillas_meta_datos_0_0" FromRole="meta_datos" ToRole="plantillas_meta_datos" />
         </EntityType>
         <EntityType Name="plantillas">
@@ -776,18 +756,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_meta_datos_1_0">
-          <End Role="meta_datos" Type="Self.meta_datos" Multiplicity="0..1" />
-          <End Role="meta_datos1" Type="Self.meta_datos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="meta_datos">
-              <PropertyRef Name="id_meta_datos" />
-            </Principal>
-            <Dependent Role="meta_datos1">
-              <PropertyRef Name="id_meta_datos2" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_plantillas_meta_datos_0_0">
           <End Role="meta_datos" Type="Self.meta_datos" Multiplicity="1" />
           <End Role="plantillas_meta_datos" Type="Self.plantillas_meta_datos" Multiplicity="*" />
@@ -930,10 +898,6 @@
             <End Role="tipos_datos" EntitySet="tipos_datos" />
             <End Role="meta_datos" EntitySet="meta_datos" />
           </AssociationSet>
-          <AssociationSet Name="FK_meta_datos_1_0" Association="Self.FK_meta_datos_1_0">
-            <End Role="meta_datos" EntitySet="meta_datos" />
-            <End Role="meta_datos1" EntitySet="meta_datos" />
-          </AssociationSet>
           <AssociationSet Name="FK_plantillas_meta_datos_0_0" Association="Self.FK_plantillas_meta_datos_0_0">
             <End Role="meta_datos" EntitySet="meta_datos" />
             <End Role="plantillas_meta_datos" EntitySet="plantillas_meta_datos" />
@@ -1022,7 +986,6 @@
             <EntityTypeMapping TypeName="MProjectDeskSQLITEModel.meta_datos">
               <MappingFragment StoreEntitySet="meta_datos">
                 <ScalarProperty Name="id_meta_datos" ColumnName="id_meta_datos" />
-                <ScalarProperty Name="id_meta_datos2" ColumnName="id_meta_datos2" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="meta_dato_ir" ColumnName="meta_dato_ir" />
                 <ScalarProperty Name="id_tipo_dato" ColumnName="id_tipo_dato" />
