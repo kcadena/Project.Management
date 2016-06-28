@@ -23,21 +23,16 @@ namespace MProjectWPF.UsersControls
     public partial class FieldTemplatePanel :  System.Windows.Controls.UserControl
     {
         public FieldTemplatePanel()
-        {
+        { 
             InitializeComponent();
         }
 
-        public FieldTemplatePanel(ControlXml cx, string nameTemplate)
+        public FieldTemplatePanel(string nameTemplate)
         {
             InitializeComponent();
-            loadFields(cx,nameTemplate);
+            lblListFields.Content = nameTemplate;
         }
 
-        private void loadFields(ControlXml cx, string nameTemplate)
-        {
-            lblListFields.Content = nameTemplate;            
-            foreach (BoxField bf in cx.loadXmlToTemplate()) listFields.Children.Add(bf);
-        }
-        
+       
     }
 }

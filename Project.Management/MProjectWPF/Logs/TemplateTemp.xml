@@ -2,5 +2,7 @@
 <template haveContent = "false" >
   <titleTemplate/>
   <descripcionTemplate/>
+  <titleProject/>
+  <descripcionProject/>
   <fields/>
 </template>

@@ -23,8 +23,8 @@ namespace MProjectWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        public Usuarios usu;
-        public usuarios usua;
+        public Usuarios usuControl;
+        public usuarios_meta_datos usuModel;
         UserSessionPanel usp = null;
         public MProjectDeskSQLITEEntities dbMP;
         bool perAct = true;
@@ -34,10 +34,10 @@ namespace MProjectWPF
         {
             dbMP = new MProjectDeskSQLITEEntities();
             InitializeComponent();
-            usu = new Usuarios(dbMP);
-            usua = usu.getUser("kelvin.cadena@gmail.com", "123");
+            usuControl = new Usuarios(dbMP);
+            usuModel = usuControl.getUser("kelvin.cadena@gmail.com", "123");
             addLabels();
-            nameConection.Content = usua.nombre + " " + usua.apellido; 
+            nameConection.Content = usuModel.nombre + " " + usuModel.apellido; 
             Thread oThread = new Thread(() =>
             {
                 InternetAccess();
@@ -47,23 +47,23 @@ namespace MProjectWPF
 
         private void user1_Click(object sender, RoutedEventArgs e)
         {
-            usua = usu.getUser("kelvin.cadena@gmail.com", "123");
+            usuModel = usuControl.getUser("kelvin.cadena@gmail.com", "123");
             addLabels();
-            nameConection.Content = usua.nombre + " " + usua.apellido;
+            nameConection.Content = usuModel.nombre + " " + usuModel.apellido;
         }
 
         private void user2_Click(object sender, RoutedEventArgs e)
         {
-            usua = usu.getUser("david@gmail.com", "123");
+            usuModel = usuControl.getUser("david@gmail.com", "123");
             addLabels();
-            nameConection.Content = usua.nombre + " " + usua.apellido;
+            nameConection.Content = usuModel.nombre + " " + usuModel.apellido;
         }
 
         private void user3_Click(object sender, RoutedEventArgs e)
         {
-            usua = usu.getUser("karenEst@hotmail.com", "123");
+            usuModel = usuControl.getUser("karenEst@hotmail.com", "123");
             addLabels();
-            nameConection.Content = usua.nombre + " " + usua.apellido;
+            nameConection.Content = usuModel.nombre + " " + usuModel.apellido;
         }
 
         public void addLabels()
@@ -73,30 +73,26 @@ namespace MProjectWPF
             lstrec.Items.Clear();
 
             spViewA.Children.Clear();
-            spViewA.Children.Add(new UserDetails(usua));
+            spViewA.Children.Add(new UserDetails(usuModel));
 
             spViewB.Children.Clear();
-            spViewB.Children.Add(new UsersPanel(this, usu));
+            spViewB.Children.Add(new UsersPanel(this, usuControl));
             
-            lstmen.Items.Add(new LabelProject("Nuevo Proyecto", this, 1));
-            lstmen.Items.Add(new LabelProject("Abrir Proyecto", this, 2));
-            lstmen.Items.Add(new LabelProject("Importar Proyecto", this, 3));
-            long i = 0;
-            foreach (var tu in usua.tipos_usuarios)
+            lstmen.Items.Add(new LabelMenu("Nuevo Proyecto", this, 1));
+            lstmen.Items.Add(new LabelMenu("Abrir Proyecto", this, 2));
+            lstmen.Items.Add(new LabelMenu("Importar Proyecto", this, 3));
+            
+            if ((bool)usuModel.usuarios.administrador)
             {
-                i = tu.id_tipo_usu;
+                lstmen.Items.Add(new LabelMenu("Nueva Plantilla", this, 4));
             }
-            if (i == 1)
-            {
-                lstmen.Items.Add(new LabelProject("Nueva Plantilla", this, 4));
-            }
-            lal.Children.Add(new ListProject(this, usua, dbMP));
+            lal.Children.Add(new ListProject(this, usuModel));
 
-            lstrec.Items.Add(new LabelProject("Proyectos de Ingenieria", this, 0));
-            lstrec.Items.Add(new LabelProject("Desarrollo Investic ", this, 0));
-            lstrec.Items.Add(new LabelProject("Acreditacion Sistemas", this, 0));
-            lstrec.Items.Add(new LabelProject("Desarrollo MProject", this, 0));
-            lstrec.Items.Add(new LabelProject("Aplicacion Inventario", this, 0));
+            lstrec.Items.Add(new LabelMenu("Proyectos de Ingenieria", this, 0));
+            lstrec.Items.Add(new LabelMenu("Desarrollo Investic ", this, 0));
+            lstrec.Items.Add(new LabelMenu("Acreditacion Sistemas", this, 0));
+            lstrec.Items.Add(new LabelMenu("Desarrollo MProject", this, 0));
+            lstrec.Items.Add(new LabelMenu("Aplicacion Inventario", this, 0));
         }
 
         private void InternetAccess()
@@ -130,7 +126,7 @@ namespace MProjectWPF
         private void Button_Click(object sender, RoutedEventArgs e)
         {   
             if (perAct) { 
-                usp = new UserSessionPanel(usua);            
+                usp = new UserSessionPanel(usuModel);            
                 usp.Margin = new Thickness(0,53,5,0);
                 grid_main_window.Children.Add(usp);                
                 perAct = false;

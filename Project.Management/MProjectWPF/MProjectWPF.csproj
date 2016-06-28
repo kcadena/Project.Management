@@ -139,6 +139,9 @@
     <Compile Include="Model\archivos.cs">
       <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\asignaciones.cs">
+      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\caracteristicas.cs">
       <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
     </Compile>
@@ -160,6 +163,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MProjectDeskSQLITE.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Model\mproject_key.cs">
+      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\plantillas.cs">
       <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
     </Compile>
@@ -172,7 +178,7 @@
     <Compile Include="Model\proyectos_meta_datos.cs">
       <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\repositorio.cs">
+    <Compile Include="Model\repositorios_usuarios.cs">
       <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\tipos_archivos.cs">
@@ -181,10 +187,10 @@
     <Compile Include="Model\tipos_datos.cs">
       <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\tipos_usuarios.cs">
+    <Compile Include="Model\usuarios.cs">
       <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\usuarios.cs">
+    <Compile Include="Model\usuarios_meta_datos.cs">
       <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -201,10 +207,13 @@
     <Compile Include="UsersControls\ActivityControls\ActivityPanel.xaml.cs">
       <DependentUpon>ActivityPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UsersControls\ProjectControls\FieldsControls\LabelProject.xaml.cs">
+      <DependentUpon>LabelProject.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UsersControls\TemplatesControls\FieldTemplatePanel.xaml.cs">
       <DependentUpon>FieldTemplatePanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UsersControls\ProjectControls\CardProject.xaml.cs">
+    <Compile Include="UsersControls\ProjectControls\FieldsControls\CardProject.xaml.cs">
       <DependentUpon>CardProject.xaml</DependentUpon>
     </Compile>
     <Compile Include="UsersControls\TemplatesControls\ControlXml.cs" />
@@ -220,8 +229,8 @@
     <Compile Include="UsersControls\TemplatesControls\ListTemplatePanel.xaml.cs">
       <DependentUpon>ListTemplatePanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UsersControls\UserControls\LabelsUsers\LabelProject.xaml.cs">
-      <DependentUpon>LabelProject.xaml</DependentUpon>
+    <Compile Include="UsersControls\UserControls\LabelsUsers\LabelMenu.xaml.cs">
+      <DependentUpon>LabelMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="UsersControls\ActivityControls\LabelTreeActivity.xaml.cs">
       <DependentUpon>LabelTreeActivity.xaml</DependentUpon>
@@ -229,11 +238,11 @@
     <Compile Include="UsersControls\UserControls\LabelsUsers\LabelUser.xaml.cs">
       <DependentUpon>LabelUser.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UsersControls\ProjectControls\ListProject.xaml.cs">
-      <DependentUpon>ListProject.xaml</DependentUpon>
+    <Compile Include="UsersControls\ProjectControls\ListProjectPanel.xaml.cs">
+      <DependentUpon>ListProjectPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UsersControls\ProjectControls\ExplorerProject.xaml.cs">
-      <DependentUpon>ExplorerProject.xaml</DependentUpon>
+    <Compile Include="UsersControls\ProjectControls\ExplorerProjectPanel.xaml.cs">
+      <DependentUpon>ExplorerProjectPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="UsersControls\ProjectControls\newProjectPanel.xaml.cs">
       <DependentUpon>newProjectPanel.xaml</DependentUpon>
@@ -276,11 +285,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UsersControls\ProjectControls\FieldsControls\LabelProject.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UsersControls\TemplatesControls\FieldTemplatePanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UsersControls\ProjectControls\CardProject.xaml">
+    <Page Include="UsersControls\ProjectControls\FieldsControls\CardProject.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -300,7 +313,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UsersControls\UserControls\LabelsUsers\LabelProject.xaml">
+    <Page Include="UsersControls\UserControls\LabelsUsers\LabelMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -312,7 +325,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UsersControls\ProjectControls\ListProject.xaml">
+    <Page Include="UsersControls\ProjectControls\ListProjectPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -320,7 +333,7 @@
     </Page>
     <Page Include="UsersControls\TemplatesControls\NewTemplatePanel.xaml">
     </Page>
-    <Page Include="UsersControls\ProjectControls\ExplorerProject.xaml">
+    <Page Include="UsersControls\ProjectControls\ExplorerProjectPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -489,6 +502,7 @@
     </Content>
     <Content Include="Logs\TemplateTemp.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Model\MProjectDeskSQLITE.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -500,6 +514,7 @@
       <DependentUpon>MProjectDeskSQLITE.edmx</DependentUpon>
       <LastGenOutput>MProjectDeskSQLITE.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\Icons\16px\template-icon-gray.png" />
     <Resource Include="Resources\LupaTransparent.png" />
     <Resource Include="Resources\Icons\16px\template-icon.png" />
     <Resource Include="Resources\Icons\16px\edit-icon.png" />

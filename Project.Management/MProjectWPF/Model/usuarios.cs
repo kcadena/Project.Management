@@ -14,36 +14,10 @@ namespace MProjectWPF.Model
     
     public partial class usuarios
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public usuarios()
-        {
-            this.actividades = new HashSet<actividades>();
-            this.archivos = new HashSet<archivos>();
-            this.caracteristicas = new HashSet<caracteristicas>();
-            this.proyectos = new HashSet<proyectos>();
-            this.tipos_usuarios = new HashSet<tipos_usuarios>();
-        }
-    
         public long id_usuario { get; set; }
-        public string e_mail { get; set; }
-        public string nombre { get; set; }
-        public string apellido { get; set; }
-        public string genero { get; set; }
-        public string telefono { get; set; }
-        public string cargo { get; set; }
-        public string entidad { get; set; }
-        public string imagen { get; set; }
         public string pass { get; set; }
+        public bool administrador { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<actividades> actividades { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<archivos> archivos { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<caracteristicas> caracteristicas { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<proyectos> proyectos { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tipos_usuarios> tipos_usuarios { get; set; }
+        public virtual usuarios_meta_datos usuarios_meta_datos { get; set; }
     }
 }

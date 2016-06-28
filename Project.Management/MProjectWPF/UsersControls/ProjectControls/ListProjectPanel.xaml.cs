@@ -26,19 +26,18 @@ namespace MProjectWPF.UsersControls
         MainWindow mainW;        
         CardProject cd;               
 
-        public ListProject(MainWindow mw,usuarios usu, MProjectDeskSQLITEEntities db)
+        public ListProject(MainWindow mw,usuarios_meta_datos usu)
         {
             InitializeComponent();
             mainW = mw;
 
-            List<caracteristicas> lup = usu.caracteristicas.ToList().
-                Where(a => a.id_proyecto != null).ToList();
+            List<caracteristicas> lup = usu.caracteristicas.ToList();
 
             if (lup != null)
             {
                 foreach (var x in lup)
                 {
-                    CardProject cp = new CardProject(mainW,x,db);
+                    CardProject cp = new CardProject(mainW,x);
                     listPry.Items.Add(cp);
                 }
             }

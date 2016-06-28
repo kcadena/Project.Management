@@ -14,20 +14,19 @@ namespace MProjectWPF.Model
     
     public partial class plantillas_meta_datos
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public plantillas_meta_datos()
-        {
-            this.proyectos_meta_datos = new HashSet<proyectos_meta_datos>();
-        }
-    
+        public string keym { get; set; }
+        public long idx_plantilla_meta_dato { get; set; }
+        public long idx_plantilla { get; set; }
+        public long idx_meta_dato { get; set; }
         public long id_plantilla_meta_dato { get; set; }
         public long id_plantilla { get; set; }
-        public long id_meta_datos { get; set; }
+        public long id_meta_dato { get; set; }
+        public long id_usuario { get; set; }
         public bool requerido { get; set; }
+        public System.DateTime fecha_ultima_modificacion { get; set; }
     
         public virtual meta_datos meta_datos { get; set; }
         public virtual plantillas plantillas { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<proyectos_meta_datos> proyectos_meta_datos { get; set; }
+        public virtual usuarios_meta_datos usuarios_meta_datos { get; set; }
     }
 }

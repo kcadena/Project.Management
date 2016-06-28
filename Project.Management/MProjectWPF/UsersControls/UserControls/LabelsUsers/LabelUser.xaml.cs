@@ -21,14 +21,18 @@ namespace MProjectWPF.UsersControls
     /// </summary>
     public partial class LabelUser : System.Windows.Controls.UserControl
     {
-        public usuarios usu;
-        public LabelUser(usuarios u)
+        public usuarios_meta_datos usu;
+
+        public LabelUser(usuarios_meta_datos u)
         {
             InitializeComponent();
             usu = u;
             if (usu.imagen != null)
             {
-                imgProfile.Source = new BitmapImage(new Uri(usu.imagen));
+                string repositorioLocal = usu.repositorios_usuarios.ruta_repositorio_local;
+                string image = usu.imagen;                
+                string sourceImage = repositorioLocal + "\\perfil\\imagen\\" + usu.imagen;
+                imgProfile.Source = new BitmapImage(new Uri(sourceImage));
             }
             else
             {
@@ -44,7 +48,6 @@ namespace MProjectWPF.UsersControls
             nameUser.Text = (usu.nombre + " " + usu.apellido).ToUpper();
             emailUser.Text = usu.e_mail;
             occupationUser.Text = usu.cargo;
-
         }
 
         public void showButtons()
@@ -52,6 +55,7 @@ namespace MProjectWPF.UsersControls
             btnChat.Visibility = Visibility.Visible;
             btnMessage.Visibility = Visibility.Visible;
         }
+
         public void hideButtons()
         {
             btnChat.Visibility = Visibility.Hidden;

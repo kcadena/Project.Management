@@ -14,7 +14,6 @@ namespace MProjectWPF.Controller
     public class Usuarios
     {
         MProjectDeskSQLITEEntities dbMP;
-        usuarios usu = new usuarios();
 
         public Usuarios(MProjectDeskSQLITEEntities db)
         {
@@ -40,18 +39,18 @@ namespace MProjectWPF.Controller
             }
         }
 
-        public usuarios getUser(string email, string pass)
+        public usuarios_meta_datos getUser(string email, string pass)
         {
             var datos = (from x in dbMP.usuarios
-                        where x.e_mail == email && x.pass == pass
+                        where x.usuarios_meta_datos.e_mail == email && x.pass == pass
                         select x).Single();
-            
-            return datos;
-        }
-        public List<usuarios> listUsers()
-        {
-            return (from x in dbMP.usuarios select x).ToList();
+
+            return datos.usuarios_meta_datos;
         }
 
+        public List<usuarios_meta_datos> listUsers()
+        {
+            return (from x in dbMP.usuarios_meta_datos select x).ToList();
+        }
     }
 }

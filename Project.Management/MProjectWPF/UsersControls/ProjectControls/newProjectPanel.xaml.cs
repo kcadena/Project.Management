@@ -1,4 +1,10 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using MProjectWPF.Controller;
+using MProjectWPF.Model;
+using MProjectWPF.UsersControls.ProjectControls.FieldsControls;
+using MProjectWPF.UsersControls.TemplatesControls;
+using MProjectWPF.UsersControls.TemplatesControls.FieldsControls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,17 +26,166 @@ namespace MProjectWPF.UsersControls
     /// </summary>
     public partial class newProjectPanel : System.Windows.Controls.UserControl
     {
-        MainWindow mW;
+        MainWindow mainW;
+        LabelProject lblPro;        
+        public BoxField fieldTitle;
+        string fileName,fileSource;
+        List<BoxField> lisBF;
+        Plantillas plant;
+
         public newProjectPanel(MainWindow mw)
         {
             InitializeComponent();
-            mW = mw;
+            mainW = mw;
+            plant = new Plantillas(mainW.dbMP);
+            loadListTemplate();
+            listBox.SelectedIndex = 0;           
+            vTemplate.addOptionTemplate(false);
+        }
+
+        private void loadListTemplate()
+        {
+            Plantillas plant = new Plantillas(mainW.dbMP);
+
+            foreach (plantillas pla in plant.listTemplate())
+            {
+                LabelProject lp = new LabelProject(pla);
+                listBox.Items.Add(lp);
+            }
+        }
+
+        private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lblPro != null) lblPro.lblCheck.Visibility = Visibility.Hidden;
+
+            if (listBox.SelectedIndex >= 0)
+            {
+                lblPro = (LabelProject)listBox.SelectedItem;
+                lblPro.lblCheck.Visibility = Visibility.Visible;
+                labelNameProject.Content = lblPro.lblTitleProject;
+                loadFields();
+            }
+        }
+
+        public void loadFields()
+        {
+            vTemplate.stackPanelFields.Children.Clear();            
+
+            vTemplate.gbTemplate.Header = "TITULO PROYECTO";
+
+            lisBF = plant.listBoxField(lblPro.pla,this);            
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
+            mainW.addLabels();
             this.Visibility = Visibility.Hidden;
-            mW.vp1.Visibility = Visibility.Visible;   
+            mainW.vp1.Visibility = Visibility.Visible;
+        }
+
+        private void btnUploadImage_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFile = new OpenFileDialog();
+            openFile.Filter = "Archivos de imágen (.jpg)|*.jpg|All Files (*.*)|*.*";
+            openFile.FilterIndex = 1;
+            openFile.Multiselect = false;
+            bool? checarOK = openFile.ShowDialog();
+
+            if (checarOK == true)
+            {
+                fileSource = openFile.FileName;
+                fileName   = openFile.SafeFileName;
+                iconProject.Source = new BitmapImage(new Uri(fileSource));
+            }
+
+        }
+
+        private void projectName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (projectName.Text == "")
+            {
+                vTemplate.gbTemplate.Header = "TITULO DEL PROYECTO";
+            }
+            else
+            {
+                vTemplate.gbTemplate.Header = projectName.Text.ToUpper();
+                fieldTitle.boxField3.Text = projectName.Text;
+            }
+        }
+
+        public void titleBoxField_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (fieldTitle.boxField3.Text == "")
+            {
+                vTemplate.gbTemplate.Header = "TITULO DEL PROYECTO";
+            }
+            else
+            {
+                vTemplate.gbTemplate.Header = fieldTitle.boxField3.Text.ToUpper();
+                projectName.Text = fieldTitle.boxField3.Text;
+            }
+        }
+
+        private void btnAddProject_Click(object sender, RoutedEventArgs e)
+        {
+            if (fieldValidation())
+            {   
+                Proyectos proControl = new Proyectos(mainW.dbMP);
+                ControlXml cxml = new ControlXml("Logs//TemplateTemp.xml");
+                string pName = projectName.Text.ToLower().Replace(" ", "");
+
+                if (proControl.saveProject(mainW.usuModel, lisBF, fileName,detailText.Text,pName,cxml))
+                {
+                    if(fileName != null)
+                    {
+                        string rutaDestino = mainW.usuModel.repositorios_usuarios.ruta_repositorio_local + "/proyectos/proyecto" + pName + "/icons/";
+                        
+                        string archivoDestino = System.IO.Path.Combine(rutaDestino, fileName);
+
+                        if (!System.IO.Directory.Exists(rutaDestino))
+                        {
+                            System.IO.Directory.CreateDirectory(rutaDestino);
+                        }
+                        System.IO.File.Copy(fileSource, archivoDestino, true);
+                    }
+
+                    string ruta= mainW.usuModel.repositorios_usuarios.ruta_repositorio_local + "/proyectos/proyecto" + pName + "/plantilla/";
+                    string source = "Logs\\TemplateTemp.xml";
+                    string template = "plantilla" + pName + ".xml";
+
+                    string templateDirection = System.IO.Path.Combine(ruta,template);
+
+                    if (!System.IO.Directory.Exists(ruta))
+                    {
+                        System.IO.Directory.CreateDirectory(ruta);
+                    }
+                    System.IO.File.Copy(source, templateDirection, true);
+
+                    MessageBox.Show("Proyecto guardado exitosamente!!");
+                }
+
+            }
+        }
+
+        private bool fieldValidation()
+        {
+            bool val = true;
+
+            if (lisBF!=null)
+            {
+                foreach (BoxField bf in lisBF)
+                {
+                    if (!bf.validationFields())
+                    {
+                        val = false;
+                    }
+                }
+            }
+            else
+            {
+                val = false;
+            }
+            return val;
         }
     }
 }

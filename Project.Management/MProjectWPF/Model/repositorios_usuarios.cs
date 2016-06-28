@@ -12,19 +12,12 @@ namespace MProjectWPF.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class proyectos_meta_datos
+    public partial class repositorios_usuarios
     {
-        public string keym { get; set; }
-        public long idx_proyecto_meta_dato { get; set; }
-        public long idx_proyecto { get; set; }
-        public long id_proyecto_meta_dato { get; set; }
-        public long id_proyecto { get; set; }
-        public string valor { get; set; }
-        public bool is_title { get; set; }
         public long id_usuario { get; set; }
-        public System.DateTime fecha_ultima_modificacion { get; set; }
+        public string ruta_repositorio_local { get; set; }
+        public string ruta_repositorio_servidor { get; set; }
     
-        public virtual proyectos proyectos { get; set; }
         public virtual usuarios_meta_datos usuarios_meta_datos { get; set; }
     }
 }

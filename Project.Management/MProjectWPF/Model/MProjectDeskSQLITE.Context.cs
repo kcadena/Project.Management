@@ -27,16 +27,18 @@ namespace MProjectWPF.Model
     
         public virtual DbSet<actividades> actividades { get; set; }
         public virtual DbSet<archivos> archivos { get; set; }
+        public virtual DbSet<asignaciones> asignaciones { get; set; }
         public virtual DbSet<caracteristicas> caracteristicas { get; set; }
         public virtual DbSet<meta_datos> meta_datos { get; set; }
+        public virtual DbSet<mproject_key> mproject_key { get; set; }
         public virtual DbSet<plantillas> plantillas { get; set; }
         public virtual DbSet<plantillas_meta_datos> plantillas_meta_datos { get; set; }
         public virtual DbSet<proyectos> proyectos { get; set; }
         public virtual DbSet<proyectos_meta_datos> proyectos_meta_datos { get; set; }
-        public virtual DbSet<repositorio> repositorio { get; set; }
+        public virtual DbSet<repositorios_usuarios> repositorios_usuarios { get; set; }
         public virtual DbSet<tipos_archivos> tipos_archivos { get; set; }
         public virtual DbSet<tipos_datos> tipos_datos { get; set; }
-        public virtual DbSet<tipos_usuarios> tipos_usuarios { get; set; }
         public virtual DbSet<usuarios> usuarios { get; set; }
+        public virtual DbSet<usuarios_meta_datos> usuarios_meta_datos { get; set; }
     }
 }

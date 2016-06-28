@@ -12,18 +12,14 @@ namespace MProjectWPF.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class tipos_usuarios
+    public partial class asignaciones
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tipos_usuarios()
-        {
-            this.usuarios = new HashSet<usuarios>();
-        }
+        public string keym { get; set; }
+        public long idx_caracteristica { get; set; }
+        public long id_caracteristica { get; set; }
+        public long id_usuario { get; set; }
+        public System.DateTime fecha_ultima_modificacion { get; set; }
     
-        public long id_tipo_usu { get; set; }
-        public string nombre { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<usuarios> usuarios { get; set; }
+        public virtual caracteristicas caracteristicas { get; set; }
     }
 }

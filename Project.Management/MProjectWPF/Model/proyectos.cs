@@ -17,24 +17,23 @@ namespace MProjectWPF.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public proyectos()
         {
-            this.caracteristicas = new HashSet<caracteristicas>();
-            this.caracteristicas1 = new HashSet<caracteristicas>();
             this.proyectos_meta_datos = new HashSet<proyectos_meta_datos>();
         }
     
+        public string keym { get; set; }
+        public long idx_proyecto { get; set; }
+        public long idx_caracteristica { get; set; }
         public long id_proyecto { get; set; }
-        public long id_plantilla { get; set; }
-        public long id_repositorio { get; set; }
+        public long id_caracteristica { get; set; }
+        public long id_usuario { get; set; }
+        public string plantilla { get; set; }
         public bool IR_proyecto { get; set; }
-        public Nullable<long> id_usuario { get; set; }
+        public string icon { get; set; }
+        public string descripcion { get; set; }
+        public System.DateTime fecha_ultima_modificacion { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<caracteristicas> caracteristicas { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<caracteristicas> caracteristicas1 { get; set; }
-        public virtual plantillas plantillas { get; set; }
-        public virtual usuarios usuarios { get; set; }
-        public virtual repositorio repositorio { get; set; }
+        public virtual caracteristicas caracteristicas { get; set; }
+        public virtual usuarios_meta_datos usuarios_meta_datos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<proyectos_meta_datos> proyectos_meta_datos { get; set; }
     }

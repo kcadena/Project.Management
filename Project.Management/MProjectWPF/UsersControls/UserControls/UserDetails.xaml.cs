@@ -14,18 +14,22 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MProjectWPF.UsersControls
+namespace MProjectWPF.UsersControls.UserControls
 {
     /// <summary>
-    /// Lógica de interacción para UserSessionPanel.xaml
+    /// Lógica de interacción para UserDetails.xaml
     /// </summary>
-    public partial class UserSessionPanel : System.Windows.Controls.UserControl
+    public partial class UserDetails : System.Windows.Controls.UserControl
     {
-        public UserSessionPanel(usuarios_meta_datos usu)
+        public UserDetails(usuarios_meta_datos usu)
         {
             InitializeComponent();
-            nameUser.Text = usu.nombre.ToUpper() + " " + usu.apellido.ToUpper();
-            emailUser.Text = usu.e_mail;
+            nameTxt.Text = usu.nombre + " " + usu.apellido;
+            emailTxt.Text = usu.e_mail;
+            ocupationTxt.Text = usu.cargo;
+            companyTxt.Text = usu.entidad;
+            phoneTxt.Text = usu.telefono;
         }
+
     }
 }

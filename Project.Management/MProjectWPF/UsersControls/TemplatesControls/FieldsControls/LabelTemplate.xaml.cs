@@ -28,6 +28,11 @@ namespace MProjectWPF.UsersControls.TemplatesControls.FieldsControls
         ListTemplatePanel lstTemPan;
         NewTemplatePanel newTemp;
 
+        public LabelTemplate()
+        {
+            InitializeComponent();
+        }
+        
         public LabelTemplate(plantillas pla, MProjectDeskSQLITEEntities db,ListTemplatePanel ltp, NewTemplatePanel ntp)
         {
             InitializeComponent();
@@ -66,7 +71,7 @@ namespace MProjectWPF.UsersControls.TemplatesControls.FieldsControls
         {
             Plantillas planc = new Plantillas(dbMP);
             planc.deleteTemplate(plant);
-            lstTemPan.updateListTemplates();
+            lstTemPan.updateListTemplates(this);
         }
     }
 }

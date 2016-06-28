@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="MProjectWPF.UsersControls.ExplorerProject"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MProjectWPF.UsersControls"
+             mc:Ignorable="d" >
+    <Grid x:Name="Grid_Explorer" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" Margin="5,0,0,5" Background="#FFB6C3EC">
+            <Label x:Name="titlePro" Content="FICHAS ETNOGRAFICAS" Margin="5,5,5,20" VerticalAlignment="Top" Height="30" FontWeight="Bold" FontSize="13.333" Foreground="#FF237012"/>
+            <TreeView Name="tvPro" Background="#7F77E608" Margin="5,30,5,20" >
+                <TreeView.Resources>
+                    <!--ControlTemplate TargetType="{x:Type TreeViewItem}" x:Key="selectedTemplate" >
+                        
+                    </-->
+                </TreeView.Resources>
+                <TreeView.ItemContainerStyle>
+                    <Style TargetType="TreeViewItem">
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="FontStyle" Value="Italic"/>
+                                <Setter Property="Foreground" Value="Red"/>
+                                <Setter Property="Background" Value="Green"/>
+                                <!--Setter Property="Template" Value="{StaticResource selectedTemplate}"/-->
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TreeView.ItemContainerStyle>
+            </TreeView>
+        </Grid>
+        <GridSplitter Width="5" Grid.Column="1" HorizontalAlignment="Stretch" />
+
+        <Grid x:Name="workplaceGrid" Grid.Column="2"/>
+
+        <Button Margin="0,0,0,5" VerticalAlignment="Bottom"  Content="Back" Height="20" Width="30" Click="Button_Click"/>
+    </Grid>
+</UserControl>

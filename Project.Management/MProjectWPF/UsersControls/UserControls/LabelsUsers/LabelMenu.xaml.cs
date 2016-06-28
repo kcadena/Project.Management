@@ -20,13 +20,13 @@ namespace MProjectWPF.UsersControls
     /// <summary>
     /// Lógica de interacción para lbl.xaml
     /// </summary>
-    public partial class LabelProject : System.Windows.Controls.UserControl
+    public partial class LabelMenu : System.Windows.Controls.UserControl
     {
         MainWindow mainW;
         string text;
         int type;
 
-        public LabelProject(string txt, MainWindow mw, int ty)
+        public LabelMenu(string txt, MainWindow mw, int ty)
         {
             InitializeComponent();
             lbl.Text = "   "+txt;

@@ -20,12 +20,17 @@ namespace MProjectWPF.Model
             this.plantillas_meta_datos = new HashSet<plantillas_meta_datos>();
         }
     
+        public string keym { get; set; }
+        public long idx_meta_dato { get; set; }
         public long id_meta_datos { get; set; }
+        public long id_usuario { get; set; }
         public string descripcion { get; set; }
         public bool meta_dato_ir { get; set; }
         public long id_tipo_dato { get; set; }
+        public System.DateTime fecha_ultima_modificacion { get; set; }
     
         public virtual tipos_datos tipos_datos { get; set; }
+        public virtual usuarios_meta_datos usuarios_meta_datos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<plantillas_meta_datos> plantillas_meta_datos { get; set; }
     }

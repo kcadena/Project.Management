@@ -14,22 +14,18 @@ namespace MProjectWPF.Model
     
     public partial class actividades
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public actividades()
-        {
-            this.caracteristicas = new HashSet<caracteristicas>();
-        }
-    
+        public string keym { get; set; }
+        public long idx_actividad { get; set; }
+        public long idx_caracterisitca { get; set; }
         public long id_actividad { get; set; }
+        public long id_caracteristica { get; set; }
+        public long id_usuario { get; set; }
         public string nombre { get; set; }
         public string descripcion { get; set; }
-        public Nullable<long> pos { get; set; }
-        public Nullable<long> folder { get; set; }
-        public Nullable<long> id_usuario { get; set; }
-        public Nullable<long> compartido { get; set; }
+        public long pos { get; set; }
+        public long folder { get; set; }
+        public System.DateTime fecha_ultima_modificacion { get; set; }
     
-        public virtual usuarios usuarios { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<caracteristicas> caracteristicas { get; set; }
+        public virtual caracteristicas caracteristicas { get; set; }
     }
 }

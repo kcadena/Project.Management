@@ -20,8 +20,12 @@ namespace MProjectWPF.Model
             this.archivos = new HashSet<archivos>();
         }
     
+        public string keym { get; set; }
+        public long idx_tipo_archivo { get; set; }
         public long id_tipo_archivo { get; set; }
         public string nombre { get; set; }
+        public long id_usuario { get; set; }
+        public System.DateTime fecha_ultima_modificacion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<archivos> archivos { get; set; }
