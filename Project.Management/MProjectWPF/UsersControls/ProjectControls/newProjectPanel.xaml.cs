@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using MProjectWPF.Controller;
 using MProjectWPF.Model;
+using MProjectWPF.UsersControls.ProjectControls;
 using MProjectWPF.UsersControls.ProjectControls.FieldsControls;
 using MProjectWPF.UsersControls.TemplatesControls;
 using MProjectWPF.UsersControls.TemplatesControls.FieldsControls;
@@ -43,6 +44,16 @@ namespace MProjectWPF.UsersControls
             vTemplate.addOptionTemplate(false);
         }
 
+        public newProjectPanel(ProjectPanel ppn)
+        {
+            InitializeComponent();
+            mainW = ppn.mainW;            
+            vTemplate.addOptionTemplate(false);
+            LabelProject lp = new LabelProject();
+            listBox.Items.Add(lp);
+            listBox.IsEnabled = false;
+        }
+
         private void loadListTemplate()
         {
             Plantillas plant = new Plantillas(mainW.dbMP);
@@ -50,7 +61,7 @@ namespace MProjectWPF.UsersControls
             foreach (plantillas pla in plant.listTemplate())
             {
                 LabelProject lp = new LabelProject(pla);
-                listBox.Items.Add(lp);
+                listBox.Items.Add(lp);                
             }
         }
 
@@ -63,24 +74,22 @@ namespace MProjectWPF.UsersControls
                 lblPro = (LabelProject)listBox.SelectedItem;
                 lblPro.lblCheck.Visibility = Visibility.Visible;
                 labelNameProject.Content = lblPro.lblTitleProject;
+                projectName.Text = "";
+                detailText.Text = "";
                 loadFields();
             }
         }
 
         public void loadFields()
         {
-            vTemplate.stackPanelFields.Children.Clear();            
-
+            vTemplate.stackPanelFields.Children.Clear(); 
             vTemplate.gbTemplate.Header = "TITULO PROYECTO";
-
-            lisBF = plant.listBoxField(lblPro.pla,this);            
+            lisBF = plant.listBoxField(lblPro.pla, this);
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            mainW.addLabels();
-            this.Visibility = Visibility.Hidden;
-            mainW.vp1.Visibility = Visibility.Visible;
+            exit();
         }
 
         private void btnUploadImage_Click(object sender, RoutedEventArgs e)
@@ -105,6 +114,7 @@ namespace MProjectWPF.UsersControls
             if (projectName.Text == "")
             {
                 vTemplate.gbTemplate.Header = "TITULO DEL PROYECTO";
+                fieldTitle.boxField3.Text = "";
             }
             else
             {
@@ -118,6 +128,8 @@ namespace MProjectWPF.UsersControls
             if (fieldTitle.boxField3.Text == "")
             {
                 vTemplate.gbTemplate.Header = "TITULO DEL PROYECTO";
+                projectName.Text = "";
+
             }
             else
             {
@@ -129,41 +141,21 @@ namespace MProjectWPF.UsersControls
         private void btnAddProject_Click(object sender, RoutedEventArgs e)
         {
             if (fieldValidation())
-            {   
-                Proyectos proControl = new Proyectos(mainW.dbMP);
-                ControlXml cxml = new ControlXml("Logs//TemplateTemp.xml");
-                string pName = projectName.Text.ToLower().Replace(" ", "");
+            {
+                string pName = projectName.Text;
+                Visibility = Visibility.Hidden;
+                vTemplate.stackPanelFields.Children.Clear();                                
+                mainW.viewPlan.Children.Remove(this);
+                List<BoxField> lbf = new List<BoxField>();
 
-                if (proControl.saveProject(mainW.usuModel, lisBF, fileName,detailText.Text,pName,cxml))
+                foreach(BoxField ibf in lisBF)
                 {
-                    if(fileName != null)
-                    {
-                        string rutaDestino = mainW.usuModel.repositorios_usuarios.ruta_repositorio_local + "/proyectos/proyecto" + pName + "/icons/";
-                        
-                        string archivoDestino = System.IO.Path.Combine(rutaDestino, fileName);
-
-                        if (!System.IO.Directory.Exists(rutaDestino))
-                        {
-                            System.IO.Directory.CreateDirectory(rutaDestino);
-                        }
-                        System.IO.File.Copy(fileSource, archivoDestino, true);
-                    }
-
-                    string ruta= mainW.usuModel.repositorios_usuarios.ruta_repositorio_local + "/proyectos/proyecto" + pName + "/plantilla/";
-                    string source = "Logs\\TemplateTemp.xml";
-                    string template = "plantilla" + pName + ".xml";
-
-                    string templateDirection = System.IO.Path.Combine(ruta,template);
-
-                    if (!System.IO.Directory.Exists(ruta))
-                    {
-                        System.IO.Directory.CreateDirectory(ruta);
-                    }
-                    System.IO.File.Copy(source, templateDirection, true);
-
-                    MessageBox.Show("Proyecto guardado exitosamente!!");
+                    BoxField bf = new BoxField(ibf);
+                    lbf.Add(bf);
                 }
 
+                ExplorerProject exPro = new ExplorerProject(mainW, pName, lbf,lisBF, fileSource, fileName, detailText.Text);
+                mainW.viewPlan.Children.Add(exPro);
             }
         }
 
@@ -186,6 +178,13 @@ namespace MProjectWPF.UsersControls
                 val = false;
             }
             return val;
+        }
+
+        private void exit()
+        {
+            mainW.addLabels();                        
+            Visibility = Visibility.Collapsed;                       
+            mainW.vp1.Visibility = Visibility.Visible;            
         }
     }
 }

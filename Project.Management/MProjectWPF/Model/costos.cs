@@ -12,14 +12,19 @@ namespace MProjectWPF.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class asignaciones
+    public partial class costos
     {
-        public string keym { get; set; }
+        public long idx_costo { get; set; }
         public long idx_caracteristica { get; set; }
+        public long id_costo { get; set; }
         public long id_caracteristica { get; set; }
+        public string nombre { get; set; }
+        public long cantidad { get; set; }
+        public long valor { get; set; }
         public long id_usuario { get; set; }
-        public System.DateTime fecha_ultima_modificacion { get; set; }
+        public string keym { get; set; }
     
         public virtual caracteristicas caracteristicas { get; set; }
+        public virtual usuarios_meta_datos usuarios_meta_datos { get; set; }
     }
 }

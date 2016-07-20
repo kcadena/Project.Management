@@ -17,6 +17,10 @@ using System.Windows.Shapes;
 using System.Threading;
 using MProjectWPF.Controller;
 using MProjectWPF.Model;
+using MProjectWPF.UsersControls.ActivityControls.FieldsControls;
+using MProjectWPF.UsersControls.ProjectControls;
+using MProjectWPF.UsersControls.TemplatesControls.FieldsControls;
+using MProjectWPF.UsersControls.TemplatesControls;
 
 namespace MProjectWPF.UsersControls
 {
@@ -26,32 +30,76 @@ namespace MProjectWPF.UsersControls
     public partial class ExplorerProject : System.Windows.Controls.UserControl
     {
         MainWindow mainW;
+        
+        public Caracteristicas car;
+        public LabelTreeActivity lta,lastSelectlta;
+        string title;
+        public proyectos pro;
 
-        /*
-        1-> Crear folders  
-        2-> Renombrar  folders
-        3-> renombrar Actividades 
-        */
-
-        public ExplorerProject(MainWindow mw, caracteristicas id_pro,MProjectDeskSQLITEEntities db,string title)
+        public ExplorerProject(MainWindow mw, proyectos p,string t)
         {
             InitializeComponent();
-            titlePro.Content = title;
-            Caracteristicas car = new Caracteristicas(db);
-            car.getActivitiesCharacteristics(tvPro,id_pro,this);
-            mainW = mw;            
+            mainW = mw;
+            title = t;
+            pro = p;
+            titlePro.Text = title;
+            workplaceGrid.Children.Add(new ProjectPanel(pro,mainW,this));
+            car = new Caracteristicas(mainW);
+            car.getActivitiesCharacteristics(pro.caracteristicas,tvPro,null,this);
+                                 
         }
 
-        private void tvPro_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        public ExplorerProject(MainWindow mw,string pName, List<BoxField> bf, List<BoxField> tbf, string fileSource,string fileName,string detail)
         {
-
+            InitializeComponent();
+            mainW = mw;
+            title = pName.ToUpper();            
+            titlePro.Text = title;
+            workplaceGrid.Children.Add(new ProjectPanel(mainW, this,pName,bf,tbf,fileSource, fileName,detail));
+            car = new Caracteristicas(mainW);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            mainW.addLabels();
             mainW.viewPlan.Children.Remove(this);
             mainW.vp1.Visibility = Visibility.Visible;
         }
-       
+               
+        private void titlePro_MouseEnter(object sender, MouseEventArgs e)
+        {
+            titlePro.TextDecorations = TextDecorations.Underline;
+            titlePro.FontSize = 15;
+        }
+
+        private void titlePro_MouseLeave(object sender, MouseEventArgs e)
+        {
+            titlePro.TextDecorations = null;
+            titlePro.FontSize = 13.333;
+        }
+
+        private void titlePro_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            workplaceGrid.Children.Clear();
+            workplaceGrid.Children.Add(new ProjectPanel(pro,mainW,this));
+        }
+
+        private void btnBackItem_Click(object sender, RoutedEventArgs e)
+        {            
+            if (lta != null)
+            {              
+                titlePro.Text = lta.lblName.Text.ToUpper();
+                tvPro.Items.Clear();
+                car.getActivitiesCharacteristics(lta.car,tvPro,lta.lab_father,this);
+                lta = lta.lab_father;
+            }
+            else
+            {
+                btnBackItem.Visibility = Visibility.Collapsed;
+                titlePro.Text = title.ToUpper();
+                tvPro.Items.Clear();
+                car.getActivitiesCharacteristics(pro.caracteristicas, tvPro,null, this);
+            }
+        }
     }
 }

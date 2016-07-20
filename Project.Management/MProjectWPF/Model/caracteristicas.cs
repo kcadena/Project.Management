@@ -20,30 +20,47 @@ namespace MProjectWPF.Model
             this.actividades = new HashSet<actividades>();
             this.archivos = new HashSet<archivos>();
             this.proyectos = new HashSet<proyectos>();
+            this.caracteristicas1 = new HashSet<caracteristicas>();
+            this.costoslist = new HashSet<costos>();
+            this.presupuestolist = new HashSet<presupuesto>();
+            this.recursoslist = new HashSet<recursos>();
         }
     
         public string keym { get; set; }
         public long idx_caracteristica { get; set; }
+        public Nullable<long> idx_caracteristica_padre { get; set; }
         public long id_caracteristica { get; set; }
+        public Nullable<long> id_caracteristica_padre { get; set; }
         public long id_usuario { get; set; }
         public string estado { get; set; }
-        public Nullable<long> porcentaje_asignado { get; set; }
-        public Nullable<long> porcentaje_cumplido { get; set; }
+        public long porcentaje_asignado { get; set; }
+        public long porcentaje_cumplido { get; set; }
         public Nullable<System.DateTime> fecha_inicio { get; set; }
         public Nullable<System.DateTime> fecha_fin { get; set; }
         public string tipo_caracteristica { get; set; }
-        public Nullable<long> padre_caracteristica { get; set; }
-        public Nullable<long> proyecto_padre { get; set; }
         public bool visualizar_superior { get; set; }
         public System.DateTime fecha_ultima_modificacion { get; set; }
+        public Nullable<long> usuario_asignado { get; set; }
+        public string recursos { get; set; }
+        public string presupuesto { get; set; }
+        public string costos { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<actividades> actividades { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<archivos> archivos { get; set; }
-        public virtual asignaciones asignaciones { get; set; }
+        public virtual usuarios_meta_datos usuarios_meta_datos_asignado { get; set; }
         public virtual usuarios_meta_datos usuarios_meta_datos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<proyectos> proyectos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<caracteristicas> caracteristicas1 { get; set; }
+        public virtual caracteristicas caracteristicas2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<costos> costoslist { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<presupuesto> presupuestolist { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<recursos> recursoslist { get; set; }
     }
 }

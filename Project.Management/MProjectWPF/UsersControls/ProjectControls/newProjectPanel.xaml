@@ -46,7 +46,7 @@
             </GroupBox>
 
             <Button x:Name="btnBack" Content="SALIR" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="75" Click="button_Click" Style="{StaticResource ButtonStyle}" Background="#FF003F66" Foreground="White"/>
-            <Button x:Name="btnAddProject" Content="CREAR" HorizontalAlignment="Right" Margin="98,0,10,10" VerticalAlignment="Bottom" Height="40" Width="75" Style="{StaticResource ButtonStyle}" Background="#FF003F66" Foreground="White" FontWeight="Bold" FontSize="13.333" MinWidth="90" Click="btnAddProject_Click">
+            <Button x:Name="btnAddProject" Content="CONTINUAR" HorizontalAlignment="Right" Margin="98,0,10,10" VerticalAlignment="Bottom" Height="40" Width="75" Style="{StaticResource ButtonStyle}" Background="#FF003F66" Foreground="White" FontWeight="Bold" FontSize="13.333" MinWidth="90" Click="btnAddProject_Click">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="3"/>

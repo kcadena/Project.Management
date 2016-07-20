@@ -23,36 +23,43 @@ namespace MProjectWPF.UsersControls
     public partial class CardProject : System.Windows.Controls.UserControl
     {
         MainWindow mainW;
-        caracteristicas car;
+        proyectos pro;
 
-        public CardProject(MainWindow mw,caracteristicas c)
+        public CardProject(MainWindow mw,proyectos p)
         {
             InitializeComponent();
-            car = c;
+            pro = p;
             mainW = mw;
 
-            Proyectos pro = new Proyectos(mainW.dbMP);
-            proyectos pro1 = new proyectos();
-            titleCard.Content = car.proyectos.First().proyectos_meta_datos.Where(a => a.is_title).Single().valor.ToUpper();
-            leaderName.Text = car.usuarios_meta_datos.nombre + car.usuarios_meta_datos.apellido;
-            descriptionCard.Text = car.proyectos.First().descripcion;            
-            stage.Text = car.estado;
-            percentCard.Text = "" + car.porcentaje_cumplido +"%";
+            titleCard.Content = pro.nombre.ToUpper();
+            leaderName.Text = pro.caracteristicas.usuarios_meta_datos.nombre + " " + pro.caracteristicas.usuarios_meta_datos.apellido;
 
-            if (car.proyectos.First().icon != null)
+            descriptionCard.Text = pro.descripcion;
+            stage.Text = pro.caracteristicas.estado;
+            percentCard.Text = "" + pro.caracteristicas.porcentaje_cumplido + "%";
+
+            if (pro.icon != null)
             {
-                string repositoriolocal = car.usuarios_meta_datos.repositorios_usuarios.ruta_repositorio_local;
+                string repositoriolocal = pro.usuarios_meta_datos.repositorios_usuarios.ruta_repositorio_local;                
                 string titlepro = "/proyectos/proyecto" + titleCard.Content.ToString().Replace(" ", "").ToLower() + "/icons/";
-                string image = car.proyectos.First().icon;
+                string image = pro.icon;
                 string imgSource = repositoriolocal + titlepro + image;
-                logoPry.Source = new BitmapImage(new Uri(imgSource));
+                try
+                {
+                    logoPry.Source = new BitmapImage(new Uri(imgSource));
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show(err.Message);
+                }
             }
         }
 
         private void enterBtnCard_Click(object sender, RoutedEventArgs e)
         {
+            logoPry.Source = new BitmapImage(new Uri("pack://application:,,/Resources/LogoMProject.ico"));
             mainW.vp1.Visibility = Visibility.Hidden;
-            ExplorerProject exPro = new ExplorerProject(mainW,car,mainW.dbMP,""+titleCard.Content);
+            ExplorerProject exPro = new ExplorerProject(mainW,pro,""+titleCard.Content);
             mainW.viewPlan.Children.Add(exPro);            
         }
     }

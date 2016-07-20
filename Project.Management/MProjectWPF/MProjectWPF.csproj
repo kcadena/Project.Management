@@ -139,10 +139,10 @@
     <Compile Include="Model\archivos.cs">
       <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\asignaciones.cs">
+    <Compile Include="Model\caracteristicas.cs">
       <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\caracteristicas.cs">
+    <Compile Include="Model\costos.cs">
       <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\meta_datos.cs">
@@ -172,10 +172,16 @@
     <Compile Include="Model\plantillas_meta_datos.cs">
       <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\presupuesto.cs">
+      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\proyectos.cs">
       <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\proyectos_meta_datos.cs">
+      <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\recursos.cs">
       <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\repositorios_usuarios.cs">
@@ -210,6 +216,18 @@
     <Compile Include="UsersControls\ProjectControls\FieldsControls\LabelProject.xaml.cs">
       <DependentUpon>LabelProject.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UsersControls\ProjectControls\ProjectPanel.xaml.cs">
+      <DependentUpon>ProjectPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsersControls\ProjectControls\WindowsControls\EstimationWindow.xaml.cs">
+      <DependentUpon>EstimationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsersControls\ProjectControls\WindowsControls\ResourcesWindow.xaml.cs">
+      <DependentUpon>ResourcesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsersControls\ProjectControls\WindowsControls\TextBoxNames.xaml.cs">
+      <DependentUpon>TextBoxNames.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UsersControls\TemplatesControls\FieldTemplatePanel.xaml.cs">
       <DependentUpon>FieldTemplatePanel.xaml</DependentUpon>
     </Compile>
@@ -232,7 +250,7 @@
     <Compile Include="UsersControls\UserControls\LabelsUsers\LabelMenu.xaml.cs">
       <DependentUpon>LabelMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UsersControls\ActivityControls\LabelTreeActivity.xaml.cs">
+    <Compile Include="UsersControls\ActivityControls\FieldsControls\LabelTreeActivity.xaml.cs">
       <DependentUpon>LabelTreeActivity.xaml</DependentUpon>
     </Compile>
     <Compile Include="UsersControls\UserControls\LabelsUsers\LabelUser.xaml.cs">
@@ -262,6 +280,9 @@
     <Compile Include="UsersControls\UserControls\UsersPanel.xaml.cs">
       <DependentUpon>UsersPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Window1.xaml.cs">
+      <DependentUpon>Window1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Inicio\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -286,6 +307,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UsersControls\ProjectControls\FieldsControls\LabelProject.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsersControls\ProjectControls\ProjectPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsersControls\ProjectControls\WindowsControls\EstimationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsersControls\ProjectControls\WindowsControls\ResourcesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsersControls\ProjectControls\WindowsControls\TextBoxNames.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -317,7 +354,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UsersControls\ActivityControls\LabelTreeActivity.xaml">
+    <Page Include="UsersControls\ActivityControls\FieldsControls\LabelTreeActivity.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -350,6 +387,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UsersControls\UserControls\UsersPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -445,24 +486,6 @@
     <Resource Include="Resources\LogoMProject.ico" />
   </ItemGroup>
   <ItemGroup>
-    <COMReference Include="Microsoft.Office.Core">
-      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
-      <VersionMajor>2</VersionMajor>
-      <VersionMinor>8</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-    <COMReference Include="Microsoft.Office.Interop.MSProject">
-      <Guid>{A7107640-94DF-1068-855E-00DD01075445}</Guid>
-      <VersionMajor>4</VersionMajor>
-      <VersionMinor>9</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
     <COMReference Include="VBIDE">
       <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
       <VersionMajor>5</VersionMajor>
@@ -514,6 +537,7 @@
       <DependentUpon>MProjectDeskSQLITE.edmx</DependentUpon>
       <LastGenOutput>MProjectDeskSQLITE.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\Icons\16px\delete-icon-white.png" />
     <Resource Include="Resources\Icons\16px\template-icon-gray.png" />
     <Resource Include="Resources\LupaTransparent.png" />
     <Resource Include="Resources\Icons\16px\template-icon.png" />

@@ -31,17 +31,16 @@ namespace MProjectWPF.UsersControls
             InitializeComponent();
             mainW = mw;
 
-            List<caracteristicas> lup = usu.caracteristicas.ToList();
+            List<proyectos> lpu = usu.proyectos.ToList();
 
-            if (lup != null)
+            if (lpu != null)
             {
-                foreach (var x in lup)
+                foreach (var x in lpu)
                 {
                     CardProject cp = new CardProject(mainW,x);
                     listPry.Items.Add(cp);
                 }
             }
-
         }
 
         private void image_MouseEnter(object sender, MouseEventArgs e)

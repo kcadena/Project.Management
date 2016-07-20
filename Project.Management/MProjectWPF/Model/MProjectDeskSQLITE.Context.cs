@@ -27,7 +27,6 @@ namespace MProjectWPF.Model
     
         public virtual DbSet<actividades> actividades { get; set; }
         public virtual DbSet<archivos> archivos { get; set; }
-        public virtual DbSet<asignaciones> asignaciones { get; set; }
         public virtual DbSet<caracteristicas> caracteristicas { get; set; }
         public virtual DbSet<meta_datos> meta_datos { get; set; }
         public virtual DbSet<mproject_key> mproject_key { get; set; }
@@ -40,5 +39,8 @@ namespace MProjectWPF.Model
         public virtual DbSet<tipos_datos> tipos_datos { get; set; }
         public virtual DbSet<usuarios> usuarios { get; set; }
         public virtual DbSet<usuarios_meta_datos> usuarios_meta_datos { get; set; }
+        public virtual DbSet<costos> costos { get; set; }
+        public virtual DbSet<presupuesto> presupuesto { get; set; }
+        public virtual DbSet<recursos> recursos { get; set; }
     }
 }

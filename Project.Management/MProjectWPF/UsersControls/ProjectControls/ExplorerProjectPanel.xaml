@@ -3,41 +3,40 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MProjectWPF.UsersControls"
-             mc:Ignorable="d" >
+             xmlns:local="clr-namespace:MProjectWPF.UsersControls.ActivityControls.FieldsControls"
+             mc:Ignorable="d">    
     <Grid x:Name="Grid_Explorer" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="5"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0" Margin="5,0,0,5" Background="#FFB6C3EC">
-            <Label x:Name="titlePro" Content="FICHAS ETNOGRAFICAS" Margin="5,5,5,20" VerticalAlignment="Top" Height="30" FontWeight="Bold" FontSize="13.333" Foreground="#FF237012"/>
-            <TreeView Name="tvPro" Background="#7F77E608" Margin="5,30,5,20" >
+        <Grid Grid.Column="0" Background="#FF93ADFD">
+            <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,5,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="btnBackItem" Grid.Column="0" Margin="0,7,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Content="←" FontWeight="Bold" FontSize="18.667" Width="21" Height="15" Padding="0,-8,-2,1" Foreground="White" Background="#FF206A0F" Style="{StaticResource ButtonStyleGreen}" Visibility="Collapsed" Click="btnBackItem_Click"/>
+                <TextBlock x:Name="titlePro" Grid.Column="1" Text="TITULO PROYECTO" Margin="0" VerticalAlignment="Top" Height="25" FontWeight="Bold" FontSize="13.333" Foreground="#FF237012" Padding="5,5,0,0" Cursor="Hand" MouseEnter="titlePro_MouseEnter" MouseLeave="titlePro_MouseLeave" ToolTip="Click configuración del proyecto" HorizontalAlignment="Left" MouseLeftButtonUp="titlePro_MouseLeftButtonUp"/>
+            </Grid>
+            
+            <TreeView Name="tvPro" Background="#FF96D57B" Margin="10,30,5,25" Padding="-3,1,1,1" >
                 <TreeView.Resources>
-                    <!--ControlTemplate TargetType="{x:Type TreeViewItem}" x:Key="selectedTemplate" >
-                        
-                    </-->
-                </TreeView.Resources>
-                <TreeView.ItemContainerStyle>
-                    <Style TargetType="TreeViewItem">
-                        <Style.Triggers>
-                            <Trigger Property="IsSelected" Value="True">
-                                <Setter Property="FontWeight" Value="Bold"/>
-                                <Setter Property="FontStyle" Value="Italic"/>
-                                <Setter Property="Foreground" Value="Red"/>
-                                <Setter Property="Background" Value="Green"/>
-                                <!--Setter Property="Template" Value="{StaticResource selectedTemplate}"/-->
-                            </Trigger>
-                        </Style.Triggers>
+                    <Style TargetType="TreeView">
+                        <Style.Resources>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#00FDFDFD" />
+                            <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="#00E09437" />
+                        </Style.Resources>
                     </Style>
-                </TreeView.ItemContainerStyle>
+                </TreeView.Resources>
             </TreeView>
         </Grid>
+        
         <GridSplitter Width="5" Grid.Column="1" HorizontalAlignment="Stretch" />
-
+        
         <Grid x:Name="workplaceGrid" Grid.Column="2"/>
-
-        <Button Margin="0,0,0,5" VerticalAlignment="Bottom"  Content="Back" Height="20" Width="30" Click="Button_Click"/>
+        
+        <Button x:Name="btnBack" Content="SALIR" HorizontalAlignment="Left" Margin="10,0,0,2" VerticalAlignment="Bottom" Width="75" Click="Button_Click" Style="{StaticResource ButtonStyle}" Background="#FF003F66" Foreground="White" IsCancel="True"/>
     </Grid>
 </UserControl>

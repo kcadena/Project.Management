@@ -32,5 +32,12 @@ namespace MProjectWPF.UsersControls.ProjectControls.FieldsControls
             descriptionTemplate.Text = pla.descripcion;
             lblTitleProject = pla.plantillas_meta_datos.Where(x => x.meta_datos.id_tipo_dato == 0).Single().meta_datos.descripcion + ":";
         }
+
+        public LabelProject()
+        {
+            InitializeComponent();
+            nameTemplate.Text = "Plantilla Update";
+            descriptionTemplate.Text = "Update";
+        }
     }
 }

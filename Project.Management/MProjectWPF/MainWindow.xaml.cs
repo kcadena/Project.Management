@@ -43,6 +43,8 @@ namespace MProjectWPF
                 InternetAccess();
             });
             //oThread.Start();
+            //Window1 win = new Window1();
+            //win.Show();
         }
 
         private void user1_Click(object sender, RoutedEventArgs e)

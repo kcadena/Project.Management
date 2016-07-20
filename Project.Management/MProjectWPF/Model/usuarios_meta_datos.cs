@@ -17,12 +17,16 @@ namespace MProjectWPF.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public usuarios_meta_datos()
         {
+            this.caracteristicas_asignado = new HashSet<caracteristicas>();
             this.caracteristicas = new HashSet<caracteristicas>();
             this.meta_datos = new HashSet<meta_datos>();
             this.plantillas = new HashSet<plantillas>();
             this.plantillas_meta_datos = new HashSet<plantillas_meta_datos>();
             this.proyectos = new HashSet<proyectos>();
             this.proyectos_meta_datos = new HashSet<proyectos_meta_datos>();
+            this.costos = new HashSet<costos>();
+            this.presupuesto = new HashSet<presupuesto>();
+            this.recursos = new HashSet<recursos>();
         }
     
         public long id_usuario { get; set; }
@@ -35,6 +39,8 @@ namespace MProjectWPF.Model
         public string entidad { get; set; }
         public string imagen { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<caracteristicas> caracteristicas_asignado { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<caracteristicas> caracteristicas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -49,5 +55,11 @@ namespace MProjectWPF.Model
         public virtual ICollection<proyectos_meta_datos> proyectos_meta_datos { get; set; }
         public virtual repositorios_usuarios repositorios_usuarios { get; set; }
         public virtual usuarios usuarios { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<costos> costos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<presupuesto> presupuesto { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<recursos> recursos { get; set; }
     }
 }
