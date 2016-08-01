@@ -1,7 +1,8 @@
 ﻿using MProjectWPF.Controller;
-using MProjectWPF.Model;
+using ControlDB.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,7 +47,13 @@ namespace MProjectWPF.UsersControls
                 string imgSource = repositoriolocal + titlepro + image;
                 try
                 {
-                    logoPry.Source = new BitmapImage(new Uri(imgSource));
+                    BitmapImage b = new BitmapImage();
+                    b.BeginInit();
+                    b.UriSource = new Uri(imgSource);
+                    b.CacheOption = BitmapCacheOption.OnLoad;
+                    b.EndInit();
+                    logoPry.Source = b;
+                    b = null;    
                 }
                 catch (Exception err)
                 {
@@ -57,11 +64,12 @@ namespace MProjectWPF.UsersControls
 
         private void enterBtnCard_Click(object sender, RoutedEventArgs e)
         {
-            logoPry.Source = new BitmapImage(new Uri("pack://application:,,/Resources/LogoMProject.ico"));
+            logoPry.Source = null;            
             mainW.vp1.Visibility = Visibility.Hidden;
             ExplorerProject exPro = new ExplorerProject(mainW,pro,""+titleCard.Content);
             mainW.viewPlan.Children.Add(exPro);            
         }
+        
     }
         
 }

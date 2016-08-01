@@ -4,8 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MProjectWPF.UsersControls.ProjectControls"
+             xmlns:gif="http://wpfanimatedgif.codeplex.com"
+             gif:ImageBehavior.AnimateInDesignMode="True"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="500">
+             d:DesignHeight="600" d:DesignWidth="500" VirtualizingPanel.IsVirtualizing="True">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -62,8 +64,11 @@
         <Grid Grid.Column="2" Grid.RowSpan="3">
             <GroupBox Header="OBJETIVOS" FontWeight="Bold" Foreground="#FF003F66" Margin="0,2,5,0" Style="{StaticResource groupBoxStyle}" BorderBrush="#FF003F66">
                 <Grid>
-                    <DocumentViewer Margin="5,10,5,30" FontWeight="Normal"/>
-                    <Button x:Name="assingDocument" VerticalAlignment="Bottom" Content="Crear Documento" Click="assingDocument_Click" FontWeight="Normal" />
+                    <DocumentViewer x:Name="docview" Margin="5,10,5,30" FontWeight="Normal" VirtualizingPanel.IsVirtualizing="True"/>
+                    <Grid x:Name="load" Background="#7FFFFFFF" Margin="5,43,21,56" Visibility="Collapsed">
+                        <Image gif:ImageBehavior.AnimatedSource="/Resources/load-icon.gif" Width="60" Height="60" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" />
+                    </Grid>
+                    <Button x:Name="assingDocument" VerticalAlignment="Bottom" Content="Editar Documento" Click="assingDocument_Click" FontWeight="Normal" />
                 </Grid>
             </GroupBox>
         </Grid>
@@ -71,7 +76,7 @@
         <GridSplitter Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" Background="#00000000"/>
 
         <Grid Grid.Column="0" Grid.Row="2">
-            <TabControl Margin="5,0,0,0" Background="{x:Null}" FontWeight="Normal" Foreground="#FF003F66"  BorderBrush="#FF003F66"> 
+            <TabControl Margin="5,0,0,0" Background="{x:Null}" FontWeight="Normal" Foreground="#FF003F66"  BorderBrush="#FF003F66">
                 <TabItem  Padding="0">
                     <TabItem.Header>
                         <Label Content="ASIGNADOS"  Foreground="White" Background="#FF003F66"/>
@@ -110,7 +115,6 @@
         <GridSplitter Grid.ColumnSpan="3" Grid.Row="3" HorizontalAlignment="Stretch" Background="#00000000" />
 
         <Grid Grid.ColumnSpan="3" Grid.Row="4">
-
             <Border BorderBrush="#FF003F66" BorderThickness="1,1" Margin="5,0,5,6" >
                 <Grid >
                     <Grid.ColumnDefinitions>
@@ -126,10 +130,11 @@
                             <ComboBoxItem>Seguimiento y Control</ComboBoxItem>
                             <ComboBoxItem>Cierre</ComboBoxItem>
                         </ComboBox>
+                        <Label x:Name="stageBoxSh" Margin="9,19,9,0" Height="26" VerticalAlignment="Top" />
                     </Grid>
                     <Grid Grid.Column="1">
                         <Label x:Name="desarrollo" Content="Desarrollo:"  Height="25" VerticalAlignment="Top" Margin="7,-2,0,0" FontWeight="Normal" Foreground=" #FF003F66"/>
-                        <TextBox Height="25" VerticalAlignment="Top" Margin="10,20,10,0"/>
+                        <TextBox Height="25" VerticalAlignment="Top" Margin="10,20,10,0" IsReadOnly="True"/>
                     </Grid>
                 </Grid>
             </Border>

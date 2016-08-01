@@ -1,12 +1,14 @@
 ﻿using Microsoft.Win32;
 using MProjectWPF.Controller;
-using MProjectWPF.Model;
+using ControlDB.Model;
+using MProjectWPF.UsersControls.ActivityControls.FieldsControls;
 using MProjectWPF.UsersControls.ProjectControls;
 using MProjectWPF.UsersControls.ProjectControls.FieldsControls;
 using MProjectWPF.UsersControls.TemplatesControls;
 using MProjectWPF.UsersControls.TemplatesControls.FieldsControls;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,6 +35,7 @@ namespace MProjectWPF.UsersControls
         string fileName,fileSource;
         List<BoxField> lisBF;
         Plantillas plant;
+        ProjectPanel proPan;        
 
         public newProjectPanel(MainWindow mw)
         {
@@ -47,11 +50,52 @@ namespace MProjectWPF.UsersControls
         public newProjectPanel(ProjectPanel ppn)
         {
             InitializeComponent();
-            mainW = ppn.mainW;            
+            mainW = ppn.mainW;
+            proPan = ppn;
             vTemplate.addOptionTemplate(false);
             LabelProject lp = new LabelProject();
             listBox.Items.Add(lp);
-            listBox.IsEnabled = false;
+            lisBF = ppn.tLisBF;
+            
+            foreach (BoxField bf in ppn.tLisBF)
+            {
+                if (bf.opc == 0)
+                {
+                    fieldTitle = bf;
+                    fieldTitle.boxField3.TextChanged += new TextChangedEventHandler(titleBoxField_TextChanged);
+                }
+                vTemplate.stackPanelFields.Children.Add(bf);
+            }            
+            projectName.Text = ppn.pName;
+            detailText.Text = ppn.detail;
+            labelNameProject.Content = fieldTitle.labelBoxField3.Content;
+            
+            if (ppn.proMod.icon != null)
+            {
+                string repositoriolocal = ppn.proMod.usuarios_meta_datos.repositorios_usuarios.ruta_repositorio_local;
+                string titlepro = "/proyectos/proyecto" + ppn.proMod.nombre.ToString().Replace(" ", "").ToLower() + "/icons/";
+                string image = ppn.proMod.icon;
+                string imgSource = repositoriolocal + titlepro + image;
+
+                fileSource = repositoriolocal + titlepro;
+                fileName = image;
+
+                try
+                {
+                    BitmapImage b = new BitmapImage();
+                    b.BeginInit();
+                    b.UriSource = new Uri(imgSource);
+                    b.CacheOption = BitmapCacheOption.OnLoad;
+                    b.EndInit();
+                    iconProject.Source = b;
+                    b = null; 
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show(err.Message);
+                }
+            }
+            
         }
 
         private void loadListTemplate()
@@ -82,7 +126,7 @@ namespace MProjectWPF.UsersControls
 
         public void loadFields()
         {
-            vTemplate.stackPanelFields.Children.Clear(); 
+            vTemplate.stackPanelFields.Children.Clear();
             vTemplate.gbTemplate.Header = "TITULO PROYECTO";
             lisBF = plant.listBoxField(lblPro.pla, this);
         }
@@ -104,7 +148,14 @@ namespace MProjectWPF.UsersControls
             {
                 fileSource = openFile.FileName;
                 fileName   = openFile.SafeFileName;
-                iconProject.Source = new BitmapImage(new Uri(fileSource));
+
+                BitmapImage b = new BitmapImage();
+                b.BeginInit();
+                b.UriSource = new Uri(fileSource);
+                b.CacheOption = BitmapCacheOption.OnLoad;
+                b.EndInit();
+                iconProject.Source = b;
+                b = null;                
             }
 
         }
@@ -142,6 +193,7 @@ namespace MProjectWPF.UsersControls
         {
             if (fieldValidation())
             {
+                iconProject.Source = null;                
                 string pName = projectName.Text;
                 Visibility = Visibility.Hidden;
                 vTemplate.stackPanelFields.Children.Clear();                                
@@ -152,9 +204,12 @@ namespace MProjectWPF.UsersControls
                 {
                     BoxField bf = new BoxField(ibf);
                     lbf.Add(bf);
-                }
+                }                
 
-                ExplorerProject exPro = new ExplorerProject(mainW, pName, lbf,lisBF, fileSource, fileName, detailText.Text);
+                ExplorerProject exPro;
+                if(proPan == null)  exPro = new ExplorerProject(mainW, pName, lbf,lisBF, fileSource, fileName, detailText.Text);
+                else exPro = new ExplorerProject(mainW,pName,proPan.proMod, lbf, lisBF, fileSource,fileName,detailText.Text);               
+
                 mainW.viewPlan.Children.Add(exPro);
             }
         }
@@ -186,5 +241,6 @@ namespace MProjectWPF.UsersControls
             Visibility = Visibility.Collapsed;                       
             mainW.vp1.Visibility = Visibility.Visible;            
         }
+        
     }
 }

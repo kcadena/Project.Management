@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MProjectWPF.Controller;
 using System.Windows.Media.Animation;
-using MProjectWPF.Model;
+using ControlDB.Model;
 
 namespace MProjectWPF.UsersControls
 {

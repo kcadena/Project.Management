@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MProjectWPF.UsersControls.ActivityControls.FieldsControls"
-             mc:Ignorable="d">    
+             mc:Ignorable="d" VirtualizingPanel.IsVirtualizing="True">
+    
     <Grid x:Name="Grid_Explorer" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300"/>
@@ -31,6 +32,7 @@
                     </Style>
                 </TreeView.Resources>
             </TreeView>
+            <Label x:Name="tvProSh" Margin="10,30,5,25" Padding="-3,1,1,1" Visibility="Collapsed"/>
         </Grid>
         
         <GridSplitter Width="5" Grid.Column="1" HorizontalAlignment="Stretch" />

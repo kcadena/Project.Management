@@ -8,13 +8,14 @@ using System;
 using System.Windows.Interop;
 using System.Media;
 using System.Windows.Controls;
-using MProjectWPF.Model;
+using ControlDB.Model;
 using MProjectWPF.Controller;
 using System.IO;
 using System.Threading;
 using System.Windows.Threading;
 using System.Windows.Media.Imaging;
 using MProjectWPF.UsersControls.UserControls;
+
 
 namespace MProjectWPF
 {
@@ -31,11 +32,11 @@ namespace MProjectWPF
         public bool internet;
 
         public MainWindow()
-        {
+        {   
             dbMP = new MProjectDeskSQLITEEntities();
             InitializeComponent();
             usuControl = new Usuarios(dbMP);
-            usuModel = usuControl.getUser("kelvin.cadena@gmail.com", "123");
+            usuModel = usuControl.getUser("kelvin.cadena@gmail.com", "123");           
             addLabels();
             nameConection.Content = usuModel.nombre + " " + usuModel.apellido; 
             Thread oThread = new Thread(() =>
@@ -120,6 +121,7 @@ namespace MProjectWPF
                     {
                         indicator.Source = new BitmapImage(new Uri("pack://application:,,/Resources/Icons/16px/ind_Red.png"));
                     }
+
                 }));
                 Thread.Sleep(100);
             }

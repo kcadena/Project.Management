@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using MProjectWPF.Model;
+using ControlDB.Model;
 using MProjectWPF.Controller;
 
 namespace MProjectWPF.UsersControls.TemplatesControls.FieldsControls

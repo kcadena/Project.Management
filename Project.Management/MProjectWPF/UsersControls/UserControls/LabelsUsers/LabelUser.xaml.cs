@@ -1,18 +1,9 @@
-﻿using MProjectWPF.Model;
+﻿using ControlDB.Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MProjectWPF.UsersControls
 {
@@ -60,6 +51,33 @@ namespace MProjectWPF.UsersControls
         {
             btnChat.Visibility = Visibility.Hidden;
             btnMessage.Visibility = Visibility.Hidden;
+        }
+
+        protected override void OnMouseMove(MouseEventArgs e)
+        {
+            base.OnMouseMove(e);
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                // Package the data.
+                DataObject data = new DataObject();
+
+                data.SetData(DataFormats.StringFormat, usu.e_mail);
+                LabelUser lu = new LabelUser(usu);
+                lu.changeBackground();
+                data.SetData("Object", lu);
+                
+                // Inititate the drag-and-drop operation.
+                DragDrop.DoDragDrop(this, data, DragDropEffects.Copy | DragDropEffects.Move);
+            }
+        }
+
+        public void changeBackground()
+        {
+            var bc = new BrushConverter();
+            grid.Background = (Brush)bc.ConvertFrom("#FF004166");
+            nameUser.Foreground = Brushes.White;
+            emailUser.Foreground = Brushes.White;
+            occupationUser.Foreground = Brushes.White;
         }
     }
 }

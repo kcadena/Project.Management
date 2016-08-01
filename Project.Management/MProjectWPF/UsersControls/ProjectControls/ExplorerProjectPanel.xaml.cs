@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 
 using System.Threading;
 using MProjectWPF.Controller;
-using MProjectWPF.Model;
+using ControlDB.Model;
 using MProjectWPF.UsersControls.ActivityControls.FieldsControls;
 using MProjectWPF.UsersControls.ProjectControls;
 using MProjectWPF.UsersControls.TemplatesControls.FieldsControls;
@@ -29,13 +29,16 @@ namespace MProjectWPF.UsersControls
     /// </summary>
     public partial class ExplorerProject : System.Windows.Controls.UserControl
     {
-        MainWindow mainW;
-        
+
+        public MainWindow mainW;        
         public Caracteristicas car;
         public LabelTreeActivity lta,lastSelectlta;
         string title;
         public proyectos pro;
+        ProjectPanel proPan;
+        public List<LabelTreeActivity> child;
 
+        //cargar
         public ExplorerProject(MainWindow mw, proyectos p,string t)
         {
             InitializeComponent();
@@ -43,24 +46,48 @@ namespace MProjectWPF.UsersControls
             title = t;
             pro = p;
             titlePro.Text = title;
-            workplaceGrid.Children.Add(new ProjectPanel(pro,mainW,this));
+
+            child = new List<LabelTreeActivity>();
+
+            proPan = new ProjectPanel(pro, mainW, this);
+            workplaceGrid.Children.Add(proPan);
+
             car = new Caracteristicas(mainW);
             car.getActivitiesCharacteristics(pro.caracteristicas,tvPro,null,this);
-                                 
         }
+        //actualizar
+        public ExplorerProject(MainWindow mw, string pName, proyectos p, List<BoxField> bf, List<BoxField> tbf, string fileSource, string fileName, string detail)
+        {
+            InitializeComponent();
+            mainW = mw;
+            title = pName.ToUpper();
+            pro = p;
+            titlePro.Text = title;
 
+            proPan = new ProjectPanel(mainW, this, pName, p, bf, tbf, fileSource, fileName, detail);
+            workplaceGrid.Children.Add(proPan);
+
+            child = new List<LabelTreeActivity>();
+
+            car = new Caracteristicas(mainW);
+            car.getActivitiesCharacteristics(pro.caracteristicas, tvPro, null, this);
+        }
+        //primer
         public ExplorerProject(MainWindow mw,string pName, List<BoxField> bf, List<BoxField> tbf, string fileSource,string fileName,string detail)
         {
             InitializeComponent();
             mainW = mw;
             title = pName.ToUpper();            
             titlePro.Text = title;
-            workplaceGrid.Children.Add(new ProjectPanel(mainW, this,pName,bf,tbf,fileSource, fileName,detail));
+            proPan = new ProjectPanel(mainW, this, pName, bf, tbf, fileSource, fileName, detail);
+            workplaceGrid.Children.Add(proPan);
             car = new Caracteristicas(mainW);
+            child = new List<LabelTreeActivity>();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            proPan.wc.unlockDocument();
             mainW.addLabels();
             mainW.viewPlan.Children.Remove(this);
             mainW.vp1.Visibility = Visibility.Visible;
@@ -79,7 +106,7 @@ namespace MProjectWPF.UsersControls
         }
 
         private void titlePro_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
+        {   
             workplaceGrid.Children.Clear();
             workplaceGrid.Children.Add(new ProjectPanel(pro,mainW,this));
         }
