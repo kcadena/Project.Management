@@ -7,9 +7,7 @@
              mc:Ignorable="d"  Margin="-15,0,0,0">
     <Grid>
         <TreeView Margin="0,5,-1,-1" Background="#FF96D57B" BorderBrush="{x:Null}">
-            <TreeViewItem x:Name="tvi" TreeViewItem.Expanded="tvi_Expanded" TreeViewItem.Collapsed="tvi_Collapsed" Margin="8,2,0,0" Padding="3,25,0,0" Grid.IsSharedSizeScope="True">
-                
-            </TreeViewItem>
+            <TreeViewItem x:Name="tvi" TreeViewItem.Expanded="tvi_Expanded" TreeViewItem.Collapsed="tvi_Collapsed" Margin="8,2,0,0" Padding="3,25,0,0" Grid.IsSharedSizeScope="True"/>
         </TreeView>
         <Grid x:Name="gridSh" Background="#FF58B69C" Margin="25,0,0,0" VerticalAlignment="Top" MinWidth="180" Height="40" Visibility="Collapsed"/>
         <UserControl Margin="30,0,0,0" VerticalAlignment="Top" MinWidth="200" MouseUp="tbc_MouseUp" MouseDoubleClick="UserControl_MouseDoubleClick_1" ToolTip="Doble click estructura de la Actividad" Background="#00000000">

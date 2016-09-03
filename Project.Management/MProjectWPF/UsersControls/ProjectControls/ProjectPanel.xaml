@@ -9,158 +9,180 @@
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="500" VirtualizingPanel.IsVirtualizing="True">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="5"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="3.5*"/>
-            <RowDefinition Height="5"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="5"/>
-            <RowDefinition Height="1.1*"/>
-        </Grid.RowDefinitions>
-
-        <Grid Grid.Column="0" Grid.Row="0" Margin="5,0,0,0">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="4*" MinHeight="20"/>
-                    <RowDefinition Height="5"/>
-                    <RowDefinition Height="2.6*" MinHeight="10"/>
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
-                    <GroupBox Header="PLANTILLA" Style="{StaticResource groupBoxStyle}" BorderBrush="#FF003F66" Foreground="#FF003F66" FontWeight="Bold" Margin="0,2,0,0">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Hidden" Margin="0,0,0,2" FontWeight="Normal">
-                                <StackPanel x:Name="templatePanel"/>
-                            </ScrollViewer>
-                            <Button x:Name="btnEditTemplate" Grid.Row="1" VerticalAlignment="Bottom"  Content="Editar Plantilla" Visibility="Collapsed" Click="btnEditTemplate_Click"/>
-                        </Grid>
-                    </GroupBox>
-                </Grid>
-                <GridSplitter Grid.Row="1"  HorizontalAlignment="Stretch" Margin="-2,0" Background="#00000000" />
-                <Grid Grid.Row="2">
-                    <GroupBox Header="TIEMPOS" Style="{StaticResource groupBoxStyle}" BorderBrush="#FF003F66" Foreground="#FF003F66" FontWeight="Bold">
-                        <Grid>
-                            <Label x:Name="lblInitialDate" Content="Fecha Inicio:" VerticalAlignment="Top" Height="25" Margin="0,0,0,0" FontWeight="Normal" Foreground=" #FF003F66"/>
-                            <DatePicker x:Name="initialDate" VerticalAlignment="Top" Height="25" Margin="0,22,0,0" FontWeight="Normal" />
-                            <Label x:Name="initialDateSh" VerticalAlignment="Top" Height="25" Margin="0,22,0,0" />
-                            <Label x:Name="lblfinalDate"  Content="Fecha Final:" VerticalAlignment="Top" Height="25" Margin="0,49,0,0" FontWeight="Normal" Foreground=" #FF003F66"/>
-                            <DatePicker x:Name="finalDate" VerticalAlignment="Top" Height="25" FontWeight="Normal" Margin="0,72,0,0"/>
-                            <Label x:Name="finalDateSh" VerticalAlignment="Top" Height="25"  Margin="0,72,0,0"/>
-                        </Grid>
-                    </GroupBox>
-                </Grid>
-            </Grid>
-        </Grid>
-
-        <GridSplitter Grid.Column="1" Grid.RowSpan="3"  HorizontalAlignment="Stretch"  Background="#00000000"/>
-
-        <Grid Grid.Column="2" Grid.RowSpan="3">
-            <GroupBox Header="OBJETIVOS" FontWeight="Bold" Foreground="#FF003F66" Margin="0,2,5,0" Style="{StaticResource groupBoxStyle}" BorderBrush="#FF003F66">
+        <TabControl Margin="0,0,0,0" Background="{x:Null}" FontWeight="Normal" Foreground="#FF003F66"  BorderBrush="#FF003F66">
+            <TabItem  Padding="0">
+                <TabItem.Header>
+                    <Label Content="INFORMACION"  Foreground="White" Background="#FF003F66"/>
+                </TabItem.Header>
                 <Grid>
-                    <DocumentViewer x:Name="docview" Margin="5,10,5,30" FontWeight="Normal" VirtualizingPanel.IsVirtualizing="True"/>
-                    <Grid x:Name="load" Background="#7FFFFFFF" Margin="5,43,21,56" Visibility="Collapsed">
-                        <Image gif:ImageBehavior.AnimatedSource="/Resources/load-icon.gif" Width="60" Height="60" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" />
-                    </Grid>
-                    <Button x:Name="assingDocument" VerticalAlignment="Bottom" Content="Editar Documento" Click="assingDocument_Click" FontWeight="Normal" />
-                </Grid>
-            </GroupBox>
-        </Grid>
-
-        <GridSplitter Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" Background="#00000000"/>
-
-        <Grid Grid.Column="0" Grid.Row="2">
-            <TabControl Margin="5,0,0,0" Background="{x:Null}" FontWeight="Normal" Foreground="#FF003F66"  BorderBrush="#FF003F66">
-                <TabItem  Padding="0">
-                    <TabItem.Header>
-                        <Label Content="ASIGNADOS"  Foreground="White" Background="#FF003F66"/>
-                    </TabItem.Header>
-                    <Grid>
-                        <ScrollViewer VerticalScrollBarVisibility="Hidden">
-                            <Grid Margin="0,0,0,0">
-                                <Label x:Name="lblResources" Content="Recursos:" FontWeight="Normal" Foreground=" #FF003F66" VerticalAlignment="Top" Height="25"/>
-                                <TextBox x:Name="txtResourses" Text="0" VerticalAlignment="Top" Height="25" Margin="0,22,26,0" IsReadOnly="True"/>
-                                <Button x:Name="btnResources" VerticalAlignment="Top" Height="25" Margin="0,22,0,0"  Width="25" HorizontalAlignment="Right" Content="+" Click="btnResources_Click" />
-                                <Label x:Name="lblEstimation" Content="Presupuesto:" FontWeight="Normal" Foreground=" #FF003F66" VerticalAlignment="Top" Height="25" Margin="0,49,0,0"/>
-                                <TextBox x:Name="txtEstimation" Text="0" VerticalAlignment="Top" Height="25" Margin="0,71,26,0" IsReadOnly="True" />
-                                <Button x:Name="btnEstimation" VerticalAlignment="Top" Height="25" Margin="0,71,0,0" Width="25" HorizontalAlignment="Right" Content="+" Click="btnEstimation_Click"/>
-                                <Label x:Name="lblCost" Content="Costos:" FontWeight="Normal" Foreground=" #FF003F66" VerticalAlignment="Top" Height="25" Margin="0,96,0,0"/>
-                                <TextBox x:Name="txtCost" Text="0" VerticalAlignment="Top" Height="25" Margin="0,117,26,0"  IsReadOnly="True" />
-                                <Button x:Name="btnCost" VerticalAlignment="Top" Height="25" Margin="0,117,0,0" Width="25" HorizontalAlignment="Right" Content="+" Click="btnCost_Click"/>
-                            </Grid>
-                        </ScrollViewer>
-                    </Grid>
-                </TabItem>
-                <TabItem Padding="0">
-                    <TabItem.Header>
-                        <Border BorderThickness="1,0">
-                            <Label Content="REAL"  Foreground="White" Background="#FF003F66"/>
-                        </Border>
-                    </TabItem.Header>
-                </TabItem>
-                <TabItem Padding="0" >
-                    <TabItem.Header>
-                        <Label Content="DIFERENCIA"  Foreground="White" Background="#FF003F66"/>
-                    </TabItem.Header>
-                </TabItem>
-            </TabControl>
-        </Grid>
-
-        <GridSplitter Grid.ColumnSpan="3" Grid.Row="3" HorizontalAlignment="Stretch" Background="#00000000" />
-
-        <Grid Grid.ColumnSpan="3" Grid.Row="4">
-            <Border BorderBrush="#FF003F66" BorderThickness="1,1" Margin="5,0,5,6" >
-                <Grid >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
+                        <ColumnDefinition Width="5"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0">
-                        <Label x:Name="stage" Content="Etapa:" VerticalAlignment="Top" Height="25" Margin="7,-3,0,0" FontWeight="Normal" Foreground=" #FF003F66"/>
-                        <ComboBox x:Name="stageBox" Height="24" VerticalAlignment="Top" Style="{DynamicResource comboBoxStyle}" Margin="10,20,10,0" Padding="-20,0,5,3">
-                            <ComboBoxItem IsSelected="True">Iniciacion</ComboBoxItem>
-                            <ComboBoxItem>Planificacion</ComboBoxItem>
-                            <ComboBoxItem>Ejecucion</ComboBoxItem>
-                            <ComboBoxItem>Seguimiento y Control</ComboBoxItem>
-                            <ComboBoxItem>Cierre</ComboBoxItem>
-                        </ComboBox>
-                        <Label x:Name="stageBoxSh" Margin="9,19,9,0" Height="26" VerticalAlignment="Top" />
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3.5*"/>
+                        <RowDefinition Height="5"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="5"/>
+                        <RowDefinition Height="1.1*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Column="0" Grid.Row="0" Margin="5,0,0,0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="4*" MinHeight="20"/>
+                                <RowDefinition Height="5"/>
+                                <RowDefinition Height="2.6*" MinHeight="10"/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <GroupBox Header="PLANTILLA" Style="{StaticResource groupBoxStyle}" BorderBrush="#FF003F66" Foreground="#FF003F66" FontWeight="Bold" Margin="0,2,0,0">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Hidden" Margin="0,0,0,2" FontWeight="Normal">
+                                            <StackPanel x:Name="templatePanel"/>
+                                        </ScrollViewer>
+                                        <Button x:Name="btnEditTemplate" Grid.Row="1" VerticalAlignment="Bottom"  Content="Editar Plantilla" Visibility="Collapsed" Click="btnEditTemplate_Click"/>
+                                    </Grid>
+                                </GroupBox>
+                            </Grid>
+                            <GridSplitter Grid.Row="1"  HorizontalAlignment="Stretch" Margin="-2,0" Background="#00000000" />
+                            <Grid Grid.Row="2">
+                                <GroupBox Header="TIEMPOS" Style="{StaticResource groupBoxStyle}" BorderBrush="#FF003F66" Foreground="#FF003F66" FontWeight="Bold">
+                                    <Grid>
+                                        <Label x:Name="lblInitialDate" Content="Fecha Inicio:" VerticalAlignment="Top" Height="25" Margin="0,0,0,0" FontWeight="Normal" Foreground=" #FF003F66"/>
+                                        <DatePicker x:Name="initialDate" VerticalAlignment="Top" Height="25" Margin="0,22,0,0" FontWeight="Normal" />
+                                        <Label x:Name="initialDateSh" VerticalAlignment="Top" Height="25" Margin="0,22,0,0" />
+                                        <Label x:Name="lblfinalDate"  Content="Fecha Final:" VerticalAlignment="Top" Height="25" Margin="0,49,0,0" FontWeight="Normal" Foreground=" #FF003F66"/>
+                                        <DatePicker x:Name="finalDate" VerticalAlignment="Top" Height="25" FontWeight="Normal" Margin="0,72,0,0"/>
+                                        <Label x:Name="finalDateSh" VerticalAlignment="Top" Height="25"  Margin="0,72,0,0"/>
+                                    </Grid>
+                                </GroupBox>
+                            </Grid>
+                        </Grid>
                     </Grid>
-                    <Grid Grid.Column="1">
-                        <Label x:Name="desarrollo" Content="Desarrollo:"  Height="25" VerticalAlignment="Top" Margin="7,-2,0,0" FontWeight="Normal" Foreground=" #FF003F66"/>
-                        <TextBox Height="25" VerticalAlignment="Top" Margin="10,20,10,0" IsReadOnly="True"/>
+
+                    <GridSplitter Grid.Column="1" Grid.RowSpan="3"  HorizontalAlignment="Stretch"  Background="#00000000"/>
+
+                    <Grid Grid.Column="2" Grid.RowSpan="3">
+                        <GroupBox Header="OBJETIVOS" FontWeight="Bold" Foreground="#FF003F66" Margin="0,2,5,0" Style="{StaticResource groupBoxStyle}" BorderBrush="#FF003F66">
+                            <Grid>
+                                <DocumentViewer x:Name="docview" Margin="5,10,5,30" FontWeight="Normal" VirtualizingPanel.IsVirtualizing="True"/>
+                                <Grid x:Name="load" Background="#7FFFFFFF" Margin="5,43,21,56" Visibility="Collapsed">
+                                    <Image gif:ImageBehavior.AnimatedSource="/Resources/load-icon.gif" Width="60" Height="60" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible" />
+                                </Grid>
+                                <Button x:Name="assingDocument" VerticalAlignment="Bottom" Content="Editar Documento" Click="assingDocument_Click" FontWeight="Normal" />
+                            </Grid>
+                        </GroupBox>
+                    </Grid>
+
+                    <GridSplitter Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" Background="#00000000"/>
+
+                    <Grid Grid.Column="0" Grid.Row="2">
+                        <TabControl Margin="5,0,0,0" Background="{x:Null}" FontWeight="Normal" Foreground="#FF003F66"  BorderBrush="#FF003F66">
+                            <TabItem  Padding="0">
+                                <TabItem.Header>
+                                    <Label Content="ASIGNADOS"  Foreground="White" Background="#FF003F66"/>
+                                </TabItem.Header>
+                                <Grid>
+                                    <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                                        <Grid Margin="0,0,0,0">
+                                            <Label x:Name="lblResources" Content="Recursos:" FontWeight="Normal" Foreground=" #FF003F66" VerticalAlignment="Top" Height="25"/>
+                                            <TextBox x:Name="txtResourses" Text="0" VerticalAlignment="Top" Height="25" Margin="0,22,26,0" IsReadOnly="True"/>
+                                            <Button x:Name="btnResources" VerticalAlignment="Top" Height="25" Margin="0,22,0,0"  Width="25" HorizontalAlignment="Right" Content="+" Click="btnResources_Click" />
+                                            <Label x:Name="lblEstimation" Content="Presupuesto:" FontWeight="Normal" Foreground=" #FF003F66" VerticalAlignment="Top" Height="25" Margin="0,49,0,0"/>
+                                            <TextBox x:Name="txtEstimation" Text="0" VerticalAlignment="Top" Height="25" Margin="0,71,26,0" IsReadOnly="True" />
+                                            <Button x:Name="btnEstimation" VerticalAlignment="Top" Height="25" Margin="0,71,0,0" Width="25" HorizontalAlignment="Right" Content="+" Click="btnEstimation_Click"/>
+                                            <Label x:Name="lblCost" Content="Costos:" FontWeight="Normal" Foreground=" #FF003F66" VerticalAlignment="Top" Height="25" Margin="0,96,0,0"/>
+                                            <TextBox x:Name="txtCost" Text="0" VerticalAlignment="Top" Height="25" Margin="0,117,26,0"  IsReadOnly="True" />
+                                            <Button x:Name="btnCost" VerticalAlignment="Top" Height="25" Margin="0,117,0,0" Width="25" HorizontalAlignment="Right" Content="+" Click="btnCost_Click"/>
+                                        </Grid>
+                                    </ScrollViewer>
+                                </Grid>
+                            </TabItem>
+                            <TabItem Padding="0">
+                                <TabItem.Header>
+                                    <Border BorderThickness="1,0">
+                                        <Label Content="REAL"  Foreground="White" Background="#FF003F66"/>
+                                    </Border>
+                                </TabItem.Header>
+                            </TabItem>
+                            <TabItem Padding="0" >
+                                <TabItem.Header>
+                                    <Label Content="DIFERENCIA"  Foreground="White" Background="#FF003F66"/>
+                                </TabItem.Header>
+                            </TabItem>
+                        </TabControl>
+                    </Grid>
+
+                    <GridSplitter Grid.ColumnSpan="3" Grid.Row="3" HorizontalAlignment="Stretch" Background="#00000000" />
+
+                    <Grid Grid.ColumnSpan="3" Grid.Row="4">
+                        <Border BorderBrush="#FF003F66" BorderThickness="1,1" Margin="5,0,5,6" >
+                            <Grid >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <Label x:Name="stage" Content="Etapa:" VerticalAlignment="Top" Height="25" Margin="7,-3,0,0" FontWeight="Normal" Foreground=" #FF003F66"/>
+                                    <ComboBox x:Name="stageBox" Height="24" VerticalAlignment="Top" Style="{DynamicResource comboBoxStyle}" Margin="10,20,10,0" Padding="-20,0,5,3">
+                                        <ComboBoxItem IsSelected="True">Iniciacion</ComboBoxItem>
+                                        <ComboBoxItem>Planificacion</ComboBoxItem>
+                                        <ComboBoxItem>Ejecucion</ComboBoxItem>
+                                        <ComboBoxItem>Seguimiento y Control</ComboBoxItem>
+                                        <ComboBoxItem>Cierre</ComboBoxItem>
+                                    </ComboBox>
+                                    <Label x:Name="stageBoxSh" Margin="9,19,9,0" Height="26" VerticalAlignment="Top" />
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                    <Label x:Name="desarrollo" Content="Desarrollo:"  Height="25" VerticalAlignment="Top" Margin="7,-2,0,0" FontWeight="Normal" Foreground=" #FF003F66"/>
+                                    <TextBox Height="25" VerticalAlignment="Top" Margin="10,20,10,0" IsReadOnly="True"/>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                        <Button x:Name="btnAddProject" Content=" GUARDAR PROYECTO " Style="{StaticResource ButtonStyle}" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,12,10" Background="#FF003F66" Foreground="#FFFFFEFE" FontWeight="Bold" FontSize="13.333" MinWidth="90" Click="btnAddProject_Click" >
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        <Button x:Name="btnUpdateProject" Content=" ACTUALIZAR PROYECTO " Style="{StaticResource ButtonStyle}" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,12,10" Background="#FF003F66" Foreground="#FFFFFEFE" FontWeight="Bold" FontSize="13.333" MinWidth="90" Click="btnUpdateProject_Click" Visibility="Collapsed">
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        <Button x:Name="btnAddActivity" Content=" CREAR ACTIVIDAD " Style="{StaticResource ButtonStyle}" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,20,10" Background="#FF003F66" Foreground="#FFFFFEFE" FontWeight="Bold" FontSize="13.333" MinWidth="90" Click="btnAddActivity_Click" Visibility="Collapsed" >
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        <Button x:Name="btnEditProject" Content=" EDITAR PROYECTO " Style="{StaticResource ButtonStyle}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Click="btnEditProject_Click" Margin="0,0,0,9" Background="#FF003F66" Foreground="White" />
+                        <Button x:Name="btnCancelProject" Content=" CANCELAR " Style="{StaticResource ButtonStyle}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Click="btnCancelProject_Click" Margin="15,0,0,9" Background="#FF003F66" Foreground="White" Visibility="Collapsed"/>
+                        <Button x:Name="btnDeleteProject" Content=" ELIMINAR PROYECTO " Style="{StaticResource ButtonStyle}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Click="btnDeleteProject_Click" Margin="15,0,0,9" Background="#FF003F66" Foreground="White"/>
                     </Grid>
                 </Grid>
-            </Border>
-            <Button x:Name="btnAddProject" Content=" GUARDAR PROYECTO " Style="{StaticResource ButtonStyle}" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,12,10" Background="#FF003F66" Foreground="#FFFFFEFE" FontWeight="Bold" FontSize="13.333" MinWidth="90" Click="btnAddProject_Click" >
-                <Button.Resources>
-                    <Style TargetType="{x:Type Border}">
-                        <Setter Property="CornerRadius" Value="3"/>
-                    </Style>
-                </Button.Resources>
-            </Button>
-            <Button x:Name="btnUpdateProject" Content=" ACTUALIZAR PROYECTO " Style="{StaticResource ButtonStyle}" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,12,10" Background="#FF003F66" Foreground="#FFFFFEFE" FontWeight="Bold" FontSize="13.333" MinWidth="90" Click="btnUpdateProject_Click" Visibility="Collapsed">
-                <Button.Resources>
-                    <Style TargetType="{x:Type Border}">
-                        <Setter Property="CornerRadius" Value="3"/>
-                    </Style>
-                </Button.Resources>
-            </Button>
-            <Button x:Name="btnAddActivity" Content=" CREAR ACTIVIDAD " Style="{StaticResource ButtonStyle}" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,20,10" Background="#FF003F66" Foreground="#FFFFFEFE" FontWeight="Bold" FontSize="13.333" MinWidth="90" Click="btnAddActivity_Click" Visibility="Collapsed" >
-                <Button.Resources>
-                    <Style TargetType="{x:Type Border}">
-                        <Setter Property="CornerRadius" Value="3"/>
-                    </Style>
-                </Button.Resources>
-            </Button>
-            <Button x:Name="btnEditProject" Content=" EDITAR PROYECTO " Style="{StaticResource ButtonStyle}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Click="btnEditProject_Click" Margin="0,0,0,9" Background="#FF003F66" Foreground="White" />
-            <Button x:Name="btnDeleteProject" Content=" ELIMINAR PROYECTO " Style="{StaticResource ButtonStyle}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Click="btnDeleteProject_Click" Margin="15,0,0,9" Background="#FF003F66" Foreground="White"/>
-        </Grid>
+            </TabItem>
+            <TabItem Padding="0">
+                <TabItem.Header>
+                    <Border BorderThickness="1,0">
+                        <Label Content="ACTIVIDADES"  Foreground="White" Background="#FF003F66"/>
+                    </Border>
+                </TabItem.Header>
+            </TabItem>
+            <TabItem Padding="0" >
+                <TabItem.Header>
+                    <Label Content="REPORTE"  Foreground="White" Background="#FF003F66"/>
+                </TabItem.Header>
+            </TabItem>
+        </TabControl>
     </Grid>
 </UserControl>

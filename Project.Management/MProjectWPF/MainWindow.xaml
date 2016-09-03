@@ -54,7 +54,7 @@
                     <Separator Background="#FF00ABDC"/>
                     <Separator Background="#FF00ABDC"/>
 
-                    <Button>
+                    <Button x:Name="uploadproject" Click="uploadproject_Click">
                         <Image Source="/Resources/Icons/16px/upload-cloud.png" Height="20" Width="20"/>
                     </Button>
                     <Button>

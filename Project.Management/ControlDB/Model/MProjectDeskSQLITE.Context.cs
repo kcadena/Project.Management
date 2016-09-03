@@ -26,7 +26,6 @@ namespace ControlDB.Model
         }
     
         public virtual DbSet<actividades> actividades { get; set; }
-        public virtual DbSet<archivos> archivos { get; set; }
         public virtual DbSet<caracteristicas> caracteristicas { get; set; }
         public virtual DbSet<costos> costos { get; set; }
         public virtual DbSet<meta_datos> meta_datos { get; set; }
@@ -42,5 +41,6 @@ namespace ControlDB.Model
         public virtual DbSet<tipos_datos> tipos_datos { get; set; }
         public virtual DbSet<usuarios> usuarios { get; set; }
         public virtual DbSet<usuarios_meta_datos> usuarios_meta_datos { get; set; }
+        public virtual DbSet<archivos> archivos { get; set; }
     }
 }

@@ -12,8 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
-
 using System.Threading;
 using MProjectWPF.Controller;
 using ControlDB.Model;
@@ -21,6 +19,7 @@ using MProjectWPF.UsersControls.ActivityControls.FieldsControls;
 using MProjectWPF.UsersControls.ProjectControls;
 using MProjectWPF.UsersControls.TemplatesControls.FieldsControls;
 using MProjectWPF.UsersControls.TemplatesControls;
+using System.Windows.Threading;
 
 namespace MProjectWPF.UsersControls
 {
@@ -31,13 +30,13 @@ namespace MProjectWPF.UsersControls
     {
 
         public MainWindow mainW;        
-        public Caracteristicas car;
+        public Caracteristicas carCon;
         public LabelTreeActivity lta,lastSelectlta;
-        string title;
+        public string title;
         public proyectos pro;
+        public actividades act;
         ProjectPanel proPan;
-        public List<LabelTreeActivity> child;
-
+       
         //cargar
         public ExplorerProject(MainWindow mw, proyectos p,string t)
         {
@@ -46,15 +45,12 @@ namespace MProjectWPF.UsersControls
             title = t;
             pro = p;
             titlePro.Text = title;
-
-            child = new List<LabelTreeActivity>();
-
+            carCon = new Caracteristicas(mainW);
             proPan = new ProjectPanel(pro, mainW, this);
-            workplaceGrid.Children.Add(proPan);
-
-            car = new Caracteristicas(mainW);
-            car.getActivitiesCharacteristics(pro.caracteristicas,tvPro,null,this);
+            carCon.getActivitiesCharacteristics(pro.caracteristicas, tvPro, null, this);
+            workplaceGrid.Children.Add(proPan);           
         }
+
         //actualizar
         public ExplorerProject(MainWindow mw, string pName, proyectos p, List<BoxField> bf, List<BoxField> tbf, string fileSource, string fileName, string detail)
         {
@@ -66,12 +62,11 @@ namespace MProjectWPF.UsersControls
 
             proPan = new ProjectPanel(mainW, this, pName, p, bf, tbf, fileSource, fileName, detail);
             workplaceGrid.Children.Add(proPan);
-
-            child = new List<LabelTreeActivity>();
-
-            car = new Caracteristicas(mainW);
-            car.getActivitiesCharacteristics(pro.caracteristicas, tvPro, null, this);
+            
+            carCon = new Caracteristicas(mainW);
+            carCon.getActivitiesCharacteristics(pro.caracteristicas, tvPro, null, this);
         }
+        
         //primer
         public ExplorerProject(MainWindow mw,string pName, List<BoxField> bf, List<BoxField> tbf, string fileSource,string fileName,string detail)
         {
@@ -81,13 +76,12 @@ namespace MProjectWPF.UsersControls
             titlePro.Text = title;
             proPan = new ProjectPanel(mainW, this, pName, bf, tbf, fileSource, fileName, detail);
             workplaceGrid.Children.Add(proPan);
-            car = new Caracteristicas(mainW);
-            child = new List<LabelTreeActivity>();
+            carCon = new Caracteristicas(mainW);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            proPan.wc.unlockDocument();
+            //proPan.wc.unlockDocument();
             mainW.addLabels();
             mainW.viewPlan.Children.Remove(this);
             mainW.vp1.Visibility = Visibility.Visible;
@@ -106,9 +100,18 @@ namespace MProjectWPF.UsersControls
         }
 
         private void titlePro_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {   
-            workplaceGrid.Children.Clear();
-            workplaceGrid.Children.Add(new ProjectPanel(pro,mainW,this));
+        {
+            if (pro != null)
+            {
+                workplaceGrid.Children.Clear();
+                workplaceGrid.Children.Add(new ProjectPanel(pro, mainW, this));
+            }
+            else if(act != null)
+            {
+                workplaceGrid.Children.Clear();
+                workplaceGrid.Children.Add(new ActivityPanel(act, lta, this));
+            }
+            
         }
 
         private void btnBackItem_Click(object sender, RoutedEventArgs e)
@@ -117,7 +120,7 @@ namespace MProjectWPF.UsersControls
             {              
                 titlePro.Text = lta.lblName.Text.ToUpper();
                 tvPro.Items.Clear();
-                car.getActivitiesCharacteristics(lta.car,tvPro,lta.lab_father,this);
+                carCon.getActivitiesCharacteristics(lta.car,tvPro,lta.lab_father,this);
                 lta = lta.lab_father;
             }
             else
@@ -125,8 +128,18 @@ namespace MProjectWPF.UsersControls
                 btnBackItem.Visibility = Visibility.Collapsed;
                 titlePro.Text = title.ToUpper();
                 tvPro.Items.Clear();
-                car.getActivitiesCharacteristics(pro.caracteristicas, tvPro,null, this);
+                carCon.getActivitiesCharacteristics(pro.caracteristicas, tvPro,null, this);
             }
+        }
+        
+        public void removeItem(LabelTreeActivity lta)
+        {
+            tvPro.Items.Remove(lta);
+        }
+
+        public int childsCount()
+        {
+            return tvPro.Items.Count;
         }
     }
 }

@@ -20,10 +20,15 @@ namespace MProjectWPF.UsersControls
             usu = u;
             if (usu.imagen != null)
             {
-                string repositorioLocal = usu.repositorios_usuarios.ruta_repositorio_local;
-                string image = usu.imagen;                
-                string sourceImage = repositorioLocal + "\\perfil\\imagen\\" + usu.imagen;
-                imgProfile.Source = new BitmapImage(new Uri(sourceImage));
+                try
+                {
+                    string repositorioLocal = usu.repositorios_usuarios.ruta_repositorio_local;
+                    string image = usu.imagen;
+                    string sourceImage = repositorioLocal + "\\perfil\\imagen\\" + usu.imagen;
+                    imgProfile.Source = new BitmapImage(new Uri(sourceImage));
+                }
+                catch { }
+                
             }
             else
             {

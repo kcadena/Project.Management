@@ -15,6 +15,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading;
+using System.Windows.Threading;
 
 namespace MProjectWPF.UsersControls
 {
@@ -23,6 +25,7 @@ namespace MProjectWPF.UsersControls
     /// </summary>
     public partial class CardProject : System.Windows.Controls.UserControl
     {
+
         MainWindow mainW;
         proyectos pro;
 
@@ -66,10 +69,8 @@ namespace MProjectWPF.UsersControls
         {
             logoPry.Source = null;            
             mainW.vp1.Visibility = Visibility.Hidden;
-            ExplorerProject exPro = new ExplorerProject(mainW,pro,""+titleCard.Content);
-            mainW.viewPlan.Children.Add(exPro);            
+            ExplorerProject exPro = new ExplorerProject(mainW, pro, "" + titleCard.Content);
+            mainW.viewPlan.Children.Add(exPro);
         }
-        
-    }
-        
+    }   
 }

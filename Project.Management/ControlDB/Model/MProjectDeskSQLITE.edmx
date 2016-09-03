@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MProjectDeskSQLITEModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=&quot;C:\Users\David E\Desktop\MProject\Project.Management\MProjectWPF\Model\MProjectDeskSQLITE.sqlite&quot;" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MProjectDeskSQLITEModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=&quot;C:\Users\David E\Desktop\MProject\Project.Management\MProjectWPF\Model\MProjectDeskSQLITE.sqlite&quot;" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="actividades">
           <Key>
             <PropertyRef Name="idx_actividad" />
@@ -26,18 +26,20 @@
             <PropertyRef Name="idx_archivo" />
           </Key>
           <Property Name="keym" Type="varchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="id_archivo" Type="integer" Nullable="false" />
+          <Property Name="id_usuario" Type="integer" Nullable="false" />
+          <Property Name="id_caracteristica" Type="integer" Nullable="false" />
+          <Property Name="nombre_archivo" Type="varchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="titulo" Type="varchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="2147483647" />
           <Property Name="idx_archivo" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idx_caracteristica" Type="integer" Nullable="false" />
           <Property Name="idx_tipo_archivo" Type="integer" Nullable="false" />
-          <Property Name="id_archivo" Type="integer" Nullable="false" />
-          <Property Name="id_usuario" Type="integer" Nullable="false" />
-          <Property Name="nombre" Type="varchar" MaxLength="2147483647" Nullable="false" />
-          <Property Name="contenido" Type="varchar" MaxLength="2147483647" />
           <Property Name="fecha_carga" Type="datetime" Nullable="false" />
           <Property Name="id_tipo_archivo" Type="integer" Nullable="false" />
-          <Property Name="id_caracteristica" Type="integer" Nullable="false" />
           <Property Name="publicacion" Type="integer" />
           <Property Name="fecha_ultima_modificacion" Type="datetime" Nullable="false" />
+          <Property Name="contenido" Type="varchar" MaxLength="2147483647" />
         </EntityType>
         <EntityType Name="caracteristicas">
           <Key>
@@ -276,6 +278,18 @@
             </Principal>
             <Dependent Role="archivos">
               <PropertyRef Name="idx_caracteristica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_archivos_2_0">
+          <End Role="usuarios_meta_datos" Type="Self.usuarios_meta_datos" Multiplicity="1" />
+          <End Role="archivos" Type="Self.archivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios_meta_datos">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="archivos">
+              <PropertyRef Name="id_usuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -565,6 +579,10 @@
             <End Role="caracteristicas" EntitySet="caracteristicas" />
             <End Role="archivos" EntitySet="archivos" />
           </AssociationSet>
+          <AssociationSet Name="FK_archivos_2_0" Association="Self.FK_archivos_2_0">
+            <End Role="usuarios_meta_datos" EntitySet="usuarios_meta_datos" />
+            <End Role="archivos" EntitySet="archivos" />
+          </AssociationSet>
           <AssociationSet Name="FK_caracteristicas_0_0" Association="Self.FK_caracteristicas_0_0">
             <End Role="usuarios_meta_datos" EntitySet="usuarios_meta_datos" />
             <End Role="caracteristicas" EntitySet="caracteristicas" />
@@ -650,8 +668,7 @@
             <End Role="usuarios" EntitySet="usuarios" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MProjectDeskSQLITEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -672,26 +689,6 @@
           <Property Name="fecha_ultima_modificacion" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="usuarios_meta_datos" Relationship="Self.FK_actividades_0_0" FromRole="actividades" ToRole="usuarios_meta_datos" />
           <NavigationProperty Name="caracteristicas" Relationship="Self.FK_actividades_1_0" FromRole="actividades" ToRole="caracteristicas" />
-        </EntityType>
-        <EntityType Name="archivos">
-          <Key>
-            <PropertyRef Name="idx_archivo" />
-          </Key>
-          <Property Name="keym" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="idx_archivo" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="idx_caracteristica" Type="Int64" Nullable="false" />
-          <Property Name="idx_tipo_archivo" Type="Int64" Nullable="false" />
-          <Property Name="id_archivo" Type="Int64" Nullable="false" />
-          <Property Name="id_usuario" Type="Int64" Nullable="false" />
-          <Property Name="nombre" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="contenido" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
-          <Property Name="fecha_carga" Type="DateTime" Nullable="false" />
-          <Property Name="id_tipo_archivo" Type="Int64" Nullable="false" />
-          <Property Name="id_caracteristica" Type="Int64" Nullable="false" />
-          <Property Name="publicacion" Type="Int64" />
-          <Property Name="fecha_ultima_modificacion" Type="DateTime" Nullable="false" />
-          <NavigationProperty Name="tipos_archivos" Relationship="Self.FK_archivos_0_0" FromRole="archivos" ToRole="tipos_archivos" />
-          <NavigationProperty Name="caracteristicas" Relationship="Self.FK_archivos_1_0" FromRole="archivos" ToRole="caracteristicas" />
         </EntityType>
         <EntityType Name="caracteristicas">
           <Key>
@@ -716,7 +713,6 @@
           <Property Name="fecha_ultima_modificacion" Type="DateTime" Nullable="false" />
           <Property Name="usuario_asignado" Type="Int64" />
           <NavigationProperty Name="actividades" Relationship="Self.FK_actividades_1_0" FromRole="caracteristicas" ToRole="actividades" />
-          <NavigationProperty Name="archivos" Relationship="Self.FK_archivos_1_0" FromRole="caracteristicas" ToRole="archivos" />
           <NavigationProperty Name="usuarios_meta_datos_asignado" Relationship="Self.FK_caracteristicas_0_0" FromRole="caracteristicas" ToRole="usuarios_meta_datos" />
           <NavigationProperty Name="usuarios_meta_datos" Relationship="Self.FK_caracteristicas_1_0" FromRole="caracteristicas" ToRole="usuarios_meta_datos" />
           <NavigationProperty Name="caracteristicas1" Relationship="Self.FK_caracteristicas_2_0" FromRole="caracteristicas" ToRole="caracteristicas1" />
@@ -725,6 +721,7 @@
           <NavigationProperty Name="presupuestolist" Relationship="Self.FK_presupuesto_1_0" FromRole="caracteristicas" ToRole="presupuesto" />
           <NavigationProperty Name="proyectos" Relationship="Self.FK_proyectos_1_0" FromRole="caracteristicas" ToRole="proyectos" />
           <NavigationProperty Name="recursoslist" Relationship="Self.FK_recursos_1_0" FromRole="caracteristicas" ToRole="recursos" />
+          <NavigationProperty Name="archivos" Relationship="MProjectDeskSQLITEModel.FK_archivos_1_0" FromRole="caracteristicas" ToRole="archivos" />
         </EntityType>
         <EntityType Name="costos">
           <Key>
@@ -885,7 +882,7 @@
           <Property Name="nombre" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="id_usuario" Type="Int64" Nullable="false" />
           <Property Name="fecha_ultima_modificacion" Type="DateTime" Nullable="false" />
-          <NavigationProperty Name="archivos" Relationship="Self.FK_archivos_0_0" FromRole="tipos_archivos" ToRole="archivos" />
+          <NavigationProperty Name="archivos" Relationship="MProjectDeskSQLITEModel.FK_archivos_0_0" FromRole="tipos_archivos" ToRole="archivos" />
         </EntityType>
         <EntityType Name="tipos_datos">
           <Key>
@@ -918,8 +915,8 @@
           <Property Name="entidad" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
           <Property Name="imagen" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="actividades" Relationship="Self.FK_actividades_0_0" FromRole="usuarios_meta_datos" ToRole="actividades" />
-          <NavigationProperty Name="caracteristicas" Relationship="Self.FK_caracteristicas_0_0" FromRole="usuarios_meta_datos" ToRole="caracteristicas" />
-          <NavigationProperty Name="caracteristicas1" Relationship="Self.FK_caracteristicas_1_0" FromRole="usuarios_meta_datos" ToRole="caracteristicas" />
+          <NavigationProperty Name="caracteristicas1" Relationship="Self.FK_caracteristicas_0_0" FromRole="usuarios_meta_datos" ToRole="caracteristicas" />
+          <NavigationProperty Name="caracteristicas" Relationship="Self.FK_caracteristicas_1_0" FromRole="usuarios_meta_datos" ToRole="caracteristicas" />
           <NavigationProperty Name="costos" Relationship="Self.FK_costos_0_0" FromRole="usuarios_meta_datos" ToRole="costos" />
           <NavigationProperty Name="meta_datos" Relationship="Self.FK_meta_datos_1_0" FromRole="usuarios_meta_datos" ToRole="meta_datos" />
           <NavigationProperty Name="plantillas" Relationship="Self.FK_plantillas_0_0" FromRole="usuarios_meta_datos" ToRole="plantillas" />
@@ -930,6 +927,7 @@
           <NavigationProperty Name="recursos" Relationship="Self.FK_recursos_0_0" FromRole="usuarios_meta_datos" ToRole="recursos" />
           <NavigationProperty Name="repositorios_usuarios" Relationship="Self.FK_repositorios_usuarios_0_0" FromRole="usuarios_meta_datos" ToRole="repositorios_usuarios" />
           <NavigationProperty Name="usuarios" Relationship="Self.FK_usuarios_0_0" FromRole="usuarios_meta_datos" ToRole="usuarios" />
+          <NavigationProperty Name="archivos" Relationship="MProjectDeskSQLITEModel.FK_archivos_2_0" FromRole="usuarios_meta_datos" ToRole="archivos" />
         </EntityType>
         <Association Name="FK_actividades_0_0">
           <End Role="usuarios_meta_datos" Type="Self.usuarios_meta_datos" Multiplicity="1" />
@@ -952,30 +950,6 @@
             </Principal>
             <Dependent Role="actividades">
               <PropertyRef Name="idx_caracterisitca" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_archivos_0_0">
-          <End Role="tipos_archivos" Type="Self.tipos_archivos" Multiplicity="1" />
-          <End Role="archivos" Type="Self.archivos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tipos_archivos">
-              <PropertyRef Name="idx_tipo_archivo" />
-            </Principal>
-            <Dependent Role="archivos">
-              <PropertyRef Name="idx_tipo_archivo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_archivos_1_0">
-          <End Role="caracteristicas" Type="Self.caracteristicas" Multiplicity="1" />
-          <End Role="archivos" Type="Self.archivos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="caracteristicas">
-              <PropertyRef Name="idx_caracteristica" />
-            </Principal>
-            <Dependent Role="archivos">
-              <PropertyRef Name="idx_caracteristica" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1233,7 +1207,6 @@
         </Association>
         <EntityContainer Name="MProjectDeskSQLITEEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="actividades" EntityType="Self.actividades" />
-          <EntitySet Name="archivos" EntityType="Self.archivos" />
           <EntitySet Name="caracteristicas" EntityType="Self.caracteristicas" />
           <EntitySet Name="costos" EntityType="Self.costos" />
           <EntitySet Name="meta_datos" EntityType="Self.meta_datos" />
@@ -1256,14 +1229,6 @@
           <AssociationSet Name="FK_actividades_1_0" Association="Self.FK_actividades_1_0">
             <End Role="caracteristicas" EntitySet="caracteristicas" />
             <End Role="actividades" EntitySet="actividades" />
-          </AssociationSet>
-          <AssociationSet Name="FK_archivos_0_0" Association="Self.FK_archivos_0_0">
-            <End Role="tipos_archivos" EntitySet="tipos_archivos" />
-            <End Role="archivos" EntitySet="archivos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_archivos_1_0" Association="Self.FK_archivos_1_0">
-            <End Role="caracteristicas" EntitySet="caracteristicas" />
-            <End Role="archivos" EntitySet="archivos" />
           </AssociationSet>
           <AssociationSet Name="FK_caracteristicas_0_0" Association="Self.FK_caracteristicas_0_0">
             <End Role="usuarios_meta_datos" EntitySet="usuarios_meta_datos" />
@@ -1349,8 +1314,80 @@
             <End Role="usuarios_meta_datos" EntitySet="usuarios_meta_datos" />
             <End Role="usuarios" EntitySet="usuarios" />
           </AssociationSet>
-        </EntityContainer>
-      </Schema>
+          <EntitySet Name="archivos" EntityType="MProjectDeskSQLITEModel.archivos" />
+          <AssociationSet Name="FK_archivos_0_0" Association="MProjectDeskSQLITEModel.FK_archivos_0_0">
+            <End Role="tipos_archivos" EntitySet="tipos_archivos" />
+            <End Role="archivos" EntitySet="archivos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_archivos_1_0" Association="MProjectDeskSQLITEModel.FK_archivos_1_0">
+            <End Role="caracteristicas" EntitySet="caracteristicas" />
+            <End Role="archivos" EntitySet="archivos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_archivos_2_0" Association="MProjectDeskSQLITEModel.FK_archivos_2_0">
+            <End Role="usuarios_meta_datos" EntitySet="usuarios_meta_datos" />
+            <End Role="archivos" EntitySet="archivos" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="archivos">
+          <Key>
+            <PropertyRef Name="idx_archivo" />
+          </Key>
+          <Property Name="keym" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="id_archivo" Type="Int64" Nullable="false" />
+          <Property Name="id_usuario" Type="Int64" Nullable="false" />
+          <Property Name="id_caracteristica" Type="Int64" Nullable="false" />
+          <Property Name="nombre_archivo" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="titulo" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="idx_archivo" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idx_caracteristica" Type="Int64" Nullable="false" />
+          <Property Name="idx_tipo_archivo" Type="Int64" Nullable="false" />
+          <Property Name="fecha_carga" Type="DateTime" Nullable="false" />
+          <Property Name="id_tipo_archivo" Type="Int64" Nullable="false" />
+          <Property Name="publicacion" Type="Int64" />
+          <Property Name="fecha_ultima_modificacion" Type="DateTime" Nullable="false" />
+          <Property Name="contenido" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tipos_archivos" Relationship="MProjectDeskSQLITEModel.FK_archivos_0_0" FromRole="archivos" ToRole="tipos_archivos" />
+          <NavigationProperty Name="caracteristicas" Relationship="MProjectDeskSQLITEModel.FK_archivos_1_0" FromRole="archivos" ToRole="caracteristicas" />
+          <NavigationProperty Name="usuarios_meta_datos" Relationship="MProjectDeskSQLITEModel.FK_archivos_2_0" FromRole="archivos" ToRole="usuarios_meta_datos" />
+        </EntityType>
+        <Association Name="FK_archivos_0_0">
+          <End Type="MProjectDeskSQLITEModel.tipos_archivos" Role="tipos_archivos" Multiplicity="1" />
+          <End Type="MProjectDeskSQLITEModel.archivos" Role="archivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipos_archivos">
+              <PropertyRef Name="idx_tipo_archivo" />
+            </Principal>
+            <Dependent Role="archivos">
+              <PropertyRef Name="idx_tipo_archivo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_archivos_1_0">
+          <End Type="MProjectDeskSQLITEModel.caracteristicas" Role="caracteristicas" Multiplicity="1" />
+          <End Type="MProjectDeskSQLITEModel.archivos" Role="archivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="caracteristicas">
+              <PropertyRef Name="idx_caracteristica" />
+            </Principal>
+            <Dependent Role="archivos">
+              <PropertyRef Name="idx_caracteristica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_archivos_2_0">
+          <End Type="MProjectDeskSQLITEModel.usuarios_meta_datos" Role="usuarios_meta_datos" Multiplicity="1" />
+          <End Type="MProjectDeskSQLITEModel.archivos" Role="archivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios_meta_datos">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="archivos">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -1369,25 +1406,6 @@
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="pos" ColumnName="pos" />
                 <ScalarProperty Name="folder" ColumnName="folder" />
-                <ScalarProperty Name="fecha_ultima_modificacion" ColumnName="fecha_ultima_modificacion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="archivos">
-            <EntityTypeMapping TypeName="MProjectDeskSQLITEModel.archivos">
-              <MappingFragment StoreEntitySet="archivos">
-                <ScalarProperty Name="keym" ColumnName="keym" />
-                <ScalarProperty Name="idx_archivo" ColumnName="idx_archivo" />
-                <ScalarProperty Name="idx_caracteristica" ColumnName="idx_caracteristica" />
-                <ScalarProperty Name="idx_tipo_archivo" ColumnName="idx_tipo_archivo" />
-                <ScalarProperty Name="id_archivo" ColumnName="id_archivo" />
-                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="contenido" ColumnName="contenido" />
-                <ScalarProperty Name="fecha_carga" ColumnName="fecha_carga" />
-                <ScalarProperty Name="id_tipo_archivo" ColumnName="id_tipo_archivo" />
-                <ScalarProperty Name="id_caracteristica" ColumnName="id_caracteristica" />
-                <ScalarProperty Name="publicacion" ColumnName="publicacion" />
                 <ScalarProperty Name="fecha_ultima_modificacion" ColumnName="fecha_ultima_modificacion" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1596,6 +1614,27 @@
                 <ScalarProperty Name="telefono" ColumnName="telefono" />
                 <ScalarProperty Name="entidad" ColumnName="entidad" />
                 <ScalarProperty Name="imagen" ColumnName="imagen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="archivos">
+            <EntityTypeMapping TypeName="MProjectDeskSQLITEModel.archivos">
+              <MappingFragment StoreEntitySet="archivos">
+                <ScalarProperty Name="contenido" ColumnName="contenido" />
+                <ScalarProperty Name="fecha_ultima_modificacion" ColumnName="fecha_ultima_modificacion" />
+                <ScalarProperty Name="publicacion" ColumnName="publicacion" />
+                <ScalarProperty Name="id_tipo_archivo" ColumnName="id_tipo_archivo" />
+                <ScalarProperty Name="fecha_carga" ColumnName="fecha_carga" />
+                <ScalarProperty Name="idx_tipo_archivo" ColumnName="idx_tipo_archivo" />
+                <ScalarProperty Name="idx_caracteristica" ColumnName="idx_caracteristica" />
+                <ScalarProperty Name="idx_archivo" ColumnName="idx_archivo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="nombre_archivo" ColumnName="nombre_archivo" />
+                <ScalarProperty Name="id_caracteristica" ColumnName="id_caracteristica" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="id_archivo" ColumnName="id_archivo" />
+                <ScalarProperty Name="keym" ColumnName="keym" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

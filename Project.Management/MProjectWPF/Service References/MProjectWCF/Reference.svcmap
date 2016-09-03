@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f40aa14b-9d83-4804-9023-5a7d4ae420ce" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/MProjectService.svc?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="MProjectService.wsdl" MetadataType="Wsdl" ID="0c8c8335-06af-4424-a841-dd6bbae65e8a" SourceId="1" SourceUrl="http://localhost/MProjectService.svc?wsdl" />
+    <MetadataFile FileName="MProjectService.xsd" MetadataType="Schema" ID="b9588bc7-407a-4144-9b7e-1980e0d60eba" SourceId="1" SourceUrl="http://localhost/MProjectService.svc?xsd=xsd2" />
+    <MetadataFile FileName="MProjectService1.xsd" MetadataType="Schema" ID="0fe34772-50aa-48da-ba77-dc08fda55c74" SourceId="1" SourceUrl="http://localhost/MProjectService.svc?xsd=xsd3" />
+    <MetadataFile FileName="MProjectService2.xsd" MetadataType="Schema" ID="1a4dc26b-df82-41f3-8e32-ec5b6460a78c" SourceId="1" SourceUrl="http://localhost/MProjectService.svc?xsd=xsd0" />
+    <MetadataFile FileName="MProjectService3.xsd" MetadataType="Schema" ID="8b35a88d-688e-4d25-9841-edbec593034a" SourceId="1" SourceUrl="http://localhost/MProjectService.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

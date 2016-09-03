@@ -15,6 +15,7 @@ using System.Threading;
 using System.Windows.Threading;
 using System.Windows.Media.Imaging;
 using MProjectWPF.UsersControls.UserControls;
+using MProjectWPF.MProjectWCF;
 
 
 namespace MProjectWPF
@@ -30,6 +31,7 @@ namespace MProjectWPF
         public MProjectDeskSQLITEEntities dbMP;
         bool perAct = true;
         public bool internet;
+        MProjectServiceClient msc = new MProjectServiceClient();
 
         public MainWindow()
         {   
@@ -43,7 +45,7 @@ namespace MProjectWPF
             {
                 InternetAccess();
             });
-            //oThread.Start();
+            oThread.Start();
             //Window1 win = new Window1();
             //win.Show();
         }
@@ -103,27 +105,31 @@ namespace MProjectWPF
             while (true)
             {   
                 try
-                {
-                    System.Net.IPHostEntry host = System.Net.Dns.GetHostEntry("www.google.com");   
+                {   
+                    System.Net.IPHostEntry host = System.Net.Dns.GetHostEntry("www.google.com");
+                    indicator.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                    {
+                        indicator.Source = new BitmapImage(new Uri("pack://application:,,/Resources/Icons/16px/ind_Green.png"));
+                    }));
                     internet = true;
+                    try
+                    {
+                        if (msc.countlog() > 0)
+                        {
+                            ValidateUser(msc.readLog());
+                        }
+                    }
+                    catch { }
                 }
                 catch
                 {
                     internet = false;
-                }
-                indicator.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
-                {
-                    if (internet)
-                    {
-                        indicator.Source = new BitmapImage(new Uri("pack://application:,,/Resources/Icons/16px/ind_Green.png"));
-                    }
-                    else
+                    indicator.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
                     {
                         indicator.Source = new BitmapImage(new Uri("pack://application:,,/Resources/Icons/16px/ind_Red.png"));
-                    }
-
-                }));
-                Thread.Sleep(100);
+                    }));                   
+                }
+                Thread.Sleep(10);
             }
         }
 
@@ -146,7 +152,67 @@ namespace MProjectWPF
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            msc.Close();
             Environment.Exit(Environment.ExitCode);
+        }
+
+        private void uploadproject_Click(object sender, RoutedEventArgs e)
+        {
+            MProjectServiceClient sc = new MProjectServiceClient();
+
+            try
+            {
+                Dictionary<string, string> u = new Dictionary<string, string>();
+                u.Add("e_mail", usuModel.e_mail);
+                u.Add("id_usuario","" + usuModel.id_usuario);
+                u.Add("nombre", usuModel.nombre);
+                u.Add("apellido", usuModel.apellido);
+                u.Add("genero", usuModel.genero);
+                u.Add("pass", usuModel.usuarios.pass);
+                u.Add("cargo", usuModel.cargo);
+                u.Add("telefono", usuModel.telefono);
+                u.Add("entidad", usuModel.entidad);
+                u.Add("imagen", usuModel.imagen);
+                u.Add("administrador","" + usuModel.usuarios.administrador);
+
+
+                string[] lusu = sc.addUser(u);
+                if (lusu.LongLength == 0)
+                {
+                    MessageBox.Show("GOOD");
+                }
+                else
+                {
+                    MessageBox.Show("ERROR");
+                }
+            }
+            catch(Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
+        }
+
+        private void ValidateUser(string[][] logs)
+        {   
+            foreach (var log1 in logs)
+            {
+                string evento = log1[0];
+                int id = Convert.ToInt32(log1[1]);
+
+                
+                if(evento == "add")
+                {
+                    usuControl.addUser(msc.getUser(log1[1]));
+                    spViewB.Children.Clear();
+                    spViewB.Children.Add(new UsersPanel(this, usuControl));
+                }
+                else
+                {
+                    usuControl.removeUser(id);
+                    spViewB.Children.Clear();
+                    spViewB.Children.Add(new UsersPanel(this, usuControl));
+                }
+            }
         }
     } 
 }

@@ -25,20 +25,20 @@ namespace MProjectWPF.UsersControls.ActivityControls.FieldsControls
     public partial class LabelTreeActivity : System.Windows.Controls.UserControl
     {
         public string nombre_act { get; set; }
-        public List<LabelTreeActivity> child;
         public long id;
-        //public long father;
         public caracteristicas car;
         public actividades actMod;
         public LabelTreeActivity lab_father;
         MProjectDeskSQLITEEntities dbMP;
         ExplorerProject expP;
+        public bool isFirst=false;
+        public bool isLast=false;
+        public int pos = 0;
 
         //CONSTRUCTOR CREAR ACTIVIDAD
         public LabelTreeActivity()
         {
-            InitializeComponent();
-            child = new List<LabelTreeActivity>();            
+            InitializeComponent();            
             showActivityIcon();
         }        
 
@@ -52,7 +52,7 @@ namespace MProjectWPF.UsersControls.ActivityControls.FieldsControls
             lblName.Text = act.nombre;
             car = act.caracteristicas;
             lab_father = l_father;           
-            child = new List<LabelTreeActivity>();
+            
 
             if (car.id_caracteristica_padre == null)
             {
@@ -63,18 +63,8 @@ namespace MProjectWPF.UsersControls.ActivityControls.FieldsControls
             if (act.folder == 0)
                 showActivityIcon();
         }
-       
-        public LabelTreeActivity(long opc, LabelTreeActivity l_father, MProjectDeskSQLITEEntities db, ExplorerProject ep)
-        {
-            expP = ep;
-            dbMP = db;
-            InitializeComponent();
-            lab_father = l_father;
-            child = new List<LabelTreeActivity>();
-            if (opc == 1)
-                showClosedFolder();
-        }        
-
+              
+        //ADICIONA EL LA ACTIVIDAD DEL MODELO
         public void loadActivityMod(actividades act, ExplorerProject ep, LabelTreeActivity l_father)
         {   
             actMod = act;
@@ -83,7 +73,6 @@ namespace MProjectWPF.UsersControls.ActivityControls.FieldsControls
             lblName.Text = act.nombre;
             car = act.caracteristicas;
             lab_father = l_father;
-            child = new List<LabelTreeActivity>();
         }
 
         public void addFather(LabelTreeActivity lta)
@@ -92,200 +81,55 @@ namespace MProjectWPF.UsersControls.ActivityControls.FieldsControls
         }
 
         public void addchilds(LabelTreeActivity lta)
-        {
-            child.Add(lta);
-            show_arrow(child);
+        {   
             tvi.Items.Add(lta);
         }
 
-        private void ua_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        public void removechilds(LabelTreeActivity lta)
         {
-            LabelTreeActivity lup;
-            int pos = (int)actMod.pos - 2;
+            tvi.Items.Remove(lta);
+        }
 
+        private void ua_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {  
             if (lab_father != null)
             {
-                lup = lab_father.child.ElementAt(pos);
-
-                lab_father.child.Remove(lup);
-                lab_father.child.Remove(this);
-
-                lab_father.child.Insert(pos, this);
-                lab_father.child.Insert(pos + 1, lup);
-
+                moveItem(lab_father.tvi,pos-1);
             }
             else
             {
-                lup = expP.child.ElementAt(pos);
-
-                expP.child.Remove(lup);
-                expP.child.Remove(this);
-
-                expP.child.Insert(pos, this);
-                expP.child.Insert(pos + 1, lup);
+                moveItem(expP.tvPro, pos-1);
             }
-            changeChildPosition();
         }
 
         private void da_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            LabelTreeActivity lup;
-            int pos = (int)actMod.pos;
-
-            if(lab_father!=null)
+            if (lab_father != null)
             {
-                lup = lab_father.child.ElementAt(pos);
-
-                lab_father.child.Remove(lup);
-                lab_father.child.Remove(this);
-
-                lab_father.child.Insert(pos - 1, lup);
-                lab_father.child.Insert(pos, this);
+                moveItem(lab_father.tvi, pos + 1);
             }
             else
             {
-                lup = expP.child.ElementAt(pos);
-
-                expP.child.Remove(lup);
-                expP.child.Remove(this);
-
-                expP.child.Insert(pos - 1, lup);
-                expP.child.Insert(pos, this);
-            }            
-
-            changeChildPosition();
+                moveItem(expP.tvPro, pos + 1);
+            }
         }
 
         private void btn_add_folder_Click(object sender, RoutedEventArgs e)
         {
-            LabelTreeActivity nuevo = new LabelTreeActivity(0, this, dbMP, expP);
-            child.Add(nuevo);
-            show_arrow(child);            
-            tvi.Items.Add(nuevo);
-            tvi.IsExpanded = true;
+           
         }
-
-        private void tbcb_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Return)
-            {
-                Actividades act = new Actividades(dbMP);
-                //car = act.createActivity(lab_father.car, lab_father.child, textName.Text);
-                //lblName.Text = textName.Text;
-                //textName.Visibility = Visibility.Hidden;
-                lblName.Visibility = Visibility.Visible;
-            }
-        }
-
-        public void show_arrow(List<LabelTreeActivity> child)
-        {
-            if (child.Count > 1)
-            {
-                for (int i = 0; i < child.Count; i++)
-                {
-                    LabelTreeActivity c = child.ElementAt(i);
-                    c.ua.Visibility = Visibility.Collapsed;
-                    c.da.Visibility = Visibility.Collapsed;
-
-                    if (i == 0) { c.da.Visibility = Visibility.Visible; }
-                    else if (i == child.Count - 1) { c.ua.Visibility = Visibility.Visible; }
-                    else
-                    {
-                        c.ua.Visibility = Visibility.Visible;
-                        c.da.Visibility = Visibility.Visible;
-                    }
-
-                }
-            }
-        }
-
+        
         private void btn_delete_Click(object sender, RoutedEventArgs e)
         {
-            if (child.Count != 0)
-            {
-                if (MessageBox.Show("La Carpeta o actividad contiene sub-items Deseas Eliminarla?", "Eliminar", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
-                {
-                    deleteChild(child);
-                    new Caracteristicas(dbMP).removeCharacteristics(car);
-                    lab_father.child.Remove(this);
-                    lab_father.tvi.Items.Remove(this);
-                    changeChildPosition();
-                }
-            }
-            else
-            {
-                new Caracteristicas(dbMP).removeCharacteristics(car);
-                lab_father.child.Remove(this);
-                lab_father.tvi.Items.Remove(this);
-                changeChildPosition();
-            }
-
-            dbMP.SaveChanges();
+            
         }
 
         private void btn_add_activity_Click(object sender, RoutedEventArgs e)
         {
-            LabelTreeActivity nuevo = new LabelTreeActivity(1, this, dbMP, expP);
-            child.Add(nuevo);            
-            tvi.Items.Add(nuevo);
-            tvi.IsExpanded = true;
-        }
-
-        private void changeChildPosition()
-        {
-            if (lab_father != null)
-            {
-                lab_father.tvi.Items.Clear();
-                for (int i = 0; i < lab_father.child.Count; i++)
-                {
-                    LabelTreeActivity c = lab_father.child.ElementAt(i);
-                    c.actMod.pos = i + 1;
-
-                    if (i == 0) { c.da.Visibility = Visibility.Visible; c.ua.Visibility = Visibility.Hidden; }
-                    else if (i == lab_father.child.Count - 1) { c.ua.Visibility = Visibility.Visible; c.da.Visibility = Visibility.Hidden; }
-                    else {
-                        c.ua.Visibility = Visibility.Visible;
-                        c.da.Visibility = Visibility.Visible;
-                    }
-                    lab_father.tvi.Items.Add(c);
-                }
-            }
-            else
-            {
-                expP.tvPro.Items.Clear();
-                for (int i = 0; i < expP.child.Count; i++)
-                {
-                    LabelTreeActivity c = expP.child.ElementAt(i);
-                    c.actMod.pos = i + 1;
-
-                    if (i == 0) { c.da.Visibility = Visibility.Visible; c.ua.Visibility = Visibility.Hidden; }
-                    else if (i == expP.child.Count - 1) { c.ua.Visibility = Visibility.Visible; c.da.Visibility = Visibility.Hidden; }
-                    else
-                    {
-                        c.ua.Visibility = Visibility.Visible;
-                        c.da.Visibility = Visibility.Visible;
-                    }
-                    expP.tvPro.Items.Add(c);
-                }
-            }
-
-            try
-            {
-                dbMP.SaveChanges();
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show(err.Message + " move");
-            }
-        }
-
-        private void deleteChild(List<LabelTreeActivity> ch)
-        {
-            foreach (var x in ch)
-            {
-                deleteChild(x.child);
-                new Caracteristicas(dbMP).removeCharacteristics(x.car);
-            }
+            //LabelTreeActivity nuevo = new LabelTreeActivity(1, this, dbMP, expP);
+                       
+            //tvi.Items.Add(nuevo);
+            //tvi.IsExpanded = true;
         }
 
         //MUESTRA LA INTERFAZ DE LA ACTIVIDAD SELECCIONADA
@@ -293,8 +137,7 @@ namespace MProjectWPF.UsersControls.ActivityControls.FieldsControls
         {
             if (expP.lastSelectlta != null) expP.lastSelectlta.gridSh.Visibility = Visibility.Hidden;
             expP.lastSelectlta = this;
-            gridSh.Visibility = Visibility.Visible;
-                       
+            gridSh.Visibility = Visibility.Visible;                       
 
             ActivityPanel ap = new ActivityPanel(actMod,this,expP);
             expP.workplaceGrid.Children.Clear();
@@ -317,7 +160,7 @@ namespace MProjectWPF.UsersControls.ActivityControls.FieldsControls
             expP.lta = lab_father;
             expP.titlePro.Text = lblName.Text.ToUpper();
             expP.tvPro.Items.Clear();
-            expP.car.getActivitiesCharacteristics(car,expP.tvPro,this,expP);
+            expP.carCon.getActivitiesCharacteristics(car,expP.tvPro,this,expP);
         }
 
         public void showOpenFolder()
@@ -344,9 +187,60 @@ namespace MProjectWPF.UsersControls.ActivityControls.FieldsControls
         {
             gridSh.Visibility = Visibility.Collapsed;
         }
+
+        public void moveItem(TreeViewItem tvi,int p)
+        {
+            LabelTreeActivity lta = (LabelTreeActivity)tvi.Items.GetItemAt(p);
+            
+            tvi.Items.Remove(lta);            
+            tvi.Items.Insert(pos, lta);
+
+            lta.actMod.pos = pos + 1;
+            actMod.pos = p + 1;
+
+            show_arrow(lta, pos, tvi.Items.Count);
+            show_arrow(this, p, tvi.Items.Count);
+            
+
+            dbMP.SaveChanges();
+        }
+
+        public void moveItem(TreeView tvi,int p)
+        {
+            LabelTreeActivity lta = (LabelTreeActivity)tvi.Items.GetItemAt(p);
+            
+            tvi.Items.Remove(lta);
+            tvi.Items.Insert(pos, lta);
+
+            lta.actMod.pos = pos + 1;
+            actMod.pos = p + 1;
+
+            show_arrow(lta, pos, tvi.Items.Count);
+            show_arrow(this, p, tvi.Items.Count);
+
+            dbMP.SaveChanges();
+        }
+        
+        public void show_arrow(LabelTreeActivity lta, int i, int max)
+        {
+            lta.ua.Visibility = Visibility.Collapsed;
+            lta.da.Visibility = Visibility.Collapsed;
+
+            if (max > 1) {
+                if (i == 0) { lta.da.Visibility = Visibility.Visible; lta.isFirst = true; lta.pos = i; }
+                else if (i == max - 1) { lta.ua.Visibility = Visibility.Visible; lta.isLast = true; lta.pos = i; }
+                else
+                {
+                    lta.ua.Visibility = Visibility.Visible;
+                    lta.da.Visibility = Visibility.Visible;
+                    lta.pos = i;
+                }
+            }
+        }
+
+        public int childsCount()
+        {
+            return tvi.Items.Count;
+        }
     }
 }
-/*
-folder.Source = new BitmapImage(new Uri("/Resources/Icons/16px/open-folder.png", UriKind.Relative));
-folder.Source = new BitmapImage(new Uri("/Resources/Icons/16px/closed-folder.png", UriKind.Relative));
-*/
