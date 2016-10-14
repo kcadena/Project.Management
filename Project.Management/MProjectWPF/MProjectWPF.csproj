@@ -184,8 +184,10 @@
     <Compile Include="Controller\Actividades.cs" />
     <Compile Include="Controller\Caracteristicas.cs" />
     <Compile Include="Controller\ConectionString.cs" />
+    <Compile Include="Controller\LogXml.cs" />
     <Compile Include="Controller\Plantillas.cs" />
     <Compile Include="Controller\Proyectos.cs" />
+    <Compile Include="Controller\ServerController.cs" />
     <Compile Include="DocumentXml\WordClass.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -222,7 +224,7 @@
     <Compile Include="UsersControls\ProjectControls\FieldsControls\CardProject.xaml.cs">
       <DependentUpon>CardProject.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UsersControls\TemplatesControls\ControlXml.cs" />
+    <Compile Include="Controller\ControlXml.cs" />
     <Compile Include="UsersControls\TemplatesControls\FieldsControls\BoxField.xaml.cs">
       <DependentUpon>BoxField.xaml</DependentUpon>
     </Compile>
@@ -234,6 +236,9 @@
     </Compile>
     <Compile Include="UsersControls\TemplatesControls\ListTemplatePanel.xaml.cs">
       <DependentUpon>ListTemplatePanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsersControls\Transfer.xaml.cs">
+      <DependentUpon>Transfer.xaml</DependentUpon>
     </Compile>
     <Compile Include="UsersControls\UserControls\LabelsUsers\LabelMenu.xaml.cs">
       <DependentUpon>LabelMenu.xaml</DependentUpon>
@@ -339,6 +344,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UsersControls\Transfer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UsersControls\UserControls\LabelsUsers\LabelMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -393,23 +402,34 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Resource Include="Resources\show-icon-blue.png" />
-    <Resource Include="Resources\menu-icon.png" />
-    <Resource Include="Resources\menu-icon-blue.png" />
-    <None Include="Service References\MProjectWCF\MProjectService.wsdl" />
-    <None Include="Service References\MProjectWCF\MProjectService.xsd">
+    <Resource Include="Resources\Icons\16px\closed-folder-blue.png" />
+    <Resource Include="Resources\Icons\16px\open-folder-blue.png" />
+    <Resource Include="Resources\activity-blue.png" />
+    <Resource Include="Resources\activity-purple.png" />
+    <Resource Include="Resources\Icons\16px\closed-folder-gray.png" />
+    <Resource Include="Resources\Icons\16px\closed-folder-yellow.png" />
+    <Resource Include="Resources\geo_icon.png" />
+    <Resource Include="Resources\multi-icon.png" />
+    <Resource Include="Resources\web-icon.png" />
+    <Resource Include="Resources\home.png" />
+    <Resource Include="Logs\log.xml" />
+    <None Include="Service References\MProjectWCF\MProjectService1.wsdl" />
+    <None Include="Service References\MProjectWCF\MProjectService4.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MProjectWCF\MProjectService1.xsd">
+    <None Include="Service References\MProjectWCF\MProjectService41.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MProjectWCF\MProjectService2.xsd">
+    <None Include="Service References\MProjectWCF\MProjectService42.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MProjectWCF\MProjectService3.xsd">
+    <None Include="Service References\MProjectWCF\MProjectService43.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MProjectWCF\MProjectWPF.MProjectWCF.CompositeType.datasource">
+    <None Include="Service References\MProjectWCF\MProjectWPF.MProjectWCF.fileUploadResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MProjectWCF\MProjectWPF.MProjectWCF.RemoteFileInfo.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\MProjectWCF\Reference.svcmap">
@@ -418,6 +438,9 @@
     </None>
     <None Include="Service References\MProjectWCF\configuration.svcinfo" />
     <None Include="Service References\MProjectWCF\configuration91.svcinfo" />
+    <Resource Include="Resources\show-icon-blue.png" />
+    <Resource Include="Resources\menu-icon.png" />
+    <Resource Include="Resources\menu-icon-blue.png" />
     <Resource Include="Resources\SVG\volume.svg" />
     <Resource Include="Resources\SVG\security.svg" />
     <Resource Include="Resources\SVG\row.svg" />

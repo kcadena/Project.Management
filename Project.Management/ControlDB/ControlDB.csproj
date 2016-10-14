@@ -137,7 +137,7 @@
     <Compile Include="Model\repositorios_usuarios.cs">
       <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\tipos_archivos.cs">
+    <Compile Include="Model\table_sequence.cs">
       <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\tipos_datos.cs">

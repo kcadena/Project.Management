@@ -45,7 +45,7 @@ namespace MProjectWPF.UsersControls
             if (pro.icon != null)
             {
                 string repositoriolocal = pro.usuarios_meta_datos.repositorios_usuarios.ruta_repositorio_local;                
-                string titlepro = "/proyectos/proyecto" + titleCard.Content.ToString().Replace(" ", "").ToLower() + "/icons/";
+                string titlepro = "/proyectos/"+ pro.keym + "-" + pro.id_proyecto + "-" +pro.id_usuario + "/icons/";
                 string image = pro.icon;
                 string imgSource = repositoriolocal + titlepro + image;
                 try

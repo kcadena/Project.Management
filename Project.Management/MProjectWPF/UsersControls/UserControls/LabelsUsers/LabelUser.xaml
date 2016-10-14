@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="MProjectWPF.UsersControls.LabelUser"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MProjectWPF.UsersControls"
+             mc:Ignorable="d"  d:DesignWidth="200" Height="65" FontWeight="Normal" >
+
+    <Grid x:Name="grid" Background="#FF93ADFD">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="65"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="15"/>
+        </Grid.ColumnDefinitions>
+        <Image Grid.Column="0" x:Name="imgProfile"  Source="pack://application:,,/Resources/manprofile.png" Margin="5,5,0,5" OpacityMask="Black" HorizontalAlignment="Left" Width="55" Height="55"/>
+
+
+        <Grid Grid.Column="1">
+            <TextBlock x:Name="nameUser" Text="CARLOS HURTADO" TextDecorations="Underline" Margin="0,10,5,0" VerticalAlignment="Top" FontSize="13.333" FontFamily="Franklin Gothic Demi" FontWeight="Bold" Foreground="#FF004166"/>
+            <TextBlock x:Name="emailUser" Text="hurtado962@gmail.com" TextDecorations="{x:Null}" Margin="0,27,5,0" VerticalAlignment="Top" Foreground="#FF004166" FontStyle="Italic"></TextBlock>
+            <TextBlock x:Name="occupationUser" Text="Estudiante" Margin="0,42,5,0" VerticalAlignment="Top" HorizontalAlignment="Stretch" Foreground="#FF004166"></TextBlock>
+        </Grid>
+        <Grid Grid.Column="2" Margin="3,6" HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <!--Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"-->
+            <Button x:Name="btnChat" Grid.Row="0" Background="{x:Null}" Width="24"  Height="24" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Visibility="Hidden">
+                <Image Source="/Resources/Icons/16px/chat.png"/>
+            </Button>
+
+            <Button x:Name="btnMessage" Grid.Row="1" Background="{x:Null}" Width="24"  Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Visibility="Hidden">
+                <Image Source="/Resources/Icons/16px/user.png"/>
+            </Button>
+        </Grid>
+    </Grid>
+</UserControl>

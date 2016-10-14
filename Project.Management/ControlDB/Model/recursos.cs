@@ -15,10 +15,9 @@ namespace ControlDB.Model
     public partial class recursos
     {
         public string keym { get; set; }
-        public long idx_recurso { get; set; }
-        public long idx_caracteristica { get; set; }
         public long id_recurso { get; set; }
-        public long id_caracteristica { get; set; }
+        public long idx_caracteristica { get; set; }
+        public string id_caracteristica { get; set; }
         public string nombre_recurso { get; set; }
         public long cantidad { get; set; }
         public long id_usuario { get; set; }

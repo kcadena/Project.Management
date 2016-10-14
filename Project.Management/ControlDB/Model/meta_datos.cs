@@ -20,13 +20,12 @@ namespace ControlDB.Model
             this.plantillas_meta_datos = new HashSet<plantillas_meta_datos>();
         }
     
-        public string keym { get; set; }
-        public long idx_meta_dato { get; set; }
         public long id_meta_datos { get; set; }
+        public string keym { get; set; }
         public long id_usuario { get; set; }
+        public long id_tipo_dato { get; set; }
         public string descripcion { get; set; }
         public bool meta_dato_ir { get; set; }
-        public long id_tipo_dato { get; set; }
         public System.DateTime fecha_ultima_modificacion { get; set; }
     
         public virtual tipos_datos tipos_datos { get; set; }

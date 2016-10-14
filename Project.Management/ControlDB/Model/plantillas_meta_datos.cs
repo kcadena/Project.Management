@@ -14,14 +14,13 @@ namespace ControlDB.Model
     
     public partial class plantillas_meta_datos
     {
-        public string keym { get; set; }
-        public long idx_plantilla_meta_dato { get; set; }
-        public long idx_plantilla { get; set; }
-        public long idx_meta_dato { get; set; }
         public long id_plantilla_meta_dato { get; set; }
-        public long id_plantilla { get; set; }
-        public long id_meta_dato { get; set; }
+        public long idx_plantilla { get; set; }
+        public long idx_meta_datos { get; set; }
+        public string keym { get; set; }
         public long id_usuario { get; set; }
+        public string id_plantilla { get; set; }
+        public string id_meta_dato { get; set; }
         public bool requerido { get; set; }
         public System.DateTime fecha_ultima_modificacion { get; set; }
     

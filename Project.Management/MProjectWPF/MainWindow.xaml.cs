@@ -17,7 +17,6 @@ using System.Windows.Media.Imaging;
 using MProjectWPF.UsersControls.UserControls;
 using MProjectWPF.MProjectWCF;
 
-
 namespace MProjectWPF
 {
     /// <summary>
@@ -112,14 +111,14 @@ namespace MProjectWPF
                         indicator.Source = new BitmapImage(new Uri("pack://application:,,/Resources/Icons/16px/ind_Green.png"));
                     }));
                     internet = true;
-                    try
-                    {
-                        if (msc.countlog() > 0)
-                        {
-                            ValidateUser(msc.readLog());
-                        }
-                    }
-                    catch { }
+                    //try
+                    //{
+                    //    if (msc.countlog() > 0)
+                    //    {
+                    //        ValidateUser(msc.readLog());
+                    //    }
+                    //}
+                    //catch { }
                 }
                 catch
                 {
@@ -157,39 +156,10 @@ namespace MProjectWPF
         }
 
         private void uploadproject_Click(object sender, RoutedEventArgs e)
-        {
-            MProjectServiceClient sc = new MProjectServiceClient();
-
-            try
-            {
-                Dictionary<string, string> u = new Dictionary<string, string>();
-                u.Add("e_mail", usuModel.e_mail);
-                u.Add("id_usuario","" + usuModel.id_usuario);
-                u.Add("nombre", usuModel.nombre);
-                u.Add("apellido", usuModel.apellido);
-                u.Add("genero", usuModel.genero);
-                u.Add("pass", usuModel.usuarios.pass);
-                u.Add("cargo", usuModel.cargo);
-                u.Add("telefono", usuModel.telefono);
-                u.Add("entidad", usuModel.entidad);
-                u.Add("imagen", usuModel.imagen);
-                u.Add("administrador","" + usuModel.usuarios.administrador);
-
-
-                string[] lusu = sc.addUser(u);
-                if (lusu.LongLength == 0)
-                {
-                    MessageBox.Show("GOOD");
-                }
-                else
-                {
-                    MessageBox.Show("ERROR");
-                }
-            }
-            catch(Exception err)
-            {
-                MessageBox.Show(err.Message);
-            }
+        {   
+            LogXml logxml = new LogXml(usuModel.repositorios_usuarios.ruta_repositorio_local + "/Log/log.xml");
+            logxml.readLogUpdate(dbMP);
+            MessageBox.Show("Proyecto en la nube");
         }
 
         private void ValidateUser(string[][] logs)
@@ -214,6 +184,46 @@ namespace MProjectWPF
                 }
             }
         }
+
+        private void downloadproject_Click(object sender, RoutedEventArgs e)
+        {
+            ServerController.getProyect(""+usuModel.id_usuario,dbMP);
+            addLabels();
+            MessageBox.Show("Proyecto actualizado");
+        }
     } 
 }
 
+//private void uploadproject_Click(object sender, RoutedEventArgs e)
+//{
+//    MProjectServiceClient sc = new MProjectServiceClient();
+//    try
+//    {
+//        Dictionary<string, string> u = new Dictionary<string, string>();
+//        u.Add("e_mail", usuModel.e_mail);
+//        u.Add("id_usuario", "" + usuModel.id_usuario);
+//        u.Add("nombre", usuModel.nombre);
+//        u.Add("apellido", usuModel.apellido);
+//        u.Add("genero", usuModel.genero);
+//        u.Add("pass", usuModel.usuarios.pass);
+//        u.Add("cargo", usuModel.cargo);
+//        u.Add("telefono", usuModel.telefono);
+//        u.Add("entidad", usuModel.entidad);
+//        u.Add("imagen", usuModel.imagen);
+//        u.Add("administrador", "" + usuModel.usuarios.administrador);
+
+//        string[] lusu = sc.addUser(u);
+//        if (lusu.LongLength == 0)
+//        {
+//            MessageBox.Show("GOOD");
+//        }
+//        else
+//        {
+//            MessageBox.Show("ERROR");
+//        }
+//    }
+//    catch (Exception err)
+//    {
+//        MessageBox.Show(err.Message);
+//    }
+//}

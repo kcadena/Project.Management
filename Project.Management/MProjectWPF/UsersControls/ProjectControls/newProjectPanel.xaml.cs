@@ -32,11 +32,12 @@ namespace MProjectWPF.UsersControls
         MainWindow mainW;
         LabelProject lblPro;        
         public BoxField fieldTitle;
-        string fileName,fileSource;
+        public string iconName,iconSource;
         List<BoxField> lisBF;
         Plantillas plant;
-        ProjectPanel proPan;        
-
+        ProjectPanel proPan;     
+           
+        // CONTRUCTOR  CREAR PROYECTO
         public newProjectPanel(MainWindow mw)
         {
             InitializeComponent();
@@ -47,17 +48,21 @@ namespace MProjectWPF.UsersControls
             vTemplate.addOptionTemplate(false);
         }
 
-        public newProjectPanel(ProjectPanel ppn)
+        // CONSTRUCTOR ACTUALIZAR DATOS DEL PROYECTO
+        public newProjectPanel(ProjectPanel proPan)
         {
             InitializeComponent();
-            mainW = ppn.mainW;
-            proPan = ppn;
+            this.proPan = proPan;
+            mainW = proPan.mainW;
+            btnBack.Visibility = Visibility.Collapsed;
+            btnCancel.Visibility = Visibility.Visible;
+
             vTemplate.addOptionTemplate(false);
             LabelProject lp = new LabelProject();
             listBox.Items.Add(lp);
-            lisBF = ppn.tLisBF;
+            lisBF = proPan.tLisBF;
             
-            foreach (BoxField bf in ppn.tLisBF)
+            foreach (BoxField bf in proPan.tLisBF)
             {
                 if (bf.opc == 0)
                 {
@@ -66,25 +71,21 @@ namespace MProjectWPF.UsersControls
                 }
                 vTemplate.stackPanelFields.Children.Add(bf);
             }            
-            projectName.Text = ppn.pName;
-            detailText.Text = ppn.detail;
+            projectName.Text = proPan.pName;
+            detailText.Text = proPan.detail;
             labelNameProject.Content = fieldTitle.labelBoxField3.Content;
-            
-            if (ppn.proMod.icon != null)
-            {
-                string repositoriolocal = ppn.proMod.usuarios_meta_datos.repositorios_usuarios.ruta_repositorio_local;
-                string titlepro = "/proyectos/proyecto" + ppn.proMod.nombre.ToString().Replace(" ", "").ToLower() + "/icons/";
-                string image = ppn.proMod.icon;
-                string imgSource = repositoriolocal + titlepro + image;
 
-                fileSource = repositoriolocal + titlepro;
-                fileName = image;
+            //obtiene parametors del icono a cargar
+            iconName = proPan.iconName;
+            iconSource = proPan.iconSource;
 
+            if (iconName != null)
+            {   
                 try
                 {
                     BitmapImage b = new BitmapImage();
                     b.BeginInit();
-                    b.UriSource = new Uri(imgSource);
+                    b.UriSource = new Uri(iconSource);
                     b.CacheOption = BitmapCacheOption.OnLoad;
                     b.EndInit();
                     iconProject.Source = b;
@@ -126,38 +127,17 @@ namespace MProjectWPF.UsersControls
 
         public void loadFields()
         {
-            vTemplate.stackPanelFields.Children.Clear();
-            vTemplate.gbTemplate.Header = "TITULO PROYECTO";
-            lisBF = plant.listBoxField(lblPro.pla, this);
-        }
-
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-            exit();
-        }
-
-        private void btnUploadImage_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog openFile = new OpenFileDialog();
-            openFile.Filter = "Archivos de imágen (.jpg)|*.jpg|All Files (*.*)|*.*";
-            openFile.FilterIndex = 1;
-            openFile.Multiselect = false;
-            bool? checarOK = openFile.ShowDialog();
-
-            if (checarOK == true)
-            {
-                fileSource = openFile.FileName;
-                fileName   = openFile.SafeFileName;
-
-                BitmapImage b = new BitmapImage();
-                b.BeginInit();
-                b.UriSource = new Uri(fileSource);
-                b.CacheOption = BitmapCacheOption.OnLoad;
-                b.EndInit();
-                iconProject.Source = b;
-                b = null;                
+            try
+            {   
+                if(proPan == null)
+                {
+                    vTemplate.stackPanelFields.Children.Clear();
+                    vTemplate.gbTemplate.Header = "TITULO PROYECTO";
+                    lisBF = plant.listBoxField(lblPro.pla, this);
+                }
             }
-
+            catch { }
+            
         }
 
         private void projectName_TextChanged(object sender, TextChangedEventArgs e)
@@ -189,31 +169,6 @@ namespace MProjectWPF.UsersControls
             }
         }
 
-        private void btnAddProject_Click(object sender, RoutedEventArgs e)
-        {
-            if (fieldValidation())
-            {
-                iconProject.Source = null;                
-                string pName = projectName.Text;
-                Visibility = Visibility.Hidden;
-                vTemplate.stackPanelFields.Children.Clear();                                
-                mainW.viewPlan.Children.Remove(this);
-                List<BoxField> lbf = new List<BoxField>();
-
-                foreach(BoxField ibf in lisBF)
-                {
-                    BoxField bf = new BoxField(ibf);
-                    lbf.Add(bf);
-                }                
-
-                ExplorerProject exPro;
-                if(proPan == null)  exPro = new ExplorerProject(mainW, pName, lbf,lisBF, fileSource, fileName, detailText.Text);
-                else exPro = new ExplorerProject(mainW,pName,proPan.proMod, lbf, lisBF, fileSource,fileName,detailText.Text);               
-
-                mainW.viewPlan.Children.Add(exPro);
-            }
-        }
-
         private bool fieldValidation()
         {
             bool val = true;
@@ -235,12 +190,82 @@ namespace MProjectWPF.UsersControls
             return val;
         }
 
+        //EVENTOS BOTONES/////////////////////////////
+        private void btnUploadImage_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFile = new OpenFileDialog();
+            openFile.Filter = "Archivos de imágen (.jpg)|*.jpg|All Files (*.*)|*.*";
+            openFile.FilterIndex = 1;
+            openFile.Multiselect = false;
+            bool? checarOK = openFile.ShowDialog();
+
+            if (checarOK == true)
+            {
+                iconSource = openFile.FileName;
+                iconName = openFile.SafeFileName;
+
+                BitmapImage b = new BitmapImage();
+                b.BeginInit();
+                b.UriSource = new Uri(iconSource);
+                b.CacheOption = BitmapCacheOption.OnLoad;
+                b.EndInit();
+                iconProject.Source = b;
+                b = null;
+            }
+
+        }
+
+        private void btnAddProject_Click(object sender, RoutedEventArgs e)
+        {
+            if (fieldValidation())
+            {
+                iconProject.Source = null;
+                string pName = projectName.Text;
+                Visibility = Visibility.Hidden;
+                vTemplate.stackPanelFields.Children.Clear();
+                mainW.viewPlan.Children.Remove(this);
+                List<BoxField> lbf = new List<BoxField>();
+
+                foreach (BoxField ibf in lisBF)
+                {
+                    BoxField bf = new BoxField(ibf);
+                    lbf.Add(bf);
+                }
+
+                ExplorerProject exPro;
+
+                Dictionary<string, string> dic = new Dictionary<string, string>();
+                dic["pName"] = pName;
+                dic["iconSource"] = iconSource;
+                dic["iconName"] = iconName;
+                dic["detail"] = detailText.Text;
+                
+                if (proPan == null || proPan.proMod == null) exPro = new ExplorerProject(mainW,  lbf, lisBF,dic);
+                else exPro = new ExplorerProject(mainW,  proPan.proMod, lbf, lisBF, dic);
+
+                mainW.viewPlan.Children.Add(exPro);
+            }
+        }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            exit();
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            Visibility = Visibility.Collapsed;
+            vTemplate.stackPanelFields.Children.Clear();
+            mainW.viewPlan.Children.Add(proPan.exPro);
+
+        }        
+        /////////////////////////////////////////////
+
         private void exit()
         {
             mainW.addLabels();                        
             Visibility = Visibility.Collapsed;                       
             mainW.vp1.Visibility = Visibility.Visible;            
         }
-        
     }
 }

@@ -11,16 +11,31 @@ using DocumentFormat.OpenXml.Wordprocessing;
 using dd = DocumentFormat.OpenXml.Wordprocessing;
 using System.Windows.Threading;
 using DocumentFormat.OpenXml;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Collections.Generic;
 
 namespace MProjectWPF.DocumentXml
 {
     public class WordClass
     {
-        Process pcs;
+        protected delegate bool EnumWindowsProc(IntPtr hWnd, IntPtr lParam);
+        [DllImport("user32.dll", CharSet = CharSet.Unicode)]
+        protected static extern int GetWindowText(IntPtr hWnd, StringBuilder strText, int maxCount);
+        [DllImport("user32.dll", CharSet = CharSet.Unicode)]
+        protected static extern int GetWindowTextLength(IntPtr hWnd);
+        [DllImport("user32.dll")]
+        protected static extern bool EnumWindows(EnumWindowsProc enumProc, IntPtr lParam);
+        [DllImport("user32.dll")]
+        protected static extern bool IsWindowVisible(IntPtr hWnd);
+
         ProjectPanel proPan;
         XpsDocument xpsDocument;
-        string pathw="",path="";
-        Thread thr;        
+        string pathw = "", path = "";
+        Thread thr;
+        public string nameFile;
+        List<string> windows;
+        bool fileIsOpen = false;
 
         //Constructor Primera vez
         public WordClass(ProjectPanel ppan)
@@ -28,10 +43,12 @@ namespace MProjectWPF.DocumentXml
             proPan = ppan;
             try
             {
+                nameFile = "Objectives.docx";
+
                 pathw = "DocumentXml\\DocTemplate\\Objectives.docx";
                 path = "DocumentXml\\DocTemplate\\Objectives.xps";
 
-                string text = "OBJETIVOS " + ppan.pName.ToUpper();
+                string text = "OBJETIVOS " + ppan.pName;
                 InsertText(text);
 
                 gb.ComponentInfo.SetLicense("FREE-LIMITED-KEY");
@@ -40,31 +57,31 @@ namespace MProjectWPF.DocumentXml
                 thr = new Thread(() => load());
                 thr.Start();
             }
-            catch(Exception err)
+            catch (Exception err)
             {
                 MessageBox.Show(err.Message);
             }
         }
         //Constructor Abrir
-        public WordClass(ProjectPanel ppan,string route)
+        public WordClass(ProjectPanel ppan, string route)
         {   
             proPan = ppan;
             try
             {
-                string nameFile = "objetivos" + proPan.proMod.nombre.ToLower().Replace(" ", "");                
-                
-                pathw = route + "\\proyectos\\proyecto"+ proPan.proMod.nombre.ToLower().Replace(" ", "")+"\\documentos\\" + nameFile + ".docx";
-                path = route + "\\proyectos\\proyecto" + proPan.proMod.nombre.ToLower().Replace(" ", "") + "\\documentos\\" + nameFile + ".xps";
-                
+                nameFile = "objetivos" + proPan.idName;
+
+                pathw = route + "\\proyectos\\" + proPan.idName + "\\documentos\\" + nameFile + ".docx";
+                path = route + "\\proyectos\\" + proPan.idName + "\\documentos\\" + nameFile + ".xps";
+
                 gb.ComponentInfo.SetLicense("FREE-LIMITED-KEY");
                 gb.ComponentInfo.FreeLimitReached += (sender, e) => e.FreeLimitReachedAction = gb.FreeLimitReachedAction.Stop;
 
                 thr = new Thread(() => loadini());
-                thr.Start();                
+                thr.Start();
             }
             catch (Exception err)
             {
-                MessageBox.Show(err.Message+"Constructor");
+                MessageBox.Show(err.Message + "Constructor");
             }
         }
 
@@ -78,9 +95,9 @@ namespace MProjectWPF.DocumentXml
                 ParagraphProperties pPr = new ParagraphProperties();
                 StyleDefinitionsPart part = document.MainDocumentPart.StyleDefinitionsPart;
 
-                GeneratePartContent(part);                
+                GeneratePartContent(part);
                 mainPart.Document = new Document(body);
-                                
+
                 para.ParagraphProperties = pPr;
                 pPr.ParagraphStyleId = new ParagraphStyleId() { Val = "Heading1" };
 
@@ -90,62 +107,59 @@ namespace MProjectWPF.DocumentXml
                 Run run = para.AppendChild(new Run());
                 run.PrependChild(rpro);
 
-                Text t = new Text(text);                
-                run.AppendChild(t);                
+                Text t = new Text(text);
+                run.AppendChild(t);
             }
         }
 
         public void openWord()
-        {   
-            ProcessStartInfo psi = new ProcessStartInfo();//  recibe parametros de nuevo processo
-            psi.FileName = "WINWORD.EXE";
-            psi.Arguments = "\"" + pathw + "\"";
-
-            Process[] lstPro = Process.GetProcessesByName("WINWORD");
-
+        {
+            Process.Start(pathw);
             try
             {
-                if (lstPro.Length >= 1)
-                {
-                    pcs = lstPro[0];
-                    pcs.StartInfo = psi;
-                    pcs.Start();
-                }
-                else
-                {
-                    pcs = new Process();
-                    pcs.StartInfo = psi;
-                    pcs.Start();
-                }
-                lstPro = null;
-
                 proPan.assingDocument.Visibility = Visibility.Collapsed;
                 thr = new Thread(() => verifyprocess());
                 thr.Start();
 
-            }catch(Exception err)
+            }
+            catch (Exception err)
             {
                 MessageBox.Show(err.Message);
             }
-            
+
         }
 
         private void verifyprocess()
         {
+            proPan.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+            {
+                proPan.load.Visibility = Visibility.Visible;
+            }));
+
             while (true)
             {
-                proPan.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                try
                 {
-                    proPan.load.Visibility = Visibility.Visible;
-                }));
+                    windows = new List<string>();
+                    EnumWindows(new EnumWindowsProc(EnumTheWindows), IntPtr.Zero);
 
-                Process[] lstPro = Process.GetProcessesByName("WINWORD");
-                if (lstPro.Length < 1)
-                {
-                    lstPro = null;
-                    load();
+                    if (!windows.Contains(nameFile + ".docx"))
+                    {
+                        if (fileIsOpen)
+                        {
+                            load();
+                        }
+                    }
+                    else
+                    {
+                        fileIsOpen = true;
+                    }
+                    windows = null;
                 }
-                lstPro = null;
+                catch
+                {
+                    // Intentionally empty.
+                }
                 Thread.Sleep(100);
             }
         }
@@ -154,15 +168,15 @@ namespace MProjectWPF.DocumentXml
         {
             try
             {
-                if(xpsDocument != null)
+                if (xpsDocument != null)
                 {
                     var myXpsUri = xpsDocument.Uri;
                     var theXpsPackage = System.IO.Packaging.PackageStore.GetPackage(myXpsUri);
-                    try { theXpsPackage.Close(); } catch { } 
+                    try { theXpsPackage.Close(); } catch { }
                     System.IO.Packaging.PackageStore.RemovePackage(myXpsUri);
-                }              
-                
-                gb.DocumentModel document = gb.DocumentModel.Load(pathw);               
+                }
+
+                gb.DocumentModel document = gb.DocumentModel.Load(pathw);
                 document.Save(path);
                 document = null;
             }
@@ -183,26 +197,25 @@ namespace MProjectWPF.DocumentXml
                     proPan.docview.Document = null;
                     proPan.docview.Document = xpsDocument.GetFixedDocumentSequence();
                     proPan.docview.FitToWidth();
-                }));                
-                pcs = null;
+                }));
             }
             catch (Exception err)
-            {               
+            {
                 MessageBox.Show(err.Message + "Load");
             }
         }
 
         private void loadini()
         {
-            proPan.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(()=>
+            proPan.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
             {
                 proPan.load.Visibility = Visibility.Visible;
             }
-            ));            
-            if(!File.Exists(path))
+            ));
+            if (!File.Exists(path))
             {
                 createXps();
-            }  
+            }
             loadXps();
             proPan.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
             {
@@ -217,17 +230,24 @@ namespace MProjectWPF.DocumentXml
         {
             proPan.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
             {
-                proPan.load.Visibility = Visibility.Visible;                
+                proPan.load.Visibility = Visibility.Visible;
             }));
             createXps();
-            loadXps();            
+            loadXps();
             proPan.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
             {
                 proPan.load.Visibility = Visibility.Collapsed;
-                proPan.assingDocument.Visibility = Visibility.Visible;               
+                proPan.assingDocument.Visibility = Visibility.Visible;
             }));
-            thr.Abort();
-            thr = null;
+            try
+            {
+                thr.Abort();
+                thr = null;
+            }
+            catch
+            {
+
+            }
         }
 
         public void unlockDocument()
@@ -1168,6 +1188,21 @@ namespace MProjectWPF.DocumentXml
 
             part.Styles = styles1;
         }
-                
-    }    
+
+        private bool EnumTheWindows(IntPtr hWnd, IntPtr lParam)
+        {
+            int size = GetWindowTextLength(hWnd);
+
+            if (size++ > 0 && IsWindowVisible(hWnd))
+            {
+                StringBuilder sb = new StringBuilder(size);
+                GetWindowText(hWnd, sb, size);
+
+                string[] nameFileWin = sb.ToString().Split(' ');
+                windows.Add(nameFileWin[0]);
+            }
+            return true;
+        }
+
+    }
 }

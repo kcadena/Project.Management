@@ -18,35 +18,39 @@ namespace ControlDB.Model
         public caracteristicas()
         {
             this.actividades = new HashSet<actividades>();
+            this.archivos = new HashSet<archivos>();
             this.caracteristicas1 = new HashSet<caracteristicas>();
             this.costoslist = new HashSet<costos>();
             this.presupuestolist = new HashSet<presupuesto>();
             this.proyectos = new HashSet<proyectos>();
             this.recursoslist = new HashSet<recursos>();
-            this.archivos = new HashSet<archivos>();
         }
     
-        public string keym { get; set; }
-        public long idx_caracteristica { get; set; }
-        public Nullable<long> idx_caracteristica_padre { get; set; }
         public long id_caracteristica { get; set; }
-        public Nullable<long> id_caracteristica_padre { get; set; }
+        public Nullable<long> idx_caracteristica_padre { get; set; }
+        public string keym { get; set; }
         public long id_usuario { get; set; }
+        public string id_caracteristica_padre { get; set; }
         public string estado { get; set; }
+        public long Porcentaje { get; set; }
         public long porcentaje_asignado { get; set; }
         public long porcentaje_cumplido { get; set; }
         public Nullable<System.DateTime> fecha_inicio { get; set; }
         public Nullable<System.DateTime> fecha_fin { get; set; }
         public string recursos { get; set; }
+        public string recursos_restantes { get; set; }
         public string presupuesto { get; set; }
         public string costos { get; set; }
         public string tipo_caracteristica { get; set; }
         public bool visualizar_superior { get; set; }
         public System.DateTime fecha_ultima_modificacion { get; set; }
         public Nullable<long> usuario_asignado { get; set; }
+        public bool publicar_web { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<actividades> actividades { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<archivos> archivos { get; set; }
         public virtual usuarios_meta_datos usuarios_meta_datos_asignado { get; set; }
         public virtual usuarios_meta_datos usuarios_meta_datos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -60,7 +64,5 @@ namespace ControlDB.Model
         public virtual ICollection<proyectos> proyectos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<recursos> recursoslist { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<archivos> archivos { get; set; }
     }
 }

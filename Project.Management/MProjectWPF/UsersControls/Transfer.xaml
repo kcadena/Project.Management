@@ -1,0 +1,39 @@
+﻿<Window x:Class="MProjectWPF.UsersControls.Transfer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MProjectWPF.UsersControls"
+        mc:Ignorable="d"
+        Title="TRANSFER" Height="300" Width="413.953" >
+    <Grid>
+        <Border BorderBrush="Gray"  BorderThickness="1" Margin="30,20,30,0" Height="130" VerticalAlignment="Top">
+            <Grid  >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                </Grid.RowDefinitions>
+                <Label x:Name="label" Content="Porcentaje Faltante:" />
+                <TextBox x:Name="txtPf" Grid.Column="1" IsReadOnly="True" Margin="3" Text="100"/>
+                
+                <Label x:Name="label1" Content="Porcentaje a asignar" Grid.Row="1"/>
+                <TextBox x:Name="txtPercentA" Grid.Column="1" Grid.Row="1" Margin="3" Text="0" PreviewTextInput="txtPercentA_PreviewTextInput" />
+                <Label x:Name="txtPercentASh" Grid.Column="1" Grid.Row="1" Margin="3" BorderBrush="Red" BorderThickness="1" Visibility="Collapsed" MouseUp="txtPaSh_MouseUp"/>
+                
+                <Label x:Name="preRe" Content="Presupuesto Real:" Grid.Row="2"/>
+                <TextBox x:Name="txtEstimationRe" IsReadOnly="True" Grid.Column="1" Grid.Row="2" Margin="3" Text="100"/>
+
+                <Label x:Name="preAs" Content="Presupuesto para asignar:" Grid.Row="3"/>
+                <TextBox x:Name="txtEstimationAs" Grid.Column="1" Grid.Row="3" Margin="3" Text="0" PreviewTextInput="txtEstimationAs_PreviewTextInput"/>
+                <Label x:Name="txtEstimationAsSh" Grid.Column="1" Grid.Row="3" Margin="3" BorderBrush="Red" BorderThickness="1" Visibility="Collapsed" MouseUp="txtPreAsSh_MouseUp"/>
+            </Grid>
+        </Border>
+        <Button x:Name="button" Content="Aceptar"  Margin="318,225,20,14" Click="button_Click"/>
+    </Grid>
+</Window>

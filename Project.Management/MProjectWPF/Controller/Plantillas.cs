@@ -72,8 +72,8 @@ namespace MProjectWPF.Controller
                 pmd.plantillas = pla;
                 pmd.meta_datos = md;
                 pmd.id_plantilla_meta_dato = lastIndexPlantMetaDatos;
-                pmd.id_plantilla = pla.id_plantilla;
-                pmd.id_meta_dato = md.id_meta_datos;
+                pmd.id_plantilla = pla.keym +"-"+ pla.id_plantilla+"-"+ pla.id_usuario;
+                pmd.id_meta_dato = md.keym +"-"+ md.id_meta_datos+"-"+md.id_usuario;
                 pmd.usuarios_meta_datos = usu;
                 pmd.requerido = required;
                 pmd.fecha_ultima_modificacion = DateTime.Now;
@@ -105,8 +105,8 @@ namespace MProjectWPF.Controller
                         pmdI.plantillas = pla;
                         pmdI.meta_datos = mdI;
                         pmdI.id_plantilla_meta_dato = lastIndexPlantMetaDatos;
-                        pmdI.id_plantilla = pla.id_plantilla;
-                        pmdI.id_meta_dato = mdI.id_meta_datos;
+                        pmdI.id_plantilla = pla.keym + "-" + pla.id_plantilla + "-" + pla.id_usuario;
+                        pmdI.id_meta_dato = md.keym + "-" + md.id_meta_datos + "-" + md.id_usuario;
                         pmdI.usuarios_meta_datos = usu;
                         pmdI.requerido = required;
                         pmdI.fecha_ultima_modificacion = DateTime.Now;

@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MProjectWPF.UsersControls.ActivityControls.FieldsControls"
-             mc:Ignorable="d" VirtualizingPanel.IsVirtualizing="True">
+             mc:Ignorable="d">
     
     <Grid x:Name="Grid_Explorer" >
         <Grid.ColumnDefinitions>
@@ -13,13 +13,17 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0" Background="#FF93ADFD">
-            <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,5,0,0">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,5,5,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
                 <Button x:Name="btnBackItem" Grid.Column="0" Margin="0,7,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Content="←" FontWeight="Bold" FontSize="18.667" Width="21" Height="15" Padding="0,-8,-2,1" Foreground="White" Background="#FF206A0F" Style="{StaticResource ButtonStyleGreen}" Visibility="Collapsed" Click="btnBackItem_Click"/>
                 <TextBlock x:Name="titlePro" Grid.Column="1" Text="TITULO PROYECTO" Margin="0" VerticalAlignment="Top" Height="25" FontWeight="Bold" FontSize="13.333" Foreground="#FF237012" Padding="5,5,0,0" Cursor="Hand" MouseEnter="titlePro_MouseEnter" MouseLeave="titlePro_MouseLeave" ToolTip="Click configuración del proyecto" HorizontalAlignment="Left" MouseLeftButtonUp="titlePro_MouseLeftButtonUp"/>
+                <Button x:Name="btnHome" Grid.Column="2" Margin="0,7,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="18" Height="18" Background="#FF206A0F" Style="{StaticResource ButtonStyleGreen}" Visibility="Collapsed" Click="btnHome_Click">
+                    <Image Source="pack://application:,,/Resources/home.png" />
+                </Button>
             </Grid>
             
             <TreeView Name="tvPro" Background="#FF96D57B" Margin="10,30,5,25" Padding="-3,1,1,1" >

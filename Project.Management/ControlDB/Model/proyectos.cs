@@ -20,12 +20,11 @@ namespace ControlDB.Model
             this.proyectos_meta_datos = new HashSet<proyectos_meta_datos>();
         }
     
-        public string keym { get; set; }
-        public long idx_proyecto { get; set; }
-        public long idx_caracteristica { get; set; }
         public long id_proyecto { get; set; }
-        public long id_caracteristica { get; set; }
+        public long idx_caracteristica { get; set; }
+        public string keym { get; set; }
         public long id_usuario { get; set; }
+        public string id_caracteristica { get; set; }
         public string nombre { get; set; }
         public string plantilla { get; set; }
         public bool IR_proyecto { get; set; }

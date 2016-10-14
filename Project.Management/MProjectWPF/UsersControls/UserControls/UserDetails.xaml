@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="MProjectWPF.UsersControls.UserControls.UserDetails"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MProjectWPF.UsersControls.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Label x:Name="lblDetail" Content="PERFIL" Margin="0,5,0,0" VerticalAlignment="Top" FontWeight="Bold"  FontFamily="7" Foreground="#FF003F66" Height="25" Background="{x:Null}" d:LayoutOverrides="VerticalAlignment" />
+        <Separator Background="#FF003F66" VerticalAlignment="Top" Margin="0,25,0,0" />
+        <Label x:Name="lblDetail_Copy" Content="Nombre:" Margin="0,30,0,0" VerticalAlignment="Top"  FontFamily="7" Foreground="#FF003F66" Height="25" Background="{x:Null}" d:LayoutOverrides="VerticalAlignment" HorizontalAlignment="Left" />
+        <TextBox x:Name="nameTxt" Height="25" Margin="84.403,30,10,0"  Text="Maximiliano Lee" VerticalAlignment="Top" IsEnabled="False" FontSize="13.333" FontFamily="7"/>
+        <Label x:Name="lblDetail_Copy1" Content="Correo:" Margin="0,60,0,0" VerticalAlignment="Top"  FontFamily="7" Foreground="#FF003F66" Height="25" Background="{x:Null}" HorizontalAlignment="Left" d:LayoutOverrides="VerticalAlignment" Width="79.403" />
+        <TextBox x:Name="emailTxt" Height="25" Margin="84.403,60,10,0"  Text="maxilee@gmail.com" VerticalAlignment="Top" IsEnabled="False" FontSize="13.333" FontFamily="7"/>
+        <Label x:Name="lblDetail_Copy2" Content="Cargo:" Margin="0,90,0,0" VerticalAlignment="Top"  FontFamily="7" Foreground="#FF003F66" Height="25" Background="{x:Null}" HorizontalAlignment="Left" Width="79.403" d:LayoutOverrides="VerticalAlignment" />
+        <TextBox x:Name="ocupationTxt" Height="25" Margin="84.403,90,10,0"  Text="Estudiante" VerticalAlignment="Top" IsEnabled="False" FontSize="13.333" FontFamily="7"/>
+        <Label x:Name="c" Content="Entidad:" Margin="0,120,0,0" VerticalAlignment="Top"  FontFamily="7" Foreground="#FF003F66" Height="25" Background="{x:Null}" HorizontalAlignment="Left" Width="79.403" />
+        <TextBox x:Name="companyTxt" Margin="84.403,120,10,0"  Text="Universidad de Nariño" IsEnabled="False" FontSize="13.333" FontFamily="7" VerticalAlignment="Top" Height="25"/>
+        <Label x:Name="lblDetail_Copy4" Content="Telefono:" Margin="0,150,0,0" VerticalAlignment="Top"  FontFamily="7" Foreground="#FF003F66" Height="25" Background="{x:Null}" HorizontalAlignment="Left" Width="79.403" />
+        <TextBox x:Name="phoneTxt" Margin="84.403,150,10,0" Text="28 de marzo 2016" IsEnabled="False" FontSize="13.333" FontFamily="7" VerticalAlignment="Top" Height="25"/>
+    </Grid>
+</UserControl>

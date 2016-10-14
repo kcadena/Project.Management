@@ -62,8 +62,10 @@ namespace MProjectWPF.Controller
             }
             catch(Exception err)
             {
-                MessageBox.Show(err.InnerException.Message);
-                
+                try {
+                    MessageBox.Show(err.InnerException.Message);
+                }
+                catch { }
             }
             
 

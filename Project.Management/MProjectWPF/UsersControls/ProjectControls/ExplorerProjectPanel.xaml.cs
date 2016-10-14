@@ -31,62 +31,69 @@ namespace MProjectWPF.UsersControls
 
         public MainWindow mainW;        
         public Caracteristicas carCon;
-        public LabelTreeActivity lta,lastSelectlta;
+        public LabelTreeActivity ltaFather,lastSelectlta;
         public string title;
-        public proyectos pro;
-        public actividades act;
-        ProjectPanel proPan;
-       
-        //cargar
-        public ExplorerProject(MainWindow mw, proyectos p,string t)
+        public proyectos proMod;
+        
+        public ProjectPanel proPanRoot;
+
+        public ActivityPanel actPanBack;
+        public ActivityPanel actPanCurrent;
+
+        //CARGAR
+        public ExplorerProject(MainWindow mw, proyectos proMod ,string t)
         {
             InitializeComponent();
             mainW = mw;
             title = t;
-            pro = p;
+            this.proMod = proMod;
             titlePro.Text = title;
             carCon = new Caracteristicas(mainW);
-            proPan = new ProjectPanel(pro, mainW, this);
-            carCon.getActivitiesCharacteristics(pro.caracteristicas, tvPro, null, this);
-            workplaceGrid.Children.Add(proPan);           
+            proPanRoot = new ProjectPanel(proMod, mainW, this);
+            
+            carCon.getActivitiesCharacteristics(proMod.caracteristicas, tvPro, null, this);
+            workplaceGrid.Children.Add(proPanRoot);           
         }
 
-        //actualizar
-        public ExplorerProject(MainWindow mw, string pName, proyectos p, List<BoxField> bf, List<BoxField> tbf, string fileSource, string fileName, string detail)
+        //ACTUALIZAR
+        public ExplorerProject(MainWindow mw, proyectos proMod, List<BoxField> bf, List<BoxField> tbf, Dictionary<string, string> dic)
         {
             InitializeComponent();
             mainW = mw;
-            title = pName.ToUpper();
-            pro = p;
+            title = dic["pName"].ToUpper();
+            this.proMod = proMod;
             titlePro.Text = title;
 
-            proPan = new ProjectPanel(mainW, this, pName, p, bf, tbf, fileSource, fileName, detail);
-            workplaceGrid.Children.Add(proPan);
+            proPanRoot = new ProjectPanel(mainW, this, proMod, bf, tbf, dic);
+            workplaceGrid.Children.Add(proPanRoot);
             
             carCon = new Caracteristicas(mainW);
-            carCon.getActivitiesCharacteristics(pro.caracteristicas, tvPro, null, this);
+            carCon.getActivitiesCharacteristics(proMod.caracteristicas, tvPro, null, this);
         }
         
-        //primer
-        public ExplorerProject(MainWindow mw,string pName, List<BoxField> bf, List<BoxField> tbf, string fileSource,string fileName,string detail)
+        //CREAR
+        public ExplorerProject(MainWindow mw, List<BoxField> bf, List<BoxField> tbf, Dictionary<string,string> dic)
         {
             InitializeComponent();
+            
             mainW = mw;
-            title = pName.ToUpper();            
+            title = dic["pName"].ToUpper();            
             titlePro.Text = title;
-            proPan = new ProjectPanel(mainW, this, pName, bf, tbf, fileSource, fileName, detail);
-            workplaceGrid.Children.Add(proPan);
+            proPanRoot = new ProjectPanel(mainW, this, bf, tbf, dic);
+            workplaceGrid.Children.Add(proPanRoot);
             carCon = new Caracteristicas(mainW);
         }
 
+        //PERMITE SALIR DEA INTERFAZ
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //proPan.wc.unlockDocument();
+            proPanRoot.wc.unlockDocument();
             mainW.addLabels();
             mainW.viewPlan.Children.Remove(this);
             mainW.vp1.Visibility = Visibility.Visible;
         }
                
+        //EFECTOS TITULO/////
         private void titlePro_MouseEnter(object sender, MouseEventArgs e)
         {
             titlePro.TextDecorations = TextDecorations.Underline;
@@ -98,46 +105,69 @@ namespace MProjectWPF.UsersControls
             titlePro.TextDecorations = null;
             titlePro.FontSize = 13.333;
         }
+        //FINISH////////////
 
+        //CLICK TITULO
         private void titlePro_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            if (pro != null)
+            if(lastSelectlta != null)
+            {
+                lastSelectlta.gridSh.Visibility = Visibility.Hidden;
+            }
+            if(actPanCurrent != null)
             {
                 workplaceGrid.Children.Clear();
-                workplaceGrid.Children.Add(new ProjectPanel(pro, mainW, this));
+                workplaceGrid.Children.Add(actPanCurrent);
             }
-            else if(act != null)
+            else
             {
                 workplaceGrid.Children.Clear();
-                workplaceGrid.Children.Add(new ActivityPanel(act, lta, this));
+                workplaceGrid.Children.Add(proPanRoot);
             }
-            
+           
         }
 
+        //REGRESAR ESTRUCTURA ANTERIOR ACTIVIDAD
         private void btnBackItem_Click(object sender, RoutedEventArgs e)
         {            
-            if (lta != null)
+            if (ltaFather != null)
             {              
-                titlePro.Text = lta.lblName.Text.ToUpper();
+                titlePro.Text = ltaFather.lblName.Text.ToUpper();
                 tvPro.Items.Clear();
-                carCon.getActivitiesCharacteristics(lta.car,tvPro,lta.lab_father,this);
-                lta = lta.lab_father;
+                carCon.getActivitiesCharacteristics(ltaFather.car,tvPro, ltaFather.lab_father,this);
+                actPanCurrent = new ActivityPanel(ltaFather.car.actividades.First(), ltaFather, this);
+                ltaFather = ltaFather.lab_father;                
             }
             else
             {
                 btnBackItem.Visibility = Visibility.Collapsed;
+                btnHome.Visibility = Visibility.Collapsed;
                 titlePro.Text = title.ToUpper();
                 tvPro.Items.Clear();
-                carCon.getActivitiesCharacteristics(pro.caracteristicas, tvPro,null, this);
+                carCon.getActivitiesCharacteristics(proMod.caracteristicas, tvPro,null, this);
+                actPanCurrent = null;
             }
         }
         
-        public void removeItem(LabelTreeActivity lta)
+        public  void removeItem(LabelTreeActivity lta)
         {
             tvPro.Items.Remove(lta);
         }
 
-        public int childsCount()
+        private void btnHome_Click(object sender, RoutedEventArgs e)
+        {
+            btnBackItem.Visibility = Visibility.Collapsed;
+            btnHome.Visibility = Visibility.Collapsed;
+            titlePro.Text = title.ToUpper();
+            tvPro.Items.Clear();
+            workplaceGrid.Children.Clear();
+            workplaceGrid.Children.Add(proPanRoot);
+            tvPro.Items.Clear();
+            carCon.getActivitiesCharacteristics(proPanRoot.proMod.caracteristicas, tvPro, null, this);
+            actPanCurrent = null;
+        }
+
+        public  int childsCount()
         {
             return tvPro.Items.Count;
         }

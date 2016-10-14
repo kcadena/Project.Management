@@ -21,7 +21,6 @@ namespace ControlDB.Model
         }
     
         public string keym { get; set; }
-        public long idx_plantilla { get; set; }
         public long id_plantilla { get; set; }
         public long id_usuario { get; set; }
         public string nombre { get; set; }

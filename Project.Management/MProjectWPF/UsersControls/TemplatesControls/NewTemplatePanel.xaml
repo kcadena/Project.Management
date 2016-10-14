@@ -1,0 +1,118 @@
+﻿<UserControl x:Class="MProjectWPF.UsersControls.NewTemplatePanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MProjectWPF.UsersControls"
+             xmlns:local2="clr-namespace:MProjectWPF.UsersControls.TemplatesControls.FieldsControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1600">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" Background="#FF93ADFD" >
+            <Label x:Name="titlePanel" FontFamily="Franklin Gothic Book" Content="CREAR PLANTILLA" Height="25" FontWeight="Bold" Foreground="#FF003F66" VerticalAlignment="Top" FontSize="16"/>
+            <Separator Background="#FF003F66" VerticalAlignment="Top" Margin="0,26,0,0"/>
+            
+            <Label x:Name="label" Content="Nombre de la Plantilla:" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Width="130" Height="25" Foreground="#FF003F66"/>
+            <TextBox x:Name="templateName" VerticalAlignment="Top" Height="25" Margin="150,35,10,0" TextChanged="templateName_TextChanged" VerticalContentAlignment="Center"/>
+            <Label x:Name="templateNameSh" Content="TITULO PLANTILLA" VerticalAlignment="Top" Height="25" Margin="150,35,10,0"  BorderBrush="Red" Foreground="Red" BorderThickness="1,1" VerticalContentAlignment="Center" MouseLeftButtonUp="templateNameSh_MouseLeftButtonUp" Visibility="Hidden"/>
+
+            <Label Content="Descripción:" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="10,65,0,0" Width="130" Height="25" Foreground="#FF003F66" />
+            <TextBox  x:Name="detailText"  VerticalAlignment="Top" Height="25" Margin="150,65,10,0" VerticalContentAlignment="Center"/>
+
+            <GroupBox  x:Name="gbNewField"  Margin="10,95,10,0" Header="NUEVO CAMPO" FontFamily="7" FontWeight="Bold" VerticalAlignment="Top" Foreground="#FF003F66" BorderBrush="#FF003F66" Style="{StaticResource groupBoxStyle}" Visibility="Visible">
+                <Grid>
+                    <Label  Content="Nombre del Campo:" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Top" Width="130" Height="25" Foreground="#FF003F66" FontFamily="Segoe UI" FontWeight="Normal"/>
+                    <TextBox x:Name="fieldName" VerticalAlignment="Top" Height="25" Margin="135,5,10,0" VerticalContentAlignment="Center" FontWeight="Normal" KeyDown="fieldName_KeyDown"/>
+                    <Label x:Name="fieldNameSh" VerticalAlignment="Top" Height="25" Margin="135,5,10,0" Content="NOMBRE EL CAMPO"  MouseLeftButtonUp="fieldNameSh_MouseLeftButtonUp" Visibility="Hidden" BorderBrush="#FFFF471E" BorderThickness="1,1" FontWeight="Normal" ToolTip="El campo no puede estar vacio" Foreground="Red"/>
+
+                    <Label Content="Tipo de Campo:" VerticalAlignment="Top" Margin="0,35,10,0" Height="25" Foreground="#FF003F66" FontWeight="Normal"/>
+
+                    <ComboBox x:Name="lstField" Margin="5,60,10,35" Background="#FF003F66"  Style="{StaticResource comboBoxStyle}" Height="20" FontWeight="Normal">
+                        <ComboBoxItem Selector.IsSelected="True">Titulo</ComboBoxItem>
+                        <ComboBoxItem>Caja de Texto</ComboBoxItem>
+                        <ComboBoxItem>Fecha</ComboBoxItem>
+                        <ComboBoxItem>Lista</ComboBoxItem>
+                        <ComboBoxItem>Area de Texto</ComboBoxItem>
+                    </ComboBox>
+
+                    <Label Content="Campo Obligatorio:" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Margin="0,0,0,8" Height="25" Foreground="#FF003F66" FontWeight="Normal" Width="130"/>
+                    <CheckBox x:Name="ChkRequired" HorizontalAlignment="Left" Margin="135,5,5,11" VerticalAlignment="Bottom" Foreground="#FF003F66" >
+                        <CheckBox.LayoutTransform>
+                            <ScaleTransform ScaleX="1.3" ScaleY="1.3" />
+                        </CheckBox.LayoutTransform>
+                    </CheckBox>
+                    <Button x:Name="btnAddField" Margin="0,0,10,0" Content=" AGREGAR CAMPO " IsCancel="True" FontFamily="Franklin Gothic Book" BorderBrush="{x:Null}" Foreground="#FFE6E6E6" Background="#FF004166" HorizontalAlignment="Right" BorderThickness="1" Style="{DynamicResource ButtonStyle}" Height="30" VerticalAlignment="Bottom" FontWeight="Normal" Click="btnAddField_Click" />
+                </Grid>
+            </GroupBox>
+
+            <GroupBox  x:Name="gbEditField" Margin="10,95,10,0" Header="EDITAR CAMPO" FontFamily="7" FontWeight="Bold" VerticalAlignment="Top" Foreground="#FF003F66" BorderBrush="#FF003F66" Style="{StaticResource groupBoxStyle}" Visibility="Hidden">
+                <Grid>
+                    <Label  Content="Nombre del Campo:" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Top" Width="130" Height="25" Foreground="#FF003F66" FontFamily="Segoe UI" FontWeight="Normal"/>
+                    <TextBox x:Name="efieldName" VerticalAlignment="Top" Height="25" Margin="135,5,10,0" VerticalContentAlignment="Center" FontWeight="Normal" KeyDown="efieldName_KeyDown" />
+                    <Label x:Name="efieldNameSh" VerticalAlignment="Top" Height="25" Margin="135,5,10,0" Content="NOMBRE EL CAMPO"  MouseLeftButtonUp="efieldNameSh_MouseLeftButtonUp" Visibility="Hidden" BorderBrush="#FFFF471E" BorderThickness="1,1" FontWeight="Normal" ToolTip="El campo no puede estar vacio" Foreground="Red"/>
+
+                    <Label Content="Tipo de Campo:" VerticalAlignment="Top" Margin="0,35,10,0" Height="25" Foreground="#FF003F66" FontWeight="Normal"/>
+
+                    <ComboBox x:Name="elstField" Margin="5,60,10,35" Background="#FF003F66"  Style="{StaticResource comboBoxStyle}" Height="20" FontWeight="Normal">
+                        <ComboBoxItem Selector.IsSelected="True">Titulo</ComboBoxItem>
+                        <ComboBoxItem>Caja de Texto</ComboBoxItem>
+                        <ComboBoxItem>Fecha</ComboBoxItem>
+                        <ComboBoxItem>Lista</ComboBoxItem>
+                        <ComboBoxItem>Area de Texto</ComboBoxItem>
+                    </ComboBox>
+
+                    <Label Content="Campo Obligatorio:" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Margin="0,0,0,8" Height="25" Foreground="#FF003F66" FontWeight="Normal" Width="130"/>
+                    <CheckBox x:Name="eChkRequired" HorizontalAlignment="Left" Margin="135,5,5,11" VerticalAlignment="Bottom" Foreground="#FF003F66" >
+                        <CheckBox.LayoutTransform>
+                            <ScaleTransform ScaleX="1.3" ScaleY="1.3" />
+                        </CheckBox.LayoutTransform>
+                    </CheckBox>
+
+                    <Button x:Name="btnEditField" Margin="0,0,75,0" Content=" GUARDAR " IsCancel="True" FontFamily="Franklin Gothic Book" BorderBrush="{x:Null}" Foreground="#FFE6E6E6" Background="#FF004166" HorizontalAlignment="Right" BorderThickness="1" Style="{DynamicResource ButtonStyle}" Height="30" VerticalAlignment="Bottom" FontWeight="Normal" Click="btnEditField_Click"/>
+                    <Button x:Name="btnCancel" Margin="0,0,10,0" Content=" CANCELAR " IsCancel="True" FontFamily="Franklin Gothic Book" BorderBrush="{x:Null}" Foreground="#FFE6E6E6" Background="#FF004166" HorizontalAlignment="Right" BorderThickness="1" Style="{DynamicResource ButtonStyle}" Height="30" VerticalAlignment="Bottom" FontWeight="Normal" Click="btnCancel_Click" />
+                </Grid>
+            </GroupBox>
+
+            <GroupBox x:Name="gbAddItem" Margin="10,240,10,0" Header="AGREGAR ITEMS"  FontFamily="7" FontWeight="Bold" VerticalAlignment="Top" Foreground="#FF003F66" BorderBrush="#FF003F66" Style="{StaticResource groupBoxStyle}" Visibility="Hidden" >
+                <Grid>
+                    <Label  Content="Nombre del item:" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Top" Width="130" Height="25" Foreground="#FF003F66" FontFamily="Segoe UI" FontWeight="Normal"/>
+                    <TextBox x:Name="itemName" VerticalAlignment="Top" Height="25" Margin="135,5,10,0" VerticalContentAlignment="Center" FontWeight="Normal" KeyDown="itemName_KeyDown"/>
+                    <Label x:Name="itemNameSh" VerticalAlignment="Top" Height="25" Margin="135,5,10,0" Content="NOMBRE EL ITEM" MouseLeftButtonUp="itemNameSh_MouseLeftButtonUp" Visibility="Hidden" BorderBrush="#FFFF471E" BorderThickness="1,1" FontWeight="Normal" ToolTip="El campo no puede estar vacio" Foreground="Red"/>
+
+                    <Button x:Name="btnAddItem" Margin="0,35,10,0" Content=" AGREGAR ITEM " FontFamily="Franklin Gothic Book" BorderBrush="{x:Null}" Foreground="#FFE6E6E6" Background="#FF004166" HorizontalAlignment="Right" BorderThickness="1" Style="{DynamicResource ButtonStyle}" Height="30" VerticalAlignment="Top" FontWeight="Normal" Click="btnAddItem_Click" />
+                    <Button x:Name="btnEditItem" Margin="0,35,75,0" Content=" EDITAR ITEM " FontFamily="Franklin Gothic Book" BorderBrush="{x:Null}" Foreground="#FFE6E6E6" Background="#FF004166" HorizontalAlignment="Right" BorderThickness="1" Style="{DynamicResource ButtonStyle}" Height="30" VerticalAlignment="Top" FontWeight="Normal" Click="btnEditItem_Click" Visibility="Hidden" />
+                    <Button x:Name="btnCancelItem" Margin="0,35,10,0" Content=" CANCELAR " FontFamily="Franklin Gothic Book" BorderBrush="{x:Null}" Foreground="#FFE6E6E6" Background="#FF004166" HorizontalAlignment="Right" BorderThickness="1" Style="{DynamicResource ButtonStyle}" Height="30" VerticalAlignment="Top" FontWeight="Normal" Click="btnCancelItem_Click" Visibility="Hidden" />
+
+                    <Label Content="Lista de Items:" VerticalAlignment="Top" Margin="0,70,10,0" Height="25" Foreground="#FF003F66" FontWeight="Normal"/>
+                    <ListBox x:Name="lstItem" Margin="5,95,5,10" VerticalAlignment="Top" Height="150" BorderBrush="#FF003F66" FontWeight="Normal" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" SelectionChanged="lstItem_SelectionChanged"/>
+                </Grid>
+            </GroupBox>
+            
+            <Button x:Name="buttonBack" Content="SALIR" Margin="10,0,0,10" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="75" Click="buttonBack_Click" Foreground="#FFE6E6E6" Background="#FF004166"  Style="{StaticResource ButtonStyle}"/>
+            
+            <Button x:Name="buttonAccept" Margin="10,0,10,10" VerticalAlignment="Bottom"  HorizontalAlignment="Right" Height="40" Width="90" Content="GUARDAR" FontWeight="Bold" IsCancel="True" FontFamily="Franklin Gothic Book"  Foreground="#FFE6E6E6" Background="#FF004166" Style="{StaticResource ButtonStyle}" Click="buttonAccept_Click" FontSize="13.333" MinWidth="90">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="3"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </Grid>
+
+        <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch"/>
+        
+        <Grid Grid.Column="2">
+            <Label FontFamily="Franklin Gothic Book" Content="VISTA PLANTILLAS" Height="25" FontWeight="Bold" Foreground="#FF003F66" VerticalAlignment="Top" FontSize="16"/>
+            <Separator Background="#FF003F66" VerticalAlignment="Top" Margin="0,29,0,0"/>
+            <local:viewTemplate x:Name="vTemplate" Margin="10,50,5,25"/>
+        </Grid>
+        </Grid>
+
+</UserControl>
+

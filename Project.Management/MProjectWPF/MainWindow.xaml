@@ -57,7 +57,7 @@
                     <Button x:Name="uploadproject" Click="uploadproject_Click">
                         <Image Source="/Resources/Icons/16px/upload-cloud.png" Height="20" Width="20"/>
                     </Button>
-                    <Button>
+                    <Button x:Name="downloadproject" Click="downloadproject_Click">
                         <Image Source="/Resources/Icons/16px/cloud-download.png" Height="20" Width="20"/>
                     </Button>
                     <Separator Background="#FF00ABDC"/>
@@ -98,7 +98,7 @@
                 <ColumnDefinition Width="0.3*" />
             </Grid.ColumnDefinitions>
 
-            <Grid  Grid.Column="0" x:Name="viewPlan" RenderTransformOrigin="0.5,0.5" d:LayoutOverrides="Width, LeftMargin, RightMargin">
+            <Grid  Grid.Column="0" x:Name="viewPlan">
                 <Grid x:Name="vp1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="300" />

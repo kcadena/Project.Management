@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="juthWc5a3pXwzPCnQBN9JDVswR4=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="BZfcUn81gdu4raJk05Ae/iINz3c=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IMProjectService">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_IMProjectService" contract="MProjectWCF.IMProjectService" bindingType="basicHttpBinding" address="http://localhost/MProjectService.svc" bindingConfiguration="BasicHttpBinding_IMProjectService">
+    <endpoint name="BasicHttpBinding_IMProjectService" contract="MProjectWCF.IMProjectService" bindingType="basicHttpBinding" address="http://190.254.4.6:93/MProjectService.svc" bindingConfiguration="BasicHttpBinding_IMProjectService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost/MProjectService.svc</serializedValue>
+          <serializedValue>http://190.254.4.6:93/MProjectService.svc</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

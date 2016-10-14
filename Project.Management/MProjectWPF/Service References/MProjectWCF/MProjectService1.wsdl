@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="MProjectService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://190.254.4.6:93/MProjectService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://190.254.4.6:93/MProjectService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://190.254.4.6:93/MProjectService.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://190.254.4.6:93/MProjectService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/Message" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IMProjectService_addUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:addUser" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_addUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:addUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_getUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:getUser" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_getUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_countlog_InputMessage">
+    <wsdl:part name="parameters" element="tns:countlog" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_countlog_OutputMessage">
+    <wsdl:part name="parameters" element="tns:countlogResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_removeUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:removeUser" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_removeUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:removeUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_readLog_InputMessage">
+    <wsdl:part name="parameters" element="tns:readLog" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_readLog_OutputMessage">
+    <wsdl:part name="parameters" element="tns:readLogResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_getLinks_InputMessage">
+    <wsdl:part name="parameters" element="tns:getLinks" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_getLinks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getLinksResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_getLinks2_InputMessage">
+    <wsdl:part name="parameters" element="tns:getLinks2" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_getLinks2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getLinks2Response" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_addCaracteristicas_InputMessage">
+    <wsdl:part name="parameters" element="tns:addCaracteristicas" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_addCaracteristicas_OutputMessage">
+    <wsdl:part name="parameters" element="tns:addCaracteristicasResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_addProyectos_InputMessage">
+    <wsdl:part name="parameters" element="tns:addProyectos" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_addProyectos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:addProyectosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_addProyectosMetaDatos_InputMessage">
+    <wsdl:part name="parameters" element="tns:addProyectosMetaDatos" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_addProyectosMetaDatos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:addProyectosMetaDatosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_addRecursos_InputMessage">
+    <wsdl:part name="parameters" element="tns:addRecursos" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_addRecursos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:addRecursosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_addPresupuesto_InputMessage">
+    <wsdl:part name="parameters" element="tns:addPresupuesto" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_addPresupuesto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:addPresupuestoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_addCostos_InputMessage">
+    <wsdl:part name="parameters" element="tns:addCostos" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_addCostos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:addCostosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_updateCaracteristicas_InputMessage">
+    <wsdl:part name="parameters" element="tns:updateCaracteristicas" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_updateCaracteristicas_OutputMessage">
+    <wsdl:part name="parameters" element="tns:updateCaracteristicasResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_updateProyectos_InputMessage">
+    <wsdl:part name="parameters" element="tns:updateProyectos" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_updateProyectos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:updateProyectosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_DeleteProject_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteProject" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_DeleteProject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_addActividades_InputMessage">
+    <wsdl:part name="parameters" element="tns:addActividades" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_addActividades_OutputMessage">
+    <wsdl:part name="parameters" element="tns:addActividadesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_updateActividades_InputMessage">
+    <wsdl:part name="parameters" element="tns:updateActividades" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_updateActividades_OutputMessage">
+    <wsdl:part name="parameters" element="tns:updateActividadesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_DeleteActividad_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteActividad" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_DeleteActividad_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteActividadResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoteFileInfo">
+    <wsdl:part name="parameters" element="tns:RemoteFileInfo" />
+  </wsdl:message>
+  <wsdl:message name="RemoteFileInfo_Headers">
+    <wsdl:part name="FileName" element="tns:FileName" />
+    <wsdl:part name="route" element="tns:route" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_fileUpload_OutputMessage" />
+  <wsdl:message name="DownloadRequest">
+    <wsdl:part name="parameters" element="tns:DownloadRequest" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_deleteFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:deleteFile" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_deleteFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:deleteFileResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IMProjectService">
+    <wsdl:operation name="addUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMProjectService/addUser" message="tns:IMProjectService_addUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMProjectService/addUserResponse" message="tns:IMProjectService_addUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMProjectService/getUser" message="tns:IMProjectService_getUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMProjectService/getUserResponse" message="tns:IMProjectService_getUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="countlog">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMProjectService/countlog" message="tns:IMProjectService_countlog_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMProjectService/countlogResponse" message="tns:IMProjectService_countlog_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="removeUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMProjectService/removeUser" message="tns:IMProjectService_removeUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMProjectService/removeUserResponse" message="tns:IMProjectService_removeUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="readLog">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMProjectService/readLog" message="tns:IMProjectService_readLog_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMProjectService/readLogResponse" message="tns:IMProjectService_readLog_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getLinks">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMProjectService/getLinks" message="tns:IMProjectService_getLinks_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMProjectService/getLinksResponse" message="tns:IMProjectService_getLinks_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getLinks2">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMProjectService/getLinks2" message="tns:IMProjectService_getLinks2_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMProjectService/getLinks2Response" message="tns:IMProjectService_getLinks2_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="addCaracteristicas">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMProjectService/addCaracteristicas" message="tns:IMProjectService_addCaracteristicas_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMProjectService/addCaracteristicasResponse" message="tns:IMProjectService_addCaracteristicas_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="addProyectos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMProjectService/addProyectos" message="tns:IMProjectService_addProyectos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMProjectService/addProyectosResponse" message="tns:IMProjectService_addProyectos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="addProyectosMetaDatos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMProjectService/addProyectosMetaDatos" message="tns:IMProjectService_addProyectosMetaDatos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMProjectService/addProyectosMetaDatosResponse" message="tns:IMProjectService_addProyectosMetaDatos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="addRecursos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMProjectService/addRecursos" message="tns:IMProjectService_addRecursos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMProjectService/addRecursosResponse" message="tns:IMProjectService_addRecursos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="addPresupuesto">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMProjectService/addPresupuesto" message="tns:IMProjectService_addPresupuesto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMProjectService/addPresupuestoResponse" message="tns:IMProjectService_addPresupuesto_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="addCostos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMProjectService/addCostos" message="tns:IMProjectService_addCostos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMProjectService/addCostosResponse" message="tns:IMProjectService_addCostos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="updateCaracteristicas">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMProjectService/updateCaracteristicas" message="tns:IMProjectService_updateCaracteristicas_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMProjectService/updateCaracteristicasResponse" message="tns:IMProjectService_updateCaracteristicas_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="updateProyectos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMProjectService/updateProyectos" message="tns:IMProjectService_updateProyectos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMProjectService/updateProyectosResponse" message="tns:IMProjectService_updateProyectos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMProjectService/DeleteProject" message="tns:IMProjectService_DeleteProject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMProjectService/DeleteProjectResponse" message="tns:IMProjectService_DeleteProject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="addActividades">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMProjectService/addActividades" message="tns:IMProjectService_addActividades_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMProjectService/addActividadesResponse" message="tns:IMProjectService_addActividades_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="updateActividades">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMProjectService/updateActividades" message="tns:IMProjectService_updateActividades_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMProjectService/updateActividadesResponse" message="tns:IMProjectService_updateActividades_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteActividad">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMProjectService/DeleteActividad" message="tns:IMProjectService_DeleteActividad_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMProjectService/DeleteActividadResponse" message="tns:IMProjectService_DeleteActividad_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="fileUpload">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMProjectService/fileUpload" name="RemoteFileInfo" message="tns:RemoteFileInfo" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMProjectService/fileUploadResponse" message="tns:IMProjectService_fileUpload_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="fileDownload">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMProjectService/fileDownload" name="DownloadRequest" message="tns:DownloadRequest" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMProjectService/fileDownloadResponse" name="RemoteFileInfo" message="tns:RemoteFileInfo" />
+    </wsdl:operation>
+    <wsdl:operation name="getProyects">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMProjectService/getProyects" name="DownloadRequest" message="tns:DownloadRequest" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMProjectService/getProyectsResponse" name="RemoteFileInfo" message="tns:RemoteFileInfo" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMProjectService/deleteFile" message="tns:IMProjectService_deleteFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMProjectService/deleteFileResponse" message="tns:IMProjectService_deleteFile_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IMProjectService" type="tns:IMProjectService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="addUser">
+      <soap:operation soapAction="http://tempuri.org/IMProjectService/addUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUser">
+      <soap:operation soapAction="http://tempuri.org/IMProjectService/getUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="countlog">
+      <soap:operation soapAction="http://tempuri.org/IMProjectService/countlog" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeUser">
+      <soap:operation soapAction="http://tempuri.org/IMProjectService/removeUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="readLog">
+      <soap:operation soapAction="http://tempuri.org/IMProjectService/readLog" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLinks">
+      <soap:operation soapAction="http://tempuri.org/IMProjectService/getLinks" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLinks2">
+      <soap:operation soapAction="http://tempuri.org/IMProjectService/getLinks2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addCaracteristicas">
+      <soap:operation soapAction="http://tempuri.org/IMProjectService/addCaracteristicas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addProyectos">
+      <soap:operation soapAction="http://tempuri.org/IMProjectService/addProyectos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addProyectosMetaDatos">
+      <soap:operation soapAction="http://tempuri.org/IMProjectService/addProyectosMetaDatos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addRecursos">
+      <soap:operation soapAction="http://tempuri.org/IMProjectService/addRecursos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addPresupuesto">
+      <soap:operation soapAction="http://tempuri.org/IMProjectService/addPresupuesto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addCostos">
+      <soap:operation soapAction="http://tempuri.org/IMProjectService/addCostos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateCaracteristicas">
+      <soap:operation soapAction="http://tempuri.org/IMProjectService/updateCaracteristicas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateProyectos">
+      <soap:operation soapAction="http://tempuri.org/IMProjectService/updateProyectos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProject">
+      <soap:operation soapAction="http://tempuri.org/IMProjectService/DeleteProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addActividades">
+      <soap:operation soapAction="http://tempuri.org/IMProjectService/addActividades" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateActividades">
+      <soap:operation soapAction="http://tempuri.org/IMProjectService/updateActividades" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteActividad">
+      <soap:operation soapAction="http://tempuri.org/IMProjectService/DeleteActividad" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="fileUpload">
+      <soap:operation soapAction="http://tempuri.org/IMProjectService/fileUpload" style="document" />
+      <wsdl:input name="RemoteFileInfo">
+        <soap:header message="tns:RemoteFileInfo_Headers" part="FileName" use="literal" />
+        <soap:header message="tns:RemoteFileInfo_Headers" part="route" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="fileDownload">
+      <soap:operation soapAction="http://tempuri.org/IMProjectService/fileDownload" style="document" />
+      <wsdl:input name="DownloadRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="RemoteFileInfo">
+        <soap:header message="tns:RemoteFileInfo_Headers" part="FileName" use="literal" />
+        <soap:header message="tns:RemoteFileInfo_Headers" part="route" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getProyects">
+      <soap:operation soapAction="http://tempuri.org/IMProjectService/getProyects" style="document" />
+      <wsdl:input name="DownloadRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="RemoteFileInfo">
+        <soap:header message="tns:RemoteFileInfo_Headers" part="FileName" use="literal" />
+        <soap:header message="tns:RemoteFileInfo_Headers" part="route" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteFile">
+      <soap:operation soapAction="http://tempuri.org/IMProjectService/deleteFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MProjectService">
+    <wsdl:port name="BasicHttpBinding_IMProjectService" binding="tns:BasicHttpBinding_IMProjectService">
+      <soap:address location="http://190.254.4.6:93/MProjectService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
