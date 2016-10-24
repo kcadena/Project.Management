@@ -1,9 +1,11 @@
-﻿using ControlDB.Model;
+﻿using ControlDB.ChatService;
+using ControlDB.Model;
 using System;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using mc = MProjectChat;
 
 namespace MProjectWPF.UsersControls
 {
@@ -13,7 +15,8 @@ namespace MProjectWPF.UsersControls
     public partial class LabelUser : System.Windows.Controls.UserControl
     {
         public usuarios_meta_datos usu;
-
+        public User user;
+        public SendChatServiceClient chat;
         public LabelUser(usuarios_meta_datos u)
         {
             InitializeComponent();
@@ -46,6 +49,32 @@ namespace MProjectWPF.UsersControls
             occupationUser.Text = usu.cargo;
         }
 
+        public LabelUser(SendChatServiceClient chat, User user)
+        {
+            InitializeComponent();
+            this.user = user;
+            
+            if (user.AvatarID != null)
+            {
+
+            }
+            else
+            {
+                if (user.UsuDic["genero"] == "F")
+                {
+                    imgProfile.Source = new BitmapImage(new Uri("pack://application:,,/Resources/womenprofile.png"));
+                }
+                else
+                {
+                    imgProfile.Source = new BitmapImage(new Uri("pack://application:,,/Resources/manprofile.png"));
+                }
+            }
+            nameUser.Text = user.UsuDic["nombre"].ToUpper();
+            emailUser.Text = user.UsuDic["e_mail"];
+            occupationUser.Text = user.UsuDic["cargo"];
+            
+        }
+
         public void showButtons()
         {
             btnChat.Visibility = Visibility.Visible;
@@ -60,19 +89,22 @@ namespace MProjectWPF.UsersControls
 
         protected override void OnMouseMove(MouseEventArgs e)
         {
-            base.OnMouseMove(e);
-            if (e.LeftButton == MouseButtonState.Pressed)
+            if (user != null)
             {
-                // Package the data.
-                DataObject data = new DataObject();
+                base.OnMouseMove(e);
+                if (e.LeftButton == MouseButtonState.Pressed)
+                {
+                    // Package the data.
+                    DataObject data = new DataObject();
 
-                data.SetData(DataFormats.StringFormat, usu.e_mail);
-                LabelUser lu = new LabelUser(usu);
-                lu.changeBackground();
-                data.SetData("Object", lu);
-                
-                // Inititate the drag-and-drop operation.
-                DragDrop.DoDragDrop(this, data, DragDropEffects.Copy | DragDropEffects.Move);
+                    data.SetData(DataFormats.StringFormat, user.UsuDic["e_mail"]);
+                    LabelUser lu = new LabelUser(chat,user);
+                    lu.changeBackground();
+                    data.SetData("Object", lu);
+
+                    // Inititate the drag-and-drop operation.
+                    DragDrop.DoDragDrop(this, data, DragDropEffects.Copy | DragDropEffects.Move);
+                }
             }
         }
 
@@ -83,6 +115,17 @@ namespace MProjectWPF.UsersControls
             nameUser.Foreground = Brushes.White;
             emailUser.Foreground = Brushes.White;
             occupationUser.Foreground = Brushes.White;
+        }
+
+        private void btnChat_Click(object sender, RoutedEventArgs e)
+        {
+            mc.MainWindow mainChat = new mc.MainWindow(chat,user);
+            mainChat.Show();
+        }
+
+        private void btnMessage_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

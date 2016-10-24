@@ -168,83 +168,103 @@
             <TabItem Padding="0">
                 <TabItem.Header>
                     <Border BorderThickness="1,0">
-                        <Label Content="MODULOS / PERMISOS"  Foreground="White" Background="#FF003F66"/>
+                        <Label Content="MODULOS / PERMISOS / REPORTE"  Foreground="White" Background="#FF003F66"/>
                     </Border>
                 </TabItem.Header>
                 <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <GroupBox Header="MODULOS" FontWeight="Bold" Foreground="#FF003F66" Margin="0,2,5,0" Style="{StaticResource groupBoxStyle}" BorderBrush="#FF003F66" Grid.RowSpan="2">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" VerticalAlignment="Top" Margin="0,30,0,0" >
+                        <Button Margin="3" Style="{StaticResource ButtonStyle}" Background="#FF003F66" Height="40" Width="35">
+                            <Image Source="pack://application:,,/Resources/upload-file.png"/>
+                        </Button>
+                        <Button Margin="3" Style="{StaticResource ButtonStyle}" Background="#FF003F66" Height="40" Width="35">
+                            <Image Source="pack://application:,,/Resources/download-file.png"/>
+                        </Button>
+                        <Button Margin="3" Style="{StaticResource ButtonStyle}" Background="#FF003F66" Height="40" Width="35">
+                            <Image Source="pack://application:,,/Resources/write-file.png"/>
+                        </Button>
+                    </StackPanel>
+                    <Grid Grid.Column="1">
+                        <GroupBox Header="REPORTE" FontWeight="Bold" Foreground="#FF003F66" Margin="5" Style="{StaticResource groupBoxStyle}" BorderBrush="#FF003F66" Grid.RowSpan="2">
+                            <Grid Margin="5">
+                                <DocumentViewer x:Name="usuReport" FontWeight="Normal" />
+                            </Grid>
+                        </GroupBox>
+                    </Grid>
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
 
-                            <StackPanel Margin="5">
-                                <Button x:Name="webWindow" Background="#FF003F66" Click="webWindow_Click" Style="{StaticResource ButtonStyle}" VerticalAlignment="Top">
-                                    <Image Source="pack://application:,,/Resources/web-icon.png"/>
-                                </Button>
-                                <Label Content="DISEÑO WEB"  Height="20" FontWeight="Normal" Foreground="#FF003F66" BorderBrush="#FF003F66" BorderThickness="1" HorizontalContentAlignment="Center" Padding="2" FontSize="10.667" />
-                            </StackPanel>
-
-                            <StackPanel Grid.Column="1" Margin="5" >
-                                <Button x:Name="webMultimedia" Click="webMultimedia_Click" Background="#FF003F66" Style="{StaticResource ButtonStyleGreen}" VerticalAlignment="Top" >
-                                    <Image Source="pack://application:,,/Resources/multi-icon.png"/>
-                                </Button>
-                                <Label Content="MULTIMEDIA" Height="20"  FontWeight="Normal" Foreground="#FF003F66" BorderBrush="#FF003F66" BorderThickness="1" HorizontalContentAlignment="Center" Padding="2" FontSize="10.667" />
-                            </StackPanel>
-
-                            <StackPanel Grid.Column="2" Margin="5" >
-                                <Button x:Name="webMap" Background="#FF003F66" Style="{StaticResource ButtonStyle}" VerticalAlignment="Top">
-                                    <Image Source="pack://application:,,/Resources/geo_icon.png"/>
-                                </Button>
-                                <Label Content="GEOREFERENCIA" Height="20" FontWeight="Normal" Foreground="#FF003F66" BorderBrush="#FF003F66" BorderThickness="1" HorizontalContentAlignment="Center" Padding="2" FontSize="10.667" />
-                            </StackPanel>
-                        </Grid>
-                    </GroupBox>
-                    <GroupBox Grid.Row="1" Header="PERMISOS" FontWeight="Bold" Foreground="#FF003F66" Margin="0,2,5,0" Style="{StaticResource groupBoxStyle}" BorderBrush="#FF003F66" Grid.RowSpan="2">
-                        <StackPanel Orientation="Horizontal" >
-                            <Label Content="Publicar:" VerticalAlignment="Center" FontWeight="Normal" Foreground=" #FF003F66"/>
-                            <ToggleSwitch:HorizontalToggleSwitch
+                        <GroupBox Header="PERMISOS" Grid.Row="0" FontWeight="Bold" Foreground="#FF003F66" Margin="0,2,5,0" Style="{StaticResource groupBoxStyle}" BorderBrush="#FF003F66">
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Publicar Pagina: " Foreground="#FF003F66" FontWeight="Normal" VerticalAlignment="Center"></Label>
+                                <ToggleSwitch:HorizontalToggleSwitch
                                         x:Name="switch"
                                         FontSize="12"
                                         BorderBrush="#FF6A6A6A"
                                         UncheckedForeground="White" 
                                         UncheckedContent="NO" 
                                         CheckedContent="SI" 
-                                        IsChecked="True" Margin="0,5,0,10" HorizontalAlignment="Left">
-                                <ToggleSwitch:HorizontalToggleSwitch.ThumbBrush>
-                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                        <GradientStop Color="#FFB3B5B7" Offset="1"/>
-                                        <GradientStop Color="#FFEDEEEE"/>
-                                    </LinearGradientBrush>
-                                </ToggleSwitch:HorizontalToggleSwitch.ThumbBrush>
-                                <ToggleSwitch:HorizontalToggleSwitch.UncheckedBackground>
-                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                        <GradientStop Color="#FFE1E2E2"/>
-                                        <GradientStop Color="#FF555555"/>
-                                    </LinearGradientBrush>
-                                </ToggleSwitch:HorizontalToggleSwitch.UncheckedBackground>
-                                <ToggleSwitch:HorizontalToggleSwitch.CheckedBackground>
-                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                        <GradientStop Color="#FF003F66" Offset="1"/>
-                                        <GradientStop Color="#FF003F66"/>
-                                    </LinearGradientBrush>
-                                </ToggleSwitch:HorizontalToggleSwitch.CheckedBackground>
-                            </ToggleSwitch:HorizontalToggleSwitch>
-                        </StackPanel>
-                    </GroupBox>
+                                        IsChecked="False" Margin="0,5,0,10" HorizontalAlignment="Left">
+                                    <ToggleSwitch:HorizontalToggleSwitch.ThumbBrush>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FFB3B5B7" Offset="1"/>
+                                            <GradientStop Color="#FFEDEEEE"/>
+                                        </LinearGradientBrush>
+                                    </ToggleSwitch:HorizontalToggleSwitch.ThumbBrush>
+                                    <ToggleSwitch:HorizontalToggleSwitch.UncheckedBackground>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FFE1E2E2"/>
+                                            <GradientStop Color="#FF555555"/>
+                                        </LinearGradientBrush>
+                                    </ToggleSwitch:HorizontalToggleSwitch.UncheckedBackground>
+                                    <ToggleSwitch:HorizontalToggleSwitch.CheckedBackground>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FF003F66" Offset="1"/>
+                                            <GradientStop Color="#FF003F66"/>
+                                        </LinearGradientBrush>
+                                    </ToggleSwitch:HorizontalToggleSwitch.CheckedBackground>
+                                </ToggleSwitch:HorizontalToggleSwitch>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Header="MODULOS" Grid.Row="1" FontWeight="Bold" Foreground="#FF003F66" Margin="0,2,5,0" Style="{StaticResource groupBoxStyle}" BorderBrush="#FF003F66">
+                            <Grid Margin="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
 
+                                <StackPanel Margin="5" Width="126">
+                                    <Button x:Name="webWindow" Background="#FF003F66" Click="webWindow_Click" Style="{StaticResource ButtonStyle}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                                        <Image Source="pack://application:,,/Resources/web-icon.png"/>
+                                    </Button>
+                                    <Label Content="DISEÑO WEB"  Height="20" FontWeight="Normal" Foreground="#FF003F66" BorderBrush="#FF003F66" BorderThickness="1" HorizontalContentAlignment="Center" Padding="2" FontSize="10.667" />
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="1" Width="128" >
+                                    <Button x:Name="webMultimedia" Click="webMultimedia_Click" Background="#FF003F66" Style="{StaticResource ButtonStyleGreen}" >
+                                        <Image Source="pack://application:,,/Resources/multi-icon.png"/>
+                                    </Button>
+                                    <Label Content="MULTIMEDIA" Height="20"  FontWeight="Normal" Foreground="#FF003F66" BorderBrush="#FF003F66" BorderThickness="1" HorizontalContentAlignment="Center" Padding="2" FontSize="10.667" />
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="2" Width="128" >
+                                    <Button x:Name="webMap" Background="#FF003F66" Style="{StaticResource ButtonStyle}" VerticalAlignment="Top">
+                                        <Image Source="pack://application:,,/Resources/geo_icon.png"/>
+                                    </Button>
+                                    <Label Content="GEOREFERENCIA" Height="20" FontWeight="Normal" Foreground="#FF003F66" BorderBrush="#FF003F66" BorderThickness="1" HorizontalContentAlignment="Center" Padding="2" FontSize="10.667" />
+                                </StackPanel>
+                            </Grid>
+                        </GroupBox>
+                    </Grid>
                 </Grid>
-            </TabItem>
-            <TabItem Padding="0" >
-                <TabItem.Header>
-                    <Label Content="REPORTE"  Foreground="White" Background="#FF003F66"/>
-                </TabItem.Header>
             </TabItem>
         </TabControl>
     </Grid>

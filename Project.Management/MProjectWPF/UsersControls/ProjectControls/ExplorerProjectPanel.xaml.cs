@@ -1,25 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Threading;
+﻿using ControlDB.Model;
 using MProjectWPF.Controller;
-using ControlDB.Model;
 using MProjectWPF.UsersControls.ActivityControls.FieldsControls;
 using MProjectWPF.UsersControls.ProjectControls;
 using MProjectWPF.UsersControls.TemplatesControls.FieldsControls;
-using MProjectWPF.UsersControls.TemplatesControls;
-using System.Windows.Threading;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
+using System.Windows.Input;
 
 namespace MProjectWPF.UsersControls
 {
@@ -56,19 +43,10 @@ namespace MProjectWPF.UsersControls
         }
 
         //ACTUALIZAR
-        public ExplorerProject(MainWindow mw, proyectos proMod, List<BoxField> bf, List<BoxField> tbf, Dictionary<string, string> dic)
-        {
-            InitializeComponent();
-            mainW = mw;
+        public void UpdateTitle(Dictionary<string, string> dic)
+        {   
             title = dic["pName"].ToUpper();
-            this.proMod = proMod;
             titlePro.Text = title;
-
-            proPanRoot = new ProjectPanel(mainW, this, proMod, bf, tbf, dic);
-            workplaceGrid.Children.Add(proPanRoot);
-            
-            carCon = new Caracteristicas(mainW);
-            carCon.getActivitiesCharacteristics(proMod.caracteristicas, tvPro, null, this);
         }
         
         //CREAR

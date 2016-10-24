@@ -17,9 +17,9 @@
             <MenuItem Header="Herramientas"/>
             <MenuItem Name="mnAbrir" Header="A_brir" />
             <MenuItem Name="mnGuardar" Header="_Guardar">
-                <MenuItem Name="user1" Header="user1" Click="user1_Click"/>
-                <MenuItem Name="user2" Header="user2" Click="user2_Click"/>
-                <MenuItem Name="user3" Header="user3" Click="user3_Click"/>
+                <MenuItem Name="user1" Header="user1" />
+                <MenuItem Name="user2" Header="user2" />
+                <MenuItem Name="user3" Header="user3" />
             </MenuItem>
             <MenuItem Header="Ayuda"/>
         </Menu>

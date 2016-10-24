@@ -8,7 +8,8 @@
     <Grid>
         <TextBox x:Name="txtNumber" Height="25" PreviewTextInput="txtNumber_PreviewTextInput" Visibility="Collapsed" TextChanged="txtNumber_TextChanged"/>
         <TextBox x:Name="txtText" Height="25" Visibility="Collapsed" VerticalContentAlignment="Center" />
-        <Label x:Name="lbl"  Height="25" Visibility="Collapsed" BorderBrush="Gray" BorderThickness="1"  MouseDoubleClick="lbl_MouseDoubleClick" Content="Lapices" Padding="5,2,5,5"/>
+        <Label x:Name="lbl"  Height="25" Visibility="Collapsed" BorderBrush="Gray" BorderThickness="1"  MouseDoubleClick="lbl_MouseDoubleClick" Content="Lapices" Padding="5,2,5,5" />
         <Label x:Name="validation" Height="25" MouseLeftButtonUp="validation_MouseLeftButtonUp" BorderBrush="Red" Foreground="red" BorderThickness="1,1" Content="El campo no debe estar vacio" FontWeight="Bold" Visibility="Collapsed"/>
+        <Label x:Name="lbl2"  Height="25" Visibility="Collapsed" BorderBrush="Gray" BorderThickness="1"  MouseLeftButtonUp="lbl2_MouseLeftButtonUp" Padding="5,2,5,5" />
     </Grid>
 </UserControl>

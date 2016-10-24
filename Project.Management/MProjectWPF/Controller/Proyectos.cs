@@ -57,14 +57,14 @@ namespace MProjectWPF.Controller
             }
         }
 
-        public bool saveProject(ProjectPanel ppan, ControlXml cxml)
+        public bool saveProject(ProjectPanel proPan, ControlXml cxml)
         {
-            usuarios_meta_datos usu = ppan.mainW.usuModel;
-            string name = ppan.pName;
-            string img = ppan.iconName;
-            string desc = ppan.detail;
-            List<BoxField> lbf = ppan.lisBF;
-            List<BoxField> tlbf = ppan.tLisBF;
+            usuarios_meta_datos usu = proPan.mainW.usuModel;
+            string name = proPan.pName;
+            string img = proPan.iconName;
+            string desc = proPan.detail;
+            List<BoxField> lbf = proPan.lisBF;
+            List<BoxField> tlbf = proPan.tLisBF;
 
 
             usu.table_sequence.caracteristicas = usu.table_sequence.caracteristicas + 1;
@@ -74,16 +74,16 @@ namespace MProjectWPF.Controller
             car.keym = key;
             car.id_caracteristica = lastIdCaracteristica;
             car.usuarios_meta_datos = usu;
-            car.estado = ppan.stageBox.Text;
+            car.estado = proPan.stageBox.Text;
             car.Porcentaje = 100;
             car.porcentaje_asignado = 0;
             car.porcentaje_cumplido = 0;
-            car.fecha_inicio =  ppan.initialDate.SelectedDate;
-            car.fecha_fin = ppan.finalDate.SelectedDate;
-            car.recursos = ppan.txtResourses.Text;
-            car.recursos_restantes = ppan.txtResourses.Text;
-            car.presupuesto = ppan.txtEstimation.Text;
-            car.costos = ppan.txtCost.Text;
+            car.fecha_inicio =  proPan.initialDate.SelectedDate;
+            car.fecha_fin = proPan.finalDate.SelectedDate;
+            car.recursos = proPan.txtResourses.Text;
+            car.recursos_restantes = proPan.txtResourses.Text;
+            car.presupuesto = proPan.txtEstimation.Text;
+            car.costos = proPan.txtCost.Text;
             car.tipo_caracteristica = "p";
             car.visualizar_superior = false;
             car.fecha_ultima_modificacion = DateTime.Now;
@@ -132,7 +132,7 @@ namespace MProjectWPF.Controller
                 con++;
             }
 
-            foreach (List<string> lres in ppan.lstRes)
+            foreach (List<string> lres in proPan.lstRes)
             {
                 long lastidres;
                 try { lastidres =usu.recursos.OrderBy(r=> r.id_recurso).Last().id_recurso + 1; }
@@ -150,7 +150,7 @@ namespace MProjectWPF.Controller
                 dbMP.recursos.Add(rec);
             }
 
-            foreach (List<string> lest in ppan.lstEst)
+            foreach (List<string> lest in proPan.lstEst)
             {
                 long lastidest;
                 try { lastidest= usu.presupuesto.OrderBy(e => e.id_presupuesto).Last().id_presupuesto + 1; }
@@ -169,7 +169,7 @@ namespace MProjectWPF.Controller
                 dbMP.presupuesto.Add(pre);
             }
 
-            foreach (List<string> lcost in ppan.lstCos)
+            foreach (List<string> lcost in proPan.lstCos)
             {
                 long lastidcost;
                 try { lastidcost= usu.costos.OrderBy(c => c.id_costo).Last().id_costo+1; }
@@ -190,20 +190,20 @@ namespace MProjectWPF.Controller
 
             dbMP.caracteristicas.Add(car);
             proMod = pro;
-            ppan.proMod = pro;
+            proPan.proMod = pro;
 
             return saveChanges();
         }
 
-        public bool updateProject(ProjectPanel ppan, ControlXml cxml)
+        public bool updateProject(ProjectPanel proPan, ControlXml cxml)
         {
-            usuarios_meta_datos usu = ppan.mainW.usuModel;
-            string name = ppan.pName;
-            string img = ppan.iconName;
-            string desc = ppan.detail;
-            proyectos pro = ppan.proMod;
-            List<BoxField> lbf = ppan.lisBF;
-            List<BoxField> tlbf = ppan.tLisBF;
+            usuarios_meta_datos usu = proPan.mainW.usuModel;
+            string name = proPan.pName;
+            string img = proPan.iconName;
+            string desc = proPan.detail;
+            proyectos pro = proPan.proMod;
+            List<BoxField> lbf = proPan.lisBF;
+            List<BoxField> tlbf = proPan.tLisBF;
 
             //remover tablas para actualizar
             foreach (proyectos_meta_datos pmd in pro.proyectos_meta_datos.ToList())
@@ -225,22 +225,22 @@ namespace MProjectWPF.Controller
 
             caracteristicas car = pro.caracteristicas;
              
-            car.estado = ppan.stageBox.Text;
+            car.estado = proPan.stageBox.Text;
             car.porcentaje_asignado = 0;
             car.porcentaje_cumplido = 0;
-            car.fecha_inicio = ppan.initialDate.SelectedDate;
-            car.fecha_fin = ppan.finalDate.SelectedDate;
-            car.recursos = ppan.txtResourses.Text;
-            car.recursos_restantes = ppan.txtResourses.Text;
-            car.presupuesto = ppan.txtEstimation.Text;
-            car.costos = ppan.txtCost.Text;
+            car.fecha_inicio = proPan.initialDate.SelectedDate;
+            car.fecha_fin = proPan.finalDate.SelectedDate;
+            car.recursos = proPan.txtResourses.Text;
+            car.recursos_restantes = proPan.txtResourses.Text;
+            car.presupuesto = proPan.txtEstimation.Text;
+            car.costos = proPan.txtCost.Text;
             car.tipo_caracteristica = "p";
             car.visualizar_superior = false;
             car.fecha_ultima_modificacion = DateTime.Now;           
 
             // proyectos Update
             pro.nombre = name;
-            pro.plantilla = "plantilla" + ppan.idName + ".xml";
+            pro.plantilla = "plantilla" + proPan.idName + ".xml";
             pro.IR_proyecto = false;
             pro.icon = img;
             pro.descripcion = desc;
@@ -274,7 +274,7 @@ namespace MProjectWPF.Controller
                 con++;
             }
 
-            foreach (List<string> lres in ppan.lstRes)
+            foreach (List<string> lres in proPan.lstRes)
             {
                 long lastidres;
                 try { lastidres = usu.recursos.OrderBy(r => r.id_recurso).Last().id_recurso + 1; }
@@ -292,7 +292,7 @@ namespace MProjectWPF.Controller
                 dbMP.recursos.Add(rec);
             }
 
-            foreach (List<string> lest in ppan.lstEst)
+            foreach (List<string> lest in proPan.lstEst)
             {
                 long lastidest;
                 try { lastidest = usu.presupuesto.OrderBy(e => e.id_presupuesto).Last().id_presupuesto + 1; }
@@ -311,7 +311,7 @@ namespace MProjectWPF.Controller
                 dbMP.presupuesto.Add(pre);
             }
 
-            foreach (List<string> lcost in ppan.lstCos)
+            foreach (List<string> lcost in proPan.lstCos)
             {
                 long lastidcost;
                 try { lastidcost = usu.costos.OrderBy(c => c.id_costo).Last().id_costo + 1; }
@@ -331,7 +331,7 @@ namespace MProjectWPF.Controller
             }
                         
             proMod = pro;
-            ppan.proMod = pro;
+            proPan.proMod = pro;
             return saveChanges();
         }
 

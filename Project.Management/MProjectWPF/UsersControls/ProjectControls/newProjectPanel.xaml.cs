@@ -232,16 +232,24 @@ namespace MProjectWPF.UsersControls
                     lbf.Add(bf);
                 }
 
-                ExplorerProject exPro;
+                ExplorerProject exPro = null;
 
                 Dictionary<string, string> dic = new Dictionary<string, string>();
                 dic["pName"] = pName;
                 dic["iconSource"] = iconSource;
                 dic["iconName"] = iconName;
                 dic["detail"] = detailText.Text;
-                
-                if (proPan == null || proPan.proMod == null) exPro = new ExplorerProject(mainW,  lbf, lisBF,dic);
-                else exPro = new ExplorerProject(mainW,  proPan.proMod, lbf, lisBF, dic);
+
+                if (proPan == null)
+                {
+                    exPro = new ExplorerProject(mainW, lbf, lisBF, dic);
+                }
+                else
+                {
+                    proPan.exPro.UpdateTitle(dic);
+                    proPan.updateTemplateProject(lbf,lisBF,dic);
+                    exPro = proPan.exPro;
+                }
 
                 mainW.viewPlan.Children.Add(exPro);
             }

@@ -43,12 +43,12 @@ namespace MProjectWPF.DocumentXml
             proPan = ppan;
             try
             {
-                nameFile = "Objectives.docx";
+                nameFile = "Objetives";
 
-                pathw = "DocumentXml\\DocTemplate\\Objectives.docx";
-                path = "DocumentXml\\DocTemplate\\Objectives.xps";
+                pathw = "DocumentXml\\DocTemplate\\Objetives.docx";
+                path = "DocumentXml\\DocTemplate\\Objetives.xps";
 
-                string text = "OBJETIVOS " + ppan.pName;
+                string text = "OBJETIVOS ";
                 InsertText(text);
 
                 gb.ComponentInfo.SetLicense("FREE-LIMITED-KEY");
@@ -62,6 +62,7 @@ namespace MProjectWPF.DocumentXml
                 MessageBox.Show(err.Message);
             }
         }
+
         //Constructor Abrir
         public WordClass(ProjectPanel ppan, string route)
         {   
@@ -142,12 +143,14 @@ namespace MProjectWPF.DocumentXml
                 {
                     windows = new List<string>();
                     EnumWindows(new EnumWindowsProc(EnumTheWindows), IntPtr.Zero);
-
+                    
                     if (!windows.Contains(nameFile + ".docx"))
                     {
                         if (fileIsOpen)
                         {
+                            fileIsOpen = false;
                             load();
+                            
                         }
                     }
                     else
@@ -156,7 +159,7 @@ namespace MProjectWPF.DocumentXml
                     }
                     windows = null;
                 }
-                catch
+                catch(Exception err)
                 {
                     // Intentionally empty.
                 }
@@ -242,11 +245,10 @@ namespace MProjectWPF.DocumentXml
             try
             {
                 thr.Abort();
-                thr = null;
             }
             catch
             {
-
+                thr = null;
             }
         }
 

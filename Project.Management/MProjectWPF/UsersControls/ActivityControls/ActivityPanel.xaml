@@ -84,11 +84,12 @@
                     <Grid Grid.Column="2" Grid.RowSpan="3">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
-                            <RowDefinition Height="1.2*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="120"/>
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0">
-                            <GroupBox Header="HERRAMIENTAS" FontWeight="Bold" Foreground="#FF003F66" Margin="0,2,5,0" Style="{StaticResource groupBoxStyle}" BorderBrush="#FF003F66" Grid.RowSpan="2">
+                            <GroupBox Header="MODULOS" FontWeight="Bold" Foreground="#FF003F66" Margin="0,2,5,0" Style="{StaticResource groupBoxStyle}" BorderBrush="#FF003F66" Grid.RowSpan="2">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition/>
@@ -121,9 +122,11 @@
                         </Grid>
                         <Grid Grid.Row="1">
                             <GroupBox Header="PERMISOS" FontWeight="Bold" Foreground="#FF003F66" Margin="0,2,5,0" Style="{StaticResource groupBoxStyle}" BorderBrush="#FF003F66" Grid.RowSpan="2">
-                                <StackPanel Orientation="Horizontal" >
-                                    <Label Content="Publicar:" VerticalAlignment="Center" FontWeight="Normal" Foreground=" #FF003F66"/>
-                                    <ToggleSwitch:HorizontalToggleSwitch
+                                <Grid HorizontalAlignment="Center">
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="Visualizar Superior:" VerticalAlignment="Center" FontWeight="Normal" Foreground=" #FF003F66" Width="110"/>
+                                            <ToggleSwitch:HorizontalToggleSwitch
                                         x:Name="btnPublic"
                                         FontSize="12"
                                         BorderBrush="#FF6A6A6A"
@@ -135,29 +138,70 @@
                                         HorizontalAlignment="Left" 
                                         Checked="btnPublic_Checked"
                                         Unchecked="btnPublic_Unchecked">
-                                        <ToggleSwitch:HorizontalToggleSwitch.ThumbBrush>
-                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                                <GradientStop Color="#FFB3B5B7" Offset="1"/>
-                                                <GradientStop Color="#FFEDEEEE"/>
-                                            </LinearGradientBrush>
-                                        </ToggleSwitch:HorizontalToggleSwitch.ThumbBrush>
-                                        <ToggleSwitch:HorizontalToggleSwitch.UncheckedBackground>
-                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                                <GradientStop Color="#FFE1E2E2"/>
-                                                <GradientStop Color="#FF555555"/>
-                                            </LinearGradientBrush>
-                                        </ToggleSwitch:HorizontalToggleSwitch.UncheckedBackground>
-                                        <ToggleSwitch:HorizontalToggleSwitch.CheckedBackground>
-                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                                <GradientStop Color="#FF003F66" Offset="1"/>
-                                                <GradientStop Color="#FF003F66"/>
-                                            </LinearGradientBrush>
-                                        </ToggleSwitch:HorizontalToggleSwitch.CheckedBackground>
-                                    </ToggleSwitch:HorizontalToggleSwitch>
-                                </StackPanel>
+                                                <ToggleSwitch:HorizontalToggleSwitch.ThumbBrush>
+                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                        <GradientStop Color="#FFB3B5B7" Offset="1"/>
+                                                        <GradientStop Color="#FFEDEEEE"/>
+                                                    </LinearGradientBrush>
+                                                </ToggleSwitch:HorizontalToggleSwitch.ThumbBrush>
+                                                <ToggleSwitch:HorizontalToggleSwitch.UncheckedBackground>
+                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                        <GradientStop Color="#FFE1E2E2"/>
+                                                        <GradientStop Color="#FF555555"/>
+                                                    </LinearGradientBrush>
+                                                </ToggleSwitch:HorizontalToggleSwitch.UncheckedBackground>
+                                                <ToggleSwitch:HorizontalToggleSwitch.CheckedBackground>
+                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                        <GradientStop Color="#FF003F66" Offset="1"/>
+                                                        <GradientStop Color="#FF003F66"/>
+                                                    </LinearGradientBrush>
+                                                </ToggleSwitch:HorizontalToggleSwitch.CheckedBackground>
+                                            </ToggleSwitch:HorizontalToggleSwitch>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="Publicar pagina:" VerticalAlignment="Center" FontWeight="Normal" Foreground=" #FF003F66" Width="110"/>
+                                            <ToggleSwitch:HorizontalToggleSwitch
+                                        x:Name="btnPublicWeb"
+                                        FontSize="12"
+                                        BorderBrush="#FF6A6A6A"
+                                        UncheckedForeground="White" 
+                                        UncheckedContent="NO" 
+                                        CheckedContent="SI"
+                                        IsChecked="True"
+                                        Margin="0,5,0,10" 
+                                        HorizontalAlignment="Left" 
+                                        Checked="btnPublic_Checked"
+                                        Unchecked="btnPublic_Unchecked">
+                                                <ToggleSwitch:HorizontalToggleSwitch.ThumbBrush>
+                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                        <GradientStop Color="#FFB3B5B7" Offset="1"/>
+                                                        <GradientStop Color="#FFEDEEEE"/>
+                                                    </LinearGradientBrush>
+                                                </ToggleSwitch:HorizontalToggleSwitch.ThumbBrush>
+                                                <ToggleSwitch:HorizontalToggleSwitch.UncheckedBackground>
+                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                        <GradientStop Color="#FFE1E2E2"/>
+                                                        <GradientStop Color="#FF555555"/>
+                                                    </LinearGradientBrush>
+                                                </ToggleSwitch:HorizontalToggleSwitch.UncheckedBackground>
+                                                <ToggleSwitch:HorizontalToggleSwitch.CheckedBackground>
+                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                        <GradientStop Color="#FF003F66" Offset="1"/>
+                                                        <GradientStop Color="#FF003F66"/>
+                                                    </LinearGradientBrush>
+                                                </ToggleSwitch:HorizontalToggleSwitch.CheckedBackground>
+                                            </ToggleSwitch:HorizontalToggleSwitch>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Grid>
                             </GroupBox>
                         </Grid>
                         <Grid Grid.Row="2">
+                            <GroupBox Header="PORCENTAJE CUMPLIDO" FontWeight="Bold" Foreground="#FF003F66" Margin="0,2,5,0" Style="{StaticResource groupBoxStyle}" BorderBrush="#FF003F66" Grid.RowSpan="2">
+                                <TextBox Height="25"/>
+                            </GroupBox>
+                        </Grid>
+                        <Grid Grid.Row="3">
                             <GroupBox Header="PROPIETARIO" FontWeight="Bold" Foreground="#FF003F66" Margin="0,2,5,0" Style="{StaticResource groupBoxStyle}" BorderBrush="#FF003F66">
                                 <Grid>
                                     <Grid.RowDefinitions>
@@ -262,6 +306,33 @@
                 <TabItem.Header>
                     <Label Content="REPORTE"  Foreground="White" Background="#FF003F66"/>
                 </TabItem.Header>
+                <Grid Margin="10,5" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.25*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="0.3*"/>
+                    </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="0,30,0,0" >
+                            <Button Margin="3" Style="{StaticResource ButtonStyle}" Background="#FF003F66" Height="40" Width="35">
+                                <Image Source="pack://application:,,/Resources/upload-file.png"/>
+                            </Button>
+                            <Button Margin="3" Style="{StaticResource ButtonStyle}" Background="#FF003F66" Height="40" Width="35">
+                                <Image Source="pack://application:,,/Resources/download-file.png"/>
+                            </Button>
+                            <Button Margin="3" Style="{StaticResource ButtonStyle}" Background="#FF003F66" Height="40" Width="35">
+                                <Image Source="pack://application:,,/Resources/write-file.png"/>
+                            </Button>
+                        </StackPanel>
+                        <Grid Grid.Column="2">
+                            <GroupBox Header="REPORTE" FontWeight="Bold" Foreground="#FF003F66" Margin="5" Style="{StaticResource groupBoxStyle}" BorderBrush="#FF003F66" Grid.RowSpan="2">
+                                <Grid Margin="5">
+                                    <DocumentViewer x:Name="usuReport" FontWeight="Normal" />
+                                </Grid>
+                            </GroupBox>
+                        </Grid>
+                    
+                </Grid>
             </TabItem>
         </TabControl>
     </Grid>

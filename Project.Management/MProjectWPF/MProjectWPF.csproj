@@ -187,6 +187,7 @@
     <Compile Include="Controller\LogXml.cs" />
     <Compile Include="Controller\Plantillas.cs" />
     <Compile Include="Controller\Proyectos.cs" />
+    <Compile Include="Controller\ReceiveChat.cs" />
     <Compile Include="Controller\ServerController.cs" />
     <Compile Include="DocumentXml\WordClass.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -195,6 +196,11 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Controller\Usuarios.cs" />
+    <Compile Include="Service References\ChatService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\MProjectWCF\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -202,6 +208,9 @@
     </Compile>
     <Compile Include="UsersControls\ActivityControls\ActivityPanel.xaml.cs">
       <DependentUpon>ActivityPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsersControls\OtherControls\NumberBox.xaml.cs">
+      <DependentUpon>NumberBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="UsersControls\ProjectControls\FieldsControls\LabelProject.xaml.cs">
       <DependentUpon>LabelProject.xaml</DependentUpon>
@@ -237,7 +246,7 @@
     <Compile Include="UsersControls\TemplatesControls\ListTemplatePanel.xaml.cs">
       <DependentUpon>ListTemplatePanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UsersControls\Transfer.xaml.cs">
+    <Compile Include="UsersControls\OtherControls\Transfer.xaml.cs">
       <DependentUpon>Transfer.xaml</DependentUpon>
     </Compile>
     <Compile Include="UsersControls\UserControls\LabelsUsers\LabelMenu.xaml.cs">
@@ -300,6 +309,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UsersControls\OtherControls\NumberBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UsersControls\ProjectControls\FieldsControls\LabelProject.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -344,7 +357,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UsersControls\Transfer.xaml">
+    <Page Include="UsersControls\OtherControls\Transfer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -402,6 +415,15 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Service References\ChatService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\ChatService\configuration.svcinfo" />
+    <None Include="Service References\ChatService\configuration91.svcinfo" />
+    <Resource Include="Resources\download-file.png" />
+    <Resource Include="Resources\upload-file.png" />
+    <Resource Include="Resources\write-file.png" />
     <Resource Include="Resources\Icons\16px\closed-folder-blue.png" />
     <Resource Include="Resources\Icons\16px\open-folder-blue.png" />
     <Resource Include="Resources\activity-blue.png" />
@@ -413,6 +435,25 @@
     <Resource Include="Resources\web-icon.png" />
     <Resource Include="Resources\home.png" />
     <Resource Include="Logs\log.xml" />
+    <None Include="Service References\ChatService\ChatService.wsdl" />
+    <None Include="Service References\ChatService\ChatService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ChatService\ChatService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ChatService\ChatService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ChatService\ChatService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ChatService\ChatService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ChatService\ChatService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\MProjectWCF\MProjectService1.wsdl" />
     <None Include="Service References\MProjectWCF\MProjectService4.xsd">
       <SubType>Designer</SubType>
@@ -461,7 +502,7 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Content Include="DocumentXml\DocTemplate\Objectives.docx">
+    <Content Include="DocumentXml\DocTemplate\Objetives.docx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Model\MProjectDeskSQLITE.sqlite" />
@@ -559,6 +600,10 @@
       <Project>{cbe16a31-4ba6-4ce6-9016-7286da73ce95}</Project>
       <Name>ControlDB</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MProjectChat\MProjectChat.csproj">
+      <Project>{914676bf-ced6-4f8c-8320-6bd44d842aa3}</Project>
+      <Name>MProjectChat</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MProjetWebDesigner\MProjetWebDesigner.csproj">
       <Project>{ef6da5dd-5481-42c5-b4bb-0882c03c0e89}</Project>
       <Name>MProjetWebDesigner</Name>
@@ -569,6 +614,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ChatService\" />
     <WCFMetadataStorage Include="Service References\MProjectWCF\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

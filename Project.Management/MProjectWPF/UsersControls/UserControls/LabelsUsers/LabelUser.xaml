@@ -28,11 +28,11 @@
             </Grid.RowDefinitions>
 
             <!--Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"-->
-            <Button x:Name="btnChat" Grid.Row="0" Background="{x:Null}" Width="24"  Height="24" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Visibility="Hidden">
+            <Button x:Name="btnChat" Grid.Row="0" Background="{x:Null}" Width="24"  Height="24" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Visibility="Hidden" Click="btnChat_Click">
                 <Image Source="/Resources/Icons/16px/chat.png"/>
             </Button>
 
-            <Button x:Name="btnMessage" Grid.Row="1" Background="{x:Null}" Width="24"  Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Visibility="Hidden">
+            <Button x:Name="btnMessage" Grid.Row="1" Background="{x:Null}" Width="24"  Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Visibility="Hidden" Click="btnMessage_Click">
                 <Image Source="/Resources/Icons/16px/user.png"/>
             </Button>
         </Grid>

@@ -1,4 +1,5 @@
-﻿using ControlDB.Model;
+﻿using ControlDB.ChatService;
+using ControlDB.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,16 @@ namespace MProjectWPF.UsersControls.UserControls
             ocupationTxt.Text = usu.cargo;
             companyTxt.Text = usu.entidad;
             phoneTxt.Text = usu.telefono;
+        }
+
+        public UserDetails(User user)
+        {
+            InitializeComponent();
+            nameTxt.Text = user.UsuDic["nombre"];
+            emailTxt.Text = user.UsuDic["e_mail"];
+            ocupationTxt.Text = user.UsuDic["cargo"];
+            companyTxt.Text = user.UsuDic["entidad"];
+            phoneTxt.Text = user.UsuDic["telefono"];
         }
 
     }

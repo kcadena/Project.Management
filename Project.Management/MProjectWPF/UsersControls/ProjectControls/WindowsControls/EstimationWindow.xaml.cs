@@ -23,21 +23,24 @@ namespace MProjectWPF.UsersControls.ProjectControls.WindowsControls
         public ProjectPanel proPan;
         public ActivityPanel actPan;
         public bool allowSelected = true;
+        public bool enableEdit;
         public List<List<string>> listResources;
         public Double sum = 0;
         public int selectedField;
         Transfer tran;
         int opc;
+        int lastSelectedField;
 
-        public EstimationWindow(ProjectPanel pPan, List<List<string>> lstres, int o,bool enable)
+
+        public EstimationWindow(ProjectPanel proPan, List<List<string>> lstres, int o,bool enable)
         {
             InitializeComponent();
-            proPan = pPan;
+            this.proPan = proPan;
             opc = o;
+            enableEdit = enable;
             listResources = lstres;
             loadEstimation();
-            selectFinalField();
-
+            
             if (enable)
             {
                 addResourceField();
@@ -48,17 +51,21 @@ namespace MProjectWPF.UsersControls.ProjectControls.WindowsControls
                 updateEstimation.Visibility = Visibility.Collapsed;
                 removeEstimation.Visibility = Visibility.Collapsed;
             }
+
+            selectFinalField();
         }
 
         public EstimationWindow(ActivityPanel actPan, List<List<string>> lstres, int o, bool enable)
         {
             InitializeComponent();
             this.actPan = actPan;
+            enableEdit = enable;
             tran = actPan.tran;
             opc = o;
             listResources = lstres;
             loadEstimation();
-            selectFinalField();
+            
+            
             if (enable)
             {
                 addResourceField();
@@ -69,6 +76,8 @@ namespace MProjectWPF.UsersControls.ProjectControls.WindowsControls
                 updateEstimation.Visibility = Visibility.Collapsed;
                 removeEstimation.Visibility = Visibility.Collapsed;
             }
+
+            selectFinalField();
         }
 
         private void loadEstimation()
@@ -83,13 +92,13 @@ namespace MProjectWPF.UsersControls.ProjectControls.WindowsControls
 
         private void btnAccept_Click(object sender, RoutedEventArgs e)
         {
-            if(proPan != null)
+            if (proPan != null)
             {
                 if (opc == 1)
                 {
                     double add = Convert.ToDouble(totalValue.Text) - Convert.ToDouble(proPan.txtEstimation.Text);
                     proPan.valueEstimations = proPan.valueEstimations + add;
-                    proPan.txtEstimation.Text = totalValue.Text;                    
+                    proPan.txtEstimation.Text = totalValue.Text;
                     proPan.best = true;
                 }
                 else
@@ -110,7 +119,7 @@ namespace MProjectWPF.UsersControls.ProjectControls.WindowsControls
                     actPan.txtCost.Text = totalValue.Text;
                     actPan.bcost = true;
                 }
-            }            
+            }
             Close();
         }
 
@@ -122,7 +131,7 @@ namespace MProjectWPF.UsersControls.ProjectControls.WindowsControls
                 {
                     if (valueUnit.txtNumber.Text != "")
                     {
-                        listResources.RemoveAt(selectedField - 1);
+                        listResources.RemoveAt(selectedField);
                         sum = sum + Convert.ToInt32(valueTotal.txtNumber.Text);
                         totalValue.Text = "" + sum;
                         name.lbl.Content = name.txtText.Text;
@@ -147,15 +156,13 @@ namespace MProjectWPF.UsersControls.ProjectControls.WindowsControls
                         lstRes.Add(valueUnit.txtNumber.Text);
                         lstRes.Add(valueTotal.txtNumber.Text);
 
-                        listResources.Insert(selectedField - 1, lstRes);
+                        listResources.Insert(selectedField, lstRes);
                         allowSelected = true;
 
                         selectFinalField();
 
                         updateEstimation.Visibility = Visibility.Hidden;
                         saveEstimation.Visibility = Visibility.Visible;
-
-
                     }
                     else
                     {
@@ -252,6 +259,8 @@ namespace MProjectWPF.UsersControls.ProjectControls.WindowsControls
         {
             if (allowSelected)
             {
+                lockField();
+                lastSelectedField = estimationName.SelectedIndex;
                 estimationUnits.SelectedIndex = estimationName.SelectedIndex;
                 estimationValueUnits.SelectedIndex = estimationName.SelectedIndex;
                 estimationValueTotal.SelectedIndex = estimationName.SelectedIndex;
@@ -262,6 +271,8 @@ namespace MProjectWPF.UsersControls.ProjectControls.WindowsControls
         {
             if (allowSelected)
             {
+                lockField();
+                lastSelectedField = estimationUnits.SelectedIndex;
                 estimationName.SelectedIndex = estimationUnits.SelectedIndex;
                 estimationValueUnits.SelectedIndex = estimationUnits.SelectedIndex;
                 estimationValueTotal.SelectedIndex = estimationUnits.SelectedIndex;
@@ -272,6 +283,8 @@ namespace MProjectWPF.UsersControls.ProjectControls.WindowsControls
         {
             if (allowSelected)
             {
+                lockField();
+                lastSelectedField = estimationValueUnits.SelectedIndex;
                 estimationName.SelectedIndex = estimationValueUnits.SelectedIndex;
                 estimationUnits.SelectedIndex = estimationValueUnits.SelectedIndex;
                 estimationValueTotal.SelectedIndex = estimationValueUnits.SelectedIndex;
@@ -282,6 +295,8 @@ namespace MProjectWPF.UsersControls.ProjectControls.WindowsControls
         {
             if (allowSelected)
             {
+                lockField();
+                lastSelectedField = estimationValueTotal.SelectedIndex;
                 estimationName.SelectedIndex = estimationValueTotal.SelectedIndex;
                 estimationUnits.SelectedIndex = estimationValueTotal.SelectedIndex;
                 estimationValueUnits.SelectedIndex = estimationValueTotal.SelectedIndex;
@@ -356,11 +371,28 @@ namespace MProjectWPF.UsersControls.ProjectControls.WindowsControls
 
         private void selectFinalField()
         {
-            estimationName.SelectedIndex = estimationName.Items.Count;
+            lastSelectedField = estimationName.Items.Count - 1;
+            estimationName.SelectedIndex = lastSelectedField;
             name = (TextBoxNames)estimationName.SelectedItem;
             unit = (TextBoxNames)estimationUnits.SelectedItem;
             valueUnit = (TextBoxNames)estimationValueUnits.SelectedItem;
             valueTotal = (TextBoxNames)estimationValueTotal.SelectedItem;
+        }
+
+        public void lockField()
+        {
+            TextBoxNames aux;
+            aux = (TextBoxNames)estimationName.Items.GetItemAt(lastSelectedField);            
+            aux.lbl2.Visibility = Visibility.Visible;
+
+            aux = (TextBoxNames)estimationUnits.Items.GetItemAt(lastSelectedField);            
+            aux.lbl2.Visibility = Visibility.Visible;
+
+            aux = (TextBoxNames)estimationValueUnits.Items.GetItemAt(lastSelectedField);            
+            aux.lbl2.Visibility = Visibility.Visible;
+
+            aux = (TextBoxNames)estimationValueTotal.Items.GetItemAt(lastSelectedField);            
+            aux.lbl2.Visibility = Visibility.Visible;
         }
 
         //CONTROL BARRAS ////////////////////////////////////
@@ -433,10 +465,7 @@ namespace MProjectWPF.UsersControls.ProjectControls.WindowsControls
             }
             return foundElement;
         }
-
         //FINISH ////////////////////////////////////////////
-
-
-
+        
     }
 }

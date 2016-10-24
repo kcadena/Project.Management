@@ -1,19 +1,7 @@
-﻿using MProjectWPF.Controller;
-using ControlDB.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Collections.Generic;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using ControlDB.Model;
+using ControlDB.ChatService;
 
 namespace MProjectWPF.UsersControls.UserControls
 {
@@ -24,13 +12,34 @@ namespace MProjectWPF.UsersControls.UserControls
     {
         MainWindow mainWin;
         LabelUser lu;
-        public UsersPanel(MainWindow mw, Usuarios usu)
+        LabelUser actlu;
+        string id;
+
+        public UsersPanel(MainWindow mw)
         {
             InitializeComponent();
             mainWin= mw;
-            foreach (usuarios_meta_datos usua in usu.listUsers())
+        }
+
+        public void loadActUser(usuarios_meta_datos usuMod)
+        {
+            id = "" + usuMod.id_usuario;
+            actlu = new LabelUser(usuMod);
+            actUser.Children.Add(actlu);
+        }
+
+        public void loadUsers(List<User> users)
+        {
+            lstUser.Items.Clear();
+            int con = 0;
+            foreach (User usua in users)
             {
-                lstUser.Items.Add(new LabelUser(usua));
+                if(usua.UsuDic["id_usuario"] != id)
+                {
+                    lstUser.Items.Add(new LabelUser(mainWin.chat,usua));
+                    con++;
+                }
+                if (con >= 10) break;
             }
         }
 
@@ -40,7 +49,19 @@ namespace MProjectWPF.UsersControls.UserControls
 
             mainWin.spViewA.Children.Clear();
             lu =(LabelUser)lstUser.SelectedItem;
-            lu.showButtons();            
+            if (lu != null)
+            {
+                lu.showButtons();
+                mainWin.spViewA.Children.Add(new UserDetails(lu.user));
+            }
+        }
+
+        private void actUser_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (lu != null) lu.hideButtons();            
+            lstUser.SelectedIndex = -1;
+            mainWin.spViewA.Children.Clear();
+            lu = actlu;
             mainWin.spViewA.Children.Add(new UserDetails(lu.usu));
         }
     }

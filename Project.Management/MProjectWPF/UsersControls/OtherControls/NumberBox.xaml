@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="MProjectWPF.UsersControls.OtherControls.NumberBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MProjectWPF.UsersControls.OtherControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="100">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="30"/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="NumberTxt" PreviewTextInput="NumberTxt_PreviewTextInput" Text="0" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button x:Name="up"   Grid.Row="0" Content="⏶" Click="up_Click" Padding="1,-3,1,1" />
+            <Button x:Name="down" Grid.Row="1" Content="⏷" Click="down_Click" Padding="1,-3,1,1" />
+        </Grid>
+    </Grid>
+</UserControl>

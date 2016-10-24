@@ -24,11 +24,14 @@ namespace MProjectWPF.UsersControls.ProjectControls.WindowsControls
         ResourcesWindow resWin;
         EstimationWindow estWin;
         int opc;
+        bool enable;
+
         public TextBoxNames(int o, ResourcesWindow rw)
         {
             InitializeComponent();
             opc = o;
             resWin = rw;
+            
             if (opc == 1) { txtText.Visibility = Visibility.Visible; }
             else { txtNumber.Visibility = Visibility.Visible; }
         }
@@ -38,6 +41,7 @@ namespace MProjectWPF.UsersControls.ProjectControls.WindowsControls
             InitializeComponent();
             opc = o;
             estWin = ew;
+            enable = ew.enableEdit;
             if (opc == 1) { txtText.Visibility = Visibility.Visible; }
             else { txtNumber.Visibility = Visibility.Visible; }
         }
@@ -79,8 +83,17 @@ namespace MProjectWPF.UsersControls.ProjectControls.WindowsControls
 
         private void lbl_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (resWin != null) clickEventResource();
-            else clickEventEstimation();
+            if (enable)
+            {
+                if (resWin != null)
+                {
+                    clickEventResource();
+                }
+                else
+                {
+                    clickEventEstimation();
+                }
+            }   
         }
 
         private void clickEventResource()
@@ -225,6 +238,13 @@ namespace MProjectWPF.UsersControls.ProjectControls.WindowsControls
 
             }
             
+        }
+
+        private void lbl2_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            lbl2.Visibility = Visibility.Collapsed;
+            txtText.Focus();
+            txtNumber.Focus();
         }
     }
 }

@@ -12,6 +12,9 @@ using System.Windows;
 using System.Windows.Xps.Packaging;
 using System.Threading;
 using System.Windows.Threading;
+using System.Windows.Controls;
+using System.Windows.Markup;
+using System.Xml;
 
 namespace MProjectWPF.UsersControls.ProjectControls
 {
@@ -23,7 +26,6 @@ namespace MProjectWPF.UsersControls.ProjectControls
         public proyectos proMod;
         Proyectos proControl;
         public MainWindow mainW;
-
         public ExplorerProject exPro;
         public List<BoxField> lisBF, tLisBF;
         public List<List<string>> lstRes = new List<List<string>>();
@@ -84,57 +86,6 @@ namespace MProjectWPF.UsersControls.ProjectControls
             wc = new WordClass(this, fileSource);
         }
 
-        //ACTUALIZAR 
-        public ProjectPanel(MainWindow mw, ExplorerProject exPro, proyectos proMod, List<BoxField> bf, List<BoxField> tbf, Dictionary<string, string> dic)
-        {
-            InitializeComponent();
-            this.proMod = proMod;
-            pName = dic["pName"];
-            iconSource = dic["iconSource"];
-            iconName = dic["iconName"];
-            detail = dic["detail"];
-            fileSource = proMod.usuarios_meta_datos.repositorios_usuarios.ruta_repositorio_local;
-
-            this.exPro = exPro;
-            mainW = mw;
-            try
-            {
-                idName = proMod.keym + "-" + proMod.id_proyecto + "-" + proMod.id_usuario;
-            }
-            catch
-            {
-
-            }
-            
-            
-            lisBF = bf;
-            tLisBF = tbf;
-            wc = new WordClass(this, fileSource);
-            proControl = new Proyectos(mainW.dbMP);
-
-            proControl.loadTemplate(lisBF, this);
-            loadResources();
-            loadEstimations();
-            loadCost();
-
-            initialDate.Text = "" + proMod.caracteristicas.fecha_inicio;
-            finalDate.Text = "" + proMod.caracteristicas.fecha_fin;
-            txtResourses.Text = proMod.caracteristicas.recursos;
-            txtEstimation.Text = proMod.caracteristicas.presupuesto;
-            txtCost.Text = proMod.caracteristicas.costos;
-            enableEditProject = true;
-
-            btnEditTemplate.Visibility = Visibility.Visible;
-            initialDateSh.Visibility = Visibility.Collapsed;
-            finalDateSh.Visibility = Visibility.Collapsed;
-            btnEditProject.Visibility = Visibility.Collapsed;
-            btnDeleteProject.Visibility = Visibility.Collapsed;
-
-            btnAddProject.Visibility = Visibility.Collapsed;
-            btnUpdateProject.Visibility = Visibility.Visible;
-            stageBoxSh.Visibility = Visibility.Collapsed;
-        }
-
         //CREAR
         public ProjectPanel(MainWindow mw, ExplorerProject exPro, List<BoxField> bf, List<BoxField> tbf, Dictionary<string,string> dic)
         {
@@ -159,6 +110,24 @@ namespace MProjectWPF.UsersControls.ProjectControls
             finalDateSh.Visibility = Visibility.Collapsed;
             btnEditProject.Visibility = Visibility.Collapsed;
             stageBoxSh.Visibility = Visibility.Collapsed;
+        }
+
+        //ACTUALIZAR 
+        public void updateTemplateProject(List<BoxField> bf, List<BoxField> tbf, Dictionary<string, string> dic)
+        {
+            InitializeComponent();
+            
+            pName = dic["pName"];
+            iconSource = dic["iconSource"];
+            iconName = dic["iconName"];
+            detail = dic["detail"];
+            
+            lisBF = bf;
+            tLisBF = tbf;
+            proControl = new Proyectos(mainW.dbMP);
+
+            templatePanel.Children.Clear();
+            proControl.loadTemplate(lisBF, this);
         }
 
         public void loadlistTemplate()
@@ -383,10 +352,9 @@ namespace MProjectWPF.UsersControls.ProjectControls
 
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        //BOTON PERMITE MODIFICAR LA INFORMACION
+        //BOTON PERMITE MODIFICAR LA INFORMACION DE LA PLANTILLA
         private void btnEditTemplate_Click(object sender, RoutedEventArgs e)
-        {
-            docview.Document = null;
+        {   
             mainW.viewPlan.Children.Remove(exPro);
             mainW.viewPlan.Children.Add(new newProjectPanel(this));
         }
@@ -402,7 +370,7 @@ namespace MProjectWPF.UsersControls.ProjectControls
         }
 
         private void btnEditProject_Click(object sender, RoutedEventArgs e)
-        {
+        {   
             btnAddActivity.Visibility = Visibility.Collapsed;
             btnEditProject.Visibility = Visibility.Collapsed;            
             initialDateSh.Visibility = Visibility.Collapsed;
@@ -431,7 +399,7 @@ namespace MProjectWPF.UsersControls.ProjectControls
         }
 
         private void btnCancelProject_Click(object sender, RoutedEventArgs e)
-        {
+        {   
             btnUpdateProject.Visibility = Visibility.Collapsed;
             btnEditTemplate.Visibility = Visibility.Collapsed;
             btnCancelProject.Visibility = Visibility.Collapsed;
@@ -511,5 +479,6 @@ namespace MProjectWPF.UsersControls.ProjectControls
                 MessageBox.Show(err.Message);
             }
         }
+        
     }
 }

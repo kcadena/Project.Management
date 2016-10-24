@@ -60,16 +60,11 @@ namespace MProjectWPF.Controller
                 return datos.usuarios_meta_datos;
 
             }
-            catch(Exception err)
+            catch
             {
-                try {
-                    MessageBox.Show(err.InnerException.Message);
-                }
-                catch { }
+                return null;
             }
             
-
-            return null;
         }
 
         public List<usuarios_meta_datos> listUsers()
