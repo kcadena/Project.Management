@@ -9,117 +9,22 @@
 //------------------------------------------------------------------------------
 
 namespace MProjectWPF.ChatService {
-    using System.Runtime.Serialization;
-    using System;
     
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Message", Namespace="http://schemas.datacontract.org/2004/07/ChatService")]
-    [System.SerializableAttribute()]
-    public partial class Message : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ContentField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private ControlDB.ChatService.User ReceiverField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private ControlDB.ChatService.User SenderField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime TimeField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Content {
-            get {
-                return this.ContentField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ContentField, value) != true)) {
-                    this.ContentField = value;
-                    this.RaisePropertyChanged("Content");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public ControlDB.ChatService.User Receiver {
-            get {
-                return this.ReceiverField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ReceiverField, value) != true)) {
-                    this.ReceiverField = value;
-                    this.RaisePropertyChanged("Receiver");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public ControlDB.ChatService.User Sender {
-            get {
-                return this.SenderField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.SenderField, value) != true)) {
-                    this.SenderField = value;
-                    this.RaisePropertyChanged("Sender");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime Time {
-            get {
-                return this.TimeField;
-            }
-            set {
-                if ((this.TimeField.Equals(value) != true)) {
-                    this.TimeField = value;
-                    this.RaisePropertyChanged("Time");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ChatService.ISendChatService", CallbackContract=typeof(MProjectWPF.ChatService.ISendChatServiceCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ChatService.ISendChatService", CallbackContract=typeof(MProjectWPF.ChatService.ISendChatServiceCallback))]
     public interface ISendChatService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISendChatService/Start", ReplyAction="http://tempuri.org/ISendChatService/StartResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ISendChatService/Start")]
         void Start(ControlDB.ChatService.User usu);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISendChatService/Start", ReplyAction="http://tempuri.org/ISendChatService/StartResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ISendChatService/Start")]
         System.Threading.Tasks.Task StartAsync(ControlDB.ChatService.User usu);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, IsTerminating=true, Action="http://tempuri.org/ISendChatService/Stop")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ISendChatService/Stop")]
         void Stop(ControlDB.ChatService.User usu);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, IsTerminating=true, Action="http://tempuri.org/ISendChatService/Stop")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ISendChatService/Stop")]
         System.Threading.Tasks.Task StopAsync(ControlDB.ChatService.User usu);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ISendChatService/Reset")]
@@ -129,10 +34,10 @@ namespace MProjectWPF.ChatService {
         System.Threading.Tasks.Task ResetAsync();
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ISendChatService/SendMessage")]
-        void SendMessage(MProjectWPF.ChatService.Message msg);
+        void SendMessage(ControlDB.ChatService.Message msg);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ISendChatService/SendMessage")]
-        System.Threading.Tasks.Task SendMessageAsync(MProjectWPF.ChatService.Message msg);
+        System.Threading.Tasks.Task SendMessageAsync(ControlDB.ChatService.Message msg);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -142,7 +47,7 @@ namespace MProjectWPF.ChatService {
         void SendNames(ControlDB.ChatService.User[] users);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ISendChatService/ReceiveMessage")]
-        void ReceiveMessage(MProjectWPF.ChatService.Message msg);
+        void ReceiveMessage(ControlDB.ChatService.Message msg);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ISendChatService/CloseApp")]
         void CloseApp();
@@ -200,11 +105,11 @@ namespace MProjectWPF.ChatService {
             return base.Channel.ResetAsync();
         }
         
-        public void SendMessage(MProjectWPF.ChatService.Message msg) {
+        public void SendMessage(ControlDB.ChatService.Message msg) {
             base.Channel.SendMessage(msg);
         }
         
-        public System.Threading.Tasks.Task SendMessageAsync(MProjectWPF.ChatService.Message msg) {
+        public System.Threading.Tasks.Task SendMessageAsync(ControlDB.ChatService.Message msg) {
             return base.Channel.SendMessageAsync(msg);
         }
     }

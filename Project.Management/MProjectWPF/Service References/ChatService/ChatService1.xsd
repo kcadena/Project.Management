@@ -8,11 +8,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="StartResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
   <xs:element name="Stop">
     <xs:complexType>
       <xs:sequence>

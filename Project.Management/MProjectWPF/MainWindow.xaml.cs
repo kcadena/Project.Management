@@ -13,6 +13,7 @@ using System.Diagnostics;
 using System.ServiceModel;
 using System.Collections.Generic;
 using ControlDB.ChatService;
+using mc = MProjectChat;
 
 namespace MProjectWPF
 {
@@ -26,7 +27,7 @@ namespace MProjectWPF
         UserSessionPanel usp = null;
         public MProjectDeskSQLITEEntities dbMP;
         bool perAct = true;
-        public bool internet;
+        public bool internet,serv;
         MProjectServiceClient msc;
 
         ReceiveChat rc;
@@ -36,7 +37,9 @@ namespace MProjectWPF
 
         public UserDetails usuDet;
         public UsersPanel usuPan;
-        
+
+        public Dictionary<string, mc.MainWindow> lstWinChat;
+         
         public MainWindow()
         {   
             dbMP = new MProjectDeskSQLITEEntities();
@@ -51,36 +54,40 @@ namespace MProjectWPF
         {
             usuControl = new Usuarios(dbMP);
             usuModel = usuControl.getUser(email, pass);
+
             if (usuModel != null)
             {
                 usuPan.loadActUser(usuModel);
                 nameConection.Content = usuModel.nombre + " " + usuModel.apellido;
                 usuDet = new UserDetails(usuModel);
+                lstWinChat = new Dictionary<string, mc.MainWindow>();
                 addLabels();
-
-                msc = new MProjectServiceClient();
-                rc = new ReceiveChat();
-                inst = new InstanceContext(rc);
-                chat = new SendChatServiceClient(inst);
-
-                rc.mainW = this;
-
-                user = new User();
-                user.UsuDic = new Dictionary<string, string>();
-                user.UsuDic["id_usuario"] = "" + usuModel.id_usuario;
-                user.UsuDic["nombre"] = "" + usuModel.nombre + " " + usuModel.apellido;
-                user.UsuDic["e_mail"] = "" + usuModel.e_mail;
-                user.UsuDic["cargo"] = "" + usuModel.cargo;
-                user.UsuDic["entidad"] = "" + usuModel.entidad;
-                user.UsuDic["telefono"] = "" + usuModel.telefono;
-                user.UsuDic["genero"] = "" + usuModel.genero;
-                user.AvatarID = null;
-
-                chat.Start(user);
-
 
                 Thread oThread = new Thread(() =>
                 {
+                    try
+                    {
+                        msc = new MProjectServiceClient();
+                        rc = new ReceiveChat();
+                        inst = new InstanceContext(rc);
+                        chat = new SendChatServiceClient(inst);
+
+                        rc.mainW = this;
+
+                        user = new User();
+                        user.UsuDic = new Dictionary<string, string>();
+                        user.UsuDic["id_usuario"] = "" + usuModel.id_usuario;
+                        user.UsuDic["nombre"] = "" + usuModel.nombre + " " + usuModel.apellido;
+                        user.UsuDic["e_mail"] = "" + usuModel.e_mail;
+                        user.UsuDic["cargo"] = "" + usuModel.cargo;
+                        user.UsuDic["entidad"] = "" + usuModel.entidad;
+                        user.UsuDic["telefono"] = "" + usuModel.telefono;
+                        user.UsuDic["genero"] = "" + usuModel.genero;
+                        user.AvatarID = null;
+       
+                        chat.Start(user);
+                        serv = true;
+                    }catch{ serv = false;   }
                     InternetAccess();
                 });
                 oThread.Start();
@@ -125,6 +132,17 @@ namespace MProjectWPF
                 try
                 {   
                     System.Net.IPHostEntry host = System.Net.Dns.GetHostEntry("www.google.com");
+                    if (!serv)
+                    {
+                        try
+                        {
+                            chat = new SendChatServiceClient(inst);
+                            chat.Start(user);
+                            serv = true;
+                        }
+                        catch{  }
+                    }
+
                     indicator.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
                     {
                         indicator.Source = new BitmapImage(new Uri("pack://application:,,/Resources/Icons/16px/ind_Green.png"));
@@ -133,9 +151,11 @@ namespace MProjectWPF
                 }
                 catch
                 {
-                    internet = false;
+                    internet = false;                    
                     indicator.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
                     {
+                        serv = false;
+                        usuPan.deleteUsers();
                         indicator.Source = new BitmapImage(new Uri("pack://application:,,/Resources/Icons/16px/ind_Red.png"));
                     }));                   
                 }
@@ -166,7 +186,8 @@ namespace MProjectWPF
             {
                 if (user != null)
                     chat.Stop(user);
-                chat.Close();                
+                if(chat != null)
+                    chat.Close();                
             }
             catch{ }
             try { msc.Close(); } catch { }

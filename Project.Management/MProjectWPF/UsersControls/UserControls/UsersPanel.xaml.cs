@@ -2,6 +2,8 @@
 using System.Windows.Controls;
 using ControlDB.Model;
 using ControlDB.ChatService;
+using System.Windows.Threading;
+using System;
 
 namespace MProjectWPF.UsersControls.UserControls
 {
@@ -30,17 +32,25 @@ namespace MProjectWPF.UsersControls.UserControls
 
         public void loadUsers(List<User> users)
         {
-            lstUser.Items.Clear();
-            int con = 0;
-            foreach (User usua in users)
+            Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
             {
-                if(usua.UsuDic["id_usuario"] != id)
+                lstUser.Items.Clear();
+                int con = 0;
+                foreach (User usua in users)
                 {
-                    lstUser.Items.Add(new LabelUser(mainWin.chat,usua));
-                    con++;
+                    if (usua.UsuDic["id_usuario"] != id)
+                    {
+                        lstUser.Items.Add(new LabelUser(mainWin, usua));
+                        con++;
+                    }
+                    if (con >= 10) break;
                 }
-                if (con >= 10) break;
-            }
+            }));
+        }
+
+        public void deleteUsers()
+        {
+            lstUser.Items.Clear();
         }
 
         private void lstUser_SelectionChanged(object sender, SelectionChangedEventArgs e)

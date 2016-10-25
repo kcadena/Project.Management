@@ -17,6 +17,9 @@ namespace MProjectWPF.UsersControls
         public usuarios_meta_datos usu;
         public User user;
         public SendChatServiceClient chat;
+        public MainWindow mainW;
+        public mc.MainWindow mainChat;
+
         public LabelUser(usuarios_meta_datos u)
         {
             InitializeComponent();
@@ -49,11 +52,13 @@ namespace MProjectWPF.UsersControls
             occupationUser.Text = usu.cargo;
         }
 
-        public LabelUser(SendChatServiceClient chat, User user)
+        public LabelUser(MainWindow mainW,User user)
         {
             InitializeComponent();
+            chat = mainW.chat;
             this.user = user;
-            
+            this.mainW = mainW;
+
             if (user.AvatarID != null)
             {
 
@@ -98,7 +103,7 @@ namespace MProjectWPF.UsersControls
                     DataObject data = new DataObject();
 
                     data.SetData(DataFormats.StringFormat, user.UsuDic["e_mail"]);
-                    LabelUser lu = new LabelUser(chat,user);
+                    LabelUser lu = new LabelUser(mainW,user);
                     lu.changeBackground();
                     data.SetData("Object", lu);
 
@@ -119,8 +124,9 @@ namespace MProjectWPF.UsersControls
 
         private void btnChat_Click(object sender, RoutedEventArgs e)
         {
-            mc.MainWindow mainChat = new mc.MainWindow(chat,user);
+            mainChat = new mc.MainWindow(chat,mainW.user,user);
             mainChat.Show();
+            mainW.lstWinChat.Add(user.UsuDic["id_usuario"],mainChat);
         }
 
         private void btnMessage_Click(object sender, RoutedEventArgs e)
