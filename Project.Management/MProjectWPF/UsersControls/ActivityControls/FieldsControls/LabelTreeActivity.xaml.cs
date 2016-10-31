@@ -54,7 +54,7 @@ namespace MProjectWPF.UsersControls.ActivityControls.FieldsControls
             car = act.caracteristicas;
             lab_father = l_father;
 
-            if (ep.mainW.usuModel.id_usuario != actMod.id_usuario)
+            if (ep.mainW.usuMod.id_usuario != actMod.id_usuario)
             {
                 lblChangeColor();
                 isOwn = false;

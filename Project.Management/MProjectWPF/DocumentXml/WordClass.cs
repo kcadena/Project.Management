@@ -37,7 +37,7 @@ namespace MProjectWPF.DocumentXml
         List<string> windows;
         bool fileIsOpen = false;
 
-        //Constructor Primera vez
+        //CONSTRUCTOR CREA DOCUMENTO AL CREAR PROYECTO
         public WordClass(ProjectPanel ppan)
         {
             proPan = ppan;
@@ -63,7 +63,7 @@ namespace MProjectWPF.DocumentXml
             }
         }
 
-        //Constructor Abrir
+        //CONSTRUCTOR CRAGA EL DOCUEMNTO AL ACCEDER
         public WordClass(ProjectPanel ppan, string route)
         {   
             proPan = ppan;
@@ -113,6 +113,7 @@ namespace MProjectWPF.DocumentXml
             }
         }
 
+        //PERMITE ABRIR EL DOCUMENTO CON EL PROGRAMA PREDETERMINADO DEL SISTEMA OPERATIVO
         public void openWord()
         {
             Process.Start(pathw);

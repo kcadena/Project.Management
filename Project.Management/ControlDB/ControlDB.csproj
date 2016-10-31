@@ -151,6 +151,11 @@
       <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\ChatServiceDuplex\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\ChatService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -169,23 +174,27 @@
       <DependentUpon>MProjectDeskSQLITE.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Service References\ChatServiceDuplex\ChatService.wsdl" />
+    <None Include="Service References\ChatServiceDuplex\ChatServiceDuplex.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ChatServiceDuplex\ChatServiceDuplex1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ChatServiceDuplex\ChatServiceDuplex2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ChatServiceDuplex\ChatServiceDuplex3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ChatServiceDuplex\ChatServiceDuplex4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ChatServiceDuplex\ChatServiceDuplex5.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ChatService\ChatService.wsdl" />
     <None Include="Service References\ChatService\ChatService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ChatService\ChatService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ChatService\ChatService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ChatService\ChatService3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ChatService\ChatService4.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ChatService\ChatService5.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -203,17 +212,42 @@
       <DependentUpon>MProjectDeskSQLITE.edmx</DependentUpon>
       <LastGenOutput>MProjectDeskSQLITE.cs</LastGenOutput>
     </Content>
+    <None Include="Service References\ChatService\ChatService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ChatService\ChatService11.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ChatService\ChatService12.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ChatService\ChatService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ChatService\ChatService22.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ChatService\ControlDB.ChatService.User.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\ChatService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Service References\ChatService\configuration.svcinfo" />
     <None Include="Service References\ChatService\configuration91.svcinfo" />
+    <None Include="Service References\ChatServiceDuplex\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\ChatServiceDuplex\configuration.svcinfo" />
+    <None Include="Service References\ChatServiceDuplex\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ChatServiceDuplex\" />
     <WCFMetadataStorage Include="Service References\ChatService\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

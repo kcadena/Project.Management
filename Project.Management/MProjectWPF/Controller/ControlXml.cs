@@ -157,7 +157,7 @@ namespace MProjectWPF.UsersControls.TemplatesControls
         {
             Plantillas pla = new Plantillas(mainW.dbMP);
             string key = p.keym;
-            if (pla.deleteTemplate(p) && pla.savetemplate(nodeField.ChildNodes, name, detail,mainW.usuModel,key))
+            if (pla.deleteTemplate(p) && pla.savetemplate(nodeField.ChildNodes, name, detail,mainW.usuMod,key))
             {
                 MessageBox.Show("La plantilla se ha guardado con exito!!");
                 removeAllFields();
@@ -168,7 +168,7 @@ namespace MProjectWPF.UsersControls.TemplatesControls
         {
             Plantillas pla = new Plantillas(mainW.dbMP);            
             
-            if(pla.savetemplate(nodeField.ChildNodes, name, detail,mainW.usuModel,""))
+            if(pla.savetemplate(nodeField.ChildNodes, name, detail,mainW.usuMod,""))
             {
                 MessageBox.Show("La plantilla se ha guardado con exito!!");
                 removeAllFields();

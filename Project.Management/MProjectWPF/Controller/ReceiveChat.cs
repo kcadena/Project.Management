@@ -1,9 +1,9 @@
-﻿using ControlDB.ChatService;
+﻿using ControlDB.ChatServiceDuplex;
 using System.Linq;
 using System.Windows;
 using mc = MProjectChat;
-
 using System;
+using System.Windows.Threading;
 
 namespace MProjectWPF.Controller
 {
@@ -13,7 +13,7 @@ namespace MProjectWPF.Controller
 
         public void CloseApp()
         {   
-            mainW.user = null;
+            mainW.userDuplex = null;
             MessageBox.Show("Sesión Online Cerrada: Usuario Inicio session en otra aplicacion");
         }
 
@@ -21,19 +21,23 @@ namespace MProjectWPF.Controller
         {
             string id_usuario = msg.Sender.UsuDic["id_usuario"];
 
-            if (mainW.lstWinChat.ContainsKey(id_usuario))
+            mainW.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
             {
-                mc.MainWindow mainChat = mainW.lstWinChat[id_usuario];
-                mainChat.Show();
-                mainChat.addMessage(msg.Content);
-            }
-            else
-            {
-                mc.MainWindow mainChat = new mc.MainWindow(mainW.chat,msg.Receiver,msg.Sender);
-                mainChat.Show();
-                mainW.lstWinChat.Add(msg.Sender.UsuDic["id_usuario"],mainChat);
-                mainChat.addMessage(msg.Content);
-            }  
+                if (mainW.lstWinChat.ContainsKey(id_usuario))
+                {
+                    mc.MainWindow mainChat = mainW.lstWinChat[id_usuario];
+                    mainChat.Show();
+                    mainChat.addMessage(msg.Content);
+                }
+                else
+                {
+                    mc.MainWindow mainChat = new mc.MainWindow(mainW.chatDuplex, msg.Receiver, msg.Sender,mainW.lstWinChat);
+                    mainChat.Show();
+                    mainW.lstWinChat.Add(msg.Sender.UsuDic["id_usuario"], mainChat);
+                    mainChat.addMessage(msg.Content);
+                }
+            }));
+             
         }
 
         public void SendNames(User[] users)

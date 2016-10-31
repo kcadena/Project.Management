@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Controls;
 using ControlDB.Model;
-using ControlDB.ChatService;
+using ControlDB.ChatServiceDuplex;
 using System.Windows.Threading;
 using System;
+using ControlDB.ChatService;
 
 namespace MProjectWPF.UsersControls.UserControls
 {
@@ -15,6 +16,7 @@ namespace MProjectWPF.UsersControls.UserControls
         MainWindow mainWin;
         LabelUser lu;
         LabelUser actlu;
+        List<string> ids;
         string id;
 
         public UsersPanel(MainWindow mw)
@@ -30,13 +32,13 @@ namespace MProjectWPF.UsersControls.UserControls
             actUser.Children.Add(actlu);
         }
 
-        public void loadUsers(List<User> users)
+        public void loadUsers(List<ControlDB.ChatServiceDuplex.User> users)
         {
             Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
             {
                 lstUser.Items.Clear();
                 int con = 0;
-                foreach (User usua in users)
+                foreach (ControlDB.ChatServiceDuplex.User usua in users)
                 {
                     if (usua.UsuDic["id_usuario"] != id)
                     {
@@ -62,7 +64,8 @@ namespace MProjectWPF.UsersControls.UserControls
             if (lu != null)
             {
                 lu.showButtons();
-                mainWin.spViewA.Children.Add(new UserDetails(lu.user));
+                //mainWin.spViewA.Children.Add(new UserDetails(lu.user));
+                mainWin.spViewA.Children.Add(new UserDetails(lu.usu));
             }
         }
 
@@ -72,7 +75,26 @@ namespace MProjectWPF.UsersControls.UserControls
             lstUser.SelectedIndex = -1;
             mainWin.spViewA.Children.Clear();
             lu = actlu;
-            mainWin.spViewA.Children.Add(new UserDetails(lu.usu));
+            mainWin.spViewA.Children.Add(new UserDetails(lu.usuMod));
+        }
+
+        public void loadUsers(Dictionary<string, ControlDB.ChatService.User> dictionary)
+        {
+            Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+            {
+                lstUser.Items.Clear();
+                int con = 0;
+                foreach (KeyValuePair<string, ControlDB.ChatService.User> usu in dictionary)
+                {
+                    if (usu.Key != id)
+                    {
+                        lstUser.Items.Add(new LabelUser(mainWin, usu.Value));
+                        con++;
+                    }
+                    if (con >= 10) break;
+                }
+            }));
+
         }
     }
 }

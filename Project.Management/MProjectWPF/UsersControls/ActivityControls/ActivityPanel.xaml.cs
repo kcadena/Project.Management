@@ -518,11 +518,11 @@ namespace MProjectWPF.UsersControls
         {
             if(labUser != null)
             {
-                car.usuarios_meta_datos_asignado = labUser.usu;
+                car.usuarios_meta_datos_asignado = labUser.usuMod;
                 car.visualizar_superior = true;
 
                 long lastidpro;
-                try { lastidpro = labUser.usu.proyectos.OrderBy(p => p.id_proyecto).Last().id_proyecto + 1; }
+                try { lastidpro = labUser.usuMod.proyectos.OrderBy(p => p.id_proyecto).Last().id_proyecto + 1; }
                 catch { lastidpro = 1; }
 
                 proyectos proasig = new proyectos();
@@ -530,7 +530,7 @@ namespace MProjectWPF.UsersControls
                 proasig.id_proyecto = lastidpro;
                 proasig.caracteristicas = car;
                 proasig.id_caracteristica = car.keym + "-" + car.id_caracteristica + "-" + car.id_usuario;
-                proasig.usuarios_meta_datos = labUser.usu;
+                proasig.usuarios_meta_datos = labUser.usuMod;
                 proasig.nombre = txtNom.Text;
                 proasig.plantilla = "plantillamprojectcompany.xml";
                 proasig.descripcion = "locokelvin";
@@ -545,7 +545,7 @@ namespace MProjectWPF.UsersControls
         {
             try
             {
-                ml.MainWindow mwl = new ml.MainWindow(car,mainW.dbMP,false);
+                ml.MainWindow mwl = new ml.MainWindow(car,mainW.dbMP,false,mainW.usuMod);
                 mwl.Show();
             }
             catch

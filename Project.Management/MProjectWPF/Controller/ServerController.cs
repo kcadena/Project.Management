@@ -317,12 +317,12 @@ namespace MProjectWPF.Controller
                 }
                 catch (Exception err)
                 {
-                    MessageBox.Show(err.Message);
+                    MessageBox.Show(err.ToString());
                 }
             }
             catch (Exception err)
             {
-                MessageBox.Show(err.Message);
+                MessageBox.Show(err.ToString());
             }
 
         }

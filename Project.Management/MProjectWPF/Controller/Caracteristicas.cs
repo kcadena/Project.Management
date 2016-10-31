@@ -41,11 +41,11 @@ namespace MProjectWPF.Controller
                     {
                         if (lta2 != null)
                         {
-                            if (car.id_usuario == mainW.usuModel.id_usuario)
+                            if (car.id_usuario == mainW.usuMod.id_usuario)
                             {
                                 createLabelTreeActivity(car, tv, lta2, ep, i, lstcar.Count);
                             }
-                            else if (car.id_usuario != mainW.usuModel.id_usuario && car.visualizar_superior == true)
+                            else if (car.id_usuario != mainW.usuMod.id_usuario && car.visualizar_superior == true)
                             {
                                 createLabelTreeActivity(car, tv, lta2, ep, i, lstcar.Count);
                             }

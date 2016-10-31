@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://192.168.0.17:83/ChatService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ChatService" />
+  <xs:import schemaLocation="http://190.254.4.6:93/MPChat/DuplexService/ChatServiceDuplex.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ChatServiceDuplex" />
   <xs:element name="Start">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/ChatService" minOccurs="0" name="usu" nillable="true" type="q1:User" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/ChatServiceDuplex" minOccurs="0" name="usu" nillable="true" type="q1:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="Stop">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/ChatService" minOccurs="0" name="usu" nillable="true" type="q2:User" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/ChatServiceDuplex" minOccurs="0" name="usu" nillable="true" type="q2:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -23,21 +23,21 @@
   <xs:element name="SendMessage">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/ChatService" minOccurs="0" name="msg" nillable="true" type="q3:Message" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/ChatServiceDuplex" minOccurs="0" name="msg" nillable="true" type="q3:Message" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SendNames">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/ChatService" minOccurs="0" name="users" nillable="true" type="q4:ArrayOfUser" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/ChatServiceDuplex" minOccurs="0" name="users" nillable="true" type="q4:ArrayOfUser" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ReceiveMessage">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/ChatService" minOccurs="0" name="msg" nillable="true" type="q5:Message" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/ChatServiceDuplex" minOccurs="0" name="msg" nillable="true" type="q5:Message" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

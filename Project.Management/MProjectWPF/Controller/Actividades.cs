@@ -23,7 +23,7 @@ namespace MProjectWPF.Controller
         public bool createActivity(ActivityPanel actPan)
         {
             string keym;
-            usuarios_meta_datos usu = actPan.mainW.usuModel;
+            usuarios_meta_datos usu = actPan.mainW.usuMod;
 
             caracteristicas carPad = null;
             
@@ -198,7 +198,7 @@ namespace MProjectWPF.Controller
 
         public bool editActivity(ActivityPanel actPan)
         {
-            usuarios_meta_datos usu = actPan.mainW.usuModel;
+            usuarios_meta_datos usu = actPan.mainW.usuMod;
             string keym = actPan.actMod.keym;
 
             caracteristicas car = actPan.actMod.caracteristicas;                      

@@ -1,4 +1,4 @@
-﻿using ControlDB.ChatService;
+﻿using ControlDB.ChatServiceDuplex;
 using ControlDB.Model;
 using System;
 using System.Windows;
@@ -6,6 +6,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using mc = MProjectChat;
+using ControlDB.ChatService;
+using System.Collections.Generic;
 
 namespace MProjectWPF.UsersControls
 {
@@ -14,23 +16,25 @@ namespace MProjectWPF.UsersControls
     /// </summary>
     public partial class LabelUser : System.Windows.Controls.UserControl
     {
-        public usuarios_meta_datos usu;
-        public User user;
+        public usuarios_meta_datos usuMod;
+        public ControlDB.ChatServiceDuplex.User user;
         public SendChatServiceClient chat;
         public MainWindow mainW;
         public mc.MainWindow mainChat;
+        private MainWindow mainWin;
+        public ControlDB.ChatService.User usu;
 
-        public LabelUser(usuarios_meta_datos u)
+        public LabelUser(usuarios_meta_datos usuMod)
         {
             InitializeComponent();
-            usu = u;
-            if (usu.imagen != null)
+            this.usuMod = usuMod;
+
+            if (usuMod.imagen != null)
             {
                 try
                 {
-                    string repositorioLocal = usu.repositorios_usuarios.ruta_repositorio_local;
-                    string image = usu.imagen;
-                    string sourceImage = repositorioLocal + "\\perfil\\imagen\\" + usu.imagen;
+                    string repositorioLocal = usuMod.repositorios_usuarios.ruta_repositorio_local;
+                    string sourceImage = repositorioLocal + "\\" + usuMod.imagen;
                     imgProfile.Source = new BitmapImage(new Uri(sourceImage));
                 }
                 catch { }
@@ -38,7 +42,7 @@ namespace MProjectWPF.UsersControls
             }
             else
             {
-                if (usu.genero == "F")
+                if (usuMod.genero == "F")
                 {
                     imgProfile.Source = new BitmapImage(new Uri("pack://application:,,/Resources/womenprofile.png"));
                 }
@@ -47,15 +51,15 @@ namespace MProjectWPF.UsersControls
                     imgProfile.Source = new BitmapImage(new Uri("pack://application:,,/Resources/manprofile.png"));
                 }
             }
-            nameUser.Text = (usu.nombre + " " + usu.apellido).ToUpper();
-            emailUser.Text = usu.e_mail;
-            occupationUser.Text = usu.cargo;
+            nameUser.Text = (usuMod.nombre + " " + usuMod.apellido).ToUpper();
+            emailUser.Text = usuMod.e_mail;
+            occupationUser.Text = usuMod.cargo;
         }
 
-        public LabelUser(MainWindow mainW,User user)
+        public LabelUser(MainWindow mainW, ControlDB.ChatServiceDuplex.User user)
         {
             InitializeComponent();
-            chat = mainW.chat;
+            chat = mainW.chatDuplex;
             this.user = user;
             this.mainW = mainW;
 
@@ -77,6 +81,21 @@ namespace MProjectWPF.UsersControls
             nameUser.Text = user.UsuDic["nombre"].ToUpper();
             emailUser.Text = user.UsuDic["e_mail"];
             occupationUser.Text = user.UsuDic["cargo"];
+            
+        }
+
+        public LabelUser(MainWindow mainWin, ControlDB.ChatService.User usu)
+        {
+            InitializeComponent();
+            this.mainWin = mainWin;
+            this.usu = usu;
+            try
+            {
+                nameUser.Text = usu.UsuDic["nombre"].ToUpper();
+                emailUser.Text = usu.UsuDic["e_mail"];
+                occupationUser.Text = usu.UsuDic["cargo"];
+            }
+            catch { }
             
         }
 
@@ -124,9 +143,12 @@ namespace MProjectWPF.UsersControls
 
         private void btnChat_Click(object sender, RoutedEventArgs e)
         {
-            mainChat = new mc.MainWindow(chat,mainW.user,user);
-            mainChat.Show();
-            mainW.lstWinChat.Add(user.UsuDic["id_usuario"],mainChat);
+            if (!mainW.lstWinChat.ContainsKey(user.UsuDic["id_usuario"]))
+            {
+                mainChat = new mc.MainWindow(chat, mainW.userDuplex, user, mainW.lstWinChat);
+                mainChat.Show();
+                mainW.lstWinChat.Add(user.UsuDic["id_usuario"], mainChat);
+            }
         }
 
         private void btnMessage_Click(object sender, RoutedEventArgs e)

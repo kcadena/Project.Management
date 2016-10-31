@@ -200,7 +200,7 @@ namespace MProjectWPF.UsersControls.ProjectControls
 
                 if (iconName != null)
                 {
-                    string rutaDestino = mainW.usuModel.repositorios_usuarios.ruta_repositorio_local + "/proyectos/" + idName + "/icons/";
+                    string rutaDestino = mainW.usuMod.repositorios_usuarios.ruta_repositorio_local + "/proyectos/" + idName + "/icons/";
 
                     string archivoDestino = Path.Combine(rutaDestino, iconName);
 
@@ -217,14 +217,14 @@ namespace MProjectWPF.UsersControls.ProjectControls
                         MessageBox.Show(err.Message);
                     }
                 }
-                string ruta = mainW.usuModel.repositorios_usuarios.ruta_repositorio_local + "/proyectos/" + idName + "/plantilla/";
+                string ruta = mainW.usuMod.repositorios_usuarios.ruta_repositorio_local + "/proyectos/" + idName + "/plantilla/";
                 string source = "Logs\\TemplateTemp.xml";
                 string template = "plantilla" + idName + ".xml";
 
 
                 copyFile(ruta, template, source);
 
-                ruta = mainW.usuModel.repositorios_usuarios.ruta_repositorio_local + "/proyectos/" + idName + "/documentos/";
+                ruta = mainW.usuMod.repositorios_usuarios.ruta_repositorio_local + "/proyectos/" + idName + "/documentos/";
                 source = "DocumentXml\\DocTemplate\\Objectives.docx";
                 template = "objetivos" + idName + ".docx";
 
@@ -252,7 +252,7 @@ namespace MProjectWPF.UsersControls.ProjectControls
             Proyectos proControl = new Proyectos(mainW.dbMP);
             ControlXml cxml = new ControlXml("Logs//TemplateTemp.xml");
 
-            string rutaLocal = mainW.usuModel.repositorios_usuarios.ruta_repositorio_local;
+            string rutaLocal = mainW.usuMod.repositorios_usuarios.ruta_repositorio_local;
             string folderName = "/proyectos/" + idName;
             string ruta = rutaLocal + folderName;
 

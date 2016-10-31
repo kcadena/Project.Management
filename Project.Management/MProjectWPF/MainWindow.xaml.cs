@@ -12,34 +12,50 @@ using MProjectWPF.MProjectWCF;
 using System.Diagnostics;
 using System.ServiceModel;
 using System.Collections.Generic;
+using ControlDB.ChatServiceDuplex;
 using ControlDB.ChatService;
 using mc = MProjectChat;
+using System.IO;
 
 namespace MProjectWPF
-{
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+{   
+    public partial class MainWindow : Window 
     {
-        public Usuarios usuControl;
-        public usuarios_meta_datos usuModel;
-        UserSessionPanel usp = null;
+        #region Variables Modelo Datos
         public MProjectDeskSQLITEEntities dbMP;
-        bool perAct = true;
-        public bool internet,serv;
-        MProjectServiceClient msc;
+        public usuarios_meta_datos usuMod;
+        public Usuarios usuCon;
+        #endregion
 
-        ReceiveChat rc;
-        InstanceContext inst;
-        public SendChatServiceClient chat;
-        public User user;
-
+        #region Controles Usuario
         public UserDetails usuDet;
-        public UsersPanel usuPan;
+        public UsersPanel  usuPan;
+        UserSessionPanel usp = null;
+        #endregion
 
+        #region Variables Sistema
+        public bool userSessionIsActive= false;
+        public bool internet, serv;
         public Dictionary<string, mc.MainWindow> lstWinChat;
-         
+        #endregion
+
+        #region Variables Servicio ChatDuplex 
+        ReceiveChat receiveChat;
+        InstanceContext instanceContext;
+        public SendChatServiceClient chatDuplex;
+        public ControlDB.ChatServiceDuplex.User userDuplex;
+        #endregion
+
+        #region VariablesServiciosMproject
+        MProjectServiceClient ServiceClient;
+        #endregion
+
+        #region Variables Servicio Chat
+        public ChatServiceClient chat;
+        public ControlDB.ChatService.User user;     
+        #endregion
+
+        //CONSTRUTOR DE LA INTERFAZ PRINCIPAl MPROJECT
         public MainWindow()
         {   
             dbMP = new MProjectDeskSQLITEEntities();
@@ -52,42 +68,47 @@ namespace MProjectWPF
 
         public bool user_Click(string email, string pass)
         {
-            usuControl = new Usuarios(dbMP);
-            usuModel = usuControl.getUser(email, pass);
-
-            if (usuModel != null)
+            usuCon = new Usuarios(dbMP);
+            usuMod = usuCon.getUser(email, pass);
+            
+            if (usuMod != null)
             {
-                usuPan.loadActUser(usuModel);
-                nameConection.Content = usuModel.nombre + " " + usuModel.apellido;
-                usuDet = new UserDetails(usuModel);
+                usuPan.loadActUser(usuMod);
+                nameConection.Content = usuMod.nombre + " " + usuMod.apellido;
+                usuDet = new UserDetails(usuMod);
                 lstWinChat = new Dictionary<string, mc.MainWindow>();
                 addLabels();
 
+                #region Conexion Chat Duplex
+                //msc = new MProjectServiceClient();
+                //rc = new ReceiveChat();
+                //inst = new InstanceContext(rc);
+                //chat = new SendChatServiceClient(inst);
+
+                //rc.mainW = this;
+
+                //user = new User();
+                //user.UsuDic = new Dictionary<string, string>();
+                //user.UsuDic["id_usuario"] = "" + usuMod.id_usuario;
+                //user.UsuDic["nombre"] = "" + usuMod.nombre + " " + usuMod.apellido;
+                //user.UsuDic["e_mail"] = "" + usuMod.e_mail;
+                //user.UsuDic["cargo"] = "" + usuMod.cargo;
+                //user.UsuDic["entidad"] = "" + usuMod.entidad;
+                //user.UsuDic["telefono"] = "" + usuMod.telefono;
+                //user.UsuDic["genero"] = "" + usuMod.genero;
+                //user.AvatarID = null;
+
+                ////chat.ClientCredentials.UserName.Password = "NJ@udn2011";
+                ////chat.ClientCredentials.ClientCertificate.SetCertificate(StoreLocation.CurrentUser, StoreName.My, X509FindType.FindBySubjectName, "WCFClient");
+
+                //chat.Start(user);
+                #endregion
+                #region Conexion Chat
+                chat = new ChatServiceClient();
+                #endregion
+
                 Thread oThread = new Thread(() =>
                 {
-                    try
-                    {
-                        msc = new MProjectServiceClient();
-                        rc = new ReceiveChat();
-                        inst = new InstanceContext(rc);
-                        chat = new SendChatServiceClient(inst);
-
-                        rc.mainW = this;
-
-                        user = new User();
-                        user.UsuDic = new Dictionary<string, string>();
-                        user.UsuDic["id_usuario"] = "" + usuModel.id_usuario;
-                        user.UsuDic["nombre"] = "" + usuModel.nombre + " " + usuModel.apellido;
-                        user.UsuDic["e_mail"] = "" + usuModel.e_mail;
-                        user.UsuDic["cargo"] = "" + usuModel.cargo;
-                        user.UsuDic["entidad"] = "" + usuModel.entidad;
-                        user.UsuDic["telefono"] = "" + usuModel.telefono;
-                        user.UsuDic["genero"] = "" + usuModel.genero;
-                        user.AvatarID = null;
-       
-                        chat.Start(user);
-                        serv = true;
-                    }catch{ serv = false;   }
                     InternetAccess();
                 });
                 oThread.Start();
@@ -116,7 +137,7 @@ namespace MProjectWPF
             lstmen.Items.Add(new LabelMenu("Importar Proyecto", this, 3));            
             lstmen.Items.Add(new LabelMenu("Nueva Plantilla", this, 4));
 
-            lal.Children.Add(new ListProject(this, usuModel));
+            lal.Children.Add(new ListProject(this, usuMod));
 
             lstrec.Items.Add(new LabelMenu("Proyectos de Ingenieria", this, 0));
             lstrec.Items.Add(new LabelMenu("Desarrollo Investic ", this, 0));
@@ -130,27 +151,20 @@ namespace MProjectWPF
             while (true)
             {   
                 try
-                {   
+                {
                     System.Net.IPHostEntry host = System.Net.Dns.GetHostEntry("www.google.com");
-                    if (!serv)
-                    {
-                        try
-                        {
-                            chat = new SendChatServiceClient(inst);
-                            chat.Start(user);
-                            serv = true;
-                        }
-                        catch{  }
-                    }
-
+                    //chat.DoConnect(getUser().UsuDic, getUser().AvatarID);
+                    chat.DoConnect(getUser());
+                    usuPan.loadUsers(chat.listUsers());
                     indicator.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
                     {
                         indicator.Source = new BitmapImage(new Uri("pack://application:,,/Resources/Icons/16px/ind_Green.png"));
                     }));
                     internet = true;
                 }
-                catch
+                catch(Exception err)
                 {
+                    MessageBox.Show(err.ToString());
                     internet = false;                    
                     indicator.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
                     {
@@ -159,44 +173,40 @@ namespace MProjectWPF
                         indicator.Source = new BitmapImage(new Uri("pack://application:,,/Resources/Icons/16px/ind_Red.png"));
                     }));                   
                 }
-                Thread.Sleep(10);
+                Thread.Sleep(100);
             }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {   
-            if (perAct) { 
-                usp = new UserSessionPanel(usuModel);            
+            if (userSessionIsActive) { 
+                usp = new UserSessionPanel(usuMod);            
                 usp.Margin = new Thickness(0,53,5,0);
-                grid_main_window.Children.Add(usp);                
-                perAct = false;
+                grid_main_window.Children.Add(usp);
+                userSessionIsActive = false;
                 arrowPerf.Source = new BitmapImage(new Uri("pack://application:,,/Resources/Icons/16px/triangle-up.png"));
             }
             else
             {   
-                grid_main_window.Children.Remove(usp);                               
-                perAct = true;
+                grid_main_window.Children.Remove(usp);
+                userSessionIsActive = true;
                 arrowPerf.Source = new BitmapImage(new Uri("pack://application:,,/Resources/Icons/16px/triangle-down.png"));
             }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {   
+        {
             try
             {
-                if (user != null)
-                    chat.Stop(user);
-                if(chat != null)
-                    chat.Close();                
+                chat.DoDisConnect(user);
             }
-            catch{ }
-            try { msc.Close(); } catch { }
+            catch { }
             Process.GetCurrentProcess().Kill();
         }
 
         private void uploadproject_Click(object sender, RoutedEventArgs e)
         {   
-            LogXml logxml = new LogXml(usuModel.repositorios_usuarios.ruta_repositorio_local + "/Log/log.xml");
+            LogXml logxml = new LogXml(usuMod.repositorios_usuarios.ruta_repositorio_local + "/Log/log.xml");
             logxml.readLogUpdate(dbMP);
             MessageBox.Show("Proyecto en la nube");
         }
@@ -207,17 +217,16 @@ namespace MProjectWPF
             {
                 string evento = log1[0];
                 int id = Convert.ToInt32(log1[1]);
-
-                
+                                
                 if(evento == "add")
                 {
-                    usuControl.addUser(msc.getUser(log1[1]));
+                    usuCon.addUser(ServiceClient.getUser(log1[1]));
                     spViewB.Children.Clear();
                     //spViewB.Children.Add(new UsersPanel(this, usuControl));
                 }
                 else
                 {
-                    usuControl.removeUser(id);
+                    usuCon.removeUser(id);
                     spViewB.Children.Clear();
                     //spViewB.Children.Add(new UsersPanel(this, usuControl));
                 }
@@ -226,13 +235,36 @@ namespace MProjectWPF
 
         private void downloadproject_Click(object sender, RoutedEventArgs e)
         {
-            ServerController.getProyect(""+usuModel.id_usuario,dbMP);
+            ServerController.getProyect(""+usuMod.id_usuario,dbMP);
             addLabels();
-            MessageBox.Show("Proyecto actualizado");
+            MessageBox.Show("Accion Descarga Terminada");
         }
-    } 
 
+        //OBTIENE INFORMACION DEL USUARIO LOGGEADO
+        private ControlDB.ChatService.User getUser()
+        {
+            user = new ControlDB.ChatService.User();
+            user.UsuDic = new Dictionary<string, string>();
+            user.UsuDic["id_usuario"] = "" + usuMod.id_usuario;
+            user.UsuDic["nombre"] = "" + usuMod.nombre + " " + usuMod.apellido;
+            user.UsuDic["e_mail"] = "" + usuMod.e_mail;
+            user.UsuDic["cargo"] = "" + usuMod.cargo;
+            user.UsuDic["entidad"] = "" + usuMod.entidad;
+            user.UsuDic["telefono"] = "" + usuMod.telefono;
+            user.UsuDic["genero"] = "" + usuMod.genero;
 
+            //FileStream filestream = null;
+            //user.AvatarID = filestream;
+            //if (usuMod.imagen != "")
+            //{
+            //    string sourceImage = usuMod.repositorios_usuarios.ruta_repositorio_local + "\\" + usuMod.imagen;
+            //    filestream = File.OpenRead(sourceImage);
+
+            //    user.AvatarID = filestream;
+            //}           
+            return user;
+        }
+    }
 }
 
 //private void uploadproject_Click(object sender, RoutedEventArgs e)
@@ -241,17 +273,17 @@ namespace MProjectWPF
 //    try
 //    {
 //        Dictionary<string, string> u = new Dictionary<string, string>();
-//        u.Add("e_mail", usuModel.e_mail);
-//        u.Add("id_usuario", "" + usuModel.id_usuario);
-//        u.Add("nombre", usuModel.nombre);
-//        u.Add("apellido", usuModel.apellido);
-//        u.Add("genero", usuModel.genero);
-//        u.Add("pass", usuModel.usuarios.pass);
-//        u.Add("cargo", usuModel.cargo);
-//        u.Add("telefono", usuModel.telefono);
-//        u.Add("entidad", usuModel.entidad);
-//        u.Add("imagen", usuModel.imagen);
-//        u.Add("administrador", "" + usuModel.usuarios.administrador);
+//        u.Add("e_mail", usuMod.e_mail);
+//        u.Add("id_usuario", "" + usuMod.id_usuario);
+//        u.Add("nombre", usuMod.nombre);
+//        u.Add("apellido", usuMod.apellido);
+//        u.Add("genero", usuMod.genero);
+//        u.Add("pass", usuMod.usuarios.pass);
+//        u.Add("cargo", usuMod.cargo);
+//        u.Add("telefono", usuMod.telefono);
+//        u.Add("entidad", usuMod.entidad);
+//        u.Add("imagen", usuMod.imagen);
+//        u.Add("administrador", "" + usuMod.usuarios.administrador);
 
 //        string[] lusu = sc.addUser(u);
 //        if (lusu.LongLength == 0)

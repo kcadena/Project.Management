@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ChatService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ChatService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://192.168.0.17:83/ChatService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.IO" />
-  <xs:import schemaLocation="http://192.168.0.17:83/ChatService.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ChatServiceDuplex" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ChatServiceDuplex" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://190.254.4.6:93/MPChat/DuplexService/ChatServiceDuplex.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.IO" />
+  <xs:import schemaLocation="http://190.254.4.6:93/MPChat/DuplexService/ChatServiceDuplex.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:complexType name="User">
     <xs:sequence>
       <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System.IO" minOccurs="0" name="AvatarID" nillable="true" type="q1:Stream" />

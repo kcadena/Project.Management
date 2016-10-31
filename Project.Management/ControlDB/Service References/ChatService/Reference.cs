@@ -74,199 +74,78 @@ namespace ControlDB.ChatService {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Message", Namespace="http://schemas.datacontract.org/2004/07/ChatService")]
-    [System.SerializableAttribute()]
-    public partial class Message : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ChatService.IChatService")]
+    public interface IChatService {
         
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/DoConnect", ReplyAction="http://tempuri.org/IChatService/DoConnectResponse")]
+        void DoConnect(ControlDB.ChatService.User usu);
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ContentField;
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/DoConnect", ReplyAction="http://tempuri.org/IChatService/DoConnectResponse")]
+        System.Threading.Tasks.Task DoConnectAsync(ControlDB.ChatService.User usu);
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private ControlDB.ChatService.User ReceiverField;
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/DoDisConnect", ReplyAction="http://tempuri.org/IChatService/DoDisConnectResponse")]
+        void DoDisConnect(ControlDB.ChatService.User usu);
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private ControlDB.ChatService.User SenderField;
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/DoDisConnect", ReplyAction="http://tempuri.org/IChatService/DoDisConnectResponse")]
+        System.Threading.Tasks.Task DoDisConnectAsync(ControlDB.ChatService.User usu);
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime TimeField;
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/listUsers", ReplyAction="http://tempuri.org/IChatService/listUsersResponse")]
+        System.Collections.Generic.Dictionary<string, ControlDB.ChatService.User> listUsers();
         
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Content {
-            get {
-                return this.ContentField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ContentField, value) != true)) {
-                    this.ContentField = value;
-                    this.RaisePropertyChanged("Content");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public ControlDB.ChatService.User Receiver {
-            get {
-                return this.ReceiverField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ReceiverField, value) != true)) {
-                    this.ReceiverField = value;
-                    this.RaisePropertyChanged("Receiver");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public ControlDB.ChatService.User Sender {
-            get {
-                return this.SenderField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.SenderField, value) != true)) {
-                    this.SenderField = value;
-                    this.RaisePropertyChanged("Sender");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime Time {
-            get {
-                return this.TimeField;
-            }
-            set {
-                if ((this.TimeField.Equals(value) != true)) {
-                    this.TimeField = value;
-                    this.RaisePropertyChanged("Time");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/listUsers", ReplyAction="http://tempuri.org/IChatService/listUsersResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, ControlDB.ChatService.User>> listUsersAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ChatService.ISendChatService", CallbackContract=typeof(ControlDB.ChatService.ISendChatServiceCallback))]
-    public interface ISendChatService {
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ISendChatService/Start")]
-        void Start(ControlDB.ChatService.User usu);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ISendChatService/Start")]
-        System.Threading.Tasks.Task StartAsync(ControlDB.ChatService.User usu);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ISendChatService/Stop")]
-        void Stop(ControlDB.ChatService.User usu);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ISendChatService/Stop")]
-        System.Threading.Tasks.Task StopAsync(ControlDB.ChatService.User usu);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ISendChatService/Reset")]
-        void Reset();
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ISendChatService/Reset")]
-        System.Threading.Tasks.Task ResetAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ISendChatService/SendMessage")]
-        void SendMessage(ControlDB.ChatService.Message msg);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ISendChatService/SendMessage")]
-        System.Threading.Tasks.Task SendMessageAsync(ControlDB.ChatService.Message msg);
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface ISendChatServiceCallback {
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ISendChatService/SendNames")]
-        void SendNames(ControlDB.ChatService.User[] users);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ISendChatService/ReceiveMessage")]
-        void ReceiveMessage(ControlDB.ChatService.Message msg);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ISendChatService/CloseApp")]
-        void CloseApp();
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface ISendChatServiceChannel : ControlDB.ChatService.ISendChatService, System.ServiceModel.IClientChannel {
+    public interface IChatServiceChannel : ControlDB.ChatService.IChatService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class SendChatServiceClient : System.ServiceModel.DuplexClientBase<ControlDB.ChatService.ISendChatService>, ControlDB.ChatService.ISendChatService {
+    public partial class ChatServiceClient : System.ServiceModel.ClientBase<ControlDB.ChatService.IChatService>, ControlDB.ChatService.IChatService {
         
-        public SendChatServiceClient(System.ServiceModel.InstanceContext callbackInstance) : 
-                base(callbackInstance) {
+        public ChatServiceClient() {
         }
         
-        public SendChatServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
-                base(callbackInstance, endpointConfigurationName) {
+        public ChatServiceClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
         }
         
-        public SendChatServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
-                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        public ChatServiceClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
         }
         
-        public SendChatServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        public ChatServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
         }
         
-        public SendChatServiceClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(callbackInstance, binding, remoteAddress) {
+        public ChatServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
         }
         
-        public void Start(ControlDB.ChatService.User usu) {
-            base.Channel.Start(usu);
+        public void DoConnect(ControlDB.ChatService.User usu) {
+            base.Channel.DoConnect(usu);
         }
         
-        public System.Threading.Tasks.Task StartAsync(ControlDB.ChatService.User usu) {
-            return base.Channel.StartAsync(usu);
+        public System.Threading.Tasks.Task DoConnectAsync(ControlDB.ChatService.User usu) {
+            return base.Channel.DoConnectAsync(usu);
         }
         
-        public void Stop(ControlDB.ChatService.User usu) {
-            base.Channel.Stop(usu);
+        public void DoDisConnect(ControlDB.ChatService.User usu) {
+            base.Channel.DoDisConnect(usu);
         }
         
-        public System.Threading.Tasks.Task StopAsync(ControlDB.ChatService.User usu) {
-            return base.Channel.StopAsync(usu);
+        public System.Threading.Tasks.Task DoDisConnectAsync(ControlDB.ChatService.User usu) {
+            return base.Channel.DoDisConnectAsync(usu);
         }
         
-        public void Reset() {
-            base.Channel.Reset();
+        public System.Collections.Generic.Dictionary<string, ControlDB.ChatService.User> listUsers() {
+            return base.Channel.listUsers();
         }
         
-        public System.Threading.Tasks.Task ResetAsync() {
-            return base.Channel.ResetAsync();
-        }
-        
-        public void SendMessage(ControlDB.ChatService.Message msg) {
-            base.Channel.SendMessage(msg);
-        }
-        
-        public System.Threading.Tasks.Task SendMessageAsync(ControlDB.ChatService.Message msg) {
-            return base.Channel.SendMessageAsync(msg);
+        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, ControlDB.ChatService.User>> listUsersAsync() {
+            return base.Channel.listUsersAsync();
         }
     }
 }

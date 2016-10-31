@@ -29,7 +29,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>24</ApplicationRevision>
+    <ApplicationRevision>31</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -117,6 +117,16 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <WarningLevel>0</WarningLevel>
+    <DocumentationFile>bin\x86\Release\MProjectWPF.XML</DocumentationFile>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>Internet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -197,11 +207,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Controller\Usuarios.cs" />
-    <Compile Include="Service References\ChatService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Service References\MProjectWCF\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -416,14 +421,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="ClassDiagram1.cd" />
-    <None Include="MProjectWPF_TemporaryKey.pfx" />
-    <None Include="Service References\ChatService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Service References\ChatService\configuration.svcinfo" />
-    <None Include="Service References\ChatService\configuration91.svcinfo" />
+    <None Include="Properties\app.manifest" />
     <Resource Include="Resources\download-file.png" />
     <Resource Include="Resources\upload-file.png" />
     <Resource Include="Resources\write-file.png" />
@@ -438,25 +436,6 @@
     <Resource Include="Resources\web-icon.png" />
     <Resource Include="Resources\home.png" />
     <Resource Include="Logs\log.xml" />
-    <None Include="Service References\ChatService\ChatService.wsdl" />
-    <None Include="Service References\ChatService\ChatService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ChatService\ChatService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ChatService\ChatService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ChatService\ChatService3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ChatService\ChatService4.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ChatService\ChatService5.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\MProjectWCF\MProjectService1.wsdl" />
     <None Include="Service References\MProjectWCF\MProjectService4.xsd">
       <SubType>Designer</SubType>
@@ -632,7 +611,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\ChatService\" />
     <WCFMetadataStorage Include="Service References\MProjectWCF\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

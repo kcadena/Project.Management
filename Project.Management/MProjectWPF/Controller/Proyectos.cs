@@ -59,7 +59,7 @@ namespace MProjectWPF.Controller
 
         public bool saveProject(ProjectPanel proPan, ControlXml cxml)
         {
-            usuarios_meta_datos usu = proPan.mainW.usuModel;
+            usuarios_meta_datos usu = proPan.mainW.usuMod;
             string name = proPan.pName;
             string img = proPan.iconName;
             string desc = proPan.detail;
@@ -197,7 +197,7 @@ namespace MProjectWPF.Controller
 
         public bool updateProject(ProjectPanel proPan, ControlXml cxml)
         {
-            usuarios_meta_datos usu = proPan.mainW.usuModel;
+            usuarios_meta_datos usu = proPan.mainW.usuMod;
             string name = proPan.pName;
             string img = proPan.iconName;
             string desc = proPan.detail;
