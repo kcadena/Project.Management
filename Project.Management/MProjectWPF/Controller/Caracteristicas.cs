@@ -16,6 +16,7 @@ namespace MProjectWPF.Controller
     {
         MProjectDeskSQLITEEntities dbMP;
         MainWindow mainW;
+        Dictionary<string, caracteristicas> listCarPad = new Dictionary<string, caracteristicas>();
 
         public Caracteristicas(MainWindow mw)
         {
@@ -115,7 +116,11 @@ namespace MProjectWPF.Controller
             car.id_caracteristica = id_caracteristica;
             car.id_usuario = id_usuario;
             car.id_caracteristica_padre = nodeF.Attributes["id_caracteristica_padre"].Value;
-            try { car.idx_caracteristica_padre = Convert.ToInt64(nodeF.Attributes["idx_caracteristica_padre"].Value); } catch { }
+            try
+            {
+                car.caracteristicas2 = listCarPad[car.id_caracteristica_padre];
+            }
+            catch { }
             car.estado = nodeF.Attributes["estado"].Value;
             car.Porcentaje = Convert.ToInt64(nodeF.Attributes["porcentaje"].Value);
             car.porcentaje_asignado = Convert.ToInt64(nodeF.Attributes["porcentaje_asignado"].Value);
@@ -133,6 +138,10 @@ namespace MProjectWPF.Controller
 
             if (!isUpdate) dbMP.caracteristicas.Add(car);
 
+            if (Convert.ToBoolean(nodeF.Attributes["is_padre"].Value))
+            {
+                listCarPad[car.keym + "-" + car.id_caracteristica + "-" + car.id_usuario] = car;
+            }
             return car;
         }
     }

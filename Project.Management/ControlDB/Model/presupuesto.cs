@@ -15,6 +15,7 @@ namespace ControlDB.Model
     public partial class presupuesto
     {
         public string keym { get; set; }
+        public long idx_presupuesto { get; set; }
         public long id_presupuesto { get; set; }
         public long idx_caracteristica { get; set; }
         public string id_caracteristica { get; set; }

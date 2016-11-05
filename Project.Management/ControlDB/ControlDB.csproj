@@ -84,6 +84,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConectionString.cs" />
     <Compile Include="Model\actividades.cs">
       <DependentUpon>MProjectDeskSQLITE.tt</DependentUpon>
     </Compile>
@@ -173,6 +174,9 @@
     <None Include="Model\MProjectDeskSQLITE.edmx.diagram">
       <DependentUpon>MProjectDeskSQLITE.edmx</DependentUpon>
     </None>
+    <None Include="Model\MProjectDeskSQLITE.sqlite">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Service References\ChatServiceDuplex\ChatService.wsdl" />
     <None Include="Service References\ChatServiceDuplex\ChatServiceDuplex.xsd">
@@ -193,38 +197,28 @@
     <None Include="Service References\ChatServiceDuplex\ChatServiceDuplex5.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ChatService\ChatService.wsdl" />
-    <None Include="Service References\ChatService\ChatService.xsd">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\MProjectDeskSQLITE.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MProjectDeskSQLITE.edmx</DependentUpon>
-      <LastGenOutput>MProjectDeskSQLITE.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Model\MProjectDeskSQLITE.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MProjectDeskSQLITE.edmx</DependentUpon>
-      <LastGenOutput>MProjectDeskSQLITE.cs</LastGenOutput>
-    </Content>
+    <None Include="Service References\ChatService\ChatService.wsdl" />
+    <None Include="Service References\ChatService\ChatService.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ChatService\ChatService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ChatService\ChatService11.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ChatService\ChatService12.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ChatService\ChatService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ChatService\ChatService22.xsd">
+    <None Include="Service References\ChatService\ChatService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ChatService\ChatService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ChatService\ChatService5.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ChatService\ControlDB.ChatService.User.datasource">
@@ -249,6 +243,18 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\ChatServiceDuplex\" />
     <WCFMetadataStorage Include="Service References\ChatService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model\MProjectDeskSQLITE.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MProjectDeskSQLITE.edmx</DependentUpon>
+      <LastGenOutput>MProjectDeskSQLITE.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\MProjectDeskSQLITE.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MProjectDeskSQLITE.edmx</DependentUpon>
+      <LastGenOutput>MProjectDeskSQLITE.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.102.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.102.0\build\net46\System.Data.SQLite.Core.targets')" />

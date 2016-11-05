@@ -19,14 +19,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://190.254.4.6:93/MProjectService.svc?wsdl" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://192.168.0.17/MProjectService.svc?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="MProjectService1.wsdl" MetadataType="Wsdl" ID="72466b65-35b9-4dba-9fc5-5916c75beab7" SourceId="1" SourceUrl="http://190.254.4.6:93/MProjectService.svc?wsdl" />
-    <MetadataFile FileName="MProjectService4.xsd" MetadataType="Schema" ID="a91c4c67-3eec-4af5-8a1e-e3018d7ba947" SourceId="1" SourceUrl="http://190.254.4.6:93/MProjectService.svc?xsd=xsd3" />
-    <MetadataFile FileName="MProjectService41.xsd" MetadataType="Schema" ID="0c84ac93-e28f-4558-a965-0e327897e622" SourceId="1" SourceUrl="http://190.254.4.6:93/MProjectService.svc?xsd=xsd2" />
-    <MetadataFile FileName="MProjectService42.xsd" MetadataType="Schema" ID="59ed649f-58ef-425b-ad68-e3c68d3d1aad" SourceId="1" SourceUrl="http://190.254.4.6:93/MProjectService.svc?xsd=xsd1" />
-    <MetadataFile FileName="MProjectService43.xsd" MetadataType="Schema" ID="47407b6f-f3f5-499f-be12-021f690dc39a" SourceId="1" SourceUrl="http://190.254.4.6:93/MProjectService.svc?xsd=xsd0" />
+    <MetadataFile FileName="MProjectService.wsdl" MetadataType="Wsdl" ID="c51b9bc6-5794-40a2-9f11-8f3f4269f313" SourceId="1" SourceUrl="http://192.168.0.17/MProjectService.svc?wsdl" />
+    <MetadataFile FileName="MProjectService.xsd" MetadataType="Schema" ID="63fbe728-b57e-48b6-bcc4-08e5348a90a1" SourceId="1" SourceUrl="http://192.168.0.17/MProjectService.svc?xsd=xsd0" />
+    <MetadataFile FileName="MProjectService1.xsd" MetadataType="Schema" ID="76d02881-9e8e-41f9-88ff-266b77dc16b6" SourceId="1" SourceUrl="http://192.168.0.17/MProjectService.svc?xsd=xsd2" />
+    <MetadataFile FileName="MProjectService2.xsd" MetadataType="Schema" ID="153d950d-8596-4a1f-a0a8-706d8b5cad08" SourceId="1" SourceUrl="http://192.168.0.17/MProjectService.svc?xsd=xsd1" />
+    <MetadataFile FileName="MProjectService3.xsd" MetadataType="Schema" ID="c6475bec-dc94-4def-a458-df6ee74aac30" SourceId="1" SourceUrl="http://192.168.0.17/MProjectService.svc?xsd=xsd3" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

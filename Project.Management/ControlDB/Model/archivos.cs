@@ -15,6 +15,7 @@ namespace ControlDB.Model
     public partial class archivos
     {
         public long idx_caracteristica { get; set; }
+        public long idx_archivo { get; set; }
         public long id_archivo { get; set; }
         public string keym { get; set; }
         public long id_usuario { get; set; }

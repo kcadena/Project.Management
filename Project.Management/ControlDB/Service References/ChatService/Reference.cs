@@ -26,6 +26,9 @@ namespace ControlDB.ChatService {
         private System.IO.Stream AvatarIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string[][] MessagesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Collections.Generic.Dictionary<string, string> UsuDicField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -47,6 +50,19 @@ namespace ControlDB.ChatService {
                 if ((object.ReferenceEquals(this.AvatarIDField, value) != true)) {
                     this.AvatarIDField = value;
                     this.RaisePropertyChanged("AvatarID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string[][] Messages {
+            get {
+                return this.MessagesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MessagesField, value) != true)) {
+                    this.MessagesField = value;
+                    this.RaisePropertyChanged("Messages");
                 }
             }
         }
@@ -89,6 +105,18 @@ namespace ControlDB.ChatService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/DoDisConnect", ReplyAction="http://tempuri.org/IChatService/DoDisConnectResponse")]
         System.Threading.Tasks.Task DoDisConnectAsync(ControlDB.ChatService.User usu);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/Messsage", ReplyAction="http://tempuri.org/IChatService/MesssageResponse")]
+        void Messsage(string id_usuario, string[] msg);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/Messsage", ReplyAction="http://tempuri.org/IChatService/MesssageResponse")]
+        System.Threading.Tasks.Task MesssageAsync(string id_usuario, string[] msg);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/clearMessage", ReplyAction="http://tempuri.org/IChatService/clearMessageResponse")]
+        void clearMessage(string id_usuario);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/clearMessage", ReplyAction="http://tempuri.org/IChatService/clearMessageResponse")]
+        System.Threading.Tasks.Task clearMessageAsync(string id_usuario);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/listUsers", ReplyAction="http://tempuri.org/IChatService/listUsersResponse")]
         System.Collections.Generic.Dictionary<string, ControlDB.ChatService.User> listUsers();
@@ -138,6 +166,22 @@ namespace ControlDB.ChatService {
         
         public System.Threading.Tasks.Task DoDisConnectAsync(ControlDB.ChatService.User usu) {
             return base.Channel.DoDisConnectAsync(usu);
+        }
+        
+        public void Messsage(string id_usuario, string[] msg) {
+            base.Channel.Messsage(id_usuario, msg);
+        }
+        
+        public System.Threading.Tasks.Task MesssageAsync(string id_usuario, string[] msg) {
+            return base.Channel.MesssageAsync(id_usuario, msg);
+        }
+        
+        public void clearMessage(string id_usuario) {
+            base.Channel.clearMessage(id_usuario);
+        }
+        
+        public System.Threading.Tasks.Task clearMessageAsync(string id_usuario) {
+            return base.Channel.clearMessageAsync(id_usuario);
         }
         
         public System.Collections.Generic.Dictionary<string, ControlDB.ChatService.User> listUsers() {

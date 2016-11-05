@@ -14,6 +14,7 @@ namespace ControlDB.Model
     
     public partial class costos
     {
+        public long idx_costo { get; set; }
         public long id_costo { get; set; }
         public long idx_caracteristica { get; set; }
         public string keym { get; set; }

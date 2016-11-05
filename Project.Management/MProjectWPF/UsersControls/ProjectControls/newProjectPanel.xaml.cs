@@ -190,7 +190,7 @@ namespace MProjectWPF.UsersControls
             return val;
         }
 
-        //EVENTOS BOTONES/////////////////////////////
+        #region EVENTOS BOTONES
         private void btnUploadImage_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFile = new OpenFileDialog();
@@ -266,8 +266,20 @@ namespace MProjectWPF.UsersControls
             vTemplate.stackPanelFields.Children.Clear();
             mainW.viewPlan.Children.Add(proPan.exPro);
 
-        }        
-        /////////////////////////////////////////////
+        }
+        #endregion
+
+        private void projectName_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (fieldTitle != null)
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
 
         private void exit()
         {

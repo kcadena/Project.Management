@@ -1,4 +1,6 @@
 ﻿using ControlDB.Model;
+using System;
+using System.IO;
 using System.Windows;
 using System.Xml;
 
@@ -6,16 +8,20 @@ namespace MProjectWPF.Controller
 {
     public class LogXml
     {
-        XmlDocument docXml;
-        XmlNode nodeRoot;
+        public usuarios_meta_datos usuMod;
         caracteristicas carMod;
         proyectos proMod;
+
+        XmlDocument docXml;
+        XmlNode nodeRoot;
+
         string doc;
 
-        public LogXml(string d)
+        public LogXml(string doc)
         {
             docXml = new XmlDocument();
-            doc = d;
+            this.doc = doc;
+            verifyFile(doc);         
             docXml.Load(doc);
             nodeRoot = docXml.DocumentElement;
         }
@@ -77,12 +83,20 @@ namespace MProjectWPF.Controller
         public void writeLogDownload(XmlNode node, MProjectDeskSQLITEEntities dbMP)
         {
             if(node == null) node = nodeRoot;
+            Caracteristicas carCon = new Caracteristicas(dbMP);
 
             foreach (XmlNode nodeF in node.ChildNodes)
             {
-                if (nodeF.Name == "caracteristica")
+                if (nodeF.Name == "usuario")
+                {   
+                    usuMod = Usuarios.addUser(nodeF,dbMP);
+                }
+                else if (nodeF.Name == "table_sequence")
                 {
-                    Caracteristicas carCon = new Caracteristicas(dbMP);
+                    Usuarios.updateTableSequence(nodeF, dbMP);
+                }
+                else if (nodeF.Name == "caracteristica")
+                {   
                     carMod = carCon.getCaracteristicas(nodeF);
                 }
                 else if (nodeF.Name == "proyecto")
@@ -112,5 +126,21 @@ namespace MProjectWPF.Controller
             return element;
         }
 
+        private void verifyFile(string filePath)
+        {
+            if (!File.Exists(filePath))
+            {
+                string log = "Logs\\log.xml";
+                try
+                {
+                    File.Copy(log, filePath, true);
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show(err.Message);
+                }
+            }
+        }
+       
     }
 }

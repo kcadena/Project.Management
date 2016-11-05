@@ -518,6 +518,15 @@ namespace MProjectWPF.UsersControls
         {
             if(labUser != null)
             {
+                //mainW.serviceClient.assignActivity();
+
+                Dictionary<string, string> u = new Dictionary<string, string>();
+                u["car_keym"] = "" + car.keym;
+                u["car_id_caracteristica"] = "" + car.id_caracteristica;
+                u["car_id_usuario"] = "" + car.id_usuario;
+                u["car_id_usuario_asignado"] = "" + labUser.usuMod.id_usuario;
+                
+
                 car.usuarios_meta_datos_asignado = labUser.usuMod;
                 car.visualizar_superior = true;
 

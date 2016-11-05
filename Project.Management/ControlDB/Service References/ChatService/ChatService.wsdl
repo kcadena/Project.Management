@@ -22,6 +22,18 @@
   <wsdl:message name="IChatService_DoDisConnect_OutputMessage">
     <wsdl:part name="parameters" element="tns:DoDisConnectResponse" />
   </wsdl:message>
+  <wsdl:message name="IChatService_Messsage_InputMessage">
+    <wsdl:part name="parameters" element="tns:Messsage" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_Messsage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MesssageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_clearMessage_InputMessage">
+    <wsdl:part name="parameters" element="tns:clearMessage" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_clearMessage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:clearMessageResponse" />
+  </wsdl:message>
   <wsdl:message name="IChatService_listUsers_InputMessage">
     <wsdl:part name="parameters" element="tns:listUsers" />
   </wsdl:message>
@@ -36,6 +48,14 @@
     <wsdl:operation name="DoDisConnect">
       <wsdl:input wsaw:Action="http://tempuri.org/IChatService/DoDisConnect" message="tns:IChatService_DoDisConnect_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IChatService/DoDisConnectResponse" message="tns:IChatService_DoDisConnect_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Messsage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/Messsage" message="tns:IChatService_Messsage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/MesssageResponse" message="tns:IChatService_Messsage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="clearMessage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/clearMessage" message="tns:IChatService_clearMessage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/clearMessageResponse" message="tns:IChatService_clearMessage_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="listUsers">
       <wsdl:input wsaw:Action="http://tempuri.org/IChatService/listUsers" message="tns:IChatService_listUsers_InputMessage" />
@@ -55,6 +75,24 @@
     </wsdl:operation>
     <wsdl:operation name="DoDisConnect">
       <soap:operation soapAction="http://tempuri.org/IChatService/DoDisConnect" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Messsage">
+      <soap:operation soapAction="http://tempuri.org/IChatService/Messsage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="clearMessage">
+      <soap:operation soapAction="http://tempuri.org/IChatService/clearMessage" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

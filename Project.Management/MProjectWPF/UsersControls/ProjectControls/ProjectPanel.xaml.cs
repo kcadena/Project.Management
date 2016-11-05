@@ -195,7 +195,15 @@ namespace MProjectWPF.UsersControls.ProjectControls
                 caracteristicas car = proMod.caracteristicas;
                 string idCar = car.keym + "-" + car.id_caracteristica + "-" + car.id_usuario;
 
-                LogXml logUpdate = new LogXml(proMod.usuarios_meta_datos.repositorios_usuarios.ruta_repositorio_local +  "/Log/log.xml");
+                string logPath = proMod.usuarios_meta_datos.repositorios_usuarios.ruta_repositorio_local + "/Log/log.xml";
+
+                if (!File.Exists(logPath))
+                {
+                    string log = "Logs\\log.xml";
+                    copyFile(proMod.usuarios_meta_datos.repositorios_usuarios.ruta_repositorio_local + "/Log/","log.xml", log);
+                }
+
+                LogXml logUpdate = new LogXml(logPath);
                 logUpdate.addField(idCar,"addPro");
 
                 if (iconName != null)

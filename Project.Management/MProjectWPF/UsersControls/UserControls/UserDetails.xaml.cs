@@ -9,7 +9,7 @@ namespace MProjectWPF.UsersControls.UserControls
     /// </summary>
     public partial class UserDetails : System.Windows.Controls.UserControl
     {
-        
+        public string id;
 
         public UserDetails(ControlDB.ChatService.User user)
         {

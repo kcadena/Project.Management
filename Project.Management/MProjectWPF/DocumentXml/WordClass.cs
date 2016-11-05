@@ -43,10 +43,10 @@ namespace MProjectWPF.DocumentXml
             proPan = ppan;
             try
             {
-                nameFile = "Objetives";
+                nameFile = "Objectives";
 
-                pathw = "DocumentXml\\DocTemplate\\Objetives.docx";
-                path = "DocumentXml\\DocTemplate\\Objetives.xps";
+                pathw = "DocumentXml\\DocTemplate\\Objectives.docx";
+                path = "DocumentXml\\DocTemplate\\Objectives.xps";
 
                 string text = "OBJETIVOS ";
                 InsertText(text);

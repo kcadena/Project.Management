@@ -12,6 +12,21 @@ namespace MProjectWPF.Controller
 {
     public static class ServerController
     {
+        public static void updateTableSequence(Dictionary<string, string> u)
+        {
+            MProjectServiceClient client = new MProjectServiceClient();
+            try
+            {
+                client.updateTableSequence(u);
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
+
+            client.Close();
+        }
+
         public static void addCaracteristica(Dictionary<string, string> u)
         {
             MProjectServiceClient client = new MProjectServiceClient();
@@ -234,6 +249,22 @@ namespace MProjectWPF.Controller
             }
         }
 
+        public static void CreateFile(Stream fileS, string path)
+        {
+            try
+            {
+                using (var file = File.Create(path))
+                {
+                    fileS.CopyTo(file);
+                    fileS.Dispose();
+                }
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
+        }
+
         public static void DownloadFile(string routeFile)
         {
             try
@@ -283,6 +314,7 @@ namespace MProjectWPF.Controller
 
                 client.getProyects(requestData.usuario,out fileInfo.route , out fileInfo.FileStream);
                 client.deleteFile(id_usu);
+
                 string path = @"D:\RepositoriosMProject\";
                 Stream fileS = fileInfo.FileStream;
                 string[] route = fileInfo.route.Split('_');

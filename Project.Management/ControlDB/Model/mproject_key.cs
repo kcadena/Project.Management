@@ -16,5 +16,6 @@ namespace ControlDB.Model
     {
         public long id_mproject { get; set; }
         public string valor { get; set; }
+        public string repositorio { get; set; }
     }
 }

@@ -8,6 +8,7 @@ using System.Windows.Media.Imaging;
 using mc = MProjectChat;
 using ControlDB.ChatService;
 using System.Collections.Generic;
+using MProjectWPF.UsersControls.ChatControls;
 
 namespace MProjectWPF.UsersControls
 {
@@ -20,8 +21,7 @@ namespace MProjectWPF.UsersControls
         public ControlDB.ChatServiceDuplex.User user;
         public SendChatServiceClient chat;
         public MainWindow mainW;
-        public mc.MainWindow mainChat;
-        private MainWindow mainWin;
+        public mc.MainWindow mainChat;        
         public ControlDB.ChatService.User usu;
 
         public LabelUser(usuarios_meta_datos usuMod)
@@ -84,19 +84,30 @@ namespace MProjectWPF.UsersControls
             
         }
 
-        public LabelUser(MainWindow mainWin, ControlDB.ChatService.User usu)
+        public LabelUser(MainWindow mainW, ControlDB.ChatService.User usu)
         {
             InitializeComponent();
-            this.mainWin = mainWin;
+            this.mainW = mainW;
             this.usu = usu;
-            try
+            if (usu.AvatarID != null)
             {
-                nameUser.Text = usu.UsuDic["nombre"].ToUpper();
-                emailUser.Text = usu.UsuDic["e_mail"];
-                occupationUser.Text = usu.UsuDic["cargo"];
+
             }
-            catch { }
-            
+            else
+            {
+                if (usu.UsuDic["genero"] == "F")
+                {
+                    imgProfile.Source = new BitmapImage(new Uri("pack://application:,,/Resources/womenprofile.png"));
+                }
+                else
+                {
+                    imgProfile.Source = new BitmapImage(new Uri("pack://application:,,/Resources/manprofile.png"));
+                }
+            }
+            nameUser.Text = usu.UsuDic["nombre"].ToUpper();
+            emailUser.Text = usu.UsuDic["e_mail"];
+            occupationUser.Text = usu.UsuDic["cargo"];
+
         }
 
         public void showButtons()
@@ -113,7 +124,7 @@ namespace MProjectWPF.UsersControls
 
         protected override void OnMouseMove(MouseEventArgs e)
         {
-            if (user != null)
+            if (user != null || usu != null)
             {
                 base.OnMouseMove(e);
                 if (e.LeftButton == MouseButtonState.Pressed)
@@ -121,8 +132,9 @@ namespace MProjectWPF.UsersControls
                     // Package the data.
                     DataObject data = new DataObject();
 
-                    data.SetData(DataFormats.StringFormat, user.UsuDic["e_mail"]);
-                    LabelUser lu = new LabelUser(mainW,user);
+                    //data.SetData(DataFormats.StringFormat, user.UsuDic["e_mail"]);
+                    data.SetData(DataFormats.StringFormat, usu.UsuDic["e_mail"]);
+                    LabelUser lu = new LabelUser(mainW,usu);
                     lu.changeBackground();
                     data.SetData("Object", lu);
 
@@ -143,11 +155,11 @@ namespace MProjectWPF.UsersControls
 
         private void btnChat_Click(object sender, RoutedEventArgs e)
         {
-            if (!mainW.lstWinChat.ContainsKey(user.UsuDic["id_usuario"]))
+            if (!mainW.listOpenChat.ContainsKey(usu.UsuDic["id_usuario"]))
             {
-                mainChat = new mc.MainWindow(chat, mainW.userDuplex, user, mainW.lstWinChat);
-                mainChat.Show();
-                mainW.lstWinChat.Add(user.UsuDic["id_usuario"], mainChat);
+                ChatPanel chatPan = new ChatPanel(mainW, usu);
+                mainW.chatList.Children.Add(chatPan);
+                mainW.listOpenChat.Add(usu.UsuDic["id_usuario"], chatPan);
             }
         }
 

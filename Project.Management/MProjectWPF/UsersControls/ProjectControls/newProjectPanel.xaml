@@ -19,7 +19,7 @@
             <Separator Background="#FF003F66" VerticalAlignment="Top" Margin="0,26,0,0"/>
 
             <Label x:Name="labelNameProject" Content="Nombre de la Plantilla:" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Width="130" Height="30" Foreground="#FF003F66"/>
-            <TextBox x:Name="projectName" VerticalAlignment="Top" Height="25" Margin="150,35,10,0" VerticalContentAlignment="Center" TextChanged="projectName_TextChanged"/>
+            <TextBox x:Name="projectName" VerticalAlignment="Top" Height="25" Margin="150,35,10,0" VerticalContentAlignment="Center" TextChanged="projectName_TextChanged" PreviewTextInput="projectName_PreviewTextInput"/>
             <Label x:Name="projectNameSh" Content="TITULO PLANTILLA" VerticalAlignment="Top" Height="25" Margin="150,35,10,0"  BorderBrush="Red" Foreground="Red" BorderThickness="1,1" VerticalContentAlignment="Center"  Visibility="Hidden"/>
 
             <Label Content="Descripción:" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="10,65,0,0" Width="130" Height="25" Foreground="#FF003F66" />

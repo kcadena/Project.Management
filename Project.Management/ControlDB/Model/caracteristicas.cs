@@ -26,6 +26,7 @@ namespace ControlDB.Model
             this.recursoslist = new HashSet<recursos>();
         }
     
+        public long idx_caracteristica { get; set; }
         public long id_caracteristica { get; set; }
         public Nullable<long> idx_caracteristica_padre { get; set; }
         public string keym { get; set; }

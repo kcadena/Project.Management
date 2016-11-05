@@ -14,6 +14,7 @@ namespace ControlDB.Model
     
     public partial class actividades
     {
+        public long idx_actividad { get; set; }
         public long id_actividad { get; set; }
         public long idx_caracteristica { get; set; }
         public string keym { get; set; }

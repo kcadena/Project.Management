@@ -417,6 +417,19 @@ namespace MProjectWPF.Controller
 
 
             Dictionary<string, string> u = new Dictionary<string, string>();
+            table_sequence tabSeq = car.usuarios_meta_datos.table_sequence;
+            u["id_usuario"] = "" + tabSeq.id_usuario;
+            u["actividades"] = "" + tabSeq.actividades;
+            u["archivos"] = "" + tabSeq.archivos;
+            u["caracteristicas"] = "" + tabSeq.caracteristicas;
+            u["costos"] = "" + tabSeq.costos;
+            u["proyectos"] = "" + tabSeq.proyectos;
+            u["proyectos_meta_datos"] = "" + tabSeq.proyectos_meta_datos;
+            u["recursos"] = "" + tabSeq.recursos;
+            u["presupuesto"] = "" + tabSeq.presupuesto;
+            ServerController.updateTableSequence(u);
+
+            u = new Dictionary<string, string>();
             u.Add("keym", car.keym);
             u.Add("id_caracteristica", car.id_caracteristica.ToString());
             u.Add("id_usuario", "" + car.id_usuario);
@@ -569,11 +582,13 @@ namespace MProjectWPF.Controller
         {
             proyectos_meta_datos pmdMod;
 
+            string keym = nodeF.Attributes["keym"].Value;
             long id_proyecto_meta_dato = Convert.ToInt64(nodeF.Attributes["id_proyecto_meta_dato"].Value);
+            long id_usuario = Convert.ToInt64(nodeF.Attributes["id_usuario"].Value);
 
             try
             {
-                dbMP.proyectos_meta_datos.Remove(proMod.proyectos_meta_datos.Where(pmd => pmd.id_proyecto_meta_dato == id_proyecto_meta_dato).Single());
+                dbMP.proyectos_meta_datos.Remove(proMod.proyectos_meta_datos.Where(pmd => pmd.keym == keym && pmd.id_proyecto_meta_dato == id_proyecto_meta_dato && pmd.id_usuario == id_usuario).Single());
             }
             catch { }
             

@@ -1,7 +1,6 @@
 ﻿using ControlDB.Model;
 using MProjectWPF.UsersControls;
 using MProjectWPF.UsersControls.ActivityControls.FieldsControls;
-using MProjectWPF.UsersControls.ProjectControls;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
@@ -430,9 +429,22 @@ namespace MProjectWPF.Controller
             caracteristicas car = (from c in dbMP.caracteristicas
                                    where c.keym == keym && c.id_caracteristica == id_caracteristica && c.id_usuario == id_usuario
                                    select c).First();
-
+            
 
             Dictionary<string, string> u = new Dictionary<string, string>();
+            table_sequence tabSeq = car.usuarios_meta_datos.table_sequence;
+            u["id_usuario"] = "" + tabSeq.id_usuario ;
+            u["actividades"] = "" + tabSeq.actividades ;
+            u["archivos"] = "" + tabSeq.archivos ;
+            u["caracteristicas"] = "" + tabSeq.caracteristicas ;
+            u["costos"] = "" + tabSeq.costos ;
+            u["proyectos"] = "" + tabSeq.proyectos ;
+            u["proyectos_meta_datos"] = "" + tabSeq.proyectos_meta_datos ;
+            u["recursos"] = "" + tabSeq.recursos ;
+            u["presupuesto"] = "" + tabSeq.presupuesto ;
+            ServerController.updateTableSequence(u);
+
+            u = new Dictionary<string, string>();
             u.Add("keym", car.keym);
             u.Add("id_caracteristica", car.id_caracteristica.ToString());
             u.Add("id_usuario", "" + car.id_usuario);

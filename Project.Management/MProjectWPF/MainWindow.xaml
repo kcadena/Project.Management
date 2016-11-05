@@ -98,7 +98,7 @@
                 <ColumnDefinition Width="0.3*" />
             </Grid.ColumnDefinitions>
 
-            <Grid  Grid.Column="0" x:Name="viewPlan">
+            <Grid  Grid.Column="0" x:Name="viewPlan" >
                 <Grid x:Name="vp1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="300" />
@@ -113,8 +113,11 @@
                     </Grid>
                     <Grid Grid.Column="1" x:Name="lal" Margin="10,0,10,5"/>
                 </Grid>
+                
             </Grid>
-
+            <Grid x:Name="chatView" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <StackPanel x:Name="chatList" Orientation="Horizontal"/>
+            </Grid>
             <GridSplitter x:Name="spView" Width="5" Grid.Column="1" HorizontalAlignment="Stretch" />
 
             <Grid Grid.Column="2">

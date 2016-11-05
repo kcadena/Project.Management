@@ -14,6 +14,7 @@ namespace ControlDB.Model
     
     public partial class proyectos_meta_datos
     {
+        public long idx_proyecto_meta_dato { get; set; }
         public long id_proyecto_meta_dato { get; set; }
         public long idx_proyecto { get; set; }
         public string keym { get; set; }

@@ -15,17 +15,31 @@ namespace MProjectWPF.MProjectWCF {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MProjectWCF.IMProjectService")]
     public interface IMProjectService {
         
+        // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de contenedor (UserUpload) del mensaje UserUpload no coincide con el valor predeterminado (getUser)
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMProjectService/getUser", ReplyAction="http://tempuri.org/IMProjectService/getUserResponse")]
+        MProjectWPF.MProjectWCF.UserDownload getUser(MProjectWPF.MProjectWCF.UserUpload request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMProjectService/getUser", ReplyAction="http://tempuri.org/IMProjectService/getUserResponse")]
+        System.Threading.Tasks.Task<MProjectWPF.MProjectWCF.UserDownload> getUserAsync(MProjectWPF.MProjectWCF.UserUpload request);
+        
+        // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de contenedor (FileInformation) del mensaje FileInformation no coincide con el valor predeterminado (downloadFile)
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMProjectService/downloadFile", ReplyAction="http://tempuri.org/IMProjectService/downloadFileResponse")]
+        MProjectWPF.MProjectWCF.StreamInformation downloadFile(MProjectWPF.MProjectWCF.FileInformation request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMProjectService/downloadFile", ReplyAction="http://tempuri.org/IMProjectService/downloadFileResponse")]
+        System.Threading.Tasks.Task<MProjectWPF.MProjectWCF.StreamInformation> downloadFileAsync(MProjectWPF.MProjectWCF.FileInformation request);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMProjectService/addUser", ReplyAction="http://tempuri.org/IMProjectService/addUserResponse")]
         string[] addUser(System.Collections.Generic.Dictionary<string, string> u);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMProjectService/addUser", ReplyAction="http://tempuri.org/IMProjectService/addUserResponse")]
         System.Threading.Tasks.Task<string[]> addUserAsync(System.Collections.Generic.Dictionary<string, string> u);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMProjectService/getUser", ReplyAction="http://tempuri.org/IMProjectService/getUserResponse")]
-        System.Collections.Generic.Dictionary<string, string> getUser(string id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMProjectService/getUser1", ReplyAction="http://tempuri.org/IMProjectService/getUser1Response")]
+        System.Collections.Generic.Dictionary<string, string> getUser1(string id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMProjectService/getUser", ReplyAction="http://tempuri.org/IMProjectService/getUserResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, string>> getUserAsync(string id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMProjectService/getUser1", ReplyAction="http://tempuri.org/IMProjectService/getUser1Response")]
+        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, string>> getUser1Async(string id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMProjectService/countlog", ReplyAction="http://tempuri.org/IMProjectService/countlogResponse")]
         int countlog();
@@ -56,6 +70,12 @@ namespace MProjectWPF.MProjectWCF {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMProjectService/getLinks2", ReplyAction="http://tempuri.org/IMProjectService/getLinks2Response")]
         System.Threading.Tasks.Task<string[]> getLinks2Async(long key, long idcar, long usu);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMProjectService/updateTableSequence", ReplyAction="http://tempuri.org/IMProjectService/updateTableSequenceResponse")]
+        void updateTableSequence(System.Collections.Generic.Dictionary<string, string> u);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMProjectService/updateTableSequence", ReplyAction="http://tempuri.org/IMProjectService/updateTableSequenceResponse")]
+        System.Threading.Tasks.Task updateTableSequenceAsync(System.Collections.Generic.Dictionary<string, string> u);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMProjectService/addCaracteristicas", ReplyAction="http://tempuri.org/IMProjectService/addCaracteristicasResponse")]
         void addCaracteristicas(System.Collections.Generic.Dictionary<string, string> u);
@@ -150,11 +170,101 @@ namespace MProjectWPF.MProjectWCF {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMProjectService/getProyects", ReplyAction="http://tempuri.org/IMProjectService/getProyectsResponse")]
         System.Threading.Tasks.Task<MProjectWPF.MProjectWCF.RemoteFileInfo> getProyectsAsync(MProjectWPF.MProjectWCF.DownloadRequest request);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMProjectService/assignActivity", ReplyAction="http://tempuri.org/IMProjectService/assignActivityResponse")]
+        void assignActivity();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMProjectService/assignActivity", ReplyAction="http://tempuri.org/IMProjectService/assignActivityResponse")]
+        System.Threading.Tasks.Task assignActivityAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMProjectService/deleteFile", ReplyAction="http://tempuri.org/IMProjectService/deleteFileResponse")]
         void deleteFile(string id_usu);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMProjectService/deleteFile", ReplyAction="http://tempuri.org/IMProjectService/deleteFileResponse")]
         System.Threading.Tasks.Task deleteFileAsync(string id_usu);
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="UserUpload", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class UserUpload {
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
+        public string email;
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
+        public string password;
+        
+        public UserUpload() {
+        }
+        
+        public UserUpload(string email, string password) {
+            this.email = email;
+            this.password = password;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="UserDownload", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class UserDownload {
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
+        public string[] fileList;
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
+        public string[] folderList;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public System.IO.Stream fileStream;
+        
+        public UserDownload() {
+        }
+        
+        public UserDownload(string[] fileList, string[] folderList, System.IO.Stream fileStream) {
+            this.fileList = fileList;
+            this.folderList = folderList;
+            this.fileStream = fileStream;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="FileInformation", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class FileInformation {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public string path;
+        
+        public FileInformation() {
+        }
+        
+        public FileInformation(string path) {
+            this.path = path;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="StreamInformation", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class StreamInformation {
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
+        public string path;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public System.IO.Stream FileStream;
+        
+        public StreamInformation() {
+        }
+        
+        public StreamInformation(string path, System.IO.Stream FileStream) {
+            this.path = path;
+            this.FileStream = FileStream;
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -236,6 +346,57 @@ namespace MProjectWPF.MProjectWCF {
                 base(binding, remoteAddress) {
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        MProjectWPF.MProjectWCF.UserDownload MProjectWPF.MProjectWCF.IMProjectService.getUser(MProjectWPF.MProjectWCF.UserUpload request) {
+            return base.Channel.getUser(request);
+        }
+        
+        public string[] getUser(string email, string password, out string[] folderList, out System.IO.Stream fileStream) {
+            MProjectWPF.MProjectWCF.UserUpload inValue = new MProjectWPF.MProjectWCF.UserUpload();
+            inValue.email = email;
+            inValue.password = password;
+            MProjectWPF.MProjectWCF.UserDownload retVal = ((MProjectWPF.MProjectWCF.IMProjectService)(this)).getUser(inValue);
+            folderList = retVal.folderList;
+            fileStream = retVal.fileStream;
+            return retVal.fileList;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<MProjectWPF.MProjectWCF.UserDownload> MProjectWPF.MProjectWCF.IMProjectService.getUserAsync(MProjectWPF.MProjectWCF.UserUpload request) {
+            return base.Channel.getUserAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<MProjectWPF.MProjectWCF.UserDownload> getUserAsync(string email, string password) {
+            MProjectWPF.MProjectWCF.UserUpload inValue = new MProjectWPF.MProjectWCF.UserUpload();
+            inValue.email = email;
+            inValue.password = password;
+            return ((MProjectWPF.MProjectWCF.IMProjectService)(this)).getUserAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        MProjectWPF.MProjectWCF.StreamInformation MProjectWPF.MProjectWCF.IMProjectService.downloadFile(MProjectWPF.MProjectWCF.FileInformation request) {
+            return base.Channel.downloadFile(request);
+        }
+        
+        public System.IO.Stream downloadFile(ref string path) {
+            MProjectWPF.MProjectWCF.FileInformation inValue = new MProjectWPF.MProjectWCF.FileInformation();
+            inValue.path = path;
+            MProjectWPF.MProjectWCF.StreamInformation retVal = ((MProjectWPF.MProjectWCF.IMProjectService)(this)).downloadFile(inValue);
+            path = retVal.path;
+            return retVal.FileStream;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<MProjectWPF.MProjectWCF.StreamInformation> MProjectWPF.MProjectWCF.IMProjectService.downloadFileAsync(MProjectWPF.MProjectWCF.FileInformation request) {
+            return base.Channel.downloadFileAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<MProjectWPF.MProjectWCF.StreamInformation> downloadFileAsync(string path) {
+            MProjectWPF.MProjectWCF.FileInformation inValue = new MProjectWPF.MProjectWCF.FileInformation();
+            inValue.path = path;
+            return ((MProjectWPF.MProjectWCF.IMProjectService)(this)).downloadFileAsync(inValue);
+        }
+        
         public string[] addUser(System.Collections.Generic.Dictionary<string, string> u) {
             return base.Channel.addUser(u);
         }
@@ -244,12 +405,12 @@ namespace MProjectWPF.MProjectWCF {
             return base.Channel.addUserAsync(u);
         }
         
-        public System.Collections.Generic.Dictionary<string, string> getUser(string id) {
-            return base.Channel.getUser(id);
+        public System.Collections.Generic.Dictionary<string, string> getUser1(string id) {
+            return base.Channel.getUser1(id);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, string>> getUserAsync(string id) {
-            return base.Channel.getUserAsync(id);
+        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, string>> getUser1Async(string id) {
+            return base.Channel.getUser1Async(id);
         }
         
         public int countlog() {
@@ -290,6 +451,14 @@ namespace MProjectWPF.MProjectWCF {
         
         public System.Threading.Tasks.Task<string[]> getLinks2Async(long key, long idcar, long usu) {
             return base.Channel.getLinks2Async(key, idcar, usu);
+        }
+        
+        public void updateTableSequence(System.Collections.Generic.Dictionary<string, string> u) {
+            base.Channel.updateTableSequence(u);
+        }
+        
+        public System.Threading.Tasks.Task updateTableSequenceAsync(System.Collections.Generic.Dictionary<string, string> u) {
+            return base.Channel.updateTableSequenceAsync(u);
         }
         
         public void addCaracteristicas(System.Collections.Generic.Dictionary<string, string> u) {
@@ -462,6 +631,14 @@ namespace MProjectWPF.MProjectWCF {
             MProjectWPF.MProjectWCF.DownloadRequest inValue = new MProjectWPF.MProjectWCF.DownloadRequest();
             inValue.usuario = usuario;
             return ((MProjectWPF.MProjectWCF.IMProjectService)(this)).getProyectsAsync(inValue);
+        }
+        
+        public void assignActivity() {
+            base.Channel.assignActivity();
+        }
+        
+        public System.Threading.Tasks.Task assignActivityAsync() {
+            return base.Channel.assignActivityAsync();
         }
         
         public void deleteFile(string id_usu) {

@@ -22,13 +22,13 @@
     <MetadataSource Address="http://190.254.4.6:93/MPChat/ChatService.svc?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="ChatService2.xsd" MetadataType="Schema" ID="5fb22d45-ad4f-4b73-ba8c-56c8d59562c8" SourceId="1" SourceUrl="http://190.254.4.6:93/MPChat/ChatService.svc?xsd=xsd5" />
-    <MetadataFile FileName="ChatService11.xsd" MetadataType="Schema" ID="c4e06ab0-77f6-412e-bfec-dc47eb566fbb" SourceId="1" SourceUrl="http://190.254.4.6:93/MPChat/ChatService.svc?xsd=xsd1" />
-    <MetadataFile FileName="ChatService1.xsd" MetadataType="Schema" ID="ef62f8a5-4014-45f5-9f5c-ba66b92a3c48" SourceId="1" SourceUrl="http://190.254.4.6:93/MPChat/ChatService.svc?xsd=xsd2" />
-    <MetadataFile FileName="ChatService12.xsd" MetadataType="Schema" ID="2c460047-afa9-46fd-8a9a-bdafd2812b79" SourceId="1" SourceUrl="http://190.254.4.6:93/MPChat/ChatService.svc?xsd=xsd3" />
-    <MetadataFile FileName="ChatService.xsd" MetadataType="Schema" ID="eb99e9d0-d899-4471-b525-4b9073b6ca7a" SourceId="1" SourceUrl="http://190.254.4.6:93/MPChat/ChatService.svc?xsd=xsd0" />
-    <MetadataFile FileName="ChatService.wsdl" MetadataType="Wsdl" ID="5efc461e-4007-46d1-97af-07780604fdc1" SourceId="1" SourceUrl="http://190.254.4.6:93/MPChat/ChatService.svc?wsdl" />
-    <MetadataFile FileName="ChatService22.xsd" MetadataType="Schema" ID="e750f7fd-dd75-456c-a37b-6c60046f91a2" SourceId="1" SourceUrl="http://190.254.4.6:93/MPChat/ChatService.svc?xsd=xsd4" />
+    <MetadataFile FileName="ChatService.xsd" MetadataType="Schema" ID="62851d22-1178-4089-82d3-a4ac9e9b700e" SourceId="1" SourceUrl="http://190.254.4.6:93/MPChat/ChatService.svc?xsd=xsd5" />
+    <MetadataFile FileName="ChatService1.xsd" MetadataType="Schema" ID="0842ed35-ae60-42d1-abb4-4b84b1a5f931" SourceId="1" SourceUrl="http://190.254.4.6:93/MPChat/ChatService.svc?xsd=xsd1" />
+    <MetadataFile FileName="ChatService2.xsd" MetadataType="Schema" ID="adc2b6ab-c208-4156-b94b-519c90ad7b31" SourceId="1" SourceUrl="http://190.254.4.6:93/MPChat/ChatService.svc?xsd=xsd2" />
+    <MetadataFile FileName="ChatService3.xsd" MetadataType="Schema" ID="4732a19e-bd1a-42d3-a601-f3f02b3bf7d6" SourceId="1" SourceUrl="http://190.254.4.6:93/MPChat/ChatService.svc?xsd=xsd3" />
+    <MetadataFile FileName="ChatService4.xsd" MetadataType="Schema" ID="471a4de3-1eec-4052-998d-24ed6a139423" SourceId="1" SourceUrl="http://190.254.4.6:93/MPChat/ChatService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ChatService.wsdl" MetadataType="Wsdl" ID="5f8c7fb4-4d0e-493f-8bc8-0039e33eaa5d" SourceId="1" SourceUrl="http://190.254.4.6:93/MPChat/ChatService.svc?wsdl" />
+    <MetadataFile FileName="ChatService5.xsd" MetadataType="Schema" ID="63fc1331-b342-44fa-ad8e-30f62e935969" SourceId="1" SourceUrl="http://190.254.4.6:93/MPChat/ChatService.svc?xsd=xsd4" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

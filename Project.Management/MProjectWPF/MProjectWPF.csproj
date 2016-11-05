@@ -164,6 +164,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
@@ -194,7 +195,6 @@
     </ApplicationDefinition>
     <Compile Include="Controller\Actividades.cs" />
     <Compile Include="Controller\Caracteristicas.cs" />
-    <Compile Include="Controller\ConectionString.cs" />
     <Compile Include="Controller\LogXml.cs" />
     <Compile Include="Controller\Plantillas.cs" />
     <Compile Include="Controller\Proyectos.cs" />
@@ -214,6 +214,12 @@
     </Compile>
     <Compile Include="UsersControls\ActivityControls\ActivityPanel.xaml.cs">
       <DependentUpon>ActivityPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsersControls\ChatControls\ChatPanel.xaml.cs">
+      <DependentUpon>ChatPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsersControls\ChatControls\LabelMessage.xaml.cs">
+      <DependentUpon>LabelMessage.xaml</DependentUpon>
     </Compile>
     <Compile Include="UsersControls\OtherControls\NumberBox.xaml.cs">
       <DependentUpon>NumberBox.xaml</DependentUpon>
@@ -312,6 +318,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UsersControls\ActivityControls\ActivityPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsersControls\ChatControls\ChatPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsersControls\ChatControls\LabelMessage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -421,6 +435,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Resources\Imagen.png" />
     <None Include="Properties\app.manifest" />
     <Resource Include="Resources\download-file.png" />
     <Resource Include="Resources\upload-file.png" />
@@ -435,24 +450,32 @@
     <Resource Include="Resources\multi-icon.png" />
     <Resource Include="Resources\web-icon.png" />
     <Resource Include="Resources\home.png" />
-    <Resource Include="Logs\log.xml" />
-    <None Include="Service References\MProjectWCF\MProjectService1.wsdl" />
-    <None Include="Service References\MProjectWCF\MProjectService4.xsd">
+    <Content Include="Logs\log.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Service References\MProjectWCF\MProjectService.wsdl" />
+    <None Include="Service References\MProjectWCF\MProjectService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MProjectWCF\MProjectService41.xsd">
+    <None Include="Service References\MProjectWCF\MProjectService1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MProjectWCF\MProjectService42.xsd">
+    <None Include="Service References\MProjectWCF\MProjectService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MProjectWCF\MProjectService43.xsd">
+    <None Include="Service References\MProjectWCF\MProjectService3.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\MProjectWCF\MProjectWPF.MProjectWCF.fileUploadResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\MProjectWCF\MProjectWPF.MProjectWCF.RemoteFileInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MProjectWCF\MProjectWPF.MProjectWCF.StreamInformation.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MProjectWCF\MProjectWPF.MProjectWCF.UserDownload.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\MProjectWCF\Reference.svcmap">
@@ -484,7 +507,7 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Content Include="DocumentXml\DocTemplate\Objetives.docx">
+    <Content Include="DocumentXml\DocTemplate\Objectives.docx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Model\MProjectDeskSQLITE.sqlite" />

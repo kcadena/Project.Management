@@ -2,23 +2,46 @@
 <wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="MProjectService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
-      <xsd:import schemaLocation="http://190.254.4.6:93/MProjectService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
-      <xsd:import schemaLocation="http://190.254.4.6:93/MProjectService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://190.254.4.6:93/MProjectService.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-      <xsd:import schemaLocation="http://190.254.4.6:93/MProjectService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/Message" />
+      <xsd:import schemaLocation="http://192.168.0.17/MProjectService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://192.168.0.17/MProjectService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://192.168.0.17/MProjectService.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/Message" />
+      <xsd:import schemaLocation="http://192.168.0.17/MProjectService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="UserUpload">
+    <wsdl:part name="parameters" element="tns:UserUpload" />
+  </wsdl:message>
+  <wsdl:message name="UserUpload_Headers">
+    <wsdl:part name="email" element="tns:email" />
+    <wsdl:part name="password" element="tns:password" />
+  </wsdl:message>
+  <wsdl:message name="UserDownload">
+    <wsdl:part name="parameters" element="tns:UserDownload" />
+  </wsdl:message>
+  <wsdl:message name="UserDownload_Headers">
+    <wsdl:part name="fileList" element="tns:fileList" />
+    <wsdl:part name="folderList" element="tns:folderList" />
+  </wsdl:message>
+  <wsdl:message name="FileInformation">
+    <wsdl:part name="parameters" element="tns:FileInformation" />
+  </wsdl:message>
+  <wsdl:message name="StreamInformation">
+    <wsdl:part name="parameters" element="tns:StreamInformation" />
+  </wsdl:message>
+  <wsdl:message name="StreamInformation_Headers">
+    <wsdl:part name="path" element="tns:path" />
+  </wsdl:message>
   <wsdl:message name="IMProjectService_addUser_InputMessage">
     <wsdl:part name="parameters" element="tns:addUser" />
   </wsdl:message>
   <wsdl:message name="IMProjectService_addUser_OutputMessage">
     <wsdl:part name="parameters" element="tns:addUserResponse" />
   </wsdl:message>
-  <wsdl:message name="IMProjectService_getUser_InputMessage">
-    <wsdl:part name="parameters" element="tns:getUser" />
+  <wsdl:message name="IMProjectService_getUser1_InputMessage">
+    <wsdl:part name="parameters" element="tns:getUser1" />
   </wsdl:message>
-  <wsdl:message name="IMProjectService_getUser_OutputMessage">
-    <wsdl:part name="parameters" element="tns:getUserResponse" />
+  <wsdl:message name="IMProjectService_getUser1_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getUser1Response" />
   </wsdl:message>
   <wsdl:message name="IMProjectService_countlog_InputMessage">
     <wsdl:part name="parameters" element="tns:countlog" />
@@ -49,6 +72,12 @@
   </wsdl:message>
   <wsdl:message name="IMProjectService_getLinks2_OutputMessage">
     <wsdl:part name="parameters" element="tns:getLinks2Response" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_updateTableSequence_InputMessage">
+    <wsdl:part name="parameters" element="tns:updateTableSequence" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_updateTableSequence_OutputMessage">
+    <wsdl:part name="parameters" element="tns:updateTableSequenceResponse" />
   </wsdl:message>
   <wsdl:message name="IMProjectService_addCaracteristicas_InputMessage">
     <wsdl:part name="parameters" element="tns:addCaracteristicas" />
@@ -133,6 +162,12 @@
   <wsdl:message name="DownloadRequest">
     <wsdl:part name="parameters" element="tns:DownloadRequest" />
   </wsdl:message>
+  <wsdl:message name="IMProjectService_assignActivity_InputMessage">
+    <wsdl:part name="parameters" element="tns:assignActivity" />
+  </wsdl:message>
+  <wsdl:message name="IMProjectService_assignActivity_OutputMessage">
+    <wsdl:part name="parameters" element="tns:assignActivityResponse" />
+  </wsdl:message>
   <wsdl:message name="IMProjectService_deleteFile_InputMessage">
     <wsdl:part name="parameters" element="tns:deleteFile" />
   </wsdl:message>
@@ -140,13 +175,21 @@
     <wsdl:part name="parameters" element="tns:deleteFileResponse" />
   </wsdl:message>
   <wsdl:portType name="IMProjectService">
+    <wsdl:operation name="getUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMProjectService/getUser" name="UserUpload" message="tns:UserUpload" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMProjectService/getUserResponse" name="UserDownload" message="tns:UserDownload" />
+    </wsdl:operation>
+    <wsdl:operation name="downloadFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMProjectService/downloadFile" name="FileInformation" message="tns:FileInformation" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMProjectService/downloadFileResponse" name="StreamInformation" message="tns:StreamInformation" />
+    </wsdl:operation>
     <wsdl:operation name="addUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IMProjectService/addUser" message="tns:IMProjectService_addUser_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMProjectService/addUserResponse" message="tns:IMProjectService_addUser_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="getUser">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMProjectService/getUser" message="tns:IMProjectService_getUser_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMProjectService/getUserResponse" message="tns:IMProjectService_getUser_OutputMessage" />
+    <wsdl:operation name="getUser1">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMProjectService/getUser1" message="tns:IMProjectService_getUser1_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMProjectService/getUser1Response" message="tns:IMProjectService_getUser1_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="countlog">
       <wsdl:input wsaw:Action="http://tempuri.org/IMProjectService/countlog" message="tns:IMProjectService_countlog_InputMessage" />
@@ -167,6 +210,10 @@
     <wsdl:operation name="getLinks2">
       <wsdl:input wsaw:Action="http://tempuri.org/IMProjectService/getLinks2" message="tns:IMProjectService_getLinks2_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMProjectService/getLinks2Response" message="tns:IMProjectService_getLinks2_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="updateTableSequence">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMProjectService/updateTableSequence" message="tns:IMProjectService_updateTableSequence_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMProjectService/updateTableSequenceResponse" message="tns:IMProjectService_updateTableSequence_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="addCaracteristicas">
       <wsdl:input wsaw:Action="http://tempuri.org/IMProjectService/addCaracteristicas" message="tns:IMProjectService_addCaracteristicas_InputMessage" />
@@ -228,6 +275,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMProjectService/getProyects" name="DownloadRequest" message="tns:DownloadRequest" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMProjectService/getProyectsResponse" name="RemoteFileInfo" message="tns:RemoteFileInfo" />
     </wsdl:operation>
+    <wsdl:operation name="assignActivity">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMProjectService/assignActivity" message="tns:IMProjectService_assignActivity_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMProjectService/assignActivityResponse" message="tns:IMProjectService_assignActivity_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="deleteFile">
       <wsdl:input wsaw:Action="http://tempuri.org/IMProjectService/deleteFile" message="tns:IMProjectService_deleteFile_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMProjectService/deleteFileResponse" message="tns:IMProjectService_deleteFile_OutputMessage" />
@@ -235,6 +286,29 @@
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IMProjectService" type="tns:IMProjectService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getUser">
+      <soap:operation soapAction="http://tempuri.org/IMProjectService/getUser" style="document" />
+      <wsdl:input name="UserUpload">
+        <soap:header message="tns:UserUpload_Headers" part="email" use="literal" />
+        <soap:header message="tns:UserUpload_Headers" part="password" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="UserDownload">
+        <soap:header message="tns:UserDownload_Headers" part="fileList" use="literal" />
+        <soap:header message="tns:UserDownload_Headers" part="folderList" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="downloadFile">
+      <soap:operation soapAction="http://tempuri.org/IMProjectService/downloadFile" style="document" />
+      <wsdl:input name="FileInformation">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="StreamInformation">
+        <soap:header message="tns:StreamInformation_Headers" part="path" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="addUser">
       <soap:operation soapAction="http://tempuri.org/IMProjectService/addUser" style="document" />
       <wsdl:input>
@@ -244,8 +318,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="getUser">
-      <soap:operation soapAction="http://tempuri.org/IMProjectService/getUser" style="document" />
+    <wsdl:operation name="getUser1">
+      <soap:operation soapAction="http://tempuri.org/IMProjectService/getUser1" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -291,6 +365,15 @@
     </wsdl:operation>
     <wsdl:operation name="getLinks2">
       <soap:operation soapAction="http://tempuri.org/IMProjectService/getLinks2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateTableSequence">
+      <soap:operation soapAction="http://tempuri.org/IMProjectService/updateTableSequence" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -439,6 +522,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="assignActivity">
+      <soap:operation soapAction="http://tempuri.org/IMProjectService/assignActivity" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="deleteFile">
       <soap:operation soapAction="http://tempuri.org/IMProjectService/deleteFile" style="document" />
       <wsdl:input>
@@ -451,7 +543,7 @@
   </wsdl:binding>
   <wsdl:service name="MProjectService">
     <wsdl:port name="BasicHttpBinding_IMProjectService" binding="tns:BasicHttpBinding_IMProjectService">
-      <soap:address location="http://190.254.4.6:93/MProjectService.svc" />
+      <soap:address location="http://192.168.0.17/MProjectService.svc" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
